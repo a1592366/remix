@@ -7,7 +7,7 @@ const methods = {};
 events.forEach(event => {
   const { name, short, method } = event;
 
-  shorts[short] = names[name] = methods[methods] = e;
+  shorts[short] = names[name] = methods[method] = event;
 });
 
 module.exports = {
