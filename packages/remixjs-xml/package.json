@@ -9,6 +9,9 @@
   "author": "aniwei",
   "license": "ISC",
   "dependencies": {
+    "camelcase": "^5.3.1",
+    "fs-extra": "^8.1.0",
+    "mustache": "^3.1.0",
     "remixjs-events": "^0.0.1"
   }
 }

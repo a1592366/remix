@@ -1,0 +1,37 @@
+<template name="__<% tagName %>">
+  <<% tagName %> <% &props %>>
+    <% #openning %>
+    <block wx:if="{{children.length > 0}}">
+      <swiper-item
+        wx:for="{{children}}" 
+        wx:for-index="index" 
+        wx:for-item="node"
+        wx:key="{{node.key}}"
+      >
+        <section data-type="swiper-item" data-id="{{node.dataId}}" node="{{node}}" />
+      </swiper-item>
+    </block>
+    <% /openning %>
+  </<%tagName%>>
+</template>
+
+<template name="_<% tagName %>">
+  <block wx:if="{{e}}">
+    <% #conditions %>
+    <block wx:<% #EXPRESSION %><% /EXPRESSION %>="{{<% #CONDITION %><% /CONDITION %>}}">
+      <<% tagName %> <% &props %> <% #EVENTS %><% /EVENTS %>>
+      </<%tagName%>>
+    </block>
+    <% /conditions %>
+    <block wx:else>
+      <template is="__<% tagName %>" data="{{ ...props, children: children, dataId: dataId, type: type }}" />
+    </block>
+  </block>
+  <block wx:else>
+    <template is="__<% tagName %>" data="{{ ...props, children: children, dataId: dataId, type: type }}" />
+  </block>
+</template>
+
+<template name="<% tagName %>">
+  <template is="_<% tagName %>" data="{{ ...props, children: children, dataId: dataId, type: type, props: props }}" />
+</template>

@@ -1,9 +1,9 @@
 const Default = require('./Default');
 const types = require('../../types');
 
-module.exports = class Text extends Default {
+module.exports = class Picker extends Default {
   constructor (...argv) {
     super(...argv);
-    this.type = types.TEXT;
+    this.type = types.PICKER;
   }
 }
