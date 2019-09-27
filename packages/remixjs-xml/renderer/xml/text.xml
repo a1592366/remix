@@ -1,0 +1,25 @@
+<template name="_<% tagName %>">
+  <<% tagName %> <% &props %>>
+    <% #openning %>
+
+    <block if="{{children.length > 0}}">
+      <block
+        wx:for="{{children}}" 
+        wx:for-index="index" 
+        wx:for-item="node"
+        wx:key="{{node.key}}"
+      >
+        <block wx:if="{{node.type === '#text'}}">{{node.text}}</block>
+        <block wx:else>
+          <section data-type="{{node.type}}" children="{{node.children}}" />
+        </block>
+      </block>
+    </block>
+
+    <% /openning %>
+  </<%tagName%>>
+</template>
+
+<template name="<% tagName %>">
+  <template is="_<% tagName %>" data="{{ ...props, children: children, dataId: id, type: type }}" />
+</template>
