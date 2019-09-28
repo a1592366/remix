@@ -62,7 +62,7 @@ class Default {
     ]).map(prop => {
       const { name, value } = prop;
 
-      return `${name}=${value}`;
+      return `${name}="${value}"`;
     }).join(' ')
   }
 

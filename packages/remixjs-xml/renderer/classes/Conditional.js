@@ -42,8 +42,8 @@ class Conditional extends Default {
       EVENTS () {
         return function () {
           return this.map(e => {
-            return `e.${e.v}`;
-          }).join('&&');
+            return `${e.t}${e.n}="${e.v}"`;
+          }).join(' ');
         }
       },
 

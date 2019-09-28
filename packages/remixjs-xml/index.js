@@ -21,7 +21,6 @@ module.exports = function create (dist = __dirname) {
   });
 }
 
-module.exports(path.resolve(__dirname, '__test__'))
 
 
 
