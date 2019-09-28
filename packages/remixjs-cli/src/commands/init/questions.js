@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 
 module.exports = {
   isCurrentDirectory: {
-    type: 'config',
+    type: 'confirm',
     message: '是否在当前目录创建项目：',
     name: 'isCurrentDirectory',
     default: null

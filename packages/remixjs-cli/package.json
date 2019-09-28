@@ -38,6 +38,7 @@
 		"mem-fs": "^1.1.3",
 		"mem-fs-editor": "^5.1.0",
 		"progress-bar-webpack-plugin": "^1.12.1",
+		"remixjs-xml": "^0.0.1",
 		"sass": "^1.18.0",
 		"sass-loader": "^7.1.0",
 		"webpack": "^4.29.6",

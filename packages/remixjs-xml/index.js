@@ -6,19 +6,27 @@ const { getOwnPropertyNames: getPropertyKeys } = Object;
 
 
 
-module.exports = function create (dist = __dirname) {
-  const tagNames = getPropertyKeys(models);
+module.exports = {
+  async build (dist) {
+    const tagNames = getPropertyKeys(models);
 
-  tagNames.map(tagName => {
-    const model = models[tagName];
-
-    return {
-      tagName,
-      template: renderer(tagName, model)
+    if (!await fs.exists(dist)) {
+      await fs.mkdirp(dist);
     }
-  }).map(({ tagName, template }) => {
-    fs.writeFileSync(path.resolve(dist, `${tagName}.wxml`), template);
-  });
+
+    
+  
+    await Promise.all(tagNames.map(tagName => {
+      const model = models[tagName];
+  
+      return {
+        tagName,
+        template: renderer(tagName, model)
+      }
+    }).map(({ tagName, template }) => {
+      return fs.writeFile(path.resolve(dist, `${tagName}.wxml`), template);
+    }))
+  }
 }
 
 

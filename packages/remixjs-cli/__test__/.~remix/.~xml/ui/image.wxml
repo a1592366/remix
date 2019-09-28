@@ -1,0 +1,36 @@
+<template name="image_children">
+  <block wx:if="{{children.length > 0}}">
+    <block
+      wx:for="{{children}}" 
+      wx:for-index="index" 
+      wx:for-item="node"
+      wx:key="{{node.key}}"
+    >
+      <section data-type="{{node.type}}" node-id="{{node.id}}" node="{{node}}" data-id="{{node.dataId}}" id="{{node.id}}" />
+    </block>
+  </block>
+</template>
+
+<template name="__image">
+  <image src="{{src}}" mode="{{mode}}" lazy-load="{{lazyLoad}}" mode="{{mode}}" binderror="e" style="{{style}}" data-id="{{dataId}}" data-type="{{type}}" class="{{className}}">
+  </image>
+</template>
+
+<template name="_image">
+  <block wx:if="{{e}}">
+    <block wx:if="{{e.l}}">
+      <image src="{{src}}" mode="{{mode}}" lazy-load="{{lazyLoad}}" mode="{{mode}}" binderror="e" style="{{style}}" data-id="{{dataId}}" data-type="{{type}}" class="{{className}}" bindload="l">
+      </image>
+    </block>
+    <block wx:else>
+      <template is="__image" data="{{ ...props, children: children, dataId: dataId, type: type }}" />
+    </block>
+  </block>
+  <block wx:else>
+    <template is="__image" data="{{ ...props, children: children, dataId: dataId, type: type }}" />
+  </block>
+</template>
+
+<template name="image">
+  <template is="_image" data="{{ ...props, children: children, dataId: dataId, type: type, props: props }}" />
+</template>
