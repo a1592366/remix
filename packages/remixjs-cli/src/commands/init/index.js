@@ -59,6 +59,11 @@ async function installDependencies (answers) {
 }
 
 async function getContext () {
+  if (await fs.exists(env.REMIX_SOURCE)) {
+    return looger.orange(`当前目录已经存在 remixjs 项目`);
+  }
+
+
   const answers = await inquirer.prompt([
     questions.isCurrentDirectory,
     questions.appid
