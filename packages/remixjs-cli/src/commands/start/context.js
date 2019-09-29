@@ -1,5 +1,6 @@
-const path = require('path');
+const babelRegister = require('babel-register');
 const fs = require('fs-extra');
+const env = require('../../shared/env');
 
 
 function createBootstrapJavaScriptString (file) {
@@ -23,12 +24,19 @@ function createBootstrapJavaScriptString (file) {
 }
 
 function registerBabelRuntime () {
-  const babelRegister = require('babel-register');
+  const javascriptString = createBootstrapJavaScriptString(env.PROJ_ENTRY);
 
   babelRegister({
     cache: false,
-    ignore: ``,
     extensions: ['js', 'jsx']
   });
+
+  fs.writeFileSync(env.REMIX_BOOT, javascriptString);
+
+  const context = require(env.REMIX_BOOT);
+
+  process.send(context);
 }
+
+registerBabelRuntime();
 

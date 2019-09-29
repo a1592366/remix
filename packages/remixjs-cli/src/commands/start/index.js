@@ -5,14 +5,10 @@ const createProject = require('../../shared/project').createProject;
 const rpc = require('./rpc');
 
 
-process.on('unhandledRejection', error => {
-  throw error
-});
-
 async function watch () {
   const context = await rpc.getContext();
 
-  const project = createProject();
+  const project = createProject(context);
   const watcher = chokidar.watch(env.PROJ_ENTRY);
 
   watcher.on('change', async () => {
