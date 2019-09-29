@@ -1,20 +1,18 @@
 const fs = require('fs-extra');
-const spawn = require('child_process').spawn;
-const path = require('path');
 const chokidar = require('chokidar');
+const env = require('../../shared/env');
+const createProject = require('../../shared/project').createProject;
+const rpc = require('./rpc');
 
-const Compiler = require('../../compiler');
-const { project } = require('../../common/configurations');
-
-const Project = require('./project');
 
 process.on('unhandledRejection', error => {
   throw error
 });
 
-
 async function watch () {
-  const project = new Project();
+  const context = await rpc.getContext();
+
+  const project = createProject();
   const watcher = chokidar.watch(env.PROJ_ENTRY);
 
   watcher.on('change', async () => {
@@ -23,7 +21,7 @@ async function watch () {
 
   process.on('beforeExit', () => {
     watcher.close();
-    project.destroy();
+    project.distroy();
   });
 }
 
