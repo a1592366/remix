@@ -1,4 +1,3 @@
-
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import Project from 'remixjs/project';
