@@ -5,7 +5,8 @@ const env = require('../../../shared/env');
 
 const server = rpc.server({
   context (argv, callback) {
-    const ps = fork(path.resolve(env.REMIX_SOURCE, './rumtime.js'), {
+    console.log(123)
+    const ps = fork(path.resolve(env.REMIX_SOURCE, './runtime.js'), {
       cwd: env.PROJ
     });
 

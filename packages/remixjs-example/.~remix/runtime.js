@@ -1,7 +1,7 @@
 const babelRegister = require('@babel/register');
 
-
 function registerBabelRuntime () {
+
   babelRegister({
     cache: false,
     extensions: ['.js', '.jsx']

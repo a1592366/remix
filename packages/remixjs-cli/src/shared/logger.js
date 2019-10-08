@@ -5,11 +5,11 @@ module.exports = {
     console.log(chalk.green(text));
   },
 
-  orange (text) {
-    console.log(chalk.orange(text))
+  yellow (text) {
+    console.log(chalk.bgYellow(text))
   },
 
   red (text) {
-    console.log(chalk.red(text));
+    console.log(chalk.bgRed(text));
   }
 }
