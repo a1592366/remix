@@ -1,17 +1,17 @@
 
-    import { createElement } from 'react';
-    import { render } from 'react-dom';
-    import Project from 'remixjs/project';
-    import Application from '../src';
-    
-    const project = new Project(
-      render(createElement(Application, {}, [])).vnode
-    );
+debugger;
+import { createElement } from 'react';
+import { render } from 'react-dom';
+import Project from 'remixjs/project';
+import Application from '../src';
 
-    if (typeof App === 'function') {
-      App(project.application);
-    }
+const project = new Project(
+  render(createElement(Application, {}, [])).vnode
+);
 
-    export { project }
-    export default project;
-  
+if (typeof App === 'function') {
+  App(project.application);
+}
+
+export { project }
+export default project;
