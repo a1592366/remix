@@ -19,6 +19,8 @@
 	},
 	"dependencies": {
 		"prop-types": "^15.7.2",
+		"remixjs-components": "^0.0.1",
+		"remixjs-project": "^0.0.1",
 		"requestidlecallback": "^0.3.0",
 		"uuid": "^3.3.2"
 	},

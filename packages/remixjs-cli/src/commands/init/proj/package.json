@@ -20,13 +20,9 @@
 		"webpack": "^4.31.0",
 		"webpack-cli": "^3.3.2",
 		"webpack-dev-server": "^3.4.1",
-    "css-loader": "^1.0.1",
+    "css-loader": "^1.0.1"
   },
   "dependencies": {
-    "remixjs": "latest",
-    "remixjs/components": "latest",
-    "remixjs/router": "latest",
-    "remixjs/project": "latest",
-    "remixjs/runtime": "latest"
+    "remixjs": "latest"
   }
 }

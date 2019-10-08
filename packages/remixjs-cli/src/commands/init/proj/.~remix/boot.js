@@ -2,7 +2,7 @@
     import { createElement } from 'react';
     import { render } from 'react-dom';
     import Project from 'remixjs/project';
-    import Application from 'undefined';
+    import Application from '../src';
     
     const project = new Project(
       render(createElement(Application, {}, [])).vnode
