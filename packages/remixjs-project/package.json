@@ -2,30 +2,35 @@
   "name": "remixjs-project",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/project.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production webpack --color --progress"
+    "build": "webpack --color --progress"
   },
   "author": "aniwei",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.3.0"
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.2",
+    "@babel/runtime": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "css-loader": "^1.0.1",
+    "fs-extra": "^8.1.0",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
     "@expri/components": "^1.0.6",
     "@expri/events": "^1.0.3",
     "@expri/exprijs": "^1.0.18",
     "@expri/router": "^1.0.10",
-    "@expri/worker": "^1.0.1"
+    "@expri/worker": "^1.0.1",
+    "remixjs": "^0.0.1"
   }
 }

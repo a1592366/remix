@@ -1,25 +1,26 @@
-import { Application, TabBar } from '@expri/components';
-import Router, { Route } from '@expri/router';
+import { createElement } from 'react';
+import { render } from 'react-dom';
+
+import { document } from 'remixjs';
+
+import { Application, TabBar } from 'remixjs/components';
+import Router, { Route } from 'remixjs/router';
+
 import { getApplicationInstance } from './instance';
 
 const { TabBarItem } = TabBar;
 
-export const getApplicationContext = () => {
-  return Project.context;
-}
 
-export default class Project {
-  constructor (vnode) {
-    this.vnode = vnode;
+export default class MiniProgram {
+  constructor (Application, container) {
+    this.rendered = render(createElement(Application), container || document.body);
   
-    Project.context = this;
+    MiniProgram.context = this;
     
     this.getApplicationContext(this.vnode);
     this.getApplicationInstance();
     this.registerApplication();
   }
-
-
 
   registerApplication () {
     if (typeof App === 'function') {
@@ -45,9 +46,9 @@ export default class Project {
     }
   }
 
-getApplicationInstance () {
-  this.instance = getApplicationInstance();
-}
+  getApplicationInstance () {
+    this.instance = getApplicationInstance();
+  }
 
 
   getApplicationContext = ({ _rendered: rendered }) => {
@@ -118,4 +119,8 @@ getApplicationInstance () {
       }
     }
   }
+}
+
+export const getApplicationContext = () => {
+  return Project.context;
 }
