@@ -3,6 +3,10 @@
 	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
+	"scripts": {
+		"build": "NODE_ENV=production webpack --progress --color",
+		"start": "NODE_ENV=development webpack-dev-server --watch --color --progress"
+	},
 	"devDependencies": {
 		"@babel/core": "^7.4.4",
 		"@babel/plugin-proposal-class-properties": "^7.4.4",
@@ -19,8 +23,6 @@
 	},
 	"dependencies": {
 		"prop-types": "^15.7.2",
-		"remixjs-components": "^0.0.1",
-		"remixjs-project": "^0.0.1",
 		"requestidlecallback": "^0.3.0",
 		"uuid": "^3.3.2"
 	},

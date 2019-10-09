@@ -10,13 +10,19 @@ module.exports = {
   },
   
   entry: {
-    'bundle':  path.resolve(__dirname, './example/src/index.js')
+    'dist/remix': path.resolve(__dirname, './index.js'),
+    'components': path.resolve(__dirname, './src/components/index.js'),
+    'runtime': path.resolve(__dirname, './src/runtime/index.js'),
+    'project': path.resolve(__dirname, './src/project/index.js'),
   },
   
   output: {
-    path: path.resolve(__dirname, 'example/dist'),  
+    path: __dirname,  
     filename: '[name].js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
+    library: '[name]',
+    globalObject: 'this',
+    libraryTarget: 'umd'
   },
 
   resolve: {
