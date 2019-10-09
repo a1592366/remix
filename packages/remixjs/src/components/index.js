@@ -1,5 +1,9 @@
+import Application from './Application';
+import View from './View';
 import TabBar from './TabBar';
 
 export {
-  TabBar
+  Application,
+  TabBar,
+  View
 }

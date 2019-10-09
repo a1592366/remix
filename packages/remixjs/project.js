@@ -783,6 +783,63 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/components/Application.js":
+/*!***************************************!*\
+  !*** ./src/components/Application.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Application; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _react_Component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../react/Component */ "./src/react/Component.js");
+/* harmony import */ var _react_PropTypes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../react/PropTypes */ "./src/react/PropTypes.js");
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./View */ "./src/components/View.js");
+
+
+
+
+
+
+
+
+
+var Application =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Application, _Component);
+
+  function Application() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Application);
+
+    return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Application).apply(this, arguments));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Application, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(_View__WEBPACK_IMPORTED_MODULE_7__["default"], null, this.props.children);
+    }
+  }]);
+
+  return Application;
+}(_react_Component__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./src/components/TabBar.js":
 /*!**********************************!*\
   !*** ./src/components/TabBar.js ***!
@@ -807,7 +864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _react_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../react/Component */ "./src/react/Component.js");
 /* harmony import */ var _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../react/PropTypes */ "./src/react/PropTypes.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../View'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./View */ "./src/components/View.js");
 
 
 
@@ -832,7 +889,7 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TabBarItem, [{
     key: "render",
     value: function render() {
-      return React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '../View'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null, this.props.children);
+      return React.createElement(_View__WEBPACK_IMPORTED_MODULE_8__["default"], null, this.props.children);
     }
   }]);
 
@@ -860,7 +917,7 @@ function (_Component2) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TabBar, [{
     key: "render",
     value: function render() {
-      return React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '../View'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null, this.props.children);
+      return React.createElement(_View__WEBPACK_IMPORTED_MODULE_8__["default"], null, this.props.children);
     }
   }]);
 
@@ -887,17 +944,103 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(Tab
 
 /***/ }),
 
-/***/ "./src/components/index.js":
-/*!*********************************!*\
-  !*** ./src/components/index.js ***!
-  \*********************************/
-/*! exports provided: TabBar */
+/***/ "./src/components/View.js":
+/*!********************************!*\
+  !*** ./src/components/View.js ***!
+  \********************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TabBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TabBar */ "./src/components/TabBar.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabBar", function() { return _TabBar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return View; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _react_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../react/Component */ "./src/react/Component.js");
+/* harmony import */ var _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../react/PropTypes */ "./src/react/PropTypes.js");
+
+
+
+
+
+
+
+var _defineProperty2, _defineProperty3;
+
+
+
+
+var View =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(View, _Component);
+
+  function View() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, View);
+
+    return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(View).apply(this, arguments));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(View, [{
+    key: "render",
+    value: function render() {
+      return React.createElement("view", this.props.children, this.props.children);
+    }
+  }]);
+
+  return View;
+}(_react_Component__WEBPACK_IMPORTED_MODULE_6__["default"]);
+
+_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(View, "propTypes", (_defineProperty2 = {
+  style: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].object,
+  className: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].string,
+  onPress: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func,
+  onLongPress: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func,
+  onClick: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func,
+  onTap: _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty2, "onPress", _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty2, "onTouchStart", _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty2, "onTouchMove", _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty2, "onTouchEnd", _react_PropTypes__WEBPACK_IMPORTED_MODULE_7__["default"].func), _defineProperty2));
+
+_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(View, "defaultProps", (_defineProperty3 = {
+  style: null,
+  className: null,
+  onPress: null,
+  onLongPress: null,
+  onClick: null
+}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty3, "onPress", null), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty3, "onTap", null), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty3, "onTouchStart", null), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty3, "onTouchMove", null), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_defineProperty3, "onTouchEnd", null), _defineProperty3));
+
+
+
+/***/ }),
+
+/***/ "./src/components/index.js":
+/*!*********************************!*\
+  !*** ./src/components/index.js ***!
+  \*********************************/
+/*! exports provided: Application, TabBar, View */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Application__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Application */ "./src/components/Application.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Application", function() { return _Application__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./View */ "./src/components/View.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "View", function() { return _View__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _TabBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TabBar */ "./src/components/TabBar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabBar", function() { return _TabBar__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
 
 
 

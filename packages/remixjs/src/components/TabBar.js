@@ -1,6 +1,6 @@
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
-import View from '../View';
+import View from './View';
 
 class TabBarItem extends Component {
   static propTypes = {
