@@ -1,4 +1,6 @@
 import MiniProgram from 'remixjs/project';
+
+
 import Application from '../src';
 
 const program = new MiniProgram(Application);

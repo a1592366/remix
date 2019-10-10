@@ -3,17 +3,12 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  devServer: {
-    port: 10010,
-    host: '0.0.0.0',
-    contentBase: path.resolve(__dirname, 'example'),
-  },
   
   entry: {
     'dist/remix': path.resolve(__dirname, './index.js'),
-    'components': path.resolve(__dirname, './src/components/index.js'),
-    'runtime': path.resolve(__dirname, './src/runtime/index.js'),
-    'project': path.resolve(__dirname, './src/project/index.js'),
+    // 'components': path.resolve(__dirname, './src/components/index.js'),
+    // 'runtime': path.resolve(__dirname, './src/runtime/index.js'),
+    // 'project': path.resolve(__dirname, './src/project/index.js'),
   },
   
   output: {

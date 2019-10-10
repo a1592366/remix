@@ -16,14 +16,12 @@ function registerBabelRuntime () {
         const cwd = process.cwd();
         const names = path.resolve(cwd, file).split(path.sep);
 
-        
-
         if (names.includes(ignore.nodeModules)) {
           if (names.includes(ignore.remix)) {
             return false;
           }
         } else {
-          return false
+          return false;
         }
 
         return true;
