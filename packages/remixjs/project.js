@@ -1,4 +1,4 @@
-import project from './src/project';
+import Project from './src/project';
 
-export default project;
+export default Project;
 export * from './src/project';
