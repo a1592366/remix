@@ -4,7 +4,7 @@ const babelRegister = require('@babel/register');
 
 const ignore = {
   nodeModules: 'node_modules',
-  remix: 'remixjs',
+  remix: 'remixjs/src',
 }
 
 function registerBabelRuntime () {
