@@ -28,7 +28,17 @@ function registerBabelRuntime () {
 
   const context = require('./boot');
 
-  process.send(context);
+  console.log(context)
+
+  // process.send(context || {
+  //   tabbar: [],
+  //   pages: []
+  // });
+
+  process.send({
+    tabBar: [],
+    router: []
+  });
 }
 
 registerBabelRuntime();
