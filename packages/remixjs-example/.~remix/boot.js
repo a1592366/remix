@@ -1,7 +1,9 @@
-import MiniProgram from 'remixjs/project';
 
+debugger;
+require('remixjs/project');
 
-import Application from '../src';
+// import MiniProgram from 'remixjs/project';
+// import Application from '../src';
 
 const program = new MiniProgram(Application);
 
