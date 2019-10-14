@@ -91,7 +91,7 @@ export default function commitPlacement (
   while (true) {
     const isHost = node.tag === HOST_COMPONENT || node.tag === HOST_TEXT;
 
-    if (isHost || node.tag === FUNCTION_COMPONENT) {
+    if (isHost) {
       const stateNode = isHost ? 
         node.stateNode : 
         node.stateNode.instance;

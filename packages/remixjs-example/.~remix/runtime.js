@@ -2,16 +2,21 @@ const path = require('path');
 const fs = require('fs-extra');
 const babelRegister = require('@babel/register');
 
+const ignore = {
+  nodeModules: 'node_modules',
+  remix: 'remixjs/src',
+}
+
 function registerBabelRuntime () {
 
   babelRegister({
     cache: false,
     ...fs.readJSONSync(path.resolve(__dirname, '../.babelrc')),
     extensions: ['.js', '.jsx'],
-    // cwd: path.resolve(process.cwd(), '..'),
-    cwd: process.cwd(),
     ignore: [function (file) {
-      if (file.indexOf('/packages/') > -1) {
+      if (file.includes(ignore.nodeModules)) {
+        return true;
+      } else {
         return false;
       }
       

@@ -4,14 +4,14 @@ import { resolveDefaultProps } from '../shared';
 
 export default function createElement (
   type, 
-  props, 
+  props = {}, 
   ...children
 ) {
   const { length } = children;
 
   if (isFunction(type)) {
     props = resolveDefaultProps(type, props);
-  }
+  } 
 
   if (length > 0) {
     if (length === 1) {

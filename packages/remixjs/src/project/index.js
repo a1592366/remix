@@ -12,6 +12,7 @@ export default class MiniProgram {
 
     this.renderApplication(Application, container);
     this.getApplicationContext(this.rendered);
+    
     this.getApplicationInstance();
     this.registerApplication();
   }
@@ -45,7 +46,6 @@ export default class MiniProgram {
   }
 
   getApplicationInstance () {
-    this.instance = getApplicationInstance();
   }
 
 

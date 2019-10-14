@@ -11,7 +11,7 @@ const server = rpc.server({
     });
 
     ps.on('message', () => {
-
+      debugger;
     });
   }
 });

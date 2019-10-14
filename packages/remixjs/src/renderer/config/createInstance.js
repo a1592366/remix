@@ -10,6 +10,7 @@ export default function createInstance (
   workInProgress
 ) {
   const { children } = props;
+  const document = rootContainerInstance.ownerDocument;
   const element = document.createElement(type, props, rootContainerInstance);
 
   element[INTERNAL_INSTANCE_KEY] = workInProgress;
