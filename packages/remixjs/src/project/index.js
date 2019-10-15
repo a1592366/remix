@@ -12,6 +12,8 @@ export default class MiniProgram {
 
     this.renderApplication(Application, container);
     this.getApplicationContext(this.rendered);
+
+    debugger;
     
     this.getApplicationInstance();
     this.registerApplication();

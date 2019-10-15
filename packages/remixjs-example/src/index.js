@@ -4,11 +4,16 @@ import React from 'react';
 
 import { Application } from 'remixjs/components';
 import { Router, Route } from 'remixjs/router';
+import Index from './pages/Index';
 
 export default () => {
-  return <Application>
+  return <Application
+    config={{
+      
+    }}
+  >
     <Router>
-      <Route />
+      <Route path="pages/Index/index" component={Index} />
     </Router>
   </Application>
 }

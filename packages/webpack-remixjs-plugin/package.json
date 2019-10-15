@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "aniwei",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "remixjs-xml": "^0.0.1"
+  }
 }

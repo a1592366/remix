@@ -6,11 +6,12 @@ const env = require('../../../shared/env');
 const server = rpc.server({
   context (argv, callback) {
     const ps = fork(path.resolve(env.REMIX_SOURCE, './runtime.js'), {
-      cwd: env.PROJ
+      cwd: env.PROJ,
+      stdio: 'inherit'
     });
 
     ps.on('message', (context) => {
-      callback(context)
+      callback(null, context);
     });
   }
 });
