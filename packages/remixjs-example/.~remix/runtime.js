@@ -24,9 +24,10 @@ function registerBabelRuntime () {
     }]
   });
 
-  const context = require('./boot');
+  const { program } = require('./boot');
+
   
-  process.send(context);
+  process.send(program.getContext());
 
   // console.log(context)
 
@@ -35,19 +36,19 @@ function registerBabelRuntime () {
   //   pages: []
   // });
 
-  process.send({
-    tabBar: {
-      items: [
-        { text: '测试' }
-      ]
-    },
-    router: {
-      routes: [
-        { path: 'pages/Index/index' }
-      ]
-    },
-    config: {}
-  });
+  // process.send({
+  //   tabBar: {
+  //     items: [
+  //       { text: '测试' }
+  //     ]
+  //   },
+  //   router: {
+  //     routes: [
+  //       { path: 'pages/Index/index' }
+  //     ]
+  //   },
+  //   config: {}
+  // });
 }
 
 registerBabelRuntime();

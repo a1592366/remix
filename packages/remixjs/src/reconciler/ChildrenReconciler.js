@@ -182,11 +182,53 @@ export default function ChildrenReconciler (
     }
   }
 
+  function createChild(returnFiber, newChild, expirationTime) {
+    if (isString(newChild) || isNumber(newChild)) {
+      const created = createFiberFromText(String(newChild));
+      created.return = returnFiber;
+      return created;
+    }
+
+    if (typeof newChild === 'object' && newChild !== null) {
+      switch (newChild.$$typeof) {
+        case REACT_ELEMENT_TYPE:
+          {
+            var _created = createFiberFromElement(newChild, returnFiber.mode, expirationTime);
+            _created.ref = coerceRef(returnFiber, null, newChild);
+            _created.return = returnFiber;
+            return _created;
+          }
+        case REACT_PORTAL_TYPE:
+          {
+            var _created2 = createFiberFromPortal(newChild, returnFiber.mode, expirationTime);
+            _created2.return = returnFiber;
+            return _created2;
+          }
+      }
+
+      if (isArray(newChild) || getIteratorFn(newChild)) {
+        var _created3 = createFiberFromFragment(newChild, returnFiber.mode, expirationTime, null);
+        _created3.return = returnFiber;
+        return _created3;
+      }
+
+    }
+
+    {
+      if (typeof newChild === 'function') {
+        warnOnFunctionType();
+      }
+    }
+
+    return null;
+  }
+
   function reconcileChildrenArray (
     returnFiber, 
     currentFirstChild, 
     newChildren
   ) {
+    debugger;
     var resultingFirstChild = null;
     var previousNewFiber = null;
 
@@ -244,7 +286,7 @@ export default function ChildrenReconciler (
       // If we don't have any more existing children we can choose a fast path
       // since the rest will all be insertions.
       for (; newIdx < newChildren.length; newIdx++) {
-        var _newFiber = createChild(returnFiber, newChildren[newIdx], expirationTime);
+        var _newFiber = createChild(returnFiber, newChildren[newIdx]);
         if (_newFiber === null) {
           continue;
         }

@@ -1,5 +1,5 @@
 import ReactElement from './ReactElement';
-import { isFunction, isUndefined } from '../shared/is';
+import { isFunction, isUndefined, isArray } from '../shared/is';
 import { resolveDefaultProps } from '../shared';
 
 export default function createElement (
@@ -17,6 +17,12 @@ export default function createElement (
     if (length === 1) {
       props = props || {};
       props.children = children[0];
+
+      if (isArray(props.children)) {
+        if (props.children.length === 1) {
+          props.children = props.children[0];
+        }
+      }
     }
   } 
 

@@ -4,6 +4,7 @@ import { document } from '../document';
 
 import { Application, TabBar } from '../components';
 import Router, { Route } from '../router';
+import { isNullOrUndefined } from '../shared/is';
 
 
 export default class MiniProgram {
@@ -11,13 +12,19 @@ export default class MiniProgram {
     MiniProgram.context = this;
 
     this.renderApplication(Application, container);
-    this.getApplicationContext(this.rendered);
+    this.getApplicationContext();
     this.getApplicationInstance();
     this.registerApplication();
   }
 
   renderApplication (Application, container) {
-    this.rendered = render(createElement(Application), container || document.body);
+    render(createElement(Application), container);
+    
+    const rootContainer = container._reactRootContainer;
+    const root = rootContainer._internalRoot;
+    const current = root.current;
+
+    this.currentFiber = current;
   }
 
   registerApplication () {
@@ -44,26 +51,60 @@ export default class MiniProgram {
     }
   }
 
-  getApplicationInstance () {
-    this.instance = getApplicationInstance();
-  }
+  getApplicationInstance = () => {
 
+  }
 
   getApplicationContext = () => {
-    
-  }
+    let currentFiber = this.currentFiber;
+    const context = {
+      config: null,
+      tabBar: {
+        items: []
+      },
+      router: {
+        routes: []
+      },
+    };
 
-  json () {
-    return {
-      tabBar: this.tabBar,
-      router: this.router,
-      application: {
-        configutations: this.application.configutations
+    while (currentFiber) {
+      switch (currentFiber.elementType) {
+        case Application: {
+          const props = currentFiber.memoizedProps;
+          context.config = props.config;
+          break;
+        }
+          
+        case Router: {
+          debugger;
+          break;
+        }
+
+        case Route: {
+          const props = currentFiber.memoizedProps;
+          
+          context.router.routes.push({
+            path: props.path
+          })
+          break;
+        }
+      }
+
+      if (isNullOrUndefined(currentFiber.sibling)) {
+        currentFiber = currentFiber.child;
+      } else {
+        currentFiber = currentFiber.sibling;
       }
     }
+
+    this.context = context;
+  }
+
+  getContext () {
+    return this.context;
   }
 }
 
-export const getApplicationContext = () => {
+export const getApplication = () => {
   return MiniProgram.context;
 }
