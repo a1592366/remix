@@ -14,19 +14,17 @@
 		"@babel/plugin-proposal-class-properties": "^7.4.4",
 		"@babel/plugin-transform-runtime": "^7.4.4",
 		"@babel/preset-env": "^7.4.4",
-		"@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.2",
 		"@babel/runtime": "^7.4.4",
 		"babel-loader": "^8.0.6",
 		"webpack": "^4.31.0",
 		"webpack-cli": "^3.3.2",
 		"webpack-dev-server": "^3.4.1",
     "css-loader": "^1.0.1",
+    "fs-extra": "^8.1.0"
   },
   "dependencies": {
-    "remixjs": "latest",
-    "remixjs/components": "latest",
-    "remixjs/router": "latest",
-    "remixjs/project": "latest",
-    "remixjs/runtime": "latest"
+    "remixjs": "latest"
   }
 }

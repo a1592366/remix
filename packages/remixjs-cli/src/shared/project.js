@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const { getContext } = require('./context');
+// const { getContext } = require('./context');
 
 class Project {
   static createProject (mode) {
@@ -34,8 +34,8 @@ class Project {
   }
 
   async distroy () {
-    await fs.remove();
-    await fs.mkdir();
+    // await fs.remove();
+    // await fs.mkdir();
   }
 
   async build () {
@@ -43,4 +43,9 @@ class Project {
   }
 }
 
-module.exports = Project;
+module.exports = {
+  Project,
+  createProject () {
+    return new Project()
+  }
+};

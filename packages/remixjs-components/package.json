@@ -1,0 +1,11 @@
+{
+  "name": "@remixjs/components",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --color --progress"
+  },
+  "author": "aniwei",
+  "license": "ISC"
+}

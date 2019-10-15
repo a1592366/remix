@@ -1,5 +1,5 @@
 {
-  "name": "remixjs-runtime",
+  "name": "@remixjs/runtime",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",

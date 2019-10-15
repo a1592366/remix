@@ -13,7 +13,6 @@ export default function updateFunctionComponent (
   const nextProps = resolveDefaultProps(Component, unresolvedProps);
 
   let context;
-  // todo  context;
 
   if (!isNullOrUndefined(current)) {
     const props = current.memorizedProps;

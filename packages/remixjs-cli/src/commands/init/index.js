@@ -18,7 +18,7 @@ async function installDependencies (answers) {
 
   const isInstalled = files.length === 0 ? false : true;
 
-  if (isInstalled) {
+  if (!isInstalled) {
     logger.green(`正在安装项目依赖...`);
 
     if (answers.style) {
@@ -42,7 +42,7 @@ async function installDependencies (answers) {
     }
 
     await new Promise((resolve, reject) => {
-      exec(`npm i --registry=https://registry.npm.taobao.org ${pkg}`, {
+      exec(`npm i --registry=https://registry.npm.taobao.org`, {
         stdio: 'inherit',
         cwd: env.PROJ
       }, (err) => {
@@ -59,6 +59,11 @@ async function installDependencies (answers) {
 }
 
 async function getContext () {
+  // if (await fs.exists(env.REMIX_SOURCE)) {
+  //   return logger.red(`当前目录已经存在 remixjs 项目`), process.exit(1);
+  // }
+
+
   const answers = await inquirer.prompt([
     questions.isCurrentDirectory,
     questions.appid
@@ -68,7 +73,7 @@ async function getContext () {
     logger.green(`正在初始化项目...`);
 
     if (!questions.appid) {
-      logger.orange(`您没有输入小程序 AppId`);
+      logger.red(`您没有输入小程序 AppId`);
     }
 
     const files = await globby('./**/*', {
@@ -90,7 +95,7 @@ async function getContext () {
 
     await XMLBuilder.build(env.PROJ_XML);
 
-    await installDependencies();
+    await installDependencies(answers);
   } else {
     process.exit(1);
   }

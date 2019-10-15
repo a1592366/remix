@@ -53,7 +53,7 @@ export default function completeWork (
       if (!isNullOrUndefined(current) && !isNullOrUndefined(workInProgress.stateNode)) {
         updateHostInstance(current, workInProgress, type, nextProps);
       } else {
-        const instance = createInstance(type, nextProps, null, null, workInProgress);
+        const instance = createInstance(type, nextProps, rootContainerInstance, null, workInProgress);
 
         workInProgress.stateNode = instance;
 

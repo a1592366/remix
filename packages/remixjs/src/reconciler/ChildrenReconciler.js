@@ -303,7 +303,7 @@ export default function ChildrenReconciler (
     currentFirstChild,
     newChild
   ) {
-    if (!isNull(newChild)) {
+    if (!isNullOrUndefined(newChild)) {
       if (newChild.$$typeof) {
         return placeSingleChild(
           reconcileSingleElement(returnFiber, currentFirstChild, newChild)
