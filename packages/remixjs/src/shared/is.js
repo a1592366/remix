@@ -30,6 +30,10 @@ export function isNullOrUndefined (o) {
   return o === undefined || o === null;
 }
 
+export function isInvalid (o) {
+  return false;
+}
+
 export function isComponentConstructor (Component) {
   const proto = Component.prototype;
 

@@ -1,4 +1,4 @@
-import { isArray, isNullOrUndefined } from '../shared/is';
+import { isArray, isNullOrUndefined, isInvalid } from '../shared/is';
 import { EMPTY_ARRAY } from '../shared';
 
 export function map (
@@ -32,7 +32,7 @@ export function forEach (
         iterate = iterate.bind(context);
       }
   
-      for (let i = 0; i < lenght; i++) {
+      for (let i = 0; i < length; i++) {
         const child = isInvalid(children[i]) ? null : children[i];
   
         iterate(child, i, children);

@@ -53,7 +53,7 @@ export default class MiniProgram {
     
   }
 
-  json () {
+  toString () {
     return {
       tabBar: this.tabBar,
       router: this.router,
@@ -65,5 +65,5 @@ export default class MiniProgram {
 }
 
 export const getApplicationContext = () => {
-  return MiniProgram.context;
+  return MiniProgram.context.json();
 }
