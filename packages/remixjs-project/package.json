@@ -26,6 +26,7 @@
     "@expri/events": "^1.0.3",
     "@expri/exprijs": "^1.0.18",
     "@expri/router": "^1.0.10",
-    "@expri/worker": "^1.0.1"
+    "@expri/worker": "^1.0.1",
+    "remixjs-xml": "^0.0.1"
   }
 }
