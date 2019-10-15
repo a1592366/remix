@@ -12,9 +12,6 @@ export default class MiniProgram {
 
     this.renderApplication(Application, container);
     this.getApplicationContext(this.rendered);
-
-    debugger;
-    
     this.getApplicationInstance();
     this.registerApplication();
   }
@@ -48,6 +45,7 @@ export default class MiniProgram {
   }
 
   getApplicationInstance () {
+    this.instance = getApplicationInstance();
   }
 
 
@@ -55,7 +53,7 @@ export default class MiniProgram {
     
   }
 
-  toString () {
+  json () {
     return {
       tabBar: this.tabBar,
       router: this.router,
@@ -67,5 +65,5 @@ export default class MiniProgram {
 }
 
 export const getApplicationContext = () => {
-  return MiniProgram.context.json();
+  return MiniProgram.context;
 }

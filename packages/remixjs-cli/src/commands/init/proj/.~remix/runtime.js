@@ -7,7 +7,6 @@ function registerBabelRuntime () {
     extensions: ['.js', '.jsx']
   });
 
-  debugger;
   const context = require('./boot');
 
   process.send(context);

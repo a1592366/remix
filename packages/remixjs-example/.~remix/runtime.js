@@ -22,11 +22,11 @@ function registerBabelRuntime () {
       
       return true;
     }]
-    // sourceRoot: path.resolve(process.cwd(), '..'),
-    // babelrcRoots: process.cwd(),
   });
 
-  // const context = require('./boot');
+  const context = require('./boot');
+  
+  process.send(context);
 
   // console.log(context)
 

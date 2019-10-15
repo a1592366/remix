@@ -3,7 +3,6 @@ const path = require('path');
 const env = require('../../shared/env');
 const logger = require('../../shared/logger');
 const { diff } = require('deep-object-diff');
-// const { getContext } = require('./context');
 
 class Project {
   static createProject (context) {

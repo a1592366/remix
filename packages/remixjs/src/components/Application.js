@@ -11,8 +11,6 @@ export default class Application extends Component {
   
   cloneApplicationChildren () {
     const children = [];
-
-    debugger;
     
     forEach(this.props.children, (child) => {
       if (!isNullOrUndefined(child)) {
