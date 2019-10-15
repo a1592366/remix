@@ -88,8 +88,11 @@ class Project {
 
   async update (context) {
     const res = diff(this.context, context);
+    const keys = Object.getOwnPropertyNames(res);
 
-    debugger;
+    if (keys.length > 0) {
+      
+    }
   }
 }
 

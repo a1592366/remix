@@ -15,9 +15,11 @@ async function watch () {
     if (file === env.PROJ_ENTRY) {
       const { result: context } = await rpc.getContext();
 
+      debugger;
+
       project.update(context);
     } else {
-      
+
     }
   });
 

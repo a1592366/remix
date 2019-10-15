@@ -12,13 +12,13 @@ function getContext () {
   r.client = r.client || rpc.client.http({
     port: env.REMIX_RPC_PORT
   }); 
-  
-  const clientRequest = r.client.request;
-      
+
+  r.clientRequest = r.clientRequest || r.client.request ;
+        
   r.client.request = function (method, ...argv) {
     return new Promise((resolve, reject) => {
       const request = () => {
-        clientRequest.call(r.client, method, argv, (err, res) => {
+        r.clientRequest.call(r.client, method, argv, (err, res) => {
           if (err) {
             if (err.code === 'ECONNREFUSED') {
               return process.nextTick(request)  
