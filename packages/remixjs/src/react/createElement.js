@@ -15,6 +15,7 @@ export default function createElement (
 
   if (length > 0) {
     if (length === 1) {
+      props = props || {};
       props.children = children[0];
     }
   } 
