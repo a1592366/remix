@@ -41,4 +41,6 @@ module.exports = {
   PROJ_XML,
   PROJ_NAME,
   PROJ_BUILD,
+  PROJ_ENTRY,
+  PROJ_SOURCE
 }

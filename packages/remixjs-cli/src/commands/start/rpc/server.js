@@ -5,13 +5,13 @@ const env = require('../../../shared/env');
 
 const server = rpc.server({
   context (argv, callback) {
-    console.log(123)
     const ps = fork(path.resolve(env.REMIX_SOURCE, './runtime.js'), {
-      cwd: env.PROJ
+      cwd: env.PROJ,
+      stdio: 'inherit'
     });
 
-    ps.on('message', () => {
-      debugger;
+    ps.on('message', (context) => {
+      callback(null, context);
     });
   }
 });

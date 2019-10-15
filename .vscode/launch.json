@@ -15,7 +15,7 @@
       "type": "node",
       "request": "launch",
       "name": "调试CLI",
-      "cwd": "${workspaceFolder}/packages/remixjs-cli/__test__",
+      "cwd": "${workspaceFolder}/packages/remixjs-example/",
       "program": "${workspaceFolder}/packages/remixjs-cli/bin/remix",
       "args": ["start"]
     }

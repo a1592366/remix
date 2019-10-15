@@ -40,5 +40,8 @@ function getContext () {
 
 const r = module.exports = {
   process: null,
-  getContext
+  getContext,
+  exit () {
+    this.process.exit();
+  },
 }

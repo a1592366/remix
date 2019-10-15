@@ -26,9 +26,9 @@ function registerBabelRuntime () {
     // babelrcRoots: process.cwd(),
   });
 
-  const context = require('./boot');
+  // const context = require('./boot');
 
-  console.log(context)
+  // console.log(context)
 
   // process.send(context || {
   //   tabbar: [],
@@ -36,8 +36,17 @@ function registerBabelRuntime () {
   // });
 
   process.send({
-    tabBar: [],
-    router: []
+    tabBar: {
+      items: [
+        { text: '测试' }
+      ]
+    },
+    router: {
+      routes: [
+        { path: 'pages/Index/index' }
+      ]
+    },
+    config: {}
   });
 }
 
