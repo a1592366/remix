@@ -1,3 +1,3 @@
-import { getApplication } from 'remixjs/worker';
+import { getApplication } from 'remixjs/project';
 
 getApplication();

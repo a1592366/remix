@@ -4,6 +4,7 @@ const { diff } = require('deep-object-diff');
 const globby = require('globby');
 const env = require('../../shared/env');
 const logger = require('../../shared/logger');
+const { createCompileEngine } = require('../../shared/compile');
 const { createTemplate } = require('../../shared/template');
 
 
@@ -14,6 +15,7 @@ class Project {
 
   constructor (context) {
     this.context = context;  
+    this.engine = createCompileEngine();
   }
 
   get pages () {
@@ -112,10 +114,12 @@ class Project {
     // await fs.mkdir();
   }
 
-  async build () {
+  async start () {
     await this.distroy();
     await this.updateApplicationJSON();
     await this.updateApplicationPages();
+
+    await this.engine.start();
   }
 
   async update (context) {
@@ -125,7 +129,7 @@ class Project {
     if (keys.length > 0) {
       this.context = context;
       if (keys.includes('pages')) {
-        await this.build();
+        await this.start();
       } else {
         await this.updateApplicationJSON();
       }
