@@ -14,7 +14,8 @@ export default () => {
 
   return <Application
     config={{
-      navigationBarBackgroundColor: '#000000'
+      navigationBarBackgroundColor: '#000000',
+      navigationStyle: 'custom'
     }}
   >
     <Router>
@@ -22,8 +23,8 @@ export default () => {
     </Router>
 
     <TabBar>
-      <TabBarItem path="pages/Index/index">
-        我
+      <TabBarItem path="pages/Explore/index">
+        发现
       </TabBarItem>
       <TabBarItem path="pages/Index/index">
         我

@@ -70,7 +70,7 @@ class Project {
       JSON.stringify({
         tabBar: this.tabBar,
         pages: this.pages,
-        ...this.context.config
+        window: this.context.config,
       }, null, 2)
     )
   }
@@ -90,7 +90,12 @@ class Project {
     const keys = Object.getOwnPropertyNames(res);
 
     if (keys.length > 0) {
-      
+      this.context = context;
+      if (keys.includes('pages')) {
+        await this.build();
+      } else {
+        await this.updateApplicationJSON();
+      }
     }
   }
 }
