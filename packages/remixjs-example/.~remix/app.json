@@ -14,7 +14,9 @@
     ]
   },
   "pages": [
-    "pages/Index/index"
+    "pages/Index/index",
+    "pages/Explore/index",
+    "pages/Home/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#000000",

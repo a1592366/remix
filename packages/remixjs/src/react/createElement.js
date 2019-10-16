@@ -13,9 +13,10 @@ export default function createElement (
     props = resolveDefaultProps(type, props);
   } 
 
+  props = props || {};
+
   if (length > 0) {
     if (length === 1) {
-      props = props || {};
       props.children = children[0];
 
       if (isArray(props.children)) {

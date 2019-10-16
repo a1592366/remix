@@ -1,0 +1,58 @@
+<import src="./ui/text.wxml" />
+<import src="./ui/image.wxml" />
+<import src="./ui/video.wxml" />
+<import src="./ui/audio.wxml" />
+<import src="./ui/picker.wxml" />
+<import src="./ui/picker-view.wxml" />
+
+
+<wxs module="typeof">
+  module.exports = {
+    closing: function (type) {
+      switch (type) {
+        case 'input':
+        case 'video':
+        case 'audio':
+        case 'map':
+        case 'navigator':
+          return true;
+
+        default: 
+          return false;
+      }
+    },
+
+    wrapper: function (type) {
+      switch (type) {
+        case 'view':
+        case 'div':
+        case 'section':
+        case 'button':
+        case 'header':
+        case 'footer':
+        case 'text':
+        case 'animation':
+          return true;
+
+        default: 
+          return false;
+      }
+    }
+  }
+</wxs>
+
+<template name="switch">
+  <block wx:if="{{typeof.closing(node.type)}}">
+    <template is="{{node.type}}" data="{{ ...node }}" />
+  </block>
+  <block wx:elif="{{typeof.wrapper(node.type)}}">
+    <template is="wrapper" data="{{ ...node }}"/>
+  </block>
+  <block wx:elif="{{typeof.component(node.type)}}">
+    <component />
+  </block>
+  <block wx:elif="{{node.type === '#text' }}">{{node.text}}</block>
+  <block wx:else>
+    <template is="{{node.type}}" data="{{...node}}" />
+  </block>
+</template>

@@ -1,8 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
+const { diff } = require('deep-object-diff');
+const globby = require('globby');
 const env = require('../../shared/env');
 const logger = require('../../shared/logger');
-const { diff } = require('deep-object-diff');
+const { createTemplate } = require('../../shared/template');
+
 
 class Project {
   static createProject (context) {
@@ -10,7 +13,7 @@ class Project {
   }
 
   constructor (context) {
-    this.context = context;
+    this.context = context;  
   }
 
   get pages () {
@@ -75,6 +78,35 @@ class Project {
     )
   }
 
+  async updateApplicationPages () {
+    const files = await globby('./**/*', {
+      cwd: path.resolve(__dirname, 'page'),
+      dot: true
+    });
+
+    const pages = this.pages;
+
+    await Promise.all(pages.map(page => {
+      const parsed = path.parse(page);
+      const source = path.resolve(__dirname, 'page');
+
+      return new Promise(async (resolve, reject) => {
+        const dist = path.resolve(env.REMIX_SOURCE, parsed.dir)
+        await fs.mkdirp(dist);
+
+        const template = createTemplate(
+          source,
+          dist,
+          files
+        );
+
+        await template.render({
+          
+        })
+      });
+    }));
+  }
+
   async distroy () {
     // await fs.remove();
     // await fs.mkdir();
@@ -83,6 +115,7 @@ class Project {
   async build () {
     await this.distroy();
     await this.updateApplicationJSON();
+    await this.updateApplicationPages();
   }
 
   async update (context) {

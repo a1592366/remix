@@ -1,4 +1,4 @@
-import { attached, detached, updated, events } from 'remixjs/worker';
+import { attached, detached, updated, events } from 'remixjs/runtime';
 
 Component({
   options: {

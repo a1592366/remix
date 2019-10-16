@@ -11,7 +11,7 @@ module.exports = class {
       if (/.js$/g.test(name)) {
         asset.source = function () {
           return `
-            /*** WeChat global ***/ 
+            /*** WeChat globalWindow ***/ 
               var window = Object.__globalWindow__ || (Object.__globalWindow__ = {});  
             /*** WeChat globalWindow ***/ 
             ${source}

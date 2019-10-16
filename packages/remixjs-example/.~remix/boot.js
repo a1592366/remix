@@ -1,4 +1,4 @@
-import MiniProgram from 'remixjs/project';
+import { MiniProgram } from 'remixjs/project';
 import { document } from 'remixjs/document';
 import Application from '../src';
 

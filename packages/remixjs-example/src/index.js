@@ -20,6 +20,8 @@ export default () => {
   >
     <Router>
       <Route path="pages/Index/index" component={Index} />
+      <Route path="pages/Explore/index" component={Index} />
+      <Route path="pages/Home/index" component={Index} />
     </Router>
 
     <TabBar>
