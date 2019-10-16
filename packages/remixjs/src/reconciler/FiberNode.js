@@ -77,7 +77,7 @@ export function createFiberRoot (
 }
 
 export function createFiberFromText(content) {
-  var fiber = createFiber(HOST_TEXT, content, null);
+  const fiber = createFiber(HOST_TEXT, content, null);
   return fiber;
 }
 

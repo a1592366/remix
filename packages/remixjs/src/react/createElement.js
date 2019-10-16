@@ -23,6 +23,8 @@ export default function createElement (
           props.children = props.children[0];
         }
       }
+    } else {
+      props.children = children;
     }
   } 
 

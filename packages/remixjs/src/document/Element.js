@@ -1,4 +1,5 @@
 import uuid from 'uuid/v4';
+import document from './document';
 
 export default class Element {
   uuid = uuid();
@@ -6,4 +7,8 @@ export default class Element {
   nodeType = null;
   child = null;
   return = null;
+
+  get ownerDocument () {
+    return document;
+  }
 }

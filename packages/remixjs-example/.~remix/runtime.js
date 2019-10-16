@@ -27,7 +27,7 @@ function registerBabelRuntime () {
   const { program } = require('./boot');
 
   
-  process.send(program.getContext());
+  process.send(program.context);
 
   // console.log(context)
 

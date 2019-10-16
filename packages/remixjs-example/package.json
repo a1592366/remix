@@ -21,6 +21,8 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "css-loader": "^1.0.1",
     "fs-extra": "^8.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"

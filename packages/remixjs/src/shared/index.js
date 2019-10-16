@@ -1,4 +1,4 @@
-import { isString, isUndefined } from './is';
+import { isString, isUndefined, isArray } from './is';
 
 const randomKey = Math.random().toString(36).slice(2);
 
@@ -108,3 +108,17 @@ export function clone (target) {
   return extend({}, clone);
 }
 
+export function flatten (array, result = []) {
+  const { length } = array;
+
+  for (let i = 0; i < length; i++) {
+    const value = array[i];
+
+    if (isArray(value)) {
+      flatten(value, result);
+    } else {
+      result.push(value);
+    }
+  }
+  return result;
+}

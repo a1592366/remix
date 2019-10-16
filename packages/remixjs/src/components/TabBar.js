@@ -1,6 +1,6 @@
+import React from '../react';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
-import View from './View';
 
 class TabBarItem extends Component {
   static propTypes = {
@@ -11,7 +11,7 @@ class TabBarItem extends Component {
   }
 
   render () {
-    return <View>{this.props.children}</View>
+    return <view>{this.props.children}</view>
   }
 }
 
@@ -32,6 +32,6 @@ export default class TabBar extends Component {
   }
   
   render () {
-    return <View>{this.props.children}</View>
+    return <view>{this.props.children}</view>
   }
 }

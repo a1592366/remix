@@ -5,7 +5,8 @@ import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
 
-import { Router, Route } from '../router';
+import TabBar from './TabBar';
+import { Router } from '../router';
 
 export default class Application extends Component {
   
@@ -14,7 +15,8 @@ export default class Application extends Component {
     
     forEach(this.props.children, (child) => {
       if (!isNullOrUndefined(child)) {
-        if (child.type === Router) {
+        const { type } = child;
+        if (type === Router || type === TabBar) {
           children.push(child);
         }
       }

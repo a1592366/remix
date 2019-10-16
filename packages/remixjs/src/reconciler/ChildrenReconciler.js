@@ -1,9 +1,13 @@
 import { isNull, isString, isNumber, isArray, isNullOrUndefined, isFunction } from '../shared/is';
-import { createFiberFromElement } from '../reconciler/FiberNode';
-import { REACT_FRAGMENT_TYPE } from '../shared/elementTypes';
-import { FRAGMENT, HOST_TEXT } from '../shared/workTags';
+import { REACT_FRAGMENT_TYPE, REACT_ELEMENT_TYPE, REACT_PORTAL_TYPE } from '../shared/elementTypes';
+import { FRAGMENT, HOST_TEXT, HOST_PORTAL } from '../shared/workTags';
 import { PLACEMENT, DELETION } from '../shared/effectTags';
-import { createWorkInProgress, createFiberFromFragment, createFiberFromText } from './FiberNode';
+import { 
+  createWorkInProgress, 
+  createFiberFromFragment, 
+  createFiberFromText, 
+  createFiberFromElement 
+} from './FiberNode';
 
 
 export default function ChildrenReconciler (
@@ -100,6 +104,23 @@ export default function ChildrenReconciler (
     }
   }
 
+  function mapRemainingChildren(returnFiber, currentFirstChild) {
+    const existingChildren = new Map();
+    const existingChild = currentFirstChild;
+
+    while (!isNullOrUndefined(existingChild)) {
+      if (isNullOrUndefined(existingChild.key)) {
+        existingChildren.set(existingChild.key, existingChild);
+      } else {
+        existingChildren.set(existingChild.index, existingChild);
+      }
+
+      existingChild = existingChild.sibling;
+    }
+
+    return existingChildren;
+  }
+
   function coerceRef(
     returnFiber, 
     current, 
@@ -182,41 +203,220 @@ export default function ChildrenReconciler (
     }
   }
 
-  function createChild(returnFiber, newChild, expirationTime) {
+  function createChild(
+    returnFiber, 
+    newChild
+  ) {
     if (isString(newChild) || isNumber(newChild)) {
       const created = createFiberFromText(String(newChild));
       created.return = returnFiber;
       return created;
     }
 
-    if (typeof newChild === 'object' && newChild !== null) {
+    if (!isNullOrUndefined(newChild)) {
       switch (newChild.$$typeof) {
-        case REACT_ELEMENT_TYPE:
-          {
-            var _created = createFiberFromElement(newChild, returnFiber.mode, expirationTime);
-            _created.ref = coerceRef(returnFiber, null, newChild);
-            _created.return = returnFiber;
-            return _created;
-          }
-        case REACT_PORTAL_TYPE:
-          {
-            var _created2 = createFiberFromPortal(newChild, returnFiber.mode, expirationTime);
-            _created2.return = returnFiber;
-            return _created2;
-          }
+        case REACT_ELEMENT_TYPE: {
+          const created = createFiberFromElement(newChild);
+          created.ref = coerceRef(returnFiber, null, newChild);
+          created.return = returnFiber;
+          return created;
+        }
+
+        case REACT_PORTAL_TYPE: {
+          const created = createFiberFromPortal(newChild);
+          created.return = returnFiber;
+          return created;
+        }
       }
 
       if (isArray(newChild) || getIteratorFn(newChild)) {
-        var _created3 = createFiberFromFragment(newChild, returnFiber.mode, expirationTime, null);
-        _created3.return = returnFiber;
-        return _created3;
+        const created = createFiberFromFragment(newChild, key);
+        created.return = returnFiber;
+        return created;
       }
-
     }
 
-    {
-      if (typeof newChild === 'function') {
-        warnOnFunctionType();
+    return null;
+  }
+
+  function placeChild(
+    newFiber,
+    lastPlacedIndex,
+    index
+  ) {
+    newFiber.index = index;
+    if (!shouldTrackSideEffects) {
+      return lastPlacedIndex;
+    }
+
+    const current = newFiber.alternate;
+    if (!isNullOrUndefined(current)) {
+      const oldIndex = current.index;
+
+      if (oldIndex < lastPlacedIndex) {
+        newFiber.effectTag = PLACEMENT;
+        return lastPlacedIndex;
+      } else {
+        return oldIndex;
+      }
+    } else {
+      newFiber.effectTag = PLACEMENT;
+      return lastPlacedIndex;
+    }
+  }
+
+  function updateFromMap(
+    existingChildren, 
+    returnFiber, 
+    index, 
+    newChild
+  ) {
+    if (isString(newChild) || isNumber(newChild)) {
+      const matchedFiber = existingChildren.get(index) || null;
+
+      return updateTextNode(returnFiber, matchedFiber, String(newChild));
+    }
+
+    if (!isNullOrUndefined(newChild)) {
+      switch (newChild.$$typeof) {
+        case REACT_ELEMENT_TYPE: {
+          const key = isNullOrUndefined(newChild.key) ? index : newChild.key;
+          const matchedFiber = existingChildren.get(key) || null;
+
+          if (newChild.type === REACT_FRAGMENT_TYPE) {
+            return updateFragment(returnFiber, matchedFiber, newChild.props.children, newChild.key);
+          } else {
+            return updateElement(returnFiber, matchedFiber, newChild);
+          }
+        }
+
+        case REACT_PORTAL_TYPE: {
+          const key = isNullOrUndefined(newChild.key) ? index : newChild.key;
+          const matchedFiber = existingChildren.get(key) || null;
+
+          return updatePortal(returnFiber, matchedFiber, newChild);
+        }
+      }
+
+      if (isArray(newChild)) {
+        const matchedFiber = existingChildren.get(index) || null;
+        return updateFragment(returnFiber, matchedFiber, newChild, null);
+      }
+    }
+
+    return null;
+  }
+
+  function updateTextNode (
+    returnFiber,
+    current,
+    textContent
+  ) {
+    if (isNullOrUndefined(current)|| current.tag !== HOST_TEXT) {
+      const created = createFiberFromText(textContent);
+      created.return = returnFiber;
+      return created;
+    } else {
+      const existing = useFiber(current, textContent);
+      existing.return = returnFiber;
+      return existing;
+    }
+  }
+
+  function updateFragment (
+    returnFiber,
+    current,
+    fragment
+  ) {
+    if (isNullOrUndefined(current) || current.tag !== FRAGMENT) {
+      const created = createFiberFromFragment(fragment, key);
+      created.return = returnFiber;
+      return created;
+    } else {
+      const existing = useFiber(current, fragment);
+      existing.return = returnFiber;
+      return existing;
+    }
+    
+  }
+
+  function updateElement (
+    returnFiber,
+    current,
+    element
+  ) {
+    if (
+      !isNullOrUndefined(current) && 
+      current.elementType === element.type 
+    ) {
+      const existing = useFiber(current, element.props);
+      existing.ref = coerceRef(returnFiber, current, element);
+      existing.return = returnFiber;
+
+      return existing;
+    } else {
+      const created = createFiberFromElement(element);
+      created.ref = coerceRef(returnFiber, current, element);
+      created.return = returnFiber;
+      return created;
+    }
+  }
+
+  function updatePortal (
+    returnFiber,
+    current,
+    portal
+  ) {
+    if (
+      isNullOrUndefined(current) ||
+      current.tag !== HOST_PORTAL ||
+      current.stateNode.containerInfo !==portal.containerInfo
+    ) {
+      const created = createFiberFromPortal(portal);
+      created.return = returnFiber;
+      return created;
+    } else {
+      var existing = useFiber(current$$1, portal.children || [], expirationTime);
+      existing.return = returnFiber;
+      return existing;
+    }
+  }
+
+  function updateSlot (
+    returnFiber,
+    oldFiber,
+    newChild
+  ) {
+    const key = isNullOrUndefined(oldFiber) ? null : oldFiber.key;
+
+    if (isString(newChild) || isNumber(newChild)) {
+      if (!isNullOrUndefined(key)) {
+        return null;
+      }
+
+      return updateTextNode(returnFiber, oldFiber, String(newChild));
+    }
+
+    if (!isNullOrUndefined(newChild)) {
+      switch (newChild.$$typeof) {
+        case REACT_ELEMENT_TYPE: {
+          if (newChild.key === key) {
+            if (newChild.type === REACT_FRAGMENT_TYPE) {
+              return updateFragment(returnFiber, oldFiber, newChild.props.children, key);
+            }
+            return updateElement(returnFiber, oldFiber, newChild);
+          } else {
+            return null;
+          }
+        }
+          
+        case REACT_PORTAL_TYPE: {
+          if (newChild.key === key) {
+            return updatePortal(returnFiber, oldFiber, newChild, expirationTime);
+          } else {
+            return null;
+          }
+        }
       }
     }
 
@@ -228,109 +428,101 @@ export default function ChildrenReconciler (
     currentFirstChild, 
     newChildren
   ) {
-    debugger;
-    var resultingFirstChild = null;
-    var previousNewFiber = null;
+    let resultingFirstChild = null;
+    let previousNewFiber = null;
+    let oldFiber = currentFirstChild;
+    let nextOldFiber = null;
 
-    var oldFiber = currentFirstChild;
-    var lastPlacedIndex = 0;
-    var newIdx = 0;
-    var nextOldFiber = null;
-    for (; oldFiber !== null && newIdx < newChildren.length; newIdx++) {
-      if (oldFiber.index > newIdx) {
+    let lastPlacedIndex = 0;
+    let index = 0;
+
+    const length = newChildren.length;
+
+    for (;!isNullOrUndefined(oldFiber) && index < length; index++) {
+      if (oldFiber.index > index) {
         nextOldFiber = oldFiber;
         oldFiber = null;
       } else {
         nextOldFiber = oldFiber.sibling;
       }
-      var newFiber = updateSlot(returnFiber, oldFiber, newChildren[newIdx], expirationTime);
-      if (newFiber === null) {
-        // TODO: This breaks on empty slots like null children. That's
-        // unfortunate because it triggers the slow path all the time. We need
-        // a better way to communicate whether this was a miss or null,
-        // boolean, undefined, etc.
-        if (oldFiber === null) {
+
+      const child = newChildren[i];
+
+      let newFiber = updateSlot(returnFiber, oldFiber, child);
+      if (isNullOrUndefined(newFiber)) {
+        if (isNullOrUndefined(oldFiber)) {
           oldFiber = nextOldFiber;
         }
+
         break;
       }
+
       if (shouldTrackSideEffects) {
-        if (oldFiber && newFiber.alternate === null) {
-          // We matched the slot, but we didn't reuse the existing fiber, so we
-          // need to delete the existing child.
+        if (oldFiber && isNullOrUndefined(newFiber.alternate)) {
           deleteChild(returnFiber, oldFiber);
         }
       }
-      lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, newIdx);
-      if (previousNewFiber === null) {
-        // TODO: Move out of the loop. This only happens for the first run.
+
+      lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, index);
+
+      if (isNullOrUndefined(previousNewFiber)) {
         resultingFirstChild = newFiber;
       } else {
-        // TODO: Defer siblings if we're not at the right index for this slot.
-        // I.e. if we had null values before, then we want to defer this
-        // for each null value. However, we also don't want to call updateSlot
-        // with the previous one.
         previousNewFiber.sibling = newFiber;
       }
+
       previousNewFiber = newFiber;
       oldFiber = nextOldFiber;
     }
 
-    if (newIdx === newChildren.length) {
-      // We've reached the end of the new children. We can delete the rest.
+    if (index === newChildren.length) {
       deleteRemainingChildren(returnFiber, oldFiber);
-      return resultingFirstChild;
     }
 
-    if (oldFiber === null) {
-      // If we don't have any more existing children we can choose a fast path
-      // since the rest will all be insertions.
-      for (; newIdx < newChildren.length; newIdx++) {
-        var _newFiber = createChild(returnFiber, newChildren[newIdx]);
-        if (_newFiber === null) {
+    if (isNullOrUndefined(oldFiber)) {
+      for (;index < length; index++) {
+        const newFiber = createChild(returnFiber, newChildren[index]);
+        if (isNullOrUndefined(newFiber)) {
           continue;
         }
-        lastPlacedIndex = placeChild(_newFiber, lastPlacedIndex, newIdx);
+
+        lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, index);
         if (previousNewFiber === null) {
           // TODO: Move out of the loop. This only happens for the first run.
-          resultingFirstChild = _newFiber;
+          resultingFirstChild = newFiber;
         } else {
-          previousNewFiber.sibling = _newFiber;
+          previousNewFiber.sibling = newFiber;
         }
-        previousNewFiber = _newFiber;
+
+        previousNewFiber = newFiber;
       }
+
       return resultingFirstChild;
     }
 
-    // Add all children to a key map for quick lookups.
-    var existingChildren = mapRemainingChildren(returnFiber, oldFiber);
+    const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 
-    // Keep scanning and use the map to restore deleted items as moves.
-    for (; newIdx < newChildren.length; newIdx++) {
-      var _newFiber2 = updateFromMap(existingChildren, returnFiber, newIdx, newChildren[newIdx], expirationTime);
-      if (_newFiber2 !== null) {
+    for (;index < length; index++) {
+      const newFiber = updateFromMap(existingChildren, returnFiber, index, newChildren[index]);
+
+      if (!isNullOrUndefined(newFiber)) {
         if (shouldTrackSideEffects) {
-          if (_newFiber2.alternate !== null) {
-            // The new fiber is a work in progress, but if there exists a
-            // current, that means that we reused the fiber. We need to delete
-            // it from the child list so that we don't add it to the deletion
-            // list.
-            existingChildren.delete(_newFiber2.key === null ? newIdx : _newFiber2.key);
+          if (!isNullOrUndefined(newFiber.alternate)) {
+            existingChildren.delete(isNullOrUndefined(newFiber.key) ? index : newFiber.key);
           }
         }
-        lastPlacedIndex = placeChild(_newFiber2, lastPlacedIndex, newIdx);
-        if (previousNewFiber === null) {
-          resultingFirstChild = _newFiber2;
+
+        lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, index);
+        if (isNullOrUndefined(previousNewFiber)) {
+          resultingFirstChild = newFiber;
         } else {
-          previousNewFiber.sibling = _newFiber2;
+          previousNewFiber.sibling = newFiber;
         }
-        previousNewFiber = _newFiber2;
+        previousNewFiber = newFiber;
       }
     }
 
     if (shouldTrackSideEffects) {
-      // Any existing children that weren't consumed above were deleted. We need
-      // to add them to the deletion list.
       existingChildren.forEach(function (child) {
         return deleteChild(returnFiber, child);
       });

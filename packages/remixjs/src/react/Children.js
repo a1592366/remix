@@ -1,5 +1,5 @@
 import { isArray, isNullOrUndefined, isInvalid } from '../shared/is';
-import { EMPTY_ARRAY } from '../shared';
+import { EMPTY_ARRAY, flatten } from '../shared';
 
 export function map (
   children, 

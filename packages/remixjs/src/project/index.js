@@ -3,28 +3,93 @@ import { render } from '../renderer';
 import { document } from '../document';
 
 import { Application, TabBar } from '../components';
-import Router, { Route } from '../router';
+import { Router, Route } from '../router';
 import { isNullOrUndefined } from '../shared/is';
 
+const { TabBarItem } = TabBar;
+
+export const getApplication = () => {
+  return MiniProgram.context;
+}
 
 export default class MiniProgram {
-  constructor (Application, container) {
+  constructor (App, container) {
     MiniProgram.context = this;
 
-    this.renderApplication(Application, container);
-    this.getApplicationContext();
     this.getApplicationInstance();
     this.registerApplication();
-  }
 
-  renderApplication (Application, container) {
-    render(createElement(Application), container);
+    Object.defineProperty(this, 'context', {
+      get () {
+        if (this.__context__) {
+          return this.__context__;
+        }
+
+        const context = this.__context__ = {
+          tabBar: {
+            items: []
+          },
+          router: {
+            routes: []
+          },
+          config: {}
+        };
+
+        render(createElement(App), container);
     
-    const rootContainer = container._reactRootContainer;
-    const root = rootContainer._internalRoot;
-    const current = root.current;
+        const rootContainer = container._reactRootContainer;
+        const currentFiber = rootContainer._internalRoot.current;
 
-    this.currentFiber = current;
+        let node = currentFiber;
+
+        while (true) {
+          switch (node.elementType) {
+            
+            case Application: {
+              context.config = node.memoizedProps.config;
+              break;
+            }
+        
+            case Route: {
+              context.router.routes.push({
+                path: node.memoizedProps.path,
+                component: node.memoizedProps.component 
+              });
+              break;
+            }
+        
+            case TabBar: {
+              break;
+            }
+        
+            case TabBarItem: {
+              context.tabBar.items.push({
+                icon: node.memoizedProps.icon,
+                selectedIcon: node.memoizedProps.selectedIcon,
+                path: node.memoizedProps.path,
+                text: node.memoizedProps.children
+              });
+              break;
+            }
+          }
+      
+          if (!isNullOrUndefined(node.child)) {
+            node = node.child;
+            continue;
+          }
+      
+          while (isNullOrUndefined(node.sibling)) {
+            if (isNullOrUndefined(node.return)) {
+              return context;
+            }
+      
+            node = node.return;
+          }
+      
+          node = node.sibling;
+        }            
+      }
+    });
   }
 
   registerApplication () {
@@ -54,57 +119,4 @@ export default class MiniProgram {
   getApplicationInstance = () => {
 
   }
-
-  getApplicationContext = () => {
-    let currentFiber = this.currentFiber;
-    const context = {
-      config: null,
-      tabBar: {
-        items: []
-      },
-      router: {
-        routes: []
-      },
-    };
-
-    while (currentFiber) {
-      switch (currentFiber.elementType) {
-        case Application: {
-          const props = currentFiber.memoizedProps;
-          context.config = props.config;
-          break;
-        }
-          
-        case Router: {
-          debugger;
-          break;
-        }
-
-        case Route: {
-          const props = currentFiber.memoizedProps;
-          
-          context.router.routes.push({
-            path: props.path
-          })
-          break;
-        }
-      }
-
-      if (isNullOrUndefined(currentFiber.sibling)) {
-        currentFiber = currentFiber.child;
-      } else {
-        currentFiber = currentFiber.sibling;
-      }
-    }
-
-    this.context = context;
-  }
-
-  getContext () {
-    return this.context;
-  }
-}
-
-export const getApplication = () => {
-  return MiniProgram.context;
 }
