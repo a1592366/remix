@@ -1,10 +1,9 @@
+import { isNullOrUndefined } from '../shared/is';
 import { createElement } from '../react';
 import { render } from '../renderer';
-import { document } from '../document';
-
 import { Application, TabBar } from '../components';
-import { Router, Route } from '../router';
-import { isNullOrUndefined } from '../shared/is';
+import { Route } from '../router';
+import runtime from './runtime';
 
 const { TabBarItem } = TabBar;
 
@@ -15,9 +14,6 @@ export const getApplication = () => {
 export default class MiniProgram {
   constructor (App, container) {
     MiniProgram.context = this;
-
-    this.getApplicationInstance();
-    this.registerApplication();
 
     Object.defineProperty(this, 'context', {
       get () {
@@ -92,31 +88,7 @@ export default class MiniProgram {
     });
   }
 
-  registerApplication () {
-    if (typeof App === 'function') {
-      const { instance } = this;
-
-      App({
-        onLaunch () {
-          instance.runtime.postMessage({
-            level: 'application',
-            type: 'event',
-            data: {
-              
-            }
-          });
-        },
-
-        onError () {
-          instance.runtime.postMessage({
-
-          })
-        }
-      })
-    }
-  }
-
-  getApplicationInstance = () => {
-
+  start () {
+    runtime(this.context);
   }
 }

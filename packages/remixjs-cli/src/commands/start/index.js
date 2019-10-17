@@ -27,9 +27,8 @@ async function watch () {
     rpc.exit();
   });
 
+
   await project.start();
-
-
 }
 
 module.exports = async (type, config) => {

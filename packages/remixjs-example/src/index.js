@@ -8,6 +8,8 @@ import { TabBar } from 'remixjs/components';
 
 import Index from './pages/Index';
 
+import me from './static/images/me.png';
+
 const { TabBarItem } = TabBar;
 
 export default () => {
@@ -17,6 +19,8 @@ export default () => {
       navigationBarBackgroundColor: '#000000',
       navigationStyle: 'custom'
     }}
+
+    onLaunch={() => {}}
   >
     <Router>
       <Route path="pages/Index/index" component={Index} />
@@ -25,7 +29,10 @@ export default () => {
     </Router>
 
     <TabBar>
-      <TabBarItem path="pages/Explore/index">
+      <TabBarItem 
+        path="pages/Explore/index"
+        icon={me}
+      >
         发现
       </TabBarItem>
       <TabBarItem path="pages/Index/index">

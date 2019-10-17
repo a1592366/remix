@@ -1,10 +1,13 @@
 const path = require('path');
-const webpack = require('webpack');
+const fs = require('fs-extra');
 const RemixJSPlugin = require('webpack-remixjs-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = {
+const env = require('../env');
+
+
+const defaultWebpackConfig = {
   devtool: 'cheap-module-source-map',
   stats: {
     all: false,
@@ -40,7 +43,17 @@ const config = {
 
   module: {
     rules: [
-      { use: 'babel-loader',  test:/\.(js|jsx)$/ },
+      { 
+        use: {
+          loader: 'babel-loader',
+          options: {
+            exclude: /node_modules/,
+            ...fs.readJSONSync(path.resolve(env.PROJ, '.babelrc')),
+            
+          }
+        },  
+        test:/\.(js|jsx)$/ 
+      },
       { 
         use: [
           { loader: MiniCssExtractPlugin.loader }, 
@@ -56,8 +69,7 @@ const config = {
       { 
         use: [
           { 
-            loader: 'remixjs-file-loader', 
-            options: { dist: project.PROJECT_COMPILED_PATH } 
+            loader: 'remixjs-file-loader'
           }
         ],  
         test:/\.(png|jpg|gif|svg|ico)$/ 
@@ -66,9 +78,6 @@ const config = {
   },
 
   optimization: {
-    runtimeChunk: {
-      name: 'runtime/manifest'
-    },
     splitChunks: {
       chunks: 'initial',
       minSize: 30000,
@@ -78,7 +87,7 @@ const config = {
       name: false,
       cacheGroups: {
         vendor: {
-          name: 'runtime/vendor',
+          name: 'runtime/vendor/manifest',
           chunks: 'initial',
           priority: -10,
           reuseExistingChunk: false,
@@ -90,17 +99,28 @@ const config = {
 
 
 module.exports = {
-  createDevelopment (pages, dist) {
-    return {
-      ...config,
+  createDevelopment (pages) {
+    const config = {
+      ...defaultWebpackConfig,
       entry: {
-        'runtime/index': path.resolve()
+        'runtime/index': env.REMIX_BOOT
       },
+      mode: 'development',
       output: {
-        path: dist,
         filename: '[name].js',
-      },
-      mode: 'development'
+        path: env.REMIX_SOURCE,
+        globalObject: 'window',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+      }
     }
+
+    pages.forEach(page => {
+      const parsed = path.parse(page);
+      const source = path.join(env.REMIX_SOURCE, parsed.dir, `${env.REMIX_VIEW_SYMBOL}${parsed.base}.js` );
+      config.entry[`${page}`] = source;
+    });
+
+    return config;
   }
 }

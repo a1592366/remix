@@ -1,5 +1,5 @@
 {
-	"name": "@remixjs/cli",
+	"name": "remixjs-cli",
 	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
@@ -8,11 +8,6 @@
 	},
 	"author": "aniwei",
 	"dependencies": {
-		"@babel/core": "^7.4.3",
-		"@babel/register": "^7.4.0",
-		"@expri/dsl": "^1.0.7",
-		"@expri/exprijs": "^1.0.21",
-		"@expri/project": "^1.0.42",
 		"babel": "^6.23.0",
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
@@ -43,17 +38,18 @@
 		"node-ipc": "^9.1.1",
 		"progress-bar-webpack-plugin": "^1.12.1",
 		"remixjs": "^0.0.1",
+		"remixjs-file-loader": "^0.0.1",
 		"remixjs-xml": "^0.0.1",
 		"sass": "^1.18.0",
 		"sass-loader": "^7.1.0",
 		"webpack": "^4.29.6",
 		"webpack-dev-middleware": "^3.6.2",
 		"webpack-dev-server": "^3.3.1",
+		"webpack-remixjs-plugin": "^1.0.0",
 		"websocket": "^1.0.28",
 		"ws": "^6.2.1"
 	},
 	"devDependencies": {
-		"@expri/chunk-plugin": "^1.0.1",
 		"mini-css-extract-plugin": "^0.5.0"
 	},
 	"license": "ISC"

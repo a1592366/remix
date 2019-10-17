@@ -4,11 +4,27 @@ import cloneElement from '../react/cloneElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
-
-import TabBar from './TabBar';
+import notification, { APPLICATION } from '../project/notification';
 import { Router } from '../router';
+import TabBar from './TabBar';
 
 export default class Application extends Component {
+  static propTypes = {};
+  static defaultProps = {};
+
+  componentWillMount () {
+    notification.on(APPLICATION, this.onApplicationLifecycle);
+  }
+
+  componentWillUnMount () {
+    notification.off(APPLICATION, this.onApplicationLifecycle);
+  }
+
+  onApplicationLifecycle = ({ type }) => {
+    switch (type) {
+      case LEVEL.APPLICATION.LAUNCH:
+    }
+  }
   
   cloneApplicationChildren () {
     const children = [];

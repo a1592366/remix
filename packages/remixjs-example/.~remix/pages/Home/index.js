@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"pages/Explore/index": 0
+/******/ 		"pages/Home/index": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./.~remix/pages/Explore/.~index.js","runtime/vendor/manifest"]);
+/******/ 	deferredModules.push(["./.~remix/pages/Home/.~index.js","runtime/vendor/manifest"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })

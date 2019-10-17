@@ -90,21 +90,18 @@ class Project {
 
     await Promise.all(pages.map(page => {
       const parsed = path.parse(page);
-      const source = path.resolve(__dirname, 'page');
 
       return new Promise(async (resolve, reject) => {
-        const dist = path.resolve(env.REMIX_SOURCE, parsed.dir)
+        const dist = path.resolve(env.REMIX_SOURCE, parsed.dir);
+        const filename = path.resolve(dist,`${env.REMIX_VIEW_SYMBOL}${parsed.base}.js`);
         await fs.mkdirp(dist);
+        await fs.writeFile(filename, 
+          `
+import { ViewController } from 'remixjs/project';
 
-        const template = createTemplate(
-          source,
-          dist,
-          files
-        );
-
-        await template.render({
-          
-        })
+new ViewController('${page}');`
+        )
+        resolve();
       });
     }));
   }
@@ -115,10 +112,11 @@ class Project {
   }
 
   async start () {
+    this.engine.update(this.pages);
+
     await this.distroy();
     await this.updateApplicationJSON();
     await this.updateApplicationPages();
-
     await this.engine.start();
   }
 

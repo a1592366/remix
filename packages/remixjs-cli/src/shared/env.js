@@ -10,8 +10,9 @@ const PROJ_ENTRY_NAME = 'index.js';
 const REMIX_NAME = '.~remix';
 const REMIX_CONFIG_NAME = 'configrc';
 const REMIX_RPC_PORT = 10001;
-const REMIX_WRAPPER_NAME = 'wrapper';
-const REMIX_BOOT_NAME = 'boot.js';
+const REMIX_VIEW_SYMBOL = '.~';
+const REMIX_BOOT_NAME = 'runtime/boot.js';
+const REMIX_NODE_RUNTIME_NAME = 'runtime/node.runtime.js';
 
 
 const PROJ_NAME = path.parse(PROJ).name;
@@ -21,8 +22,8 @@ const PROJ_ENTRY = path.resolve(PROJ_SOURCE, PROJ_ENTRY_NAME);
 
 const REMIX_SOURCE = path.resolve(PROJ, REMIX_NAME);
 const REMIX_CONFIG = path.resolve(REMIX_SOURCE, REMIX_CONFIG_NAME);
-const REMIX_WRAPPER = path.resolve(REMIX_SOURCE, REMIX_WRAPPER_NAME);
 const REMIX_BOOT = path.resolve(REMIX_SOURCE, REMIX_BOOT_NAME);
+const REMIX_NODE_RUNTIME = path.resolve(REMIX_SOURCE, REMIX_NODE_RUNTIME_NAME);
 
 const PROJ_XML = path.resolve(REMIX_NAME, `.~xml/ui`);
 
@@ -34,8 +35,9 @@ module.exports = {
   REMIX_NAME,
   REMIX_SOURCE,
   REMIX_RPC_PORT,
-  REMIX_WRAPPER,
   REMIX_BOOT,
+  REMIX_VIEW_SYMBOL,
+  REMIX_NODE_RUNTIME,
 
   PROJ,
   PROJ_XML,

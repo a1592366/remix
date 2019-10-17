@@ -1,3 +1,4 @@
+
 import { ViewController } from 'remixjs/project';
 
-new ViewController('<%= route%>');
+new ViewController('pages/Index/index');

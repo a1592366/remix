@@ -1,15 +1,10 @@
 0 silly argv { _: [ 'add' ],
-0 silly argv   scope: 'remixjs-example',
+0 silly argv   scope: 'remixjs-cli',
 0 silly argv   globs: [],
-0 silly argv   lernaVersion: '3.13.1',
+0 silly argv   lernaVersion: '3.16.5',
 0 silly argv   '$0': 'lerna',
-0 silly argv   pkg: '@remixjs' }
-1 notice cli v3.13.1
-2 verbose rootPath /Users/aniwei/Desktop/remixjs
-3 error Error: Invalid package name "@remixjs": name can only contain URL-friendly characters
-3 error     at invalidPackageName (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/npm-package-arg/npa.js:82:15)
-3 error     at Result.setName (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/npm-package-arg/npa.js:118:11)
-3 error     at Result (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/npm-package-arg/npa.js:107:23)
-3 error     at Function.resolve (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/npm-package-arg/npa.js:54:15)
-3 error     at new Package (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/@lerna/package/index.js:36:26)
-3 error     at loadJsonFile.then.packageJson (/Users/aniwei/.nvm/versions/node/v8.3.0/lib/node_modules/lerna/node_modules/@lerna/project/index.js:172:24)
+0 silly argv   pkg: 'remixjs-webpack-plugin' }
+1 notice cli v3.16.5
+2 verbose rootPath /Users/aniwei/Desktop/shanlaan/remix
+3 error Error: 404 Not Found - GET https://registry.npmjs.org/remixjs-webpack-plugin - Not found
+3 error     at res.buffer.catch.then.body (/Users/aniwei/.nvm/versions/node/v11.15.0/lib/node_modules/lerna/node_modules/@evocateur/npm-registry-fetch/check-response.js:104:15)

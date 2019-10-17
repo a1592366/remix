@@ -9,7 +9,7 @@
     "request": "launch",
     "name": "调试start命令",
     "cwd": "${workspaceFolder}/packages/remixjs-example",
-    "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime.js"
+    "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"
   },
     {
       "type": "node",

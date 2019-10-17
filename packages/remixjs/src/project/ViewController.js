@@ -1,79 +1,40 @@
 import { isFunction } from '../shared/is';
+import { getRuntimeContext } from './runtime';
 
 export default class ViewController {
-  constructor () {
-    this.registerViewController();  
+  constructor (route) {
+    this.route = route;
+    
+    this.register();  
   }
 
-  registerViewController () {
+  callLifecycle (name, ...argv) {
+    const context = getRuntimeContext();
+
+    debugger;
+  }
+
+  register () {
     if (isFunction(Page)) {
+      const viewController = this;
       Page({
-        data: { initialized: false },
-        onLoad (query) {
-          initialized(query, this);
+        data: {},
+        onLoad (options) {
+          viewController.callLifecycle('onLoad', options);
         },
         onShow () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(LIFECYCLE, 'show', [{ route }]);
-          }
+          viewController.callLifecycle('onShow');
         },
         onHide () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(LIFECYCLE, 'hide', [{ route }]);
-          }
+          viewController.callLifecycle('onShow');
         },
-        
         onPullDownRefresh () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(EVENT, 'onPullDownRefresh', [{ route }]);
-          }
+          viewController.callLifecycle('onPullDownRefresh');
         },
-
         onReachBottom () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(EVENT, 'onReachBottom', [{ route }]);
-          }
-        },
-
-        onPageScroll () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(EVENT, 'onPageScroll', [{ route }]);
-          }
-        },
-
-        onResize () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(EVENT, 'onResize', [{ route }]);
-          }
-        },
-
-        onTabItemTap () {
-          const { data, route } = this;
-          const { initialized } = data;
-
-          if (initialized) {
-            postPageMessage(EVENT, 'onTabItemTap', [{ route }]);
-          }
-        }        
-      });
+          viewController.callLifecycle('onReachBottom');
+        }
+      })
     }
   }  
 }

@@ -22,6 +22,7 @@
 		"webpack-dev-server": "^3.4.1"
 	},
 	"dependencies": {
+		"events": "^3.0.0",
 		"prop-types": "^15.7.2",
 		"remixjs-xml": "^0.0.1",
 		"requestidlecallback": "^0.3.0",

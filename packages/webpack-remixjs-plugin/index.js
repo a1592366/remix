@@ -11,9 +11,9 @@ module.exports = class {
       if (/.js$/g.test(name)) {
         asset.source = function () {
           return `
-            /*** WeChat globalWindow ***/ 
-              var window = Object.__globalWindow__ || (Object.__globalWindow__ = {});  
-            /*** WeChat globalWindow ***/ 
+/*** WeChat globalWindow ***/ 
+  var window = Object.__globalWindow__ || (Object.__globalWindow__ = {});  
+/*** WeChat globalWindow ***/ 
             ${source}
           `;
         }
@@ -25,7 +25,7 @@ module.exports = class {
 
   apply (compiler) {
     compiler.hooks.afterCompile.tap('RemixJSPlugin', (compilation, callback) => {
-      compilation.assets = this.replace(compilation.assets);
+      // compilation.assets = this.replace(compilation.assets);
     });
 
     compiler.hooks.emit.tapAsync('RemixJSPlugin', (compilation, callback) => {
