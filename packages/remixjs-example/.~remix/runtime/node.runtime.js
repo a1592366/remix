@@ -11,19 +11,23 @@ const ignoreStaticModule = () => {
   const Module = require('module');
 
   const extensions = [
-    'png', 'jpg', 'gif', 'ico', 'svg',
-    'css', 'scss', 'less'
+    '.png', '.jpg', '.gif', '.ico', '.svg',
+    '.css', '.scss', 'l.ess'
   ];
 
-  extensions.forEach(ext => {
-    Module._extensions[`.${ext}`] = function (module, filename) {
-      debugger;
-      const dest = path.relative(__dirname, filename);
-      debugger;
+  const moduleRequire = Module.prototype.require;
 
-      module.exports = dest;
+  Module.prototype.require = function (request) {
+    const parsed = path.parse(request);
+
+    if (parsed.ext) {
+      if (extensions.includes(parsed.ext)) {
+        return request;
+      } 
     }
-  });
+
+    return moduleRequire.call(this, request);
+  }
 }
 
 function registerBabelRuntime () {

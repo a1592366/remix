@@ -10,6 +10,7 @@ class CompileEngine {
 
   constructor () {
     this.webpack = null;
+    this.context = null;
   }
 
   distroy () {
@@ -32,8 +33,9 @@ class CompileEngine {
 
   }
 
-  update (routes) {
-    this.config = createDevelopment(routes);
+  update (context) {
+    this.context = context;
+    this.config = createDevelopment(context);
   }
 }
 

@@ -5,7 +5,8 @@
     "list": [
       {
         "text": "发现",
-        "pagePath": "pages/Explore/index"
+        "pagePath": "pages/Explore/index",
+        "iconPath": "./static/images/me.png"
       },
       {
         "text": "我",

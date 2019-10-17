@@ -2661,7 +2661,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ../remixjs/src/project/notification/index.js ***!
   \****************************************************/
-/*! exports provided: APPLICATION, default */
+/*! exports provided: default, APPLICATION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

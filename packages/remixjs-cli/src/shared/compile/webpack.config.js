@@ -3,6 +3,7 @@ const fs = require('fs-extra');
 const RemixJSPlugin = require('webpack-remixjs-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPulgin = require('copy-webpack-plugin');
 
 const env = require('../env');
 
@@ -99,7 +100,8 @@ const defaultWebpackConfig = {
 
 
 module.exports = {
-  createDevelopment (pages) {
+  createDevelopment (context) {
+    const { pages, tabBar } = context;
     const config = {
       ...defaultWebpackConfig,
       entry: {
@@ -120,6 +122,22 @@ module.exports = {
       const source = path.join(env.REMIX_SOURCE, parsed.dir, `${env.REMIX_VIEW_SYMBOL}${parsed.base}.js` );
       config.entry[`${page}`] = source;
     });
+
+    debugger;
+
+    const items = tabBar.items.filter(tab => {
+      return tab.icon || tab.selectedIcon
+    }).map(tab => {
+      return {
+        from: path.resolve(env.PROJ_SOURCE, tab.icon),
+        to: path.resolve(env.REMIX_SOURCE, tab.icon)
+      }
+    });
+
+    if (items.length > 0) {
+      config.plugins.push(new CopyPulgin(item))
+    }
+
 
     return config;
   }
