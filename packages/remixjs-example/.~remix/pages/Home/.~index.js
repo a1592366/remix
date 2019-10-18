@@ -1,4 +1,3 @@
 
-import { ViewController } from 'remixjs/project';
-
-new ViewController('pages/Home/index');
+import { View } from 'remixjs/project';
+new View('pages/Home/index');

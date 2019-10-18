@@ -1,29 +1,41 @@
 import { isNullOrUndefined } from '../shared/is';
+import { noop } from '../shared';
 import React from '../react';
 import cloneElement from '../react/cloneElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
-import { transports } from '../project';
+import { transports, APPLICATION } from '../project';
 import { Router } from '../router';
 import TabBar from './TabBar';
 
 export default class Application extends Component {
-  static propTypes = {};
-  static defaultProps = {};
+  static propTypes = {
+    onLaunch: PropTypes.func
+  };
+
+  static defaultProps = {
+    onLaunch: noop
+  };
 
   componentWillMount () {
-    transports.app.on(this.onApplication);
+    transports.app.on(this.onMessage);
   }
 
   componentWillUnMount () {
     transports.app.off(this.onApplication);
   }
 
-  onApplication = (type, argv) => {
-    debugger;
+  onMessage = (type, argv) => {
     switch (type) {
-      case LEVEL.APPLICATION.LAUNCH:
+      case APPLICATION.LAUNCH: {
+        const { onLaunch } = this.props;
+
+        onLaunch.apply(this, argv);
+        break;
+      }
+
+
     }
   }
   

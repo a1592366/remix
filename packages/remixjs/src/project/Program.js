@@ -8,12 +8,12 @@ import runtime from './runtime';
 const { TabBarItem } = TabBar;
 
 export const getApplication = () => {
-  return MiniProgram.context;
+  return Program.context;
 }
 
-export default class MiniProgram {
+export default class Program {
   constructor (App, container) {
-    MiniProgram.context = this;
+    Program.context = this;
 
     Object.defineProperty(this, 'context', {
       get () {

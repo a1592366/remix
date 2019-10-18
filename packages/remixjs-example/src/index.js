@@ -24,7 +24,8 @@ export default () => {
       navigationStyle: 'custom'
     }}
 
-    onLaunch={() => {}}
+    onLaunch={() => {
+    }}
   >
     <Router>
       <Route path="pages/Index/index" component={Index} />

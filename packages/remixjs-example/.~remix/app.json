@@ -52,5 +52,6 @@
   "window": {
     "navigationBarBackgroundColor": "#000000",
     "navigationStyle": "custom"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

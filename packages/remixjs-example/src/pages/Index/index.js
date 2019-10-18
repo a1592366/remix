@@ -9,6 +9,10 @@ export default class Index extends ViewController {
     navigationBarTitleText: '我的'
   }
 
+  componentWillMount () {
+
+  }
+
   render () {
     return (
       <View></View>

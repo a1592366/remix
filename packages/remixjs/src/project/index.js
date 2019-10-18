@@ -1,13 +1,13 @@
 
-import MiniProgram from './MiniProgram';
-import ViewController from './ViewController';
+import Program from './Program';
+import View from './View';
 
 
 
 export {
-  MiniProgram,
-  ViewController
+  Program,
+  View
 }
 
 export * from './runtime';
-export * from './MiniProgram';
+export * from './Program';

@@ -1,9 +1,29 @@
 import EventEmitter from 'events';
 
-class Tunnel extends EventEmitter {
-  emit (type, argv) {
-    super.emit(type, type, argv);
+let Tunnel
+
+if (process.env.NODE_ENV === 'development') {
+  Tunnel = class extends EventEmitter {
+    emit (type, argv) {
+      super.emit(type, type, argv);
+    }
+  }
+} else {
+  Tunnel = class {
+    constructor () {
+      // wx.crea
+    }    
+
+    emit (type, argv) {
+
+    }
   }
 }
 
-export default Tunnel;
+
+
+export default class extends EventEmitter {
+  emit (type, argv) {
+    super.emit(type, type, argv);
+  }
+};

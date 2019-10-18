@@ -80,11 +80,6 @@ class Project {
   }
 
   async updateApplicationPages () {
-    const files = await globby('./**/*', {
-      cwd: path.resolve(__dirname, 'page'),
-      dot: true
-    });
-
     const pages = this.pages;
 
     await Promise.all(pages.map(page => {
@@ -93,13 +88,14 @@ class Project {
       return new Promise(async (resolve, reject) => {
         const dist = path.resolve(env.REMIX_SOURCE, parsed.dir);
         const filename = path.resolve(dist,`${env.REMIX_VIEW_SYMBOL}${parsed.base}.js`);
+        const xml = path.resolve(dist, `${parsed.base}.wxml`)
         await fs.mkdirp(dist);
-        await fs.writeFile(filename, 
-          `
-import { ViewController } from 'remixjs/project';
+        await fs.writeFile(filename, `
+import { View } from 'remixjs/project';
+new View('${page}');`
+        );
+        await fs.writeFile(xml, ``);
 
-new ViewController('${page}');`
-        )
         resolve();
       });
     }));

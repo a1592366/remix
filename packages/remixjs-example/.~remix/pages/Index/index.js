@@ -1,4 +1,4 @@
-/*** MARK_1571394683861 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571420035068 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -166,7 +166,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var remixjs_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
 
-new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["ViewController"]('pages/Index/index');
+new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["View"]('pages/Index/index');
 
 /***/ })
 

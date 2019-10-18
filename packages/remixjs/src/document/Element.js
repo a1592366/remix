@@ -7,6 +7,7 @@ export default class Element {
   nodeType = null;
   child = null;
   return = null;
+  lastChild = null;
 
   get ownerDocument () {
     return document;
