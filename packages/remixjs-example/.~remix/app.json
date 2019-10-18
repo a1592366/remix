@@ -2,15 +2,45 @@
   "tabBar": {
     "color": "#000000",
     "backgroundColor": "#ffffff",
+    "selectedColor": "#333333",
+    "position": "bottom",
+    "bottom": false,
+    "children": [
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/Explore/index",
+          "icon": "./static/images/me.png",
+          "selectedIcon": "./static/images/me_selected.png",
+          "children": "发现"
+        },
+        "_owner": null
+      },
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/Index/index",
+          "icon": "./static/images/explore.png",
+          "selectedIcon": "./static/images/explore_selected.png",
+          "children": "我"
+        },
+        "_owner": null
+      }
+    ],
     "list": [
       {
         "text": "发现",
         "pagePath": "pages/Explore/index",
-        "iconPath": "./static/images/me.png"
+        "iconPath": "./static/images/me.png",
+        "selectedIconPath": "./static/images/me_selected.png"
       },
       {
         "text": "我",
-        "pagePath": "pages/Index/index"
+        "pagePath": "pages/Index/index",
+        "iconPath": "./static/images/explore.png",
+        "selectedIconPath": "./static/images/explore_selected.png"
       }
     ]
   },

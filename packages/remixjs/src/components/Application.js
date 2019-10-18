@@ -4,7 +4,7 @@ import cloneElement from '../react/cloneElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
-import notification, { APPLICATION } from '../project/notification';
+import { transports } from '../project';
 import { Router } from '../router';
 import TabBar from './TabBar';
 
@@ -13,14 +13,15 @@ export default class Application extends Component {
   static defaultProps = {};
 
   componentWillMount () {
-    notification.on(APPLICATION, this.onApplicationLifecycle);
+    transports.app.on(this.onApplication);
   }
 
   componentWillUnMount () {
-    notification.off(APPLICATION, this.onApplicationLifecycle);
+    transports.app.off(this.onApplication);
   }
 
-  onApplicationLifecycle = ({ type }) => {
+  onApplication = (type, argv) => {
+    debugger;
     switch (type) {
       case LEVEL.APPLICATION.LAUNCH:
     }

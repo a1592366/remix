@@ -21,9 +21,14 @@ const defaultWebpackConfig = {
     colors: true,
   },
 
-  entry: {},
+  entry: {
+    'runtime/index': env.REMIX_CLIENT_RUNTIME
+  },
 
-  output: {},
+  output: {
+    filename: '[name].js',
+    path: env.REMIX_SOURCE,    
+  },
 
   resolve: {
     alias: {
@@ -38,7 +43,7 @@ const defaultWebpackConfig = {
     new RemixJSPlugin(),
     new ProgressBarPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'static/wxss/boot.ui.wxss',
+      filename: 'static/wxss/app.ui.wxss',
     })
   ],
 
@@ -67,14 +72,21 @@ const defaultWebpackConfig = {
         use: [ MiniCssExtractPlugin.loader, 'css-loader' ],  
         test:/\.css$/ 
       },
-      { 
-        use: [
-          { 
-            loader: 'remixjs-file-loader'
-          }
-        ],  
-        test:/\.(png|jpg|gif|svg|ico)$/ 
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
       },
+      // { 
+      //   use: [
+      //     { 
+      //       loader: 'remixjs-file-loader'
+      //     }
+      //   ],  
+      //   test:/\.(png|jpg|gif|svg|ico)$/ 
+      // },
     ]
   },
 
@@ -82,13 +94,21 @@ const defaultWebpackConfig = {
     splitChunks: {
       chunks: 'initial',
       minSize: 30000,
-      minChunks: 1,
+      minChunks: 2,
       maxAsyncRequests: 5,
       maxInitialRequests: 5,
       name: false,
       cacheGroups: {
         vendor: {
           name: 'runtime/vendor/manifest',
+          test: /(\.js|\.jsx)$/,
+          chunks: 'initial',
+          priority: -10,
+          reuseExistingChunk: false,
+        },
+        style: {
+          name: 'runtime',
+          test: /\.css$/,
           chunks: 'initial',
           priority: -10,
           reuseExistingChunk: false,
@@ -101,43 +121,49 @@ const defaultWebpackConfig = {
 
 module.exports = {
   createDevelopment (context) {
-    const { pages, tabBar } = context;
+    const { router: { routes }, tabBar } = context;
     const config = {
       ...defaultWebpackConfig,
-      entry: {
-        'runtime/index': env.REMIX_BOOT
-      },
-      mode: 'development',
-      output: {
-        filename: '[name].js',
-        path: env.REMIX_SOURCE,
-        globalObject: 'window',
-        libraryTarget: 'umd',
-        umdNamedDefine: true
-      }
+      mode: 'development'
     }
 
-    pages.forEach(page => {
-      const parsed = path.parse(page);
-      const source = path.join(env.REMIX_SOURCE, parsed.dir, `${env.REMIX_VIEW_SYMBOL}${parsed.base}.js` );
-      config.entry[`${page}`] = source;
+    routes.forEach(route => {
+      const parsed = path.parse(route.path);
+      const source = path.join(
+        env.REMIX_SOURCE, 
+        parsed.dir, 
+        `${env.REMIX_VIEW_SYMBOL}${parsed.base}.js` 
+      );
+
+      config.entry[`${route.path}`] = source;
     });
 
-    debugger;
+    const source = [
+      './static/wxss/runtime.ui.wxss'
+    ];
 
-    const items = tabBar.items.filter(tab => {
+    tabBar.items.filter(tab => {
       return tab.icon || tab.selectedIcon
-    }).map(tab => {
-      return {
-        from: path.resolve(env.PROJ_SOURCE, tab.icon),
-        to: path.resolve(env.REMIX_SOURCE, tab.icon)
+    }).forEach(tab => {
+      if (!source.includes(tab.icon)) {
+        source.push(tab.icon);
+      }
+
+      if (!source.includes(tab.selectedIcon)) {
+        source.push(tab.selectedIcon);
       }
     });
 
-    if (items.length > 0) {
-      config.plugins.push(new CopyPulgin(item))
+    if (source.length > 0) {
+      config.plugins.push(
+        new CopyPulgin(source.map(src => {
+          return {
+            from: path.resolve(env.PROJ_SOURCE, src),
+            to: path.resolve(env.REMIX_SOURCE, src)
+          }
+        }))
+      );
     }
-
 
     return config;
   }

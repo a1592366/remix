@@ -32,3 +32,7 @@ export const APPLICATION = defineNotificationTypes({
   HIDE: 'application.hide',
   ERROR: 'application.error'
 });
+
+export const VIEW = defineNotificationTypes({
+  LOAD: 'view.load',
+});

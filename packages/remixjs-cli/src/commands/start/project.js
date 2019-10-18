@@ -5,7 +5,6 @@ const globby = require('globby');
 const env = require('../../shared/env');
 const logger = require('../../shared/logger');
 const { createCompileEngine } = require('../../shared/compile');
-const { createTemplate } = require('../../shared/template');
 
 
 class Project {
@@ -107,12 +106,23 @@ new ViewController('${page}');`
   }
 
   async distroy () {
-    // await fs.remove();
-    // await fs.mkdir();
+    this.engine.stop();
+
+    const pages = this.pages;
+
+    await Promise.all(pages.map(page => {
+      const parsed = path.parse(page);
+
+      return fs.remove(parsed.dir);
+    }))
+  }
+
+  async stop () {
+    await this.engine.stop();
   }
 
   async start () {
-    this.engine.update(this.pages);
+    this.engine.update(this.context);
 
     await this.distroy();
     await this.updateApplicationJSON();

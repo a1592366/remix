@@ -82,17 +82,18 @@ function mountClassInstance(
   } = instance;
 
   if (
-    isDerivedStateFunction &&
+    !isDerivedStateFunction &&
     !isFunction(getSnapshotBeforeUpdate) &&
     (
       isFunction(UNSAFE_componentWillMount) ||
       isFunction(componentWillMount)
     )
   ) {
+    
     callComponentWillMount(workInProgress, instance);
 
     updateQueue = workInProgress.updateQueue;
-    if (!isNull(updateQueue)) {
+    if (!isNullOrUndefined(updateQueue)) {
       processUpdateQueue(
         workInProgress,
         updateQueue,
@@ -276,7 +277,7 @@ function callComponentWillMount (
   instance
 ) {
   const state = instance.state;
-  const componentWillMount = instance.UNSAFE_componentWillMount || instance.componentDidMount;
+  const componentWillMount = instance.UNSAFE_componentWillMount || instance.componentWillMount;
 
   if (isFunction(instance.componentWillMount)) {
     componentWillMount.call(instance);

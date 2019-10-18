@@ -1,18 +1,4 @@
-
-/*** WeChat globalWindow ***/ 
-  var window = Object.__globalWindow__ || (Object.__globalWindow__ = {});  
-/*** WeChat globalWindow ***/ 
-            (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571394683861 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -65,7 +51,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	}
 /******/
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/ 	var installedModules = window.installedModules || (window.installedModules = {});
 /******/
 /******/ 	// object to store loaded and loading chunks
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
@@ -167,7 +153,22 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
-/******/ ([]);
-});
+/******/ ({
+
+/***/ "./.~remix/pages/Index/.~index.js":
+/*!****************************************!*\
+  !*** ./.~remix/pages/Index/.~index.js ***!
+  \****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var remixjs_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
+
+new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["ViewController"]('pages/Index/index');
+
+/***/ })
+
+/******/ });
 //# sourceMappingURL=index.js.map
-          

@@ -20,6 +20,8 @@ module.exports = function (src) {
     {}
   );
 
+  debugger;
+
   memFs.commit(() => {});
 
   return `module.exports = '${rawRequest}'`;

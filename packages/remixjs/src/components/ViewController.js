@@ -10,7 +10,7 @@ export default class ViewController extends Component {
   static defaultProps = {};
 
   set config (config) {
-    
+    debugger;
   }
 
   set viewWillAppear (viewWillAppear) {

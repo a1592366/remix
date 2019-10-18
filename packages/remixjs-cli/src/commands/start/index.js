@@ -23,7 +23,7 @@ async function watch () {
 
   process.on('beforeExit', () => {
     watcher.close();
-    project.distroy();
+    project.stop();
     rpc.exit();
   });
 

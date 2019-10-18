@@ -9,6 +9,10 @@ import { TabBar } from 'remixjs/components';
 import Index from './pages/Index';
 
 import me from './static/images/me.png';
+import meSelected from './static/images/me_selected.png';
+import explore from './static/images/explore.png';
+import exploreSelected from './static/images/explore_selected.png';
+
 
 const { TabBarItem } = TabBar;
 
@@ -28,14 +32,21 @@ export default () => {
       <Route path="pages/Home/index" component={Index} />
     </Router>
 
-    <TabBar>
+    <TabBar
+      selectedColor={'#333333'}
+    >
       <TabBarItem 
         path="pages/Explore/index"
         icon={me}
+        selectedIcon={meSelected}
       >
         发现
       </TabBarItem>
-      <TabBarItem path="pages/Index/index">
+      <TabBarItem 
+        path="pages/Index/index"
+        icon={explore}
+        selectedIcon={exploreSelected}
+      >
         我
       </TabBarItem>
     </TabBar>

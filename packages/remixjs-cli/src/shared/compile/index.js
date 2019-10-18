@@ -13,19 +13,24 @@ class CompileEngine {
     this.context = null;
   }
 
-  distroy () {
-    if (this.instance) {
-      this.instance.close();
+  stop () {
+    if (this.webpack) {
+      this.webpack.close();
     }
   }
 
   start () {
     this.webpack = webpack(this.config);
 
-    this.webpack.watch({}, (err, stat) => {
+    this.webpack.watch({
+
+    }, (err, stats) => {
       if (err) {
         logger.red(err);
+      } else {
+        console.log(stats.toString({ color: true }));
       }
+
     });
   }
 

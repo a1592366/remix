@@ -1,0 +1,2 @@
+@import "./static/wxss/runtime.ui.wxss";
+@import "./static/wxss/app.ui.wxss";

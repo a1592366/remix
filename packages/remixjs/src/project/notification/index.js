@@ -1,8 +1,8 @@
 import EventEmitter from 'events';
-import * as types from './types';
+import { APPLICATION, VIEW } from './types';
 
 
-class Notification extends EventEmitter {
+class Transport extends EventEmitter {
   post (type, e) {
     this.emit(type, e);
   }
@@ -10,26 +10,28 @@ class Notification extends EventEmitter {
   app () {    
     return {
       launch: (...argv) => {
-        this.post(types.APPLICATION.LAUNCH, argv);
+        this.post(APPLICATION.LAUNCH, argv);
       },
 
       show: (...argv) => {
-        this.post(types.APPLICATION.SHOW, argv);
+        this.post(APPLICATION.SHOW, argv);
       },
 
       hide (...argv) {
-        this.post(types.APPLICATION.HIDE, argv);
+        this.post(APPLICATION.HIDE, argv);
       },
 
       error (...argv) {
-        this.post(types.APPLICATION.ERROR, argv);
+        this.post(APPLICATION.ERROR, argv);
       }
     }
   }
 
   view () {
     return {
-
+      load (...argv) {
+        this.post(VIEW.LOAD, argv);
+      }
     }
   }
 
@@ -37,4 +39,4 @@ class Notification extends EventEmitter {
 }
 
 export * from './types';
-export default new Notification();
+export default new Transport();

@@ -55,6 +55,10 @@ export default class MiniProgram {
             }
         
             case TabBar: {
+              context.tabBar = {
+                ...node.memoizedProps,
+                ...context.tabBar
+              }
               break;
             }
         

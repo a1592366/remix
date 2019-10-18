@@ -1,4 +1,8 @@
 const { getOwnPropertyNames: getPropertyKeys } = Object;
+const mark = 'MARK_' + (new Date - 0);
+
+const isJavaScript = (name) => /(\.js|\/.jsx)$/g.test(name);
+const isMarked = source => source.indexOf(mark) > -1;
 
 module.exports = class {
   replace (assets) {
@@ -8,14 +12,9 @@ module.exports = class {
       const asset = assets[name];
       const source = asset.source();
 
-      if (/.js$/g.test(name)) {
+      if (isJavaScript(name) && !isMarked(source)) {
         asset.source = function () {
-          return `
-/*** WeChat globalWindow ***/ 
-  var window = Object.__globalWindow__ || (Object.__globalWindow__ = {});  
-/*** WeChat globalWindow ***/ 
-            ${source}
-          `;
+          return `/*** ${mark} WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ ${source.replace('var installedModules = {}', 'var installedModules = window.installedModules || (window.installedModules = {})')}`;
         }
       }
     });
@@ -25,7 +24,8 @@ module.exports = class {
 
   apply (compiler) {
     compiler.hooks.afterCompile.tap('RemixJSPlugin', (compilation, callback) => {
-      // compilation.assets = this.replace(compilation.assets);
+      
+      compilation.assets = this.replace(compilation.assets);
     });
 
     compiler.hooks.emit.tapAsync('RemixJSPlugin', (compilation, callback) => {

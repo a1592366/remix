@@ -20,6 +20,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^3.2.0",
     "css-loader": "^1.0.1",
+    "file-loader": "^4.2.0",
     "fs-extra": "^8.1.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
