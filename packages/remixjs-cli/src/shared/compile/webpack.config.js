@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
+const webpack = require('webpack')
 const RemixJSPlugin = require('webpack-remixjs-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -44,6 +45,12 @@ const defaultWebpackConfig = {
     new ProgressBarPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/wxss/app.ui.wxss',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.IS_INSPECT_MODE': `${env.IS_INSPECT_MODE}`,
+      'process.env.INSPECT_UI_URL': `"${env.INSPECT_UI_URL}"`,
+      'process.env.INSPECT_WS_URL': `"${env.INSPECT_WS_URL}"`,
+      'process.env.INSEPCT_MESSAGE_TYPES': `${JSON.stringify(env.INSEPCT_MESSAGE_TYPES, 2, null)}`
     })
   ],
 

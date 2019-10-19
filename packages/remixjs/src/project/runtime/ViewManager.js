@@ -35,7 +35,7 @@ export default class ViewManager {
     }
   }
 
-  onLoad = ({ route, id }, callback) => {
+  onLoad = ({ route, id }, query, callback) => {
     let viewController = this.viewControllers[id];
     
     if (viewController) {
@@ -46,7 +46,7 @@ export default class ViewManager {
       if (r) {
         this.viewControllers[id] = viewController = new ViewController(id, r)
 
-        viewController.onLoad(callback);
+        viewController.onLoad(query, callback);
       } else {
         logger.red(`Can not find route!`);
       }

@@ -22,15 +22,16 @@ class CompileEngine {
   start () {
     this.webpack = webpack(this.config);
 
-    this.webpack.watch({
+    return new Promise((resolve, reject) => {
+      this.webpack.watch({}, (err, stats) => {
+        if (err) {
+          logger.red(err);
+        } else {
+          console.log(stats.toString({ color: true }));
+        }
 
-    }, (err, stats) => {
-      if (err) {
-        logger.red(err);
-      } else {
-        console.log(stats.toString({ color: true }));
-      }
-
+        resolve();
+      });
     });
   }
 

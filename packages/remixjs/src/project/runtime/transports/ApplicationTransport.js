@@ -2,6 +2,10 @@ import Tunnel from '../tunnel';
 import { APPLICATION } from './types';
 
 export default class ApplicationTransport extends Tunnel {
+  inspect (...argv) {
+    this.emit(APPLICATION.INSPECT, argv);
+  }
+
   launch (...argv) {
     this.emit(APPLICATION.LAUNCH, argv);
   }

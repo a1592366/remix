@@ -1,3 +1,4 @@
+const argv = require('yargs').argv;
 const path = require('path');
 const internalIp  = require('internal-ip');
 
@@ -7,6 +8,19 @@ const PROJ = process.cwd();
 
 const PROJ_ENTRY_NAME = 'index.js';
 
+
+const IS_INSPECT_MODE = !!argv.inspect;
+const INSPECT_PORT = 10002;
+const INSPECT_UI_URL = `http://${INTERNAL_IP}:${INSPECT_PORT}`;
+const INSPECT_WS_URL = `ws://${INTERNAL_IP}:${INSPECT_PORT}`;
+
+const INSEPCT_MESSAGE_TYPES = {
+  REGISTER: 0,
+  MESSAGE:1,
+  CLOSE: 2
+};
+
+
 const REMIX_NAME = '.~remix';
 const REMIX_CONFIG_NAME = 'configrc';
 const REMIX_RPC_PORT = 10001;
@@ -14,6 +28,8 @@ const REMIX_VIEW_SYMBOL = '.~';
 const REMIX_BOOT_NAME = 'runtime/boot.js';
 const REMIX_NODE_RUNTIME_NAME = 'runtime/node.runtime.js';
 const REMIX_CLIENT_RUNTIME_NAME = 'runtime/client.runtime.js';
+
+
 
 
 const PROJ_NAME = path.parse(PROJ).name;
@@ -47,5 +63,11 @@ module.exports = {
   PROJ_NAME,
   PROJ_BUILD,
   PROJ_ENTRY,
-  PROJ_SOURCE
+  PROJ_SOURCE,
+  
+  IS_INSPECT_MODE,
+  INSPECT_PORT,
+  INSPECT_WS_URL,
+  INSPECT_UI_URL,
+  INSEPCT_MESSAGE_TYPES
 }

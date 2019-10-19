@@ -4,7 +4,7 @@ const commands = require('../src/commands');
 
 commander
   .command('start')
-  .option('-t, --mode', 'Type')
+  .option('--inspect', 'Type')
   .action(commands.start)
 
 commander

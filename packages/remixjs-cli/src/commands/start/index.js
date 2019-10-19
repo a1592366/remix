@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const chokidar = require('chokidar');
 const env = require('../../shared/env');
+const inspect = require('../../shared/inspect');
 const createProject = require('./project').createProject;
 const rpc = require('./rpc');
 
@@ -10,6 +11,13 @@ async function watch () {
 
   const project = createProject(context);
   const watcher = chokidar.watch(env.PROJ_SOURCE);
+
+  await project.start();
+  
+  if (env.IS_INSPECT_MODE) {
+    await inspect.start();
+  }
+
 
   watcher.on('change', async (file) => {
     if (file === env.PROJ_ENTRY) {
@@ -26,9 +34,6 @@ async function watch () {
     project.stop();
     rpc.exit();
   });
-
-
-  await project.start();
 }
 
 module.exports = async (type, config) => {

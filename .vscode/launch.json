@@ -4,20 +4,27 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-  {
-    "type": "node",
-    "request": "launch",
-    "name": "调试start命令",
-    "cwd": "${workspaceFolder}/packages/remixjs-example",
-    "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"
-  },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "调试START命令",
+      "cwd": "${workspaceFolder}/packages/remixjs-example",
+      "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "调试DEVTOOL",
+      "cwd": "${workspaceFolder}/packages/remixjs-example",
+      "program": "${workspaceFolder}/packages/remixjs-cli/src/shared/inspect/server.js"
+    },
     {
       "type": "node",
       "request": "launch",
       "name": "调试CLI",
       "cwd": "${workspaceFolder}/packages/remixjs-example/",
       "program": "${workspaceFolder}/packages/remixjs-cli/bin/remix",
-      "args": ["start"]
+      "args": ["start", "--inspect"]
     }
   ]
 }

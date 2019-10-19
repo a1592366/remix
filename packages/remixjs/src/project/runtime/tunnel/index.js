@@ -1,29 +1,7 @@
-import EventEmitter from 'events';
+import NativeTunnel from './NativeTunnel';
+import SocketTunnel from './SocketTunnel';
 
-let Tunnel
+const Tunnel = process.env.IS_INSPECT_MODE ? SocketTunnel : NativeTunnel;
 
-if (process.env.NODE_ENV === 'development') {
-  Tunnel = class extends EventEmitter {
-    emit (type, argv) {
-      super.emit(type, type, argv);
-    }
-  }
-} else {
-  Tunnel = class {
-    constructor () {
-      // wx.crea
-    }    
+export default Tunnel;
 
-    emit (type, argv) {
-
-    }
-  }
-}
-
-
-
-export default class extends EventEmitter {
-  emit (type, argv) {
-    super.emit(type, type, argv);
-  }
-};

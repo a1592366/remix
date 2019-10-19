@@ -120,10 +120,14 @@ new View('${page}');`
   async start () {
     this.engine.update(this.context);
 
+    logger.green(`正在编译...`);
+
     await this.distroy();
     await this.updateApplicationJSON();
     await this.updateApplicationPages();
     await this.engine.start();
+
+    logger.green(`编译完成，可以开发了`);
   }
 
   async update (context) {

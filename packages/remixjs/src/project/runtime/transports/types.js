@@ -34,6 +34,7 @@ const defineNotificationTypes = (prefix, types) => {
 
 export const APPLICATION = defineNotificationTypes('application', {
   LAUNCH: 'launch',
+  INSPECT: 'inspect',
   SHOW: 'show',
   HIDE: 'hide',
   ERROR: 'error'
@@ -42,3 +43,7 @@ export const APPLICATION = defineNotificationTypes('application', {
 export const VIEW = defineNotificationTypes('view', {
   LOAD: 'load',
 });
+
+export const API = defineNotificationTypes('api', {
+
+})

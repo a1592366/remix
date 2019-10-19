@@ -18,13 +18,13 @@ export default class ViewController {
         data: {
           element: null
         },
-        onLoad () {
+        onLoad (query) {
           const v = this;
 
           transports.view.load({
             id: ctrl.id,
             route: ctrl.route,
-          }, (element) => {
+          }, query, (element) => {
             v.setData({ element });
           });
         }

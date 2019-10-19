@@ -11,7 +11,7 @@ export default class ViewController {
     document.body.appendChild(this.container);
   }
 
-  onLoad (callback) {
+  onLoad (query, callback) {
     const { component, render: r } = this.route;
 
     const rendered = render(
@@ -23,4 +23,10 @@ export default class ViewController {
 
     callback(this.container.serialize());
   }
+
+  onReady () {
+
+  }
+
+
 }
