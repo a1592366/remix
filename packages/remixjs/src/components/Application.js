@@ -23,7 +23,7 @@ export default class Application extends Component {
   }
 
   componentWillUnMount () {
-    transports.app.off(this.onApplication);
+    transports.app.off(this.onMessage);
   }
 
   onMessage = (type, argv) => {

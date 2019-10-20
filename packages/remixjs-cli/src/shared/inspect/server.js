@@ -100,8 +100,8 @@ class Server {
     }
   }
 
-  onMessage ({ id, data }) {
-    
+  onMessage (message) {    
+    debugger;
   }
 }
 
