@@ -147,7 +147,7 @@ module.exports = {
     });
 
     if (env.IS_INSPECT_MODE) {
-      config.entry['runtime/application'] = env.PROJ_ENTRY;
+      config.entry['runtime/devtool'] = env.REMIX_DEVTOOL_RUNTIME;
     }
 
     const source = [

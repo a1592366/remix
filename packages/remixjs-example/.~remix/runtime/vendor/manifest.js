@@ -1,4 +1,4 @@
-/*** MARK_1571566558499 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571593505645 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -478,11 +478,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../remixjs/document.js":
+/*!******************************!*\
+  !*** ../remixjs/document.js ***!
+  \******************************/
+/*! exports provided: document */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_document__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/document */ "../remixjs/src/document/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "document", function() { return _src_document__WEBPACK_IMPORTED_MODULE_0__["document"]; });
+
+
+
+/***/ }),
+
 /***/ "../remixjs/env.js":
 /*!*************************!*\
   !*** ../remixjs/env.js ***!
   \*************************/
-/*! exports provided: isInspectMode, inspectWSURL, internalUIURL, inspectMessageTypes, inspectTerminalTypes */
+/*! exports provided: isInspectMode, inspectWSURL, internalUIURL, inspectMessageTypes, inspectTerminalTypes, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -497,6 +513,13 @@ var inspectWSURL = "ws://192.168.2.11:10002";
 var internalUIURL = "http://192.168.2.11:10002";
 var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  isInspectMode: isInspectMode,
+  inspectWSURL: inspectWSURL,
+  internalUIURL: internalUIURL,
+  inspectMessageTypes: inspectMessageTypes,
+  inspectTerminalTypes: inspectTerminalTypes
+});
 
 /***/ }),
 
@@ -2618,7 +2641,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../renderer */ "../remixjs/src/renderer/index.js");
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components */ "../remixjs/src/components/index.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../router */ "../remixjs/src/router/index.js");
-/* harmony import */ var _runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./runtime */ "../remixjs/src/project/runtime/index.js");
+/* harmony import */ var _runtime_terminal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./runtime/terminal */ "../remixjs/src/project/runtime/terminal.js");
+/* harmony import */ var _runtime_devtool__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./runtime/devtool */ "../remixjs/src/project/runtime/devtool.js");
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../env */ "../remixjs/env.js");
 
 
 
@@ -2626,6 +2651,8 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
@@ -2722,7 +2749,11 @@ function () {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(Program, [{
     key: "start",
     value: function start() {
-      Object(_runtime__WEBPACK_IMPORTED_MODULE_8__["default"])(this.context);
+      if (_env__WEBPACK_IMPORTED_MODULE_10__["default"].isDevToolRunTime) {
+        Object(_runtime_devtool__WEBPACK_IMPORTED_MODULE_9__["default"])(this.context);
+      } else {
+        Object(_runtime_terminal__WEBPACK_IMPORTED_MODULE_8__["default"])(this.context);
+      }
     }
   }]);
 
@@ -2816,14 +2847,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./View */ "../remixjs/src/project/View.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "View", function() { return _View__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
-/* harmony import */ var _runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./runtime */ "../remixjs/src/project/runtime/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "transports", function() { return _runtime__WEBPACK_IMPORTED_MODULE_2__["transports"]; });
+/* harmony import */ var _runtime_terminal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./runtime/terminal */ "../remixjs/src/project/runtime/terminal.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "transports", function() { return _runtime_terminal__WEBPACK_IMPORTED_MODULE_2__["transports"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APPLICATION", function() { return _runtime__WEBPACK_IMPORTED_MODULE_2__["APPLICATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APPLICATION", function() { return _runtime_terminal__WEBPACK_IMPORTED_MODULE_2__["APPLICATION"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VIEW", function() { return _runtime__WEBPACK_IMPORTED_MODULE_2__["VIEW"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VIEW", function() { return _runtime_terminal__WEBPACK_IMPORTED_MODULE_2__["VIEW"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "API", function() { return _runtime__WEBPACK_IMPORTED_MODULE_2__["API"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "API", function() { return _runtime_terminal__WEBPACK_IMPORTED_MODULE_2__["API"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getApplication", function() { return _Program__WEBPACK_IMPORTED_MODULE_0__["getApplication"]; });
 
@@ -3013,6 +3044,81 @@ var VIEW = defineNotificationTypes({
 
 /***/ }),
 
+/***/ "../remixjs/src/project/runtime/Socket.js":
+/*!************************************************!*\
+  !*** ../remixjs/src/project/runtime/Socket.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../env */ "../remixjs/env.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (options) {
+  var _temp;
+
+  var Socket = _env__WEBPACK_IMPORTED_MODULE_3__["default"].isDevToolRunTime ? (_temp =
+  /*#__PURE__*/
+  function () {
+    function _temp(_ref) {
+      var _this = this;
+
+      var url = _ref.url,
+          protocol = _ref.protocol;
+
+      _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, _temp);
+
+      _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "onMessage", function (onMessage) {
+        _this.socket.onmessage = onMessage;
+      });
+
+      _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "onOpen", function (onOpen) {
+        _this.socket.onopen = onOpen;
+      });
+
+      _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "onClose", function (onClose) {
+        _this.socket.onopen = onClose;
+      });
+
+      _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "onError", function (onError) {
+        _this.socket.onopen = onError;
+      });
+
+      this.socket = new WebSocket(url, protocol);
+    }
+
+    _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(_temp, [{
+      key: "send",
+      value: function send(_ref2) {
+        var data = _ref2.data;
+        this.socket.send(JSON.stringify(data));
+      }
+    }]);
+
+    return _temp;
+  }(), _temp) : function (_ref3) {
+    var url = _ref3.url,
+        protocol = _ref3.protocol;
+    return wx.connectSocket({
+      url: url,
+      protocol: protocol
+    });
+  };
+  return new Socket(options);
+});
+
+/***/ }),
+
 /***/ "../remixjs/src/project/runtime/ViewController.js":
 /*!********************************************************!*\
   !*** ../remixjs/src/project/runtime/ViewController.js ***!
@@ -3166,10 +3272,86 @@ function () {
 
 /***/ }),
 
-/***/ "../remixjs/src/project/runtime/index.js":
-/*!***********************************************!*\
-  !*** ../remixjs/src/project/runtime/index.js ***!
-  \***********************************************/
+/***/ "../remixjs/src/project/runtime/devtool.js":
+/*!*************************************************!*\
+  !*** ../remixjs/src/project/runtime/devtool.js ***!
+  \*************************************************/
+/*! exports provided: APPLICATION, VIEW, API, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _transports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js");
+/* harmony import */ var _ViewManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ViewManager */ "../remixjs/src/project/runtime/ViewManager.js");
+/* harmony import */ var _Socket__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Socket */ "../remixjs/src/project/runtime/Socket.js");
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../env */ "../remixjs/env.js");
+/* harmony import */ var _transports_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./transports/types */ "../remixjs/src/project/runtime/transports/types.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APPLICATION", function() { return _transports_types__WEBPACK_IMPORTED_MODULE_7__["APPLICATION"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VIEW", function() { return _transports_types__WEBPACK_IMPORTED_MODULE_7__["VIEW"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "API", function() { return _transports_types__WEBPACK_IMPORTED_MODULE_7__["API"]; });
+
+
+
+
+
+
+
+
+
+var DevTool =
+/*#__PURE__*/
+function () {
+  function DevTool(context) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, DevTool);
+
+    this.id = uuid__WEBPACK_IMPORTED_MODULE_2___default.a.v4();
+    this.context = context;
+    this.viewManager = new _ViewManager__WEBPACK_IMPORTED_MODULE_4__["default"](context);
+    this.socket = new _Socket__WEBPACK_IMPORTED_MODULE_5__["default"]({
+      url: _env__WEBPACK_IMPORTED_MODULE_6__["default"].inspectWSURL
+    });
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(DevTool, [{
+    key: "run",
+    value: function run() {
+      var _this = this;
+
+      this.socket.onOpen(function () {
+        _this.socket.send({
+          data: {
+            id: _this.id,
+            type: _env__WEBPACK_IMPORTED_MODULE_6__["default"].inspectMessageTypes.REGISTER,
+            terminal: _env__WEBPACK_IMPORTED_MODULE_6__["default"].inspectTerminalTypes.LOGIC
+          }
+        });
+      });
+    }
+  }]);
+
+  return DevTool;
+}();
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (context) {
+  var devTool = new DevTool(context);
+  devTool.run();
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/project/runtime/terminal.js":
+/*!**************************************************!*\
+  !*** ../remixjs/src/project/runtime/terminal.js ***!
+  \**************************************************/
 /*! exports provided: transports, APPLICATION, VIEW, API, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3207,7 +3389,6 @@ function () {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Runtime);
 
     this.context = context;
-    this.viewManager = new _ViewManager__WEBPACK_IMPORTED_MODULE_4__["default"](context);
     this.id = uuid__WEBPACK_IMPORTED_MODULE_2___default.a.v4();
   }
 
@@ -3240,7 +3421,7 @@ function () {
         }
       };
 
-      if (_env__WEBPACK_IMPORTED_MODULE_5__["isInspectMode"]) {
+      if (_env__WEBPACK_IMPORTED_MODULE_5__["default"].isInspectMode) {
         wx.showLoading({
           title: "\u7B49\u5F85\u8FDE\u63A5..."
         });
@@ -3261,6 +3442,7 @@ function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (function (context) {
   var runtime = new Runtime(context);
+  var viewManager = new _ViewManager__WEBPACK_IMPORTED_MODULE_4__["default"](context);
   runtime.run();
 });
 ;
@@ -3491,11 +3673,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var transports = {};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  app: new _ApplicationTransport__WEBPACK_IMPORTED_MODULE_0__["default"](),
-  view: new _ViewControllerTransport__WEBPACK_IMPORTED_MODULE_1__["default"](),
-  api: null
+  get app() {
+    if (transports.app) {
+      return transports.app;
+    }
+
+    return transports.app = new _ApplicationTransport__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  },
+
+  get view() {
+    if (transports.view) {
+      return transports.view;
+    }
+
+    return transports.view = new _ViewControllerTransport__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  }
+
 });
 
 /***/ }),
@@ -3663,7 +3859,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var events__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../env */ "../remixjs/env.js");
+/* harmony import */ var _Socket__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Socket */ "../remixjs/src/project/runtime/Socket.js");
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../env */ "../remixjs/env.js");
 
 
 
@@ -3675,6 +3872,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 
@@ -3697,7 +3895,7 @@ function (_EventEmitter) {
         _this.socket.send({
           data: JSON.stringify(_objectSpread({
             id: _this.id,
-            terminal: _env__WEBPACK_IMPORTED_MODULE_9__["inspectTerminalTypes"].VIEW
+            terminal: _env__WEBPACK_IMPORTED_MODULE_10__["default"].inspectTerminalTypes.VIEW
           }, data))
         });
       } else {
@@ -3732,7 +3930,7 @@ function (_EventEmitter) {
       }
 
       _this.post({
-        type: _env__WEBPACK_IMPORTED_MODULE_9__["inspectMessageTypes"].REGISTER
+        type: _env__WEBPACK_IMPORTED_MODULE_10__["default"].inspectMessageTypes.REGISTER
       });
     });
 
@@ -3744,19 +3942,20 @@ function (_EventEmitter) {
       debugger;
     });
 
-    _this.createSocket();
-
     _this.id = uuid__WEBPACK_IMPORTED_MODULE_8___default.a.v4();
     _this.opened = false;
     _this.messageQueue = [];
+
+    _this.createSocket();
+
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(_default, [{
     key: "createSocket",
     value: function createSocket() {
-      this.socket = wx.connectSocket({
-        url: _env__WEBPACK_IMPORTED_MODULE_9__["inspectWSURL"],
+      this.socket = new _Socket__WEBPACK_IMPORTED_MODULE_9__["default"]({
+        url: _env__WEBPACK_IMPORTED_MODULE_10__["default"].inspectWSURL,
         protocol: this.id
       });
       this.socket.onMessage(this.onMessage);
@@ -3768,7 +3967,7 @@ function (_EventEmitter) {
     key: "emit",
     value: function emit(type, argv) {
       this.post({
-        type: _env__WEBPACK_IMPORTED_MODULE_9__["inspectMessageTypes"].MESSAGE,
+        type: _env__WEBPACK_IMPORTED_MODULE_10__["default"].inspectMessageTypes.MESSAGE,
         data: {
           type: type,
           argv: argv

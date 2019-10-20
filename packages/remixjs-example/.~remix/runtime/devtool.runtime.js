@@ -3,12 +3,12 @@ import { document } from 'remixjs/document';
 import env from 'remixjs/env';
 import Application from '../../src';
 
-env.isTerminalRunTime = true;
+env.isDevToolRunTime = true;
 
 const container = document.createElement('div');
 document.body.appendChild(container);
 
+
 const program = new Program(Application, container);
 
-export { program }
-export default program;
+program.start();

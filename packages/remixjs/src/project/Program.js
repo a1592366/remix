@@ -3,7 +3,9 @@ import { createElement } from '../react';
 import { render } from '../renderer';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
-import runtime from './runtime';
+import terminal from './runtime/terminal';
+import devtool from './runtime/devtool';
+import env from '../../env';
 
 const { TabBarItem } = TabBar;
 
@@ -93,6 +95,10 @@ export default class Program {
   }
 
   start () {
-    runtime(this.context);
+    if (env.isDevToolRunTime) {
+      devtool(this.context);
+    } else {
+      terminal(this.context);
+    }
   }
 }

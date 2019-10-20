@@ -1,20 +1,21 @@
 import EventEmitter from 'events';
 import uuid from 'uuid';
-import * as env from '../../../../env';
+import Socket from '../Socket';
+import env from '../../../../env';
 
 export default class extends EventEmitter {
   constructor () {
     super();
 
-    this.createSocket();
     this.id = uuid.v4();
     this.opened = false;
-
     this.messageQueue = [];
+
+    this.createSocket();
   }
   
   createSocket () {
-    this.socket = wx.connectSocket({
+    this.socket = new Socket({
       url: env.inspectWSURL,
       protocol: this.id
     });
@@ -53,7 +54,7 @@ export default class extends EventEmitter {
 
   onOpen = () => {
     this.opened = true;
-    
+
     if (this.messageQueue.length > 0) {
       let message;
       while (message = this.messageQueue.shift()) {

@@ -1,5 +1,6 @@
 const WS = require('ws');
 const qs = require('qs');
+const fs = require('fs-extra');
 const http = require('http');
 const path = require('path');
 const Koa = require('koa');
@@ -19,13 +20,18 @@ class Server {
   start () {
     return new Promise((resolve, reject) => {
       const app = this.koa = new Koa();
-
       
       app.use(koaStatic(path.resolve(__dirname, 'ui')));
+      app.use(koaStatic(path.resolve(env.REMIX_SOURCE, 'runtime')));
       app.use(router.routes());
+      app.use(async context => {
+        context.set('Content-Type', 'text/html; charset=utf-8');
+
+        context.body = await fs.readFile(path.resolve(__dirname, 'ui/index.html'));
+      })
 
       router.get('/api/env', async (context) => {
-        context.body = env
+        context.body = env;
       });
 
       router.get('/api/connections', async (context) => {
@@ -36,7 +42,7 @@ class Server {
 
       router.get('/api/insepct', async (context) => {
 
-      })
+      });
       
       const httpServer = app.listen(env.INSPECT_PORT, () => {
         resolve();

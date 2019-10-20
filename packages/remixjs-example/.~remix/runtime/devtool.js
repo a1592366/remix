@@ -1,4 +1,4 @@
-/*** MARK_1571566558499 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571593505645 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"runtime/application": 0
+/******/ 		"runtime/devtool": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,12 +148,37 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/index.js","runtime/vendor/manifest"]);
+/******/ 	deferredModules.push(["./.~remix/runtime/devtool.runtime.js","runtime/vendor/manifest"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./.~remix/runtime/devtool.runtime.js":
+/*!********************************************!*\
+  !*** ./.~remix/runtime/devtool.runtime.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var remixjs_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
+/* harmony import */ var remixjs_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! remixjs/document */ "../remixjs/document.js");
+/* harmony import */ var remixjs_env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remixjs/env */ "../remixjs/env.js");
+/* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src */ "./src/index.js");
+
+
+
+
+remixjs_env__WEBPACK_IMPORTED_MODULE_2__["default"].isDevToolRunTime = true;
+var container = remixjs_document__WEBPACK_IMPORTED_MODULE_1__["document"].createElement('div');
+remixjs_document__WEBPACK_IMPORTED_MODULE_1__["document"].body.appendChild(container);
+var program = new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_src__WEBPACK_IMPORTED_MODULE_3__["default"], container);
+program.start();
+
+/***/ }),
 
 /***/ "./src/pages/Index/index.css":
 /*!***********************************!*\
@@ -211,4 +236,4 @@ module.exports = __webpack_require__.p + "src/static/images/me_selected.png";
 /***/ })
 
 /******/ });
-//# sourceMappingURL=application.js.map
+//# sourceMappingURL=devtool.js.map

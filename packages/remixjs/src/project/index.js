@@ -9,5 +9,5 @@ export {
   View
 }
 
-export * from './runtime';
+export * from './runtime/terminal';
 export * from './Program';

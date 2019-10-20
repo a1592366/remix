@@ -38064,11 +38064,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
 
 
 
@@ -38098,7 +38093,8 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "id", uuid__WEBPACK_IMPORTED_MODULE_11___default.a.v4());
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "state", {
-      env: null
+      env: null,
+      ws: null
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "onOpen", function () {
@@ -38130,8 +38126,6 @@ function (_React$Component) {
       var _getEnviroments = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this2 = this;
-
         var env;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -38146,8 +38140,6 @@ function (_React$Component) {
                 env = _context.sent;
                 this.setState({
                   env: env
-                }, function () {
-                  return _this2.createSocket();
                 });
 
               case 4:
@@ -38164,25 +38156,6 @@ function (_React$Component) {
 
       return getEnviroments;
     }()
-  }, {
-    key: "createSocket",
-    value: function createSocket() {
-      var env = this.state.env;
-      var INSPECT_WS_URL = env.INSPECT_WS_URL;
-      var ws = new WebSocket(INSPECT_WS_URL);
-      ws.onmessage = this.onMessage;
-      ws.onopen = this.onOpen;
-      this.ws = ws;
-    }
-  }, {
-    key: "post",
-    value: function post(data) {
-      var env = this.state.env;
-      this.ws.send(JSON.stringify(_objectSpread({
-        id: this.id,
-        terminal: env.INSPECT_TERMINAL_TYPES.LOGIC
-      }, data)));
-    }
   }, {
     key: "render",
     value: function render() {
@@ -38429,6 +38402,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../index */ "./src/index.js");
+
 
 
 
@@ -38443,47 +38418,69 @@ var Inspector =
 function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(Inspector, _React$Component);
 
-  function Inspector() {
-    var _getPrototypeOf2;
-
+  function Inspector(props) {
     var _this;
 
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Inspector);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Inspector).call(this, props));
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Inspector)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "state", {
-      open: false
-    });
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "isChromeDevToolOpen", function () {
-      var devtools = /./;
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "isChromeDevToolStart", function () {
+      var devtools = function devtools() {};
 
       devtools.toString = function () {
-        _this.setState({
-          opened: true
-        });
+        devtools.opened = true;
       };
 
       console.log('%c', devtools);
+      return devtools.opened;
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "onReTry", function () {
+      var isDevToolStart = _this.isChromeDevToolStart();
+
+      _this.setState({
+        isDevToolStart: isDevToolStart
+      });
+    });
+
+    var _isDevToolStart = _this.isChromeDevToolStart();
+
+    _this.state = {
+      isDevToolStart: _isDevToolStart
+    };
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Inspector, [{
+    key: "warningRender",
+    value: function warningRender() {
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "app__loading"
+      }, "\u8BF7\u6253\u5F00\u63A7\u5236\u53F0\u8FDB\u884C\u4EE3\u7801\u8C03\u8BD5\uFF0C\u300CCommand + Option + i\u300D,", react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+        onClick: this.onReTry
+      }, "\u5237\u65B0"));
+    }
+  }, {
+    key: "scriptRender",
+    value: function scriptRender() {
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("iframe", {
+        className: "app__inspector-runtime",
+        src: "/runtime.html"
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "app__inspector"
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("iframe", {
-        className: "app__inspector-frame",
-        src: ""
-      }));
+      var _this2 = this;
+
+      var isDevToolStart = this.state.isDevToolStart;
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_8__["Context"].Consumer, null, function (_ref) {
+        var ws = _ref.ws;
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "app__inspector"
+        }, !isDevToolStart ? _this2.warningRender() : _this2.scriptRender());
+      });
     }
   }]);
 

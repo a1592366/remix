@@ -1,13 +1,12 @@
 import uuid from 'uuid';
 import transports from './transports';
 import ViewManager from './ViewManager';
-import * as env from '../../../env';
+import env from '../../../env';
 
 
 class Runtime {
   constructor (context) {
     this.context = context;
-    this.viewManager = new ViewManager(context);
     this.id = uuid.v4();
   }
 
@@ -56,6 +55,7 @@ export {
 export * from './transports/types';
 export default function (context) {
   const runtime =  new Runtime(context);
+  const viewManager = new ViewManager(context);
 
   runtime.run();
 };

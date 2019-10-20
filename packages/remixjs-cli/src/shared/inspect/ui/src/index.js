@@ -15,7 +15,8 @@ class App extends React.Component {
   id = uuid.v4();
 
   state = {
-    env: null
+    env: null,
+    ws: null
   }
 
   componentDidMount () {
@@ -28,30 +29,8 @@ class App extends React.Component {
     
     this.setState({
       env
-    }, () => this.createSocket());
+    });
   }
-
-  createSocket () {
-    const { env } = this.state;
-    const { INSPECT_WS_URL } = env;
-    const ws = new WebSocket(INSPECT_WS_URL);
-
-    ws.onmessage = this.onMessage;
-    ws.onopen = this.onOpen;
-
-    this.ws = ws;
-  }
-
-  post (data) {
-    const { env } = this.state;
-
-    this.ws.send(JSON.stringify({
-      id: this.id,
-      terminal: env.INSPECT_TERMINAL_TYPES.LOGIC,
-      ...data
-    }))
-  }
-
   onOpen = () => {
     const { env } = this.state;
     this.opened = true;

@@ -1,4 +1,4 @@
-/*** MARK_1571566558499 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571593505645 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -155,22 +155,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../remixjs/document.js":
-/*!******************************!*\
-  !*** ../remixjs/document.js ***!
-  \******************************/
-/*! exports provided: document */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_document__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/document */ "../remixjs/src/document/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "document", function() { return _src_document__WEBPACK_IMPORTED_MODULE_0__["document"]; });
-
-
-
-/***/ }),
-
 /***/ "./.~remix/runtime/boot.js":
 /*!*********************************!*\
   !*** ./.~remix/runtime/boot.js ***!
@@ -183,13 +167,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "program", function() { return program; });
 /* harmony import */ var remixjs_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
 /* harmony import */ var remixjs_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! remixjs/document */ "../remixjs/document.js");
-/* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../src */ "./src/index.js");
+/* harmony import */ var remixjs_env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remixjs/env */ "../remixjs/env.js");
+/* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../src */ "./src/index.js");
 
 
 
+
+remixjs_env__WEBPACK_IMPORTED_MODULE_2__["default"].isTerminalRunTime = true;
 var container = remixjs_document__WEBPACK_IMPORTED_MODULE_1__["document"].createElement('div');
 remixjs_document__WEBPACK_IMPORTED_MODULE_1__["document"].body.appendChild(container);
-var program = new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_src__WEBPACK_IMPORTED_MODULE_2__["default"], container);
+var program = new remixjs_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_src__WEBPACK_IMPORTED_MODULE_3__["default"], container);
 
 /* harmony default export */ __webpack_exports__["default"] = (program);
 
