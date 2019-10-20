@@ -23,7 +23,7 @@ const defaultWebpackConfig = {
   },
 
   entry: {
-    'runtime/index': env.REMIX_CLIENT_RUNTIME
+    'runtime/index': env.REMIX_CLIENT_RUNTIME,
   },
 
   output: {
@@ -50,7 +50,8 @@ const defaultWebpackConfig = {
       'process.env.IS_INSPECT_MODE': `${env.IS_INSPECT_MODE}`,
       'process.env.INSPECT_UI_URL': `"${env.INSPECT_UI_URL}"`,
       'process.env.INSPECT_WS_URL': `"${env.INSPECT_WS_URL}"`,
-      'process.env.INSEPCT_MESSAGE_TYPES': `${JSON.stringify(env.INSEPCT_MESSAGE_TYPES, 2, null)}`
+      'process.env.INSEPCT_MESSAGE_TYPES': `${JSON.stringify(env.INSEPCT_MESSAGE_TYPES, 2, null)}`,
+      'process.env.INSPECT_TERMINAL_TYPES': `${JSON.stringify(env.INSPECT_TERMINAL_TYPES, 2, null)}`,
     })
   ],
 
@@ -144,6 +145,10 @@ module.exports = {
 
       config.entry[`${route.path}`] = source;
     });
+
+    if (env.IS_INSPECT_MODE) {
+      config.entry['runtime/application'] = env.PROJ_ENTRY;
+    }
 
     const source = [
       './static/wxss/runtime.ui.wxss'

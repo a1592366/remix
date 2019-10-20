@@ -37,6 +37,10 @@ class Runtime {
     }
 
     if (env.isInspectMode) {
+      wx.showLoading({
+        title: `等待连接...`
+      });
+
       this.inspect().then(() => {
         launchApplication();
       }).catch();

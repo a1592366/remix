@@ -22,6 +22,7 @@ export default class extends EventEmitter {
     this.socket.onMessage(this.onMessage);
     this.socket.onOpen(this.onOpen);
     this.socket.onClose(this.onClose);
+    this.socket.onError(this.onError);
   }
 
   post = (data) => {
@@ -29,6 +30,7 @@ export default class extends EventEmitter {
       this.socket.send({
         data: JSON.stringify({
           id: this.id,
+          terminal: env.inspectTerminalTypes.VIEW,
           ...data
         })
       })
@@ -37,13 +39,25 @@ export default class extends EventEmitter {
     }
   }
 
+  onError = ({ errMsg }) => {
+    if (errMsg === 'url not in domain list') {
+      wx.hideLoading();
+
+      wx.showModal({
+        title: '错误',
+        content: '请去掉域名校验，否则无法调试真机',
+        showCancel: false
+      }) 
+    }
+  }
+
   onOpen = () => {
     this.opened = true;
-
+    
     if (this.messageQueue.length > 0) {
       let message;
       while (message = this.messageQueue.shift()) {
-        this.post(data)
+        this.post(message)
       }
 
       this.messageQueue = [];

@@ -27,7 +27,7 @@ class CompileEngine {
         if (err) {
           logger.red(err);
         } else {
-          console.log(stats.toString({ color: true }));
+          // console.log(stats.toString({ color: true }));
         }
 
         resolve();

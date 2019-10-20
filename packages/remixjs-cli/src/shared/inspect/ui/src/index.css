@@ -1,0 +1,53 @@
+
+@import "./static/css/reset.css";
+
+.app__header {
+  background-color: rgb(64, 120, 192);
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.app__header-logo {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.app__content {
+  padding: 0 30px;
+}
+
+.app__title {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(36, 41, 46);
+  border-bottom:1px solid rgb(238, 238, 238);
+  margin-bottom: 8px;
+}
+
+.app__button {
+  color: #24292e;
+  background-color: #eff3f6;
+  background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
+  padding: 3px 10px;
+  font-size: 12px;
+}
+
+.app__warn {
+  color: #735c0f;
+  background-color: #fffbdd;
+  border-color: rgba(27,31,35,0.15);
+  margin-bottom: 25px;
+  padding: 16px;
+  border: 1px solid rgba(27,31,35,0.15);
+  border-radius: 3px;
+}
+
+.app__loading {
+  color: #735c0f;
+  background-color: #fffbdd;
+  border-color: rgba(27,31,35,0.15);
+  margin-bottom: 25px;
+  padding: 16px;
+  border: 1px solid rgba(27,31,35,0.15);
+  border-radius: 3px;
+}

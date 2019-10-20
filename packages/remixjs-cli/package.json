@@ -31,6 +31,7 @@
 		"inquirer": "^6.2.2",
 		"internal-ip": "^4.3.0",
 		"jayson": "^3.1.1",
+		"koa-router": "^7.4.0",
 		"less": "^3.9.0",
 		"less-loader": "^4.1.0",
 		"mem-fs": "^1.1.3",

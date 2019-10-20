@@ -1,0 +1,11 @@
+.app__index-terminals {
+  padding: 8px;
+  min-height: 40px;
+  position: relative;
+}
+
+.app__index-terminal {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+}

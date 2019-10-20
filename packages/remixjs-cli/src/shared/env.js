@@ -20,6 +20,11 @@ const INSEPCT_MESSAGE_TYPES = {
   CLOSE: 2
 };
 
+const INSPECT_TERMINAL_TYPES = {
+  VIEW: 1,
+  LOGIC: 2
+}
+
 
 const REMIX_NAME = '.~remix';
 const REMIX_CONFIG_NAME = 'configrc';
@@ -69,5 +74,6 @@ module.exports = {
   INSPECT_PORT,
   INSPECT_WS_URL,
   INSPECT_UI_URL,
-  INSEPCT_MESSAGE_TYPES
+  INSEPCT_MESSAGE_TYPES,
+  INSPECT_TERMINAL_TYPES
 }
