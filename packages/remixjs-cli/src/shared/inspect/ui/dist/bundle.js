@@ -87,9 +87,9 @@
 /******/ ({
 
 /***/ "../../../../node_modules/css-loader/dist/cjs.js!./src/index.css":
-/*!*********************************************************************************************************************!*\
-  !*** /Users/aniwei/Desktop/shanlaan/remix/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/index.css ***!
-  \*********************************************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/index.css ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -105,9 +105,9 @@ exports.push([module.i, "\n.app__header {\n  background-color: rgb(64, 120, 192)
 /***/ }),
 
 /***/ "../../../../node_modules/css-loader/dist/cjs.js!./src/pages/Index/index.css":
-/*!*********************************************************************************************************************************!*\
-  !*** /Users/aniwei/Desktop/shanlaan/remix/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/pages/Index/index.css ***!
-  \*********************************************************************************************************************************/
+/*!**************************************************************************************************************************!*\
+  !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/pages/Index/index.css ***!
+  \**************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -120,9 +120,9 @@ exports.push([module.i, ".app__index-terminals {\n  padding: 8px;\n  min-height:
 /***/ }),
 
 /***/ "../../../../node_modules/css-loader/dist/cjs.js!./src/static/css/reset.css":
-/*!********************************************************************************************************************************!*\
-  !*** /Users/aniwei/Desktop/shanlaan/remix/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/static/css/reset.css ***!
-  \********************************************************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/static/css/reset.css ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -135,9 +135,9 @@ exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizi
 /***/ }),
 
 /***/ "../../../../node_modules/css-loader/dist/runtime/api.js":
-/*!*************************************************************************************************************!*\
-  !*** /Users/aniwei/Desktop/shanlaan/remix/packages/remixjs-cli/node_modules/css-loader/dist/runtime/api.js ***!
-  \*************************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/runtime/api.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
