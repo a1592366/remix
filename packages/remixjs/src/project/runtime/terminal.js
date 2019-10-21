@@ -12,7 +12,6 @@ class Runtime {
 
   inspect (callback) {
     return new Promise((resolve, reject) => {
-      debugger;
       transports.app.inspect(this.id, () => {
         resolve();
       });

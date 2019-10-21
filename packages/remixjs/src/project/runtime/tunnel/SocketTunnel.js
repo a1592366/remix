@@ -96,11 +96,10 @@ export default class SocketTunnel extends EventEmitter {
     this.emitter.on('message', this.onMessage);
   }
 
-  onMessage ({ data }) {
-    const { post } = data;
-    const { type, body } = post;
+  onMessage = ({ id, post, type }) => {
+    const { type: t, body } = post;
 
-    this.emit(type, body);
+    this.emit(t, id, type, body);
   }
 
   post (data) {

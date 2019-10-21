@@ -1,4 +1,4 @@
-/*** MARK_1571679053979 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571680834842 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -5303,8 +5303,6 @@ function () {
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        debugger;
-
         _transports["default"].app.inspect(_this.id, function () {
           resolve();
         });
@@ -5407,7 +5405,7 @@ function (_Tunnel) {
 
     (0, _classCallCheck2["default"])(this, ApplicationTransport);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ApplicationTransport).call(this));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (id, type, _ref) {
       var argv = _ref.argv,
           callbackId = _ref.callbackId;
 
@@ -5447,22 +5445,22 @@ function (_Tunnel) {
   }, {
     key: "launch",
     value: function launch(options) {
-      this.emit(_types.APPLICATION.LAUNCH, [options]);
+      this.post(_types.APPLICATION.LAUNCH, [options]);
     }
   }, {
     key: "show",
     value: function show() {
-      this.emit(_types.APPLICATION.SHOW, []);
+      this.post(_types.APPLICATION.SHOW, []);
     }
   }, {
     key: "hide",
     value: function hide() {
-      this.emit(_types.APPLICATION.HIDE, []);
+      this.post(_types.APPLICATION.HIDE, []);
     }
   }, {
     key: "error",
     value: function error(_error) {
-      this.emit(_types.APPLICATION.ERROR, [_error]);
+      this.post(_types.APPLICATION.ERROR, [_error]);
     }
   }]);
   return ApplicationTransport;
@@ -5838,6 +5836,15 @@ function (_EventEmitter2) {
 
     (0, _classCallCheck2["default"])(this, SocketTunnel);
     _this2 = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(SocketTunnel).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "onMessage", function (_ref3) {
+      var id = _ref3.id,
+          post = _ref3.post,
+          type = _ref3.type;
+      var t = post.type,
+          body = post.body;
+
+      _this2.emit(t, id, type, body);
+    });
     _this2.id = _uuid["default"].v4();
     _this2.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter());
 
@@ -5847,15 +5854,6 @@ function (_EventEmitter2) {
   }
 
   (0, _createClass2["default"])(SocketTunnel, [{
-    key: "onMessage",
-    value: function onMessage(_ref3) {
-      var data = _ref3.data;
-      var post = data.post;
-      var type = post.type,
-          body = post.body;
-      this.emit(type, body);
-    }
-  }, {
     key: "post",
     value: function post(data) {
       this.emitter.post(data);

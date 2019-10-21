@@ -42,7 +42,7 @@ const inspectMessageHandler = {
         body: {
           type: APPLICATION.INSPECT,
           argv: [],
-          callbackId: terminal.callback
+          callbackId: terminal.callbackId
         }
       });
     }

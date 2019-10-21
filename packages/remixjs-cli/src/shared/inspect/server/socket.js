@@ -33,26 +33,28 @@ class Socket {
       }
     });
     socket.on('close', () => {
-      socket.off('message');
-      socket.off()
+      // socket.off('message');
+      // socket.off()
       applicationMessage.clear(this.id);
     });
   }
 
   post (data) {
-    this.socket.send({
+    this.socket.send(JSON.stringify({
       id: this.id,
-      terminal: env.inspectTerminalTypes.SERVICES,
+      terminal: env.INSPECT_TERMINAL_TYPES.SERVICES,
       post: {
         ...data
       }
-    })
+    }));
   }
 
   onRegister ({ id, terminal }, socket) {
+    this.id = id;
+
     switch (terminal) {
       case env.INSPECT_TERMINAL_TYPES.VIEW: {      
-        this.id = id;
+        
         break;
       }
 

@@ -10,7 +10,7 @@ export default class ApplicationTransport extends Tunnel {
     this.on(APPLICATION, this.onMessage);
   }
 
-  onMessage = ({ argv, callbackId }) => {
+  onMessage = (id, type, { argv, callbackId }) => {
     if (callbackId) {
       this.emit(callbackId, ...argv);
     }
@@ -38,17 +38,17 @@ export default class ApplicationTransport extends Tunnel {
   }
 
   launch (options) {
-    this.emit(APPLICATION.LAUNCH, [options]);
+    this.post(APPLICATION.LAUNCH, [options]);
   }
 
   show () {
-    this.emit(APPLICATION.SHOW, []);
+    this.post(APPLICATION.SHOW, []);
   }
   hide () {
-    this.emit(APPLICATION.HIDE, []);
+    this.post(APPLICATION.HIDE, []);
   }
 
   error (error) {
-    this.emit(APPLICATION.ERROR, [error]);
+    this.post(APPLICATION.ERROR, [error]);
   }
 }
