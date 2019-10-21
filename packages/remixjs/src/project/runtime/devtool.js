@@ -29,7 +29,6 @@ class DevTool {
   }
 }  
 
-export * from './transports/types';
 export default function (context) {
   const devTool = new DevTool(context);
 

@@ -6,11 +6,10 @@ const path = require('path');
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 const Router = require('koa-router');
+const { Type, APPLICATION } = require('remixjs-mesaage-protocol');
 
 const env = require('../env');
 const router = new Router();
-
-
 
 class Server {
   constructor () {
@@ -100,8 +99,20 @@ class Server {
     }
   }
 
-  onMessage (message) {    
+  onMessage ({ data }) {    
+    const { type: t, value, uuid } = data.type;
+    const type = new Type(t, value);
+    const argv = data.argv;
+
+    if (t.value === APPLICATION.INSEPCT) {
+
+    }
+
+    APPLICATION.INSPECT;
+
     debugger;
+
+    type.uuid = uuid;
   }
 }
 

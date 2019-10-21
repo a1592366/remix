@@ -7,8 +7,31 @@ const ignore = {
   remix: 'remixjs/src',
 }
 
-function registerBabelRuntime () {
+const ignoreStaticModule = () => {
+  const Module = require('module');
 
+  const extensions = [
+    '.png', '.jpg', '.gif', '.ico', '.svg',
+    '.css', '.scss', 'l.ess'
+  ];
+
+  const moduleRequire = Module.prototype.require;
+
+  Module.prototype.require = function (request) {
+    const parsed = path.parse(request);
+
+    if (parsed.ext) {
+      if (extensions.includes(parsed.ext)) {
+        return request;
+      } 
+    }
+
+    return moduleRequire.call(this, request);
+  }
+}
+
+function registerBabelRuntime () {
+  ignoreStaticModule();
   babelRegister({
     cache: false,
     ...fs.readJSONSync(path.resolve(__dirname, '../../.babelrc')),
@@ -18,9 +41,7 @@ function registerBabelRuntime () {
         return true;
       } else {
         return false;
-      }
-      
-      return true;
+      }      
     }]
   });
 
