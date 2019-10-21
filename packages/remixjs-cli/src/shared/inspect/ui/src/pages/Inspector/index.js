@@ -1,4 +1,5 @@
 import React from 'react';
+import qs from 'qs';
 
 import { Context } from '../../index';
 
@@ -6,7 +7,12 @@ class Inspector extends React.Component {
   constructor (props) {
     super(props);
 
+    const { location } = props;
+    const search = location.search.slice(1);
+    const query = qs.parse(search);
     const isDevToolStart = this.isChromeDevToolStart();
+
+    this.query = query;
 
     this.state = {
       isDevToolStart
@@ -33,7 +39,7 @@ class Inspector extends React.Component {
   }
 
   scriptRender () {
-    return <iframe className="app__inspector-runtime" src="/runtime.html" />
+    return <iframe className="app__inspector-runtime" src={`/runtime.html?id=${this.query.id}`} />
   }
 
   onReTry = () => {

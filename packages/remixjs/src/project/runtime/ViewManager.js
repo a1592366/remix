@@ -28,12 +28,6 @@ export default class ViewManager {
   }
 
   onMessage = (type, argv) => {
-    debugger;
-    if (type === VIEW.LOAD) {
-
-    }
-
-    debugger;
     switch (type) {
       case VIEW.LOAD: {
         this.onLoad(...argv);

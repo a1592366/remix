@@ -25,6 +25,7 @@
 	"dependencies": {
 		"events": "^3.0.0",
 		"prop-types": "^15.7.2",
+		"qs": "^6.9.0",
 		"remixjs-mesaage-protocol": "^0.0.1",
 		"remixjs-xml": "^0.0.1",
 		"requestidlecallback": "^0.3.0",

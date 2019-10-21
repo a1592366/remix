@@ -23,7 +23,12 @@ export default class SocketTunnel extends EventEmitter {
       protocol: this.id
     });
 
-    this.socket.onMessage(this.onMessage);
+    this.socket.onMessage(({ data }) => {
+      try {
+        const json = JSON.parse(data);
+        this.onMessage(json);
+      } catch (err) {}
+    });
     this.socket.onOpen(this.onOpen);
     this.socket.onClose(this.onClose);
     this.socket.onError(this.onError);

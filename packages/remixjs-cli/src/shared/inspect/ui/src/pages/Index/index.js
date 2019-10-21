@@ -16,7 +16,7 @@ class Index extends React.Component {
   }
 
   async getConnections () {
-    const connections = await fetch('/api/connections').then(res => res.json());
+    const connections = await fetch('/api/inspect').then(res => res.json());
 
     this.setState({
       connections,

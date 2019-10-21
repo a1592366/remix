@@ -6,10 +6,42 @@ const path = require('path');
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 const Router = require('koa-router');
-const { Type, APPLICATION } = require('remixjs-mesaage-protocol');
+const { Type, APPLICATION, COMMON } = require('remixjs-mesaage-protocol');
 
 const env = require('../env');
 const router = new Router();
+
+const inspect = {
+  terminals: {},
+  waiting (data, socket) {
+    const { argv, callbackId } = data;
+    const terminal = argv[0];
+
+    this.terminals[terminal.id] = {
+      terminal,
+      socket,
+      callbackId
+    };
+  },
+
+  connect (data, callback) {
+    const { argv } = data;
+    const t = argv[0];
+    const terminal = this.terminals[t.id];
+
+    if (terminal) {
+      terminal.socket.send(JSON.stringify({
+        type: env.INSEPCT_MESSAGE_TYPES.MESSAGE,
+        data: {
+          type: COMMON.CALLBACK,
+          argv: [],
+          callbackId: terminal.callbackId
+        }
+      }));
+    }
+  }
+}
+
 
 class Server {
   constructor () {
@@ -33,14 +65,8 @@ class Server {
         context.body = env;
       });
 
-      router.get('/api/connections', async (context) => {
-        context.body = Object.getOwnPropertyNames(this.connections).filter(id => id !== 'logic').map(id => {
-          return id
-        });
-      });
-
-      router.get('/api/insepct', async (context) => {
-
+      router.get('/api/inspect', async (context) => {
+        context.body = Object.getOwnPropertyNames(inspect.terminals);
       });
       
       const httpServer = app.listen(env.INSPECT_PORT, () => {
@@ -63,7 +89,7 @@ class Server {
               }
       
               case env.INSEPCT_MESSAGE_TYPES.MESSAGE: {
-                this.onMessage(json);
+                this.onMessage(json, socket);
                 break;
               }
       
@@ -77,6 +103,7 @@ class Server {
   
         socket.on('close', () => {
           this.connections[socket.__connectionId__] = null;
+          delete this.connections[socket.__connectionId__];
   
           socket.__connectionId__ = null;
         });
@@ -99,21 +126,23 @@ class Server {
     }
   }
 
-  onMessage ({ data }) {    
-    const { type: t, value, uuid } = data.type;
-    const type = new Type(t, value);
-    const argv = data.argv;
+  onMessage (message, socket) {  
+    const { data } = message;
+    const type = new Type(data.type.type, data.type.value);
 
-
-    if (t.value === APPLICATION.INSEPCT) {
+    if (type === APPLICATION.INSPECT) {
+      this.onInspect(message, type, socket);
+    } else {
 
     }
+  }
 
-    APPLICATION.INSPECT;
-
-    debugger;
-
-    type.uuid = uuid;
+  onInspect ({ data, terminal }, type, socket) {
+    if (terminal === env.INSPECT_TERMINAL_TYPES.VIEW) {
+      inspect.waiting(data, socket);
+    } else {
+      inspect.connect(data, socket);
+    }
   }
 }
 

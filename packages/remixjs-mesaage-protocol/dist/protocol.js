@@ -111,11 +111,13 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.API = exports.VIEW = exports.APPLICATION = exports.Type = void 0;
+exports.COMMON = exports.API = exports.VIEW = exports.APPLICATION = exports.Type = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "./node_modules/uuid/index.js"));
 
@@ -124,6 +126,12 @@ var Type =
 function () {
   function Type(type, value) {
     (0, _classCallCheck2["default"])(this, Type);
+
+    if (Type.types[value]) {
+      return Type.types[value];
+    }
+
+    Type.types[value] = this;
     this.type = type;
     this.value = value;
     this.uuid = _uuid["default"].v4();
@@ -132,13 +140,11 @@ function () {
   (0, _createClass2["default"])(Type, [{
     key: "toString",
     value: function toString() {
-      debugger;
       return this.type;
     }
   }, {
     key: "valueOf",
     value: function valueOf() {
-      debugger;
       return this.uuid;
     }
   }]);
@@ -146,6 +152,7 @@ function () {
 }();
 
 exports.Type = Type;
+(0, _defineProperty2["default"])(Type, "types", {});
 var getNames = Object.getOwnPropertyNames;
 
 var defineNotificationTypes = function defineNotificationTypes(prefix, types) {
@@ -175,6 +182,10 @@ var VIEW = defineNotificationTypes('view', {
 exports.VIEW = VIEW;
 var API = defineNotificationTypes('api', {});
 exports.API = API;
+var COMMON = defineNotificationTypes('common', {
+  CALLBACK: 'callback'
+});
+exports.COMMON = COMMON;
 
 /***/ }),
 
@@ -219,6 +230,32 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 
 /***/ }),
 

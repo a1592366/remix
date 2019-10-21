@@ -1,20 +1,22 @@
 import uuid from 'uuid';
 
 export class Type {
+  static types = {};
+
   constructor (type, value) {
+    if (Type.types[value]) {
+      return Type.types[value];
+    }
+
+    Type.types[value] = this;
+
     this.type = type;
     this.value = value;
     this.uuid = uuid.v4();
   }
 
   toString () {
-    debugger
     return this.type;
-  }
-
-  valueOf () {
-    debugger;
-    return this.uuid;
   }
 }
 
@@ -48,4 +50,8 @@ export const VIEW = defineNotificationTypes('view', {
 
 export const API = defineNotificationTypes('api', {
 
+});
+
+export const COMMON = defineNotificationTypes('common', {
+  CALLBACK: 'callback'
 })
