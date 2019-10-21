@@ -8,10 +8,12 @@ export class Type {
   }
 
   toString () {
+    debugger
     return this.type;
   }
 
-  toValue () {
+  valueOf () {
+    debugger;
     return this.uuid;
   }
 }

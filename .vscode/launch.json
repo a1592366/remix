@@ -14,9 +14,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "调试DEVTOOL",
-      "cwd": "${workspaceFolder}/packages/remixjs-example",
-      "program": "${workspaceFolder}/packages/remixjs-cli/src/shared/inspect/server.js"
+      "name": "调试CLI INSPECT",
+      "cwd": "${workspaceFolder}/packages/remixjs-example/",
+      "program": "${workspaceFolder}/packages/remixjs-cli/bin/remix",
+      "args": ["start", "--inspect"]
     },
     {
       "type": "node",
@@ -24,7 +25,7 @@
       "name": "调试CLI",
       "cwd": "${workspaceFolder}/packages/remixjs-example/",
       "program": "${workspaceFolder}/packages/remixjs-cli/bin/remix",
-      "args": ["start", "--inspect"]
+      "args": ["start"]
     }
   ]
 }

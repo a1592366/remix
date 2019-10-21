@@ -132,11 +132,13 @@ function () {
   (0, _createClass2["default"])(Type, [{
     key: "toString",
     value: function toString() {
+      debugger;
       return this.type;
     }
   }, {
-    key: "toValue",
-    value: function toValue() {
+    key: "valueOf",
+    value: function valueOf() {
+      debugger;
       return this.uuid;
     }
   }]);

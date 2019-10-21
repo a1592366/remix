@@ -104,6 +104,7 @@ class Server {
     const type = new Type(t, value);
     const argv = data.argv;
 
+
     if (t.value === APPLICATION.INSEPCT) {
 
     }
