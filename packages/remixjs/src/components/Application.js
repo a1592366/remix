@@ -5,7 +5,7 @@ import cloneElement from '../react/cloneElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
-import { transports, APPLICATION } from '../project';
+// import { transports, APPLICATION } from '../project';
 import { Router } from '../router';
 import TabBar from './TabBar';
 
@@ -19,11 +19,11 @@ export default class Application extends Component {
   };
 
   componentWillMount () {
-    transports.app.on(this.onMessage);
+    // transports.app.on(this.onMessage);
   }
 
   componentWillUnMount () {
-    transports.app.off(this.onMessage);
+    // transports.app.off(this.onMessage);
   }
 
   onMessage = (type, argv) => {

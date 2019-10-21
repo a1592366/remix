@@ -22,18 +22,17 @@ class DevTool {
       const search = location.search.slice(1);
       const query = qs.parse(search);
 
-      debugger;
-
       this.socket.send({
         data: {
           id: this.id,
           type: env.inspectMessageTypes.MESSAGE,
           terminal: env.inspectTerminalTypes.LOGIC,
-          data: {
-            type: APPLICATION.INSPECT,
-            argv: [
-              { id: query.id }
-            ]
+          post: {
+            type: String(APPLICATION),
+            body: {
+              type: APPLICATION.INSPECT,
+              argv: [query.id]
+            }
           }
         }
       })

@@ -12,20 +12,20 @@ class Runtime {
 
   inspect (callback) {
     return new Promise((resolve, reject) => {
-      transports.app.inspect({
-        id: this.id
-      }, () => {
+      debugger;
+      transports.app.inspect(this.id, () => {
         resolve();
       });
     });
   }
 
   run () {
+
     const launchApplication = () => {
       if (typeof App === 'function') {
         App({
-          onLaunch (e) {
-            transports.app.launch(e);
+          onLaunch (options) {
+            transports.app.launch(options);
           },
           
           onError (e) {
@@ -36,6 +36,8 @@ class Runtime {
     }
 
     if (env.isInspectMode) {
+
+      wx.hideTabBar();
       wx.showLoading({
         title: `等待连接...`
       });

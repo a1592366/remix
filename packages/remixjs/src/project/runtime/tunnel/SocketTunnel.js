@@ -4,19 +4,14 @@ import Socket from '../Socket';
 import env from '../../../../env';
 import { isFunction } from '../../../shared/is';
 
-export default class SocketTunnel extends EventEmitter {
+
+class MessageEmitter extends EventEmitter {
   constructor () {
     super();
 
     this.id = uuid.v4();
-    this.opened = false;
-    this.messageQueue = [];
-
-    this.createSocket();
-  }
-  
-  createSocket () {
-    SocketTunnel
+    this.connected = false;
+    this.queue = [];
 
     this.socket = new Socket({
       url: env.inspectWSURL,
@@ -29,22 +24,26 @@ export default class SocketTunnel extends EventEmitter {
         this.onMessage(json);
       } catch (err) {}
     });
+
     this.socket.onOpen(this.onOpen);
     this.socket.onClose(this.onClose);
     this.socket.onError(this.onError);
   }
 
   post = (data) => {
-    if (this.opened) {
+    if (this.connected) {
       this.socket.send({
-        data: JSON.stringify({
+        data:  JSON.stringify({
           id: this.id,
+          type: env.inspectMessageTypes.MESSAGE,
           terminal: env.inspectTerminalTypes.VIEW,
-          ...data
+          post: {
+            ...data
+          }
         })
       })
     } else {
-      this.messageQueue.push(data);
+      this.queue.push(data);
     }
   }
 
@@ -61,15 +60,15 @@ export default class SocketTunnel extends EventEmitter {
   }
 
   onOpen = () => {
-    this.opened = true;
+    this.connected = true;
 
-    if (this.messageQueue.length > 0) {
+    if (this.queue.length > 0) {
       let message;
-      while (message = this.messageQueue.shift()) {
+      while (message = this.queue.shift()) {
         this.post(message)
       }
 
-      this.messageQueue = [];
+      this.queue = [];
     }
 
     this.post({
@@ -78,35 +77,33 @@ export default class SocketTunnel extends EventEmitter {
   }
 
   onClose = () => {
-    this.opened = false;
+    this.connected = false;
   }
 
-  onMessage = ({ type, data }) => {
-    if (data.callbackId) {
-      this.emit(data.callbackId, ...data.argv);
-    }
+  onMessage = (data) => {
+    this.emit('message', data);
+  }
+}
+
+
+export default class SocketTunnel extends EventEmitter {
+  constructor () {
+    super();
+
+    this.id = uuid.v4();
+    this.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter())
+
+    this.emitter.on('message', this.onMessage);
   }
 
-  emit (type, argv) {
-    const callback = argv[argv.length - 1];
-    const data = {
-      type,
-      argv
-    }
+  onMessage ({ data }) {
+    const { post } = data;
+    const { type, body } = post;
 
-    if (isFunction(callback)) {
-      data.callbackId = uuid.v4();
+    this.emit(type, body);
+  }
 
-      this.addListener(data.callbackId, (...argv) => {
-        callback(...argv);
-
-        this.removeListener(data.callbackId);
-      });
-    }
-
-    this.post({
-      type: env.inspectMessageTypes.MESSAGE,
-      data
-    });
+  post (data) {
+    this.emitter.post(data);
   }
 }
