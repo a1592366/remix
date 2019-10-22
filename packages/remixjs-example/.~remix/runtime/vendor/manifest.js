@@ -1,4 +1,4 @@
-/*** MARK_1571766680020 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571767508655 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -821,7 +821,7 @@ var _typeof2 = _interopRequireDefault2(__webpack_require__(/*! @babel/runtime/he
           (0, _createClass2["default"])(Type, [{
             key: "toString",
             value: function toString() {
-              return this.type;
+              return this.value;
             }
           }]);
           return Type;
@@ -5097,6 +5097,8 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
 var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "../remixjs/node_modules/qs/lib/index.js"));
@@ -5105,13 +5107,24 @@ var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports *
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
+
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
 var DevTool =
 /*#__PURE__*/
 function () {
   function DevTool(context, instance) {
+    var _this = this;
+
     (0, _classCallCheck2["default"])(this, DevTool);
+    (0, _defineProperty2["default"])(this, "onApplicationLaunch", function (options) {
+      var props = _this.instance.props;
+
+      if ((0, _is.isFunction)(props.onLaunch)) {
+        props.onLaunch(options);
+      }
+    });
     this.id = _uuid["default"].v4();
     this.context = context;
     this.instance = instance;
@@ -5121,11 +5134,6 @@ function () {
   }
 
   (0, _createClass2["default"])(DevTool, [{
-    key: "onApplicationLaunch",
-    value: function onApplicationLaunch(options) {
-      debugger;
-    }
-  }, {
     key: "run",
     value: function run() {
       var search = location.search.slice(1);
@@ -5140,8 +5148,8 @@ function () {
   return DevTool;
 }();
 
-function _default(context) {
-  var devTool = new DevTool(context);
+function _default(context, instance) {
+  var devTool = new DevTool(context, instance);
   devTool.run();
 }
 
@@ -5232,8 +5240,6 @@ function () {
           wx.hideLoading();
           App({
             onLaunch: function onLaunch(options) {
-              debugger;
-
               _transports["default"].app.launch(options);
             },
             onError: function onError(e) {
@@ -5382,7 +5388,9 @@ function (_Tunnel) {
 
   (0, _createClass2["default"])(ApplicationTransport, [{
     key: "onLaunch",
-    value: function onLaunch(callback) {}
+    value: function onLaunch(callback) {
+      this.on(_types.APPLICATION.LAUNCH, callback);
+    }
   }, {
     key: "connect",
     value: function connect(id, callback) {
@@ -11076,7 +11084,9 @@ var _default = function _default() {
       navigationBarBackgroundColor: '#000000',
       navigationStyle: 'custom'
     },
-    onLaunch: function onLaunch() {}
+    onLaunch: function onLaunch(options) {
+      debugger;
+    }
   }, _remixjs["default"].createElement(_router.Router, null, _remixjs["default"].createElement(_router.Route, {
     path: "pages/Index/index",
     component: _Index["default"]

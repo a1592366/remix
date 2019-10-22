@@ -140,7 +140,7 @@ function () {
   (0, _createClass2["default"])(Type, [{
     key: "toString",
     value: function toString() {
-      return this.type;
+      return this.value;
     }
   }]);
   return Type;

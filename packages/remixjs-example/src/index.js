@@ -24,7 +24,8 @@ export default () => {
       navigationStyle: 'custom'
     }}
 
-    onLaunch={() => {
+    onLaunch={(options) => {
+      debugger;
     }}
   >
     <Router>

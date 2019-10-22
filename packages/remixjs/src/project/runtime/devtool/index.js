@@ -2,6 +2,8 @@ import uuid from 'uuid';
 import qs from 'qs';
 import transports from '../transports';
 import ViewManager from '../ViewManager';
+import { isFunction } from '../../../shared/is';
+
 import env from '../../../../env';
 
 
@@ -15,8 +17,12 @@ class DevTool {
     transports.app.onLaunch(this.onApplicationLaunch);
   }
   
-  onApplicationLaunch (options) {
-    debugger;
+  onApplicationLaunch = (options) => {
+    const { props } = this.instance;
+    
+    if (isFunction(props.onLaunch)) {
+      props.onLaunch(options);
+    }
   }
 
   run () {
@@ -33,8 +39,8 @@ class DevTool {
   }
 }  
 
-export default function (context) {
-  const devTool = new DevTool(context);
+export default function (context, instance) {
+  const devTool = new DevTool(context, instance);
 
 
   devTool.run();

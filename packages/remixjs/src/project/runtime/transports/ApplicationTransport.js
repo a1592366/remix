@@ -29,12 +29,12 @@ export default class ApplicationTransport extends Tunnel {
         })
       }
 
-      
+      this.emit(t, ...argv);
     }
   }
 
   onLaunch (callback) {
-    
+    this.on(APPLICATION.LAUNCH, callback);
   }
 
   post = (type, argv, callback) => {
