@@ -47,6 +47,9 @@ export const APPLICATION = defineNotificationTypes('application', {
 
 export const VIEW = defineNotificationTypes('view', {
   LOAD: 'load',
+  READY: 'ready',
+  SHOW: 'show',
+  HIDE: 'hide'
 });
 
 export const API = defineNotificationTypes('api', {

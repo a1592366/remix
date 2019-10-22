@@ -3,8 +3,10 @@ import createElement from './createElement';
 import createTextNode from './createTextNode';
 import createContainer from './createContainer';
 
+import env from '../../env';
 
-export default typeof document === 'undefined' ? {
+
+const fakeDocument = {
   body: new HTMLBodyElement(),
   getElementById (id) {
     return createContainer('container');
@@ -19,4 +21,10 @@ export default typeof document === 'undefined' ? {
   },
   createElement,
   createTextNode
-} : document;
+}
+
+export default fakeDocument;
+
+// export default typeof document === 'undefined' ? 
+//   virtualDocument : 
+//   env.isDevToolRunTime ? fakeDocument : document;

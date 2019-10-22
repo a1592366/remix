@@ -25,7 +25,6 @@ export default () => {
     }}
 
     onLaunch={(options) => {
-      debugger;
     }}
   >
     <Router>

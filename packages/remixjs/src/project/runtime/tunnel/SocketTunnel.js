@@ -85,7 +85,7 @@ export default class SocketTunnel extends EventEmitter {
     super();
 
     this.id = uuid.v4();
-    this.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter())
+    this.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter());
 
     this.emitter.on('message', this.onMessage);
   }

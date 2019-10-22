@@ -173,7 +173,10 @@ var APPLICATION = defineNotificationTypes('application', {
 });
 exports.APPLICATION = APPLICATION;
 var VIEW = defineNotificationTypes('view', {
-  LOAD: 'load'
+  LOAD: 'load',
+  READY: 'ready',
+  SHOW: 'show',
+  HIDE: 'hide'
 });
 exports.VIEW = VIEW;
 var API = defineNotificationTypes('api', {});

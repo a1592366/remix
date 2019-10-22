@@ -9,7 +9,8 @@ export default class ViewManager {
     this.context = context;
     this.viewControllers = {};
 
-    transports.view.on(this.onMessage);
+    transports.view.onLoad(this.onLoad);
+    transports.view.onReady(this.onReady);
   }
 
   get routes () {
@@ -27,15 +28,11 @@ export default class ViewManager {
     return routes;
   }
 
-  onMessage = (type, argv) => {
-    switch (type) {
-      case VIEW.LOAD: {
-        this.onLoad(...argv);
-      }
-    }
+  onReady = () => {
+
   }
 
-  onLoad = ({ route, id }, query, callback) => {
+  onLoad = ({ id, route, query }, callback) => {
     let viewController = this.viewControllers[id];
     
     if (viewController) {

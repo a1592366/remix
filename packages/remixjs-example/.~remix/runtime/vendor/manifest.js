@@ -854,7 +854,10 @@ var _typeof2 = _interopRequireDefault2(__webpack_require__(/*! @babel/runtime/he
         });
         exports.APPLICATION = APPLICATION;
         var VIEW = defineNotificationTypes('view', {
-          LOAD: 'load'
+          LOAD: 'load',
+          READY: 'ready',
+          SHOW: 'show',
+          HIDE: 'hide'
         });
         exports.VIEW = VIEW;
         var API = defineNotificationTypes('api', {});
@@ -4334,7 +4337,9 @@ var _createTextNode = _interopRequireDefault(__webpack_require__(/*! ./createTex
 
 var _createContainer = _interopRequireDefault(__webpack_require__(/*! ./createContainer */ "../remixjs/src/document/createContainer.js"));
 
-var _default = typeof document === 'undefined' ? {
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
+
+var fakeDocument = {
   body: new _HTMLBodyElement["default"](),
   getElementById: function getElementById(id) {
     return (0, _createContainer["default"])('container');
@@ -4349,7 +4354,10 @@ var _default = typeof document === 'undefined' ? {
   },
   createElement: _createElement["default"],
   createTextNode: _createTextNode["default"]
-} : document;
+};
+var _default = fakeDocument; // export default typeof document === 'undefined' ? 
+//   virtualDocument : 
+//   env.isDevToolRunTime ? fakeDocument : document;
 
 exports["default"] = _default;
 
@@ -4618,20 +4626,46 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
 var _transports = _interopRequireDefault(__webpack_require__(/*! ./runtime/transports */ "../remixjs/src/project/runtime/transports/index.js"));
 
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
+
 var ViewController =
 /*#__PURE__*/
 function () {
   function ViewController(route) {
+    var _this = this;
+
     (0, _classCallCheck2["default"])(this, ViewController);
+    (0, _defineProperty2["default"])(this, "onLoad", function (instance, query) {
+      _this.instance = _this;
+      _this.query = query;
+      console.log("[View] onLoad(".concat(_this.route, ")"));
+    });
+    (0, _defineProperty2["default"])(this, "onLaunch", function (_ref) {
+      var path = _ref.path;
+
+      if (path === _this.route) {
+        _transports["default"].view.load({
+          id: _this.id,
+          query: _this.query,
+          route: _this.route
+        }, function () {
+          debugger;
+        });
+      }
+    });
     this.route = route;
     this.id = _uuid["default"].v4();
     this.init();
+
+    _transports["default"].app.on('launch', this.onLaunch);
   }
 
   (0, _createClass2["default"])(ViewController, [{
@@ -4645,16 +4679,7 @@ function () {
             element: null
           },
           onLoad: function onLoad(query) {
-            var v = this;
-
-            _transports["default"].view.load({
-              id: ctrl.id,
-              route: ctrl.route
-            }, query, function (element) {
-              v.setData({
-                element: element
-              });
-            });
+            ctrl.onLoad(this, query);
           }
         });
       }
@@ -4997,8 +5022,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../remixjs/node_modules/@babel/runtime/helpers/toConsumableArray.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
@@ -5022,17 +5045,11 @@ function () {
     var _this = this;
 
     (0, _classCallCheck2["default"])(this, ViewManager);
-    (0, _defineProperty2["default"])(this, "onMessage", function (type, argv) {
-      switch (type) {
-        case _transports.VIEW.LOAD:
-          {
-            _this.onLoad.apply(_this, (0, _toConsumableArray2["default"])(argv));
-          }
-      }
-    });
-    (0, _defineProperty2["default"])(this, "onLoad", function (_ref, query, callback) {
-      var route = _ref.route,
-          id = _ref.id;
+    (0, _defineProperty2["default"])(this, "onReady", function () {});
+    (0, _defineProperty2["default"])(this, "onLoad", function (_ref, callback) {
+      var id = _ref.id,
+          route = _ref.route,
+          query = _ref.query;
       var viewController = _this.viewControllers[id];
 
       if (viewController) {
@@ -5051,7 +5068,9 @@ function () {
     this.context = context;
     this.viewControllers = {};
 
-    _transports["default"].view.on(this.onMessage);
+    _transports["default"].view.onLoad(this.onLoad);
+
+    _transports["default"].view.onReady(this.onReady);
   }
 
   (0, _createClass2["default"])(ViewManager, [{
@@ -5223,7 +5242,7 @@ function () {
         });
 
         _transports["default"].app.on('reLaunch', function () {
-          wx.reLaunch();
+          wx.reLaunch({});
           wx.hideTabBar();
           wx.showLoading({
             title: "\u7B49\u5F85\u8FDE\u63A5..."
@@ -5241,6 +5260,10 @@ function () {
           App({
             onLaunch: function onLaunch(options) {
               _transports["default"].app.launch(options);
+
+              _transports["default"].app.emit('launch', options);
+
+              _env["default"].isApplicationLaunched = true;
             },
             onError: function onError(e) {
               _transports["default"].app.error(e);
@@ -5331,38 +5354,40 @@ function (_Tunnel) {
     (0, _classCallCheck2["default"])(this, ApplicationTransport);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ApplicationTransport).call(this));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
+      var _this3;
+
       var type = _ref.type,
           argv = _ref.argv,
           callbackId = _ref.callbackId;
 
       if (callbackId) {
-        var _this2;
+        if (_this.eventNames().includes(callbackId)) {
+          var _this2;
 
-        (_this2 = _this).emit.apply(_this2, [callbackId].concat((0, _toConsumableArray2["default"])(argv)));
-      } else {
-        var _this3;
-
-        var t = new _types.Type(type.type, type.value);
-
-        if (callbackId) {
-          argv.push(function () {
-            for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-              argv[_key] = arguments[_key];
-            }
-
-            this["this"].post({
-              type: String(_types.APPLICATION),
-              body: {
-                argv: argv,
-                type: type,
-                callbackId: callbackId
-              }
-            });
-          });
+          return (_this2 = _this).emit.apply(_this2, [callbackId].concat((0, _toConsumableArray2["default"])(argv)));
         }
-
-        (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
       }
+
+      var t = new _types.Type(type.type, type.value);
+
+      if (callbackId) {
+        argv.push(function () {
+          for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
+            argv[_key] = arguments[_key];
+          }
+
+          this["this"].post({
+            type: String(_types.APPLICATION),
+            body: {
+              argv: argv,
+              type: type,
+              callbackId: callbackId
+            }
+          });
+        });
+      }
+
+      (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
       var callbackId = (0, _is.isFunction)(callback) ? _uuid["default"].v4() : null;
@@ -5446,68 +5471,120 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../remixjs/node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _get4 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
 var _tunnel = _interopRequireDefault(__webpack_require__(/*! ../tunnel */ "../remixjs/src/project/runtime/tunnel/index.js"));
 
 var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
 
-var ViewControllerEngine =
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
+
+var ViewControllerTransport =
 /*#__PURE__*/
 function (_Tunnel) {
-  (0, _inherits2["default"])(ViewControllerEngine, _Tunnel);
+  (0, _inherits2["default"])(ViewControllerTransport, _Tunnel);
 
-  function ViewControllerEngine() {
-    (0, _classCallCheck2["default"])(this, ViewControllerEngine);
-    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerEngine).apply(this, arguments));
+  function ViewControllerTransport() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, ViewControllerTransport);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerTransport).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
+      var _this3;
+
+      var type = _ref.type,
+          argv = _ref.argv,
+          callbackId = _ref.callbackId;
+
+      if (callbackId) {
+        if (_this.eventNames().includes(callbackId)) {
+          var _this2;
+
+          return (_this2 = _this).emit.apply(_this2, [callbackId].concat((0, _toConsumableArray2["default"])(argv)));
+        }
+      }
+
+      var t = new _types.Type(type.type, type.value);
+
+      if (callbackId) {
+        argv.push(function () {
+          for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
+            argv[_key] = arguments[_key];
+          }
+
+          this.post({
+            type: String(_types.VIEW),
+            body: {
+              argv: argv,
+              type: type,
+              callbackId: callbackId
+            }
+          });
+        });
+      }
+
+      (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
+      var callbackId = (0, _is.isFunction)(callback) ? _uuid["default"].v4() : null;
+
+      if (callbackId) {
+        _this.once(callbackId, callback);
+      }
+
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
+        type: String(_types.VIEW),
+        body: {
+          type: type,
+          argv: argv,
+          callbackId: callbackId
+        }
+      });
+    });
+
+    _this.on(_types.VIEW, _this.onMessage);
+
+    return _this;
   }
 
-  (0, _createClass2["default"])(ViewControllerEngine, [{
+  (0, _createClass2["default"])(ViewControllerTransport, [{
     key: "load",
-    value: function load() {
-      for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-        argv[_key] = arguments[_key];
-      }
-
-      this.emit(_types.VIEW.LOAD, argv);
+    value: function load(data, callback) {
+      this.post(_types.VIEW.LOAD, [data], callback);
     }
   }, {
-    key: "on",
-    value: function on() {
-      var _get2;
-
-      for (var _len2 = arguments.length, argv = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        argv[_key2] = arguments[_key2];
-      }
-
-      (_get2 = (0, _get4["default"])((0, _getPrototypeOf2["default"])(ViewControllerEngine.prototype), "on", this)).call.apply(_get2, [this, _types.VIEW].concat(argv));
+    key: "onLoad",
+    value: function onLoad(callback) {
+      this.on(_types.VIEW.LOAD, callback);
     }
   }, {
-    key: "off",
-    value: function off() {
-      var _get3;
-
-      for (var _len3 = arguments.length, argv = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-        argv[_key3] = arguments[_key3];
-      }
-
-      (_get3 = (0, _get4["default"])((0, _getPrototypeOf2["default"])(ViewControllerEngine.prototype), "off", this)).call.apply(_get3, [this, _types.VIEW].concat(argv));
+    key: "onReady",
+    value: function onReady(callback) {
+      this.on(_types.VIEW.READY, callback);
     }
   }]);
-  return ViewControllerEngine;
+  return ViewControllerTransport;
 }(_tunnel["default"]);
 
-exports["default"] = ViewControllerEngine;
+exports["default"] = ViewControllerTransport;
 
 /***/ }),
 
@@ -5552,6 +5629,7 @@ var _default = {
       return transports.app;
     }
 
+    transports.view = transports.view || new _ViewControllerTransport["default"]();
     return transports.app = new _ApplicationTransport["default"]();
   },
 
@@ -5560,6 +5638,7 @@ var _default = {
       return transports.view;
     }
 
+    transports.app = transports.app || new _ApplicationTransport["default"]();
     return transports.view = new _ViewControllerTransport["default"]();
   }
 
@@ -11084,9 +11163,7 @@ var _default = function _default() {
       navigationBarBackgroundColor: '#000000',
       navigationStyle: 'custom'
     },
-    onLaunch: function onLaunch(options) {
-      debugger;
-    }
+    onLaunch: function onLaunch(options) {}
   }, _remixjs["default"].createElement(_router.Router, null, _remixjs["default"].createElement(_router.Route, {
     path: "pages/Index/index",
     component: _Index["default"]

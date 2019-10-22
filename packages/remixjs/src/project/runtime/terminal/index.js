@@ -16,7 +16,7 @@ class Runtime {
       });
 
       transports.app.on('reLaunch', () => {
-        wx.reLaunch();
+        wx.reLaunch({});
         wx.hideTabBar();
         wx.showLoading({
           title: `等待连接...`
@@ -26,7 +26,6 @@ class Runtime {
   }
 
   run () {
-
     const launchApplication = () => {
       if (typeof App === 'function') {
         wx.showTabBar();
@@ -35,6 +34,9 @@ class Runtime {
         App({
           onLaunch (options) {
             transports.app.launch(options);
+            transports.app.emit('launch', options);
+            
+            env.isApplicationLaunched = true;
           },
           
           onError (e) {

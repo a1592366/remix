@@ -10,6 +10,8 @@ export default {
       return transports.app;
     }
 
+    transports.view = transports.view || new ViewControllerTransport();
+
     return transports.app = new ApplicationTransport()
   },
 
@@ -17,6 +19,8 @@ export default {
     if (transports.view) {
       return transports.view;
     }
+
+    transports.app = transports.app || new ApplicationTransport();
 
     return transports.view = new ViewControllerTransport()
   }

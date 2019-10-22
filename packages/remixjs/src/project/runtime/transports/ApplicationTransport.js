@@ -12,25 +12,27 @@ export default class ApplicationTransport extends Tunnel {
 
   onMessage = ({ type, argv, callbackId }) => {
     if (callbackId) {
-      this.emit(callbackId, ...argv);
-    } else {
-      const t = new Type(type.type, type.value);
-
-      if (callbackId) {
-        argv.push(function (...argv) {
-          this.this.post({
-            type: String(APPLICATION),
-            body: {
-              argv,
-              type,
-              callbackId
-            }
-          });
-        })
+      if (this.eventNames().includes(callbackId)) {
+        return this.emit(callbackId, ...argv);
       }
+    } 
+    
+    const t = new Type(type.type, type.value);
 
-      this.emit(t, ...argv);
+    if (callbackId) {
+      argv.push(function (...argv) {
+        this.this.post({
+          type: String(APPLICATION),
+          body: {
+            argv,
+            type,
+            callbackId
+          }
+        });
+      })
     }
+
+    this.emit(t, ...argv);
   }
 
   onLaunch (callback) {
