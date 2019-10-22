@@ -11,32 +11,15 @@ class DevTool {
     this.id = uuid.v4();
     this.context = context;
     this.viewManager = new ViewManager(context);
-
-    this.socket = new Socket({
-      url: env.inspectWSURL
-    });
   }  
 
   run () {
-    this.socket.onOpen(() => {
-      const search = location.search.slice(1);
-      const query = qs.parse(search);
+    const search = location.search.slice(1);
+    const query = qs.parse(search);
+    
+    transports.app.inspect(query.id, () => {
 
-      this.socket.send({
-        data: {
-          id: this.id,
-          type: env.inspectMessageTypes.MESSAGE,
-          terminal: env.inspectTerminalTypes.LOGIC,
-          post: {
-            type: String(APPLICATION),
-            body: {
-              type: APPLICATION.INSPECT,
-              argv: [query.id]
-            }
-          }
-        }
-      })
-    })
+    });    
   }
 }  
 

@@ -36,7 +36,7 @@ class MessageEmitter extends EventEmitter {
         data:  JSON.stringify({
           id: this.id,
           type: env.inspectMessageTypes.MESSAGE,
-          terminal: env.inspectTerminalTypes.VIEW,
+          terminal: env.inspectTerminalTypes[env.isDevToolRunTime ? 'LOGIC' : 'VIEW'],
           post: {
             ...data
           }

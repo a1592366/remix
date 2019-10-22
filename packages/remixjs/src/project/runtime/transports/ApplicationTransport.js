@@ -37,8 +37,8 @@ export default class ApplicationTransport extends Tunnel {
     this.post(APPLICATION.INSPECT, [id], callback);
   }
 
-  launch (options) {
-    this.post(APPLICATION.LAUNCH, [options]);
+  launch (id, options) {
+    this.post(APPLICATION.LAUNCH, [id, options]);
   }
 
   show () {

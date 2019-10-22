@@ -24,6 +24,7 @@ const inspectMessageHandler = {
     const key = argv[0];
     
     this.terminals[key] = {
+      status: 'waiting',
       callbackId,
       socket,
       id
@@ -45,6 +46,9 @@ const inspectMessageHandler = {
           callbackId: terminal.callbackId
         }
       });
+
+      terminal.status = 'inspecting';
+      terminal.logic = socket;
     }
 
     socket.post({
@@ -55,6 +59,22 @@ const inspectMessageHandler = {
         callbackId
       }
     })
+  },
+
+  applicationLaunch (id, body, socket) {
+    const { argv } = body;
+    const key = argv.shift();
+
+    const terminal = this.terminals[key];
+
+    if (terminal) {
+      terminal.logic.post({
+        type: String(APPLICATION),
+        body: {
+          ...body
+        }
+      });
+    }
   }
 }
 
@@ -68,6 +88,11 @@ function applicationMessage (id, body, terminal, socket) {
       terminal === env.INSPECT_TERMINAL_TYPES.VIEW ?
         inspectMessageHandler.waitingForInspecting(id, body, socket) :
         inspectMessageHandler.beginInspecting(id, body, socket);
+      break;
+    }
+
+    case APPLICATION.LAUNCH: {
+      const terminal = inspectMessageHandler.applicationLaunch(id, body, socket);
       break;
     }
   }

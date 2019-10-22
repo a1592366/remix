@@ -1,4 +1,4 @@
-/*** MARK_1571680834842 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571719215171 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -5195,36 +5195,16 @@ function () {
     this.id = _uuid["default"].v4();
     this.context = context;
     this.viewManager = new _ViewManager["default"](context);
-    this.socket = new _Socket["default"]({
-      url: _env["default"].inspectWSURL
-    });
   }
 
   (0, _createClass2["default"])(DevTool, [{
     key: "run",
     value: function run() {
-      var _this = this;
+      var search = location.search.slice(1);
 
-      this.socket.onOpen(function () {
-        var search = location.search.slice(1);
+      var query = _qs["default"].parse(search);
 
-        var query = _qs["default"].parse(search);
-
-        _this.socket.send({
-          data: {
-            id: _this.id,
-            type: _env["default"].inspectMessageTypes.MESSAGE,
-            terminal: _env["default"].inspectTerminalTypes.LOGIC,
-            post: {
-              type: String(_transports.APPLICATION),
-              body: {
-                type: _transports.APPLICATION.INSPECT,
-                argv: [query.id]
-              }
-            }
-          }
-        });
-      });
+      _transports["default"].app.inspect(query.id, function () {});
     }
   }]);
   return DevTool;
@@ -5311,11 +5291,15 @@ function () {
   }, {
     key: "run",
     value: function run() {
+      var _this2 = this;
+
       var launchApplication = function launchApplication() {
+        var self = _this2;
+
         if (typeof App === 'function') {
           App({
             onLaunch: function onLaunch(options) {
-              _transports["default"].app.launch(options);
+              _transports["default"].app.launch(self.id, options);
             },
             onError: function onError(e) {
               _transports["default"].app.error(e);
@@ -5444,8 +5428,8 @@ function (_Tunnel) {
     }
   }, {
     key: "launch",
-    value: function launch(options) {
-      this.post(_types.APPLICATION.LAUNCH, [options]);
+    value: function launch(id, options) {
+      this.post(_types.APPLICATION.LAUNCH, [id, options]);
     }
   }, {
     key: "show",
@@ -5753,7 +5737,7 @@ function (_EventEmitter) {
           data: JSON.stringify({
             id: _this.id,
             type: _env["default"].inspectMessageTypes.MESSAGE,
-            terminal: _env["default"].inspectTerminalTypes.VIEW,
+            terminal: _env["default"].inspectTerminalTypes[_env["default"].isDevToolRunTime ? 'LOGIC' : 'VIEW'],
             post: _objectSpread({}, data)
           })
         });

@@ -21,10 +21,11 @@ class Runtime {
   run () {
 
     const launchApplication = () => {
+      const self = this;
       if (typeof App === 'function') {
         App({
           onLaunch (options) {
-            transports.app.launch(options);
+            transports.app.launch(self.id, options);
           },
           
           onError (e) {
