@@ -41,7 +41,7 @@
 		"progress-bar-webpack-plugin": "^1.12.1",
 		"qs": "^6.9.0",
 		"remixjs": "^0.0.1",
-		"remixjs-mesaage-protocol": "^0.0.1",
+		"remixjs-message-protocol": "^0.0.1",
 		"remixjs-xml": "^0.0.1",
 		"sass": "^1.18.0",
 		"sass-loader": "^7.1.0",

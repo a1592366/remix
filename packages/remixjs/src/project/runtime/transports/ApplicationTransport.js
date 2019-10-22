@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
-import { APPLICATION } from './types';
+import { APPLICATION, Type } from './types';
 import { isFunction } from '../../../shared/is';
 
 export default class ApplicationTransport extends Tunnel {
@@ -10,10 +10,31 @@ export default class ApplicationTransport extends Tunnel {
     this.on(APPLICATION, this.onMessage);
   }
 
-  onMessage = (id, type, { argv, callbackId }) => {
+  onMessage = ({ type, argv, callbackId }) => {
     if (callbackId) {
       this.emit(callbackId, ...argv);
+    } else {
+      const t = new Type(type.type, type.value);
+
+      if (callbackId) {
+        argv.push(function (...argv) {
+          this.this.post({
+            type: String(APPLICATION),
+            body: {
+              argv,
+              type,
+              callbackId
+            }
+          });
+        })
+      }
+
+      
     }
+  }
+
+  onLaunch (callback) {
+    
   }
 
   post = (type, argv, callback) => {
@@ -33,17 +54,22 @@ export default class ApplicationTransport extends Tunnel {
     });
   }
 
-  inspect (id, callback) {
-    this.post(APPLICATION.INSPECT, [id], callback);
+  connect (id, callback) {
+    this.post(APPLICATION.CONNECT, [id], callback);
   }
 
-  launch (id, options) {
-    this.post(APPLICATION.LAUNCH, [id, options]);
+  inspect (callback) {
+    this.post(APPLICATION.INSPECT, [], callback);
+  }
+
+  launch (options) {
+    this.post(APPLICATION.LAUNCH, [options]);
   }
 
   show () {
     this.post(APPLICATION.SHOW, []);
   }
+
   hide () {
     this.post(APPLICATION.HIDE, []);
   }

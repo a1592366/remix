@@ -1,1 +1,1 @@
-export * from 'remixjs-mesaage-protocol';
+export * from 'remixjs-message-protocol';

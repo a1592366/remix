@@ -1,6 +1,6 @@
-
-const { Type, APPLICATION, COMMON } = require('remixjs-mesaage-protocol');
+const { Type, APPLICATION, COMMON } = require('remixjs-message-protocol');
 const env = require('../../env');
+const createInpsecting, { connect, getInspect } = require('./inspecting');
 
 const { getOwnPropertyNames: getNames } = Object;
 
@@ -78,30 +78,28 @@ const inspectMessageHandler = {
   }
 }
 
+const applicationMessageHandler = {
+  onMessage (id, body, terminal, socket) {
+    const { type } = body;
+    const t = new Type(type.type, type.value);
 
-function applicationMessage (id, body, terminal, socket) {
-  const { type } = body;
-  const t = new Type(type.type, type.value);
+    switch (t) {
+      case APPLICATION.INSPECT: {
+        createInpsecting(id, body, socket);
+        break;
+      }
 
-  switch (t) {
-    case APPLICATION.INSPECT: {
-      terminal === env.INSPECT_TERMINAL_TYPES.VIEW ?
-        inspectMessageHandler.waitingForInspecting(id, body, socket) :
-        inspectMessageHandler.beginInspecting(id, body, socket);
-      break;
-    }
+      case APPLICATION.CONNECT: {
+        connect(id, body, socket);
+        break;
+      }
 
-    case APPLICATION.LAUNCH: {
-      const terminal = inspectMessageHandler.applicationLaunch(id, body, socket);
-      break;
+      default: {
+        getInspect(socket);
+        break;
+      }
     }
   }
-} 
+};
 
-applicationMessage.clear = function (id) {
-  inspectMessageHandler.clear(id);
-}
-
-applicationMessage.inspectMessageHandler = inspectMessageHandler;
-
-module.exports = applicationMessage;
+module.exports = applicationMessageHandler;

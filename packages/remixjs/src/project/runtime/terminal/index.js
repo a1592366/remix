@@ -1,31 +1,40 @@
 import uuid from 'uuid';
-import transports from './transports';
-import ViewManager from './ViewManager';
-import env from '../../../env';
+import transports from '../transports';
+import ViewManager from '../ViewManager';
+import env from '../../../../env';
 
 
 class Runtime {
   constructor (context) {
     this.context = context;
-    this.id = uuid.v4();
   }
 
   inspect (callback) {
     return new Promise((resolve, reject) => {
-      transports.app.inspect(this.id, () => {
+      transports.app.inspect(() => {
         resolve();
       });
+
+      transports.app.on('reLaunch', () => {
+        wx.reLaunch();
+        wx.hideTabBar();
+        wx.showLoading({
+          title: `等待连接...`
+        });
+      })
     });
   }
 
   run () {
 
     const launchApplication = () => {
-      const self = this;
       if (typeof App === 'function') {
+        wx.showTabBar();
+        wx.hideLoading();
+
         App({
           onLaunch (options) {
-            transports.app.launch(self.id, options);
+            transports.app.launch(options);
           },
           
           onError (e) {
@@ -54,7 +63,7 @@ class Runtime {
 export {
   transports
 }
-export * from './transports/types';
+export * from '../transports/types';
 export default function (context) {
   const runtime =  new Runtime(context);
   const viewManager = new ViewManager(context);

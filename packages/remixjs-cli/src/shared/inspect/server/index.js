@@ -6,13 +6,12 @@ const path = require('path');
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 const Router = require('koa-router');
-const { Type, APPLICATION, COMMON } = require('remixjs-mesaage-protocol');
+const { Type, APPLICATION, COMMON } = require('remixjs-message-protocol');
 
 const env = require('../../env');
 const createSocket = require('./socket');
+const { getConnections } = require('./socket');
 const router = new Router();
-
-const { inspectMessageHandler } = require('./applicationMessage');
 
 class Server {
   start () {
@@ -33,7 +32,7 @@ class Server {
       });
 
       router.get('/api/inspect', async (context) => {
-        context.body = Object.getOwnPropertyNames(inspectMessageHandler.terminals);
+        context.body = getConnections()
       });
       
       const httpServer = app.listen(env.INSPECT_PORT, () => {
@@ -54,3 +53,4 @@ module.exports = function () {
 
   return server.start();
 }
+

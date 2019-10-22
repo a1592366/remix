@@ -1,10 +1,10 @@
-import env from '../../../env';
+import env from '../../../../env';
 
 export default function (options) {
   const Socket = env.isDevToolRunTime ?
     class {
-      constructor ({ url, protocol }) {
-        this.socket = new WebSocket(url, protocol);
+      constructor (url, protocols) {
+        this.socket = new WebSocket(url, protocols);
       }
 
       onMessage = (onMessage) => {
@@ -16,22 +16,24 @@ export default function (options) {
       }
 
       onClose = (onClose) => {
-        this.socket.onopen = onClose;
+        this.socket.onclose = onClose;
       }
 
       onError = (onError) => {
-        this.socket.onopen = onError;
+        this.socket.onerror = onError;
       }
 
       send ({ data }) {
-        this.socket.send(JSON.stringify(data));
+        this.socket.send(data);
       }
-    } : function ({ url, protocol }) {
+    } : function (url, protocols) {
       return wx.connectSocket({
         url, 
-        protocol
+        protocols: [protocols]
       });
     }
 
-  return new Socket(options);
+  const { url, protocols } = options;
+
+  return new Socket(url, protocols.join('+'));
 }

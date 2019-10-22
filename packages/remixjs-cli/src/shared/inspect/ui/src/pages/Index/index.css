@@ -9,3 +9,18 @@
   line-height: 1.5;
   color: #24292e;
 }
+
+.app__index-terminal-status {
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  color: white;
+}
+
+.app__index-terminal-status_waiting {
+  background-color: green;
+}
+
+.app__index-terminal-status_inspecting {
+  background-color: blue;
+}

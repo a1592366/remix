@@ -1,6 +1,6 @@
 import EventEmitter from 'events';
 import uuid from 'uuid';
-import Socket from '../Socket';
+import Socket from './Socket';
 import env from '../../../../env';
 import { isFunction } from '../../../shared/is';
 
@@ -15,7 +15,10 @@ class MessageEmitter extends EventEmitter {
 
     this.socket = new Socket({
       url: env.inspectWSURL,
-      protocol: this.id
+      protocols: [
+        this.id, 
+        env.inspectTerminalTypes[env.isDevToolRunTime ? 'LOGIC' : 'VIEW']
+      ]
     });
 
     this.socket.onMessage(({ data }) => {
@@ -30,20 +33,15 @@ class MessageEmitter extends EventEmitter {
     this.socket.onError(this.onError);
   }
 
-  post = (data) => {
+  post = (post) => {
     if (this.connected) {
       this.socket.send({
-        data:  JSON.stringify({
-          id: this.id,
-          type: env.inspectMessageTypes.MESSAGE,
-          terminal: env.inspectTerminalTypes[env.isDevToolRunTime ? 'LOGIC' : 'VIEW'],
-          post: {
-            ...data
-          }
+        data: JSON.stringify({
+          post
         })
       })
     } else {
-      this.queue.push(data);
+      this.queue.push(post);
     }
   }
 
@@ -70,10 +68,6 @@ class MessageEmitter extends EventEmitter {
 
       this.queue = [];
     }
-
-    this.post({
-      type: env.inspectMessageTypes.REGISTER,
-    });
   }
 
   onClose = () => {
@@ -96,10 +90,9 @@ export default class SocketTunnel extends EventEmitter {
     this.emitter.on('message', this.onMessage);
   }
 
-  onMessage = ({ id, post, type }) => {
-    const { type: t, body } = post;
-
-    this.emit(t, id, type, body);
+  onMessage = ({ post }) => {
+    const { type, body } = post;
+    this.emit(type, body);
   }
 
   post (data) {

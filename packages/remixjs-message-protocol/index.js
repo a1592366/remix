@@ -16,7 +16,7 @@ export class Type {
   }
 
   toString () {
-    return this.type;
+    return this.value;
   }
 }
 
@@ -38,6 +38,7 @@ const defineNotificationTypes = (prefix, types) => {
 
 export const APPLICATION = defineNotificationTypes('application', {
   LAUNCH: 'launch',
+  CONNECT: 'connect',
   INSPECT: 'inspect',
   SHOW: 'show',
   HIDE: 'hide',

@@ -1,82 +1,150 @@
 
-const { Type, APPLICATION } = require('remixjs-mesaage-protocol');
+const { Type, APPLICATION } = require('remixjs-message-protocol');
 const env = require('../../env');
-const applicationMessage = require('./applicationMessage');
+
+const { getOwnPropertyNames: getNames } = Object;
+
+const statusTypes = {
+  WAITING_TO_CONNECT: 1,
+  CONNECTED: 2
+}
+
+const connections = {};
 
 class Socket {
+  
+
   constructor (socket) {
-    this.id = null;
+    const { protocol } = socket;
+    const [id, type] = protocol.split('+');
+
+    this.id = id;
+    this.type = Number(type);
     this.socket = socket;
+    this.status = statusTypes.WAITING_TO_CONNECT;
 
     socket.on('message', (message) => {
       try {
         const json = JSON.parse(message);
-  
-        switch (json.type) {
-          case env.INSEPCT_MESSAGE_TYPES.REGISTER: {
-            this.onRegister(json, this);
-            break;
-          }
-  
-          case env.INSEPCT_MESSAGE_TYPES.MESSAGE: {
-            this.onMessage(json, this);
-            break;
-          }
-  
-          case env.INSEPCT_MESSAGE_TYPES.CLOSE: {
-  
-          }
-  
-        }
-      } catch (e) {
-        debugger;
-      }
+        this.onMessage(json);
+      } catch (e) {}
     });
+
     socket.on('close', () => {
-      // socket.off('message');
-      // socket.off()
-      applicationMessage.clear(this.id);
+      if (this.type === env.INSPECT_TERMINAL_TYPES.LOGIC) {
+
+        if (this.tunnel) {
+          this.tunnel.status = statusTypes.WAITING_TO_CONNECT;
+          this.tunnel.post({
+            type: String(APPLICATION),
+            body: {
+              argv: [],
+              callbackId: 'reLaunch'
+            }
+          });
+
+          this.tunnel.tunnel = null;
+          this.tunnel = null;
+        }
+      } else {
+        delete connections[id];
+
+        if (this.tunnel) {
+          this.tunnel.post({
+            type: String(APPLICATION),
+            body: {
+              argv: [],
+              callbackId: 'refresh'
+            }
+          })
+  
+          this.tunnel.tunnel = null;
+          this.tunnel = null;
+        }
+      }
     });
   }
 
-  post (data) {
+  post (post) {
     this.socket.send(JSON.stringify({
-      id: this.id,
-      terminal: env.INSPECT_TERMINAL_TYPES.SERVICES,
-      post: {
-        ...data
-      }
+      post
     }));
   }
 
-  onRegister ({ id, terminal }, socket) {
-    this.id = id;
+  defineInspecting (body) {
+    const { callbackId } = body;
 
-    switch (terminal) {
-      case env.INSPECT_TERMINAL_TYPES.VIEW: {      
-        
-        break;
-      }
-
-      case env.INSPECT_TERMINAL_TYPES.LOGIC: {
-        break;
-      }
-    }
+    connections[this.id] = {
+      tunnel: this,
+      body
+    };
   }
 
-  onMessage (message, socket) {  
-    const { id ,post, terminal } = message;
+  connect (body) {
+    const { argv, callbackId } = body;
+    const id = argv[0];
+    
+    const connection = connections[id];
+
+    if (connection) {
+      const { tunnel, body } = connection;
+
+      if (tunnel.status === statusTypes.WAITING_TO_CONNECT) {
+        this.status = tunnel.status = statusTypes.CONNECTED;
+        this.tunnel = tunnel;
+
+        tunnel.tunnel = this;
+
+        return tunnel.post({
+          type: String(APPLICATION),
+          body: {
+            argv: [],
+            callbackId: body.callbackId
+          }
+        });
+      }
+    }
+
+    this.post({
+      type: String(APPLICATION),
+      body: {
+        argv: ['NO_EXIST'],
+        callbackId
+      }
+    });
+  }
+
+  onMessage (message) {  
+    const { post } = message;
     const { body, type } = post;
 
-    switch (type) {
-      case String(APPLICATION): {
-        applicationMessage(id, body, terminal, socket);
-        break;
+    if (this.status === statusTypes.WAITING_TO_CONNECT) {
+      if (type === String(APPLICATION)) {
+        const t = body.type;
+        const type = new Type(t.type, t.value);
+
+        if (type === APPLICATION.INSPECT) {
+          this.defineInspecting(body);
+        } else {
+          this.connect(body);
+        }
       }
+    } else if (this.status === statusTypes.CONNECTED) {
+      this.tunnel.post(post);
     }
   }
 }
 
 module.exports = function (socket) {
   return new Socket(socket);
+}
+
+module.exports.getConnections = function () {
+  return getNames(connections).map(function (id) {
+    const connection = connections[id];
+    return {
+      id,
+      status: connection.tunnel.status
+    }
+  })
 }

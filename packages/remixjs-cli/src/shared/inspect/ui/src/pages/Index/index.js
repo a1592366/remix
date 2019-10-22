@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom';
 
 import './index.css';
 
+const statusText = {
+  1: `等待调试`,
+  2: `调试中`
+}
+
+const statusType = {
+  1: 'waiting',
+  2: 'inspecting'
+}
 
 class Index extends React.Component {
   state = {
@@ -26,10 +35,12 @@ class Index extends React.Component {
 
   contentRender = () => {
     const { connections } = this.state;
-    const terminals = connections.map(id => {
+    const terminals = connections.map(({ id, status }) => {
       return (
         <div className="app__index-terminal" key={id}>
-          <Link className="app__index-terminal-link" to={`/inspect?id=${id}`}>{id}</Link>
+          <Link className="app__index-terminal-link" to={`/inspect?id=${id}`}>
+            {id} <span className={`app__index-terminal-status app__index-terminal-status_${statusType[status]}`}>{statusText[status]}</span>
+          </Link>
         </div>
       );
     })

@@ -113,7 +113,7 @@ exports.push([module.i, "\n.app__header {\n  background-color: rgb(64, 120, 192)
 
 exports = module.exports = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../../../node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".app__index-terminals {\n  padding: 8px;\n  min-height: 40px;\n  position: relative;\n}\n\n.app__index-terminal {\n  font-size: 14px;\n  line-height: 1.5;\n  color: #24292e;\n}", ""]);
+exports.push([module.i, ".app__index-terminals {\n  padding: 8px;\n  min-height: 40px;\n  position: relative;\n}\n\n.app__index-terminal {\n  font-size: 14px;\n  line-height: 1.5;\n  color: #24292e;\n}\n\n.app__index-terminal-status {\n  padding: 2px 5px;\n  border-radius: 3px;\n  font-size: 10px;\n  color: white;\n}\n\n.app__index-terminal-status_waiting {\n  background-color: green;\n}\n\n.app__index-terminal-status_inspecting {\n  background-color: blue;\n}", ""]);
 
 
 
@@ -39114,6 +39114,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var statusText = {
+  1: "\u7B49\u5F85\u8C03\u8BD5",
+  2: "\u8C03\u8BD5\u4E2D"
+};
+var statusType = {
+  1: 'waiting',
+  2: 'inspecting'
+};
 
 var Index =
 /*#__PURE__*/
@@ -39140,14 +39148,18 @@ function (_React$Component) {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "contentRender", function () {
       var connections = _this.state.connections;
-      var terminals = connections.map(function (id) {
+      var terminals = connections.map(function (_ref) {
+        var id = _ref.id,
+            status = _ref.status;
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
           className: "app__index-terminal",
           key: id
         }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Link"], {
           className: "app__index-terminal-link",
           to: "/inspect?id=".concat(id)
-        }, id));
+        }, id, " ", react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("span", {
+          className: "app__index-terminal-status app__index-terminal-status_".concat(statusType[status])
+        }, statusText[status])));
       });
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         className: "app__index-content"
@@ -39214,8 +39226,8 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_10__["Context"].Consumer, null, function (_ref) {
-        var env = _ref.env;
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_10__["Context"].Consumer, null, function (_ref2) {
+        var env = _ref2.env;
         var isDataLoaded = _this2.state.isDataLoaded;
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
           className: "app__index"

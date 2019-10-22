@@ -45,6 +45,7 @@ export default class Program {
             
             case Application: {
               context.config = node.memoizedProps.config;
+              this.instance = node.stateNode;
               break;
             }
         
@@ -96,9 +97,9 @@ export default class Program {
 
   start () {
     if (env.isDevToolRunTime) {
-      devtool(this.context);
+      devtool(this.context, this.instance);
     } else {
-      terminal(this.context);
+      terminal(this.context, this.instance);
     }
   }
 }

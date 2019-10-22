@@ -142,11 +142,6 @@ function () {
     value: function toString() {
       return this.type;
     }
-  }, {
-    key: "valueOf",
-    value: function valueOf() {
-      return this.uuid;
-    }
   }]);
   return Type;
 }();
@@ -170,6 +165,7 @@ var defineNotificationTypes = function defineNotificationTypes(prefix, types) {
 
 var APPLICATION = defineNotificationTypes('application', {
   LAUNCH: 'launch',
+  CONNECT: 'connect',
   INSPECT: 'inspect',
   SHOW: 'show',
   HIDE: 'hide',
