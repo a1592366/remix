@@ -16,23 +16,22 @@ export default class ViewControllerTransport  extends Tunnel {
         return this.emit(callbackId, ...argv);
       }
     } 
-    
-    const t = new Type(type.type, type.value);
 
-    if (callbackId) {
-      argv.push(function (...argv) {
-        this.post({
-          type: String(VIEW),
-          body: {
+    if (type) {   
+      const t = new Type(type.type, type.value);
+  
+      if (callbackId) {
+        argv.push((...argv) => {
+          this.reply({
             argv,
             type,
             callbackId
-          }
-        });
-      })
+          });
+        })
+      }
+  
+      this.emit(t, ...argv);
     }
-
-    this.emit(t, ...argv);
   }
 
   post = (type, argv, callback) => {
@@ -50,6 +49,13 @@ export default class ViewControllerTransport  extends Tunnel {
         callbackId
       }
     });
+  }
+
+  reply (body) {
+    super.post({
+      type: String(VIEW),
+      body
+    })
   }
 
   load (data, callback) {

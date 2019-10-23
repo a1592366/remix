@@ -36,7 +36,7 @@ export default class ViewManager {
     let viewController = this.viewControllers[id];
     
     if (viewController) {
-      viewController.onLoad();
+      viewController.onLoad(query, callback);
     } else {
       const r = this.routes[route];
   

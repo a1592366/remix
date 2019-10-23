@@ -15,6 +15,13 @@ class DevTool {
     this.viewManager = new ViewManager(context);
 
     transports.app.onLaunch(this.onApplicationLaunch);
+    transports.app.onDisconnect(this.onApplicationDisconnected);
+  }
+
+  onApplicationDisconnected = () => {
+    top.postMessage({
+      code: 'DISCONNECTED'
+    })
   }
   
   onApplicationLaunch = (options) => {
@@ -34,8 +41,6 @@ class DevTool {
         
       }
     });
-
-
   }
 }  
 

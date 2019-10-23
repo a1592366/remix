@@ -1,4 +1,4 @@
-/*** MARK_1571767508655 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571851596322 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -4644,7 +4644,7 @@ function () {
 
     (0, _classCallCheck2["default"])(this, ViewController);
     (0, _defineProperty2["default"])(this, "onLoad", function (instance, query) {
-      _this.instance = _this;
+      _this.instance = instance;
       _this.query = query;
       console.log("[View] onLoad(".concat(_this.route, ")"));
     });
@@ -4656,8 +4656,10 @@ function () {
           id: _this.id,
           query: _this.query,
           route: _this.route
-        }, function () {
-          debugger;
+        }, function (element) {
+          _this.instance.setData({
+            element: element
+          });
         });
       }
     });
@@ -4680,7 +4682,12 @@ function () {
           },
           onLoad: function onLoad(query) {
             ctrl.onLoad(this, query);
-          }
+          },
+          onShow: function onShow() {},
+          onHide: function onHide() {},
+          onUnload: function onUnload() {},
+          onPullDownRefresh: function onPullDownRefresh() {},
+          onShareAppMessage: function onShareAppMessage() {}
         });
       }
     }
@@ -5053,7 +5060,7 @@ function () {
       var viewController = _this.viewControllers[id];
 
       if (viewController) {
-        viewController.onLoad();
+        viewController.onLoad(query, callback);
       } else {
         var r = _this.routes[route];
 
@@ -5137,6 +5144,11 @@ function () {
     var _this = this;
 
     (0, _classCallCheck2["default"])(this, DevTool);
+    (0, _defineProperty2["default"])(this, "onApplicationDisconnected", function () {
+      top.postMessage({
+        code: 'DISCONNECTED'
+      });
+    });
     (0, _defineProperty2["default"])(this, "onApplicationLaunch", function (options) {
       var props = _this.instance.props;
 
@@ -5150,6 +5162,8 @@ function () {
     this.viewManager = new _ViewManager["default"](context);
 
     _transports["default"].app.onLaunch(this.onApplicationLaunch);
+
+    _transports["default"].app.onDisconnect(this.onApplicationDisconnected);
   }
 
   (0, _createClass2["default"])(DevTool, [{
@@ -5231,18 +5245,31 @@ function () {
   function Runtime(context) {
     (0, _classCallCheck2["default"])(this, Runtime);
     this.context = context;
+    this.options = null;
   }
 
   (0, _createClass2["default"])(Runtime, [{
     key: "inspect",
     value: function inspect(callback) {
+      var _this = this;
+
       return new Promise(function (resolve, reject) {
         _transports["default"].app.inspect(function () {
           resolve();
         });
 
         _transports["default"].app.on('reLaunch', function () {
-          wx.reLaunch({});
+          wx.reLaunch({
+            url: "/".concat(_this.options.path)
+          });
+
+          _transports["default"].app.on('reConnect', function () {
+            wx.showTabBar();
+            wx.hideLoading();
+
+            _transports["default"].app.emit('launch', _this.options);
+          });
+
           wx.hideTabBar();
           wx.showLoading({
             title: "\u7B49\u5F85\u8FDE\u63A5..."
@@ -5253,7 +5280,11 @@ function () {
   }, {
     key: "run",
     value: function run() {
+      var _this2 = this;
+
       var launchApplication = function launchApplication() {
+        var ctrl = _this2;
+
         if (typeof App === 'function') {
           wx.showTabBar();
           wx.hideLoading();
@@ -5263,6 +5294,7 @@ function () {
 
               _transports["default"].app.emit('launch', options);
 
+              ctrl.options = options;
               _env["default"].isApplicationLaunched = true;
             },
             onError: function onError(e) {
@@ -5354,8 +5386,6 @@ function (_Tunnel) {
     (0, _classCallCheck2["default"])(this, ApplicationTransport);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ApplicationTransport).call(this));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
-      var _this3;
-
       var type = _ref.type,
           argv = _ref.argv,
           callbackId = _ref.callbackId;
@@ -5368,26 +5398,27 @@ function (_Tunnel) {
         }
       }
 
-      var t = new _types.Type(type.type, type.value);
+      if (type) {
+        var _this3;
 
-      if (callbackId) {
-        argv.push(function () {
-          for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-            argv[_key] = arguments[_key];
-          }
+        var t = new _types.Type(type.type, type.value);
 
-          this["this"].post({
-            type: String(_types.APPLICATION),
-            body: {
+        if (callbackId) {
+          argv.push(function () {
+            for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
+              argv[_key] = arguments[_key];
+            }
+
+            this.reply({
               argv: argv,
               type: type,
               callbackId: callbackId
-            }
+            });
           });
-        });
-      }
+        }
 
-      (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
+        (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
+      }
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
       var callbackId = (0, _is.isFunction)(callback) ? _uuid["default"].v4() : null;
@@ -5412,9 +5443,22 @@ function (_Tunnel) {
   }
 
   (0, _createClass2["default"])(ApplicationTransport, [{
+    key: "onDisconnect",
+    value: function onDisconnect(callback) {
+      this.on('disconnect', callback);
+    }
+  }, {
     key: "onLaunch",
     value: function onLaunch(callback) {
       this.on(_types.APPLICATION.LAUNCH, callback);
+    }
+  }, {
+    key: "reply",
+    value: function reply(body) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ApplicationTransport.prototype), "post", this).call(this, {
+        type: String(_types.APPLICATION),
+        body: body
+      });
     }
   }, {
     key: "connect",
@@ -5508,8 +5552,6 @@ function (_Tunnel) {
     (0, _classCallCheck2["default"])(this, ViewControllerTransport);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerTransport).call(this));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
-      var _this3;
-
       var type = _ref.type,
           argv = _ref.argv,
           callbackId = _ref.callbackId;
@@ -5522,26 +5564,27 @@ function (_Tunnel) {
         }
       }
 
-      var t = new _types.Type(type.type, type.value);
+      if (type) {
+        var _this3;
 
-      if (callbackId) {
-        argv.push(function () {
-          for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-            argv[_key] = arguments[_key];
-          }
+        var t = new _types.Type(type.type, type.value);
 
-          this.post({
-            type: String(_types.VIEW),
-            body: {
+        if (callbackId) {
+          argv.push(function () {
+            for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
+              argv[_key] = arguments[_key];
+            }
+
+            _this.reply({
               argv: argv,
               type: type,
               callbackId: callbackId
-            }
+            });
           });
-        });
-      }
+        }
 
-      (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
+        (_this3 = _this).emit.apply(_this3, [t].concat((0, _toConsumableArray2["default"])(argv)));
+      }
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
       var callbackId = (0, _is.isFunction)(callback) ? _uuid["default"].v4() : null;
@@ -5566,6 +5609,14 @@ function (_Tunnel) {
   }
 
   (0, _createClass2["default"])(ViewControllerTransport, [{
+    key: "reply",
+    value: function reply(body) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", this).call(this, {
+        type: String(_types.VIEW),
+        body: body
+      });
+    }
+  }, {
     key: "load",
     value: function load(data, callback) {
       this.post(_types.VIEW.LOAD, [data], callback);
@@ -5909,7 +5960,9 @@ function (_EventEmitter) {
         var json = JSON.parse(data);
 
         _this.onMessage(json);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     });
 
     _this.socket.onOpen(_this.onOpen);

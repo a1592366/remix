@@ -119,6 +119,21 @@ exports.push([module.i, ".app__index-terminals {\n  padding: 8px;\n  min-height:
 
 /***/ }),
 
+/***/ "../../../../node_modules/css-loader/dist/cjs.js!./src/pages/Inspector/index.css":
+/*!******************************************************************************************************************************!*\
+  !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/pages/Inspector/index.css ***!
+  \******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/dist/runtime/api.js */ "../../../../node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".app__inspector {\n  position: relative;\n}\n.app__inspector-mask {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, .5);\n  justify-content: center;\n  align-items: center;\n}\n\n\n.app__inspector_disconnected .app__inspector-mask {\n  display: flex;\n  flex-direction: column;\n}\n\n.app__inspector-mask-text {\n  color: #ffffff;\n  font-size: 50px;\n}\n\n.app__inspector-mask-return {\n  font-size: 14px;\n  color: blue;\n  cursor: pointer;\n}", ""]);
+
+
+
+/***/ }),
+
 /***/ "../../../../node_modules/css-loader/dist/cjs.js!./src/static/css/reset.css":
 /*!*************************************************************************************************************************!*\
   !*** /Users/aniwei/Desktop/remixjs/packages/remixjs-cli/node_modules/css-loader/dist/cjs.js!./src/static/css/reset.css ***!
@@ -582,6 +597,68 @@ module.exports = _typeof;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
 
 
 /***/ }),
@@ -39185,11 +39262,18 @@ function (_React$Component) {
       this.getConnections();
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.timeoutHandler);
+    }
+  }, {
     key: "getConnections",
     value: function () {
       var _getConnections = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this2 = this;
+
         var connections;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -39205,6 +39289,10 @@ function (_React$Component) {
                 this.setState({
                   connections: connections,
                   isDataLoaded: true
+                }, function () {
+                  _this2.timeoutHandler = setTimeout(function () {
+                    return _this2.getConnections();
+                  }, 3000);
                 });
 
               case 4:
@@ -39224,14 +39312,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_10__["Context"].Consumer, null, function (_ref2) {
         var env = _ref2.env;
-        var isDataLoaded = _this2.state.isDataLoaded;
+        var isDataLoaded = _this3.state.isDataLoaded;
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
           className: "app__index"
-        }, !isDataLoaded ? _this2.loadingRender() : _this2.contentRender());
+        }, !isDataLoaded ? _this3.loadingRender() : _this3.contentRender());
       });
     }
   }]);
@@ -39240,6 +39328,33 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_9___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
+
+/***/ }),
+
+/***/ "./src/pages/Inspector/index.css":
+/*!***************************************!*\
+  !*** ./src/pages/Inspector/index.css ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader/dist/cjs.js!./index.css */ "../../../../node_modules/css-loader/dist/cjs.js!./src/pages/Inspector/index.css");
+
+if (typeof content === 'string') {
+  content = [[module.i, content, '']];
+}
+
+var options = {}
+
+options.insert = "head";
+options.singleton = false;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js")(content, options);
+
+if (content.locals) {
+  module.exports = content.locals;
+}
+
 
 /***/ }),
 
@@ -39268,9 +39383,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../index */ "./src/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../index */ "./src/index.js");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./index.css */ "./src/pages/Inspector/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_12__);
+
+
+
 
 
 
@@ -39294,6 +39417,23 @@ function (_React$Component) {
 
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Inspector).call(this, props));
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "onRuntimeMessage", function (_ref) {
+      var _ref$data = _ref.data,
+          code = _ref$data.code,
+          post = _ref$data.post;
+
+      switch (code) {
+        case 'DISCONNECTED':
+          {
+            _this.setState({
+              isDisconnected: true
+            });
+
+            break;
+          }
+      }
+    });
+
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "isChromeDevToolStart", function () {
       var devtools = function devtools() {};
 
@@ -39315,18 +39455,29 @@ function (_React$Component) {
 
     var location = props.location;
     var search = location.search.slice(1);
-    var query = qs__WEBPACK_IMPORTED_MODULE_8___default.a.parse(search);
+    var query = qs__WEBPACK_IMPORTED_MODULE_9___default.a.parse(search);
 
     var _isDevToolStart = _this.isChromeDevToolStart();
 
     _this.query = query;
     _this.state = {
-      isDevToolStart: _isDevToolStart
+      isDevToolStart: _isDevToolStart,
+      isDisconnected: false
     };
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Inspector, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.addEventListener('message', this.onRuntimeMessage);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('message', this.onRuntimeMessage);
+    }
+  }, {
     key: "warningRender",
     value: function warningRender() {
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
@@ -39346,15 +39497,23 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var isDevToolStart = this.state.isDevToolStart;
-      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_9__["Context"].Consumer, null, function (_ref) {
-        var ws = _ref.ws;
-        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          className: "app__inspector"
-        }, !isDevToolStart ? _this2.warningRender() : _this2.scriptRender());
+      var _this$state = this.state,
+          isDevToolStart = _this$state.isDevToolStart,
+          isDisconnected = _this$state.isDisconnected;
+      var classes = classnames__WEBPACK_IMPORTED_MODULE_8___default()({
+        'app__inspector': true,
+        'app__inspector_disconnected': isDisconnected
       });
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: classes
+      }, !isDevToolStart ? this.warningRender() : this.scriptRender(), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "app__inspector-mask"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "app__inspector-mask-text"
+      }, "\u5DF2\u65AD\u5F00"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Link"], {
+        className: "app__inspector-mask-return",
+        to: "/"
+      }, "\u70B9\u51FB\u8FD4\u56DE")));
     }
   }]);
 

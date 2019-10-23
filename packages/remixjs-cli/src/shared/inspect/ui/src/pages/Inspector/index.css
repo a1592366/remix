@@ -1,0 +1,31 @@
+.app__inspector {
+  position: relative;
+}
+.app__inspector-mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  justify-content: center;
+  align-items: center;
+}
+
+
+.app__inspector_disconnected .app__inspector-mask {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__inspector-mask-text {
+  color: #ffffff;
+  font-size: 50px;
+}
+
+.app__inspector-mask-return {
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
+}

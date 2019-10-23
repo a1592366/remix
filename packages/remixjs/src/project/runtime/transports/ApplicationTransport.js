@@ -16,23 +16,27 @@ export default class ApplicationTransport extends Tunnel {
         return this.emit(callbackId, ...argv);
       }
     } 
-    
-    const t = new Type(type.type, type.value);
 
-    if (callbackId) {
-      argv.push(function (...argv) {
-        this.this.post({
-          type: String(APPLICATION),
-          body: {
+    if (type) {
+      const t = new Type(type.type, type.value);
+  
+      if (callbackId) {
+        argv.push(function (...argv) {
+          this.reply({
             argv,
             type,
             callbackId
-          }
-        });
-      })
+          });
+        })
+      }
+  
+      this.emit(t, ...argv);
     }
+    
+  }
 
-    this.emit(t, ...argv);
+  onDisconnect (callback) {
+    this.on('disconnect', callback);
   }
 
   onLaunch (callback) {
@@ -54,6 +58,13 @@ export default class ApplicationTransport extends Tunnel {
         callbackId
       }
     });
+  }
+
+  reply (body) {
+    super.post({
+      type: String(APPLICATION),
+      body
+    })
   }
 
   connect (id, callback) {

@@ -1,7 +1,11 @@
 import React from 'react';
+import classnames from 'classnames';
 import qs from 'qs';
+import { Link } from 'react-router-dom';
 
 import { Context } from '../../index';
+
+import './index.css';
 
 class Inspector extends React.Component {
   constructor (props) {
@@ -15,7 +19,27 @@ class Inspector extends React.Component {
     this.query = query;
 
     this.state = {
-      isDevToolStart
+      isDevToolStart,
+      isDisconnected: false
+    }
+  }
+
+  componentDidMount () {
+    window.addEventListener('message', this.onRuntimeMessage);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('message', this.onRuntimeMessage);
+  }
+
+  onRuntimeMessage = ({ data: { code, post } }) => {
+    switch (code) {
+      case 'DISCONNECTED': {
+        this.setState({
+          isDisconnected: true
+        });
+        break;
+      }
     }
   }
 
@@ -50,24 +74,24 @@ class Inspector extends React.Component {
   }
 
   render () {
-    const { isDevToolStart } = this.state;
+    const { isDevToolStart, isDisconnected } = this.state;
+    const classes = classnames({
+      'app__inspector': true,
+      'app__inspector_disconnected': isDisconnected
+    })
 
     return (
-      <Context.Consumer>
-        {
-          ({ ws }) => {
-            return (
-              <div className="app__inspector">
-                { 
-                  !isDevToolStart ? 
-                    this.warningRender() : 
-                    this.scriptRender()
-                }
-              </div>
-            )
-          }
+      <div className={classes}>
+        { 
+          !isDevToolStart ? 
+            this.warningRender() : 
+            this.scriptRender()
         }
-      </Context.Consumer>
+        <div className="app__inspector-mask">
+          <div className="app__inspector-mask-text">已断开</div>
+          <Link className="app__inspector-mask-return" to="/" >点击返回</Link>
+        </div>
+      </div>
     );
   }
 }

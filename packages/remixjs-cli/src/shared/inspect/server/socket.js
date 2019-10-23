@@ -6,7 +6,8 @@ const { getOwnPropertyNames: getNames } = Object;
 
 const statusTypes = {
   WAITING_TO_CONNECT: 1,
-  CONNECTED: 2
+  CONNECTED: 2,
+  WAITING_TO_RECONNECT: 3
 }
 
 const connections = {};
@@ -34,7 +35,7 @@ class Socket {
       if (this.type === env.INSPECT_TERMINAL_TYPES.LOGIC) {
 
         if (this.tunnel) {
-          this.tunnel.status = statusTypes.WAITING_TO_CONNECT;
+          this.tunnel.status = statusTypes.WAITING_TO_RECONNECT;
           this.tunnel.post({
             type: String(APPLICATION),
             body: {
@@ -54,7 +55,7 @@ class Socket {
             type: String(APPLICATION),
             body: {
               argv: [],
-              callbackId: 'refresh'
+              callbackId: 'disconnect'
             }
           })
   
@@ -89,19 +90,24 @@ class Socket {
     if (connection) {
       const { tunnel, body } = connection;
 
-      if (tunnel.status === statusTypes.WAITING_TO_CONNECT) {
-        this.status = tunnel.status = statusTypes.CONNECTED;
-        this.tunnel = tunnel;
+      if (
+        tunnel.status === statusTypes.WAITING_TO_CONNECT ||
+        tunnel.status === statusTypes.WAITING_TO_RECONNECT
+      ) {
 
+        this.tunnel = tunnel;
         tunnel.tunnel = this;
 
-        return tunnel.post({
+        tunnel.post({
           type: String(APPLICATION),
           body: {
             argv: [],
-            callbackId: body.callbackId
+            callbackId: tunnel.status === statusTypes.WAITING_TO_CONNECT ? 
+              body.callbackId : 'reConnect'
           }
         });
+
+        return this.status = tunnel.status = statusTypes.CONNECTED;
       }
     }
 

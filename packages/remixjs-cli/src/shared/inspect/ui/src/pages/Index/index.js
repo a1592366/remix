@@ -24,12 +24,18 @@ class Index extends React.Component {
     this.getConnections();
   }
 
+  componentWillUnmount () {
+    clearTimeout(this.timeoutHandler);
+  }
+
   async getConnections () {
     const connections = await fetch('/api/inspect').then(res => res.json());
 
     this.setState({
       connections,
       isDataLoaded: true
+    }, () => {
+      this.timeoutHandler = setTimeout(() => this.getConnections(), 3000);
     });
   }
 

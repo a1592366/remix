@@ -18,13 +18,18 @@ export default class ViewController {
     if (isFunction(Page)) {
       Page({
         data: { element: null },
-        onLoad (query) { ctrl.onLoad(this, query) }
+        onLoad (query) { ctrl.onLoad(this, query) },
+        onShow () {},
+        onHide () {},
+        onUnload () {},
+        onPullDownRefresh () {},
+        onShareAppMessage () {}
       })
     }
   }
 
   onLoad = (instance, query) => {
-    this.instance = this;
+    this.instance = instance;
     this.query = query;
 
     console.log(`[View] onLoad(${this.route})`);
@@ -36,8 +41,8 @@ export default class ViewController {
         id: this.id,
         query: this.query,
         route: this.route
-      }, () => {
-        debugger;
+      }, (element) => {
+        this.instance.setData({ element });
       });
     }
   }

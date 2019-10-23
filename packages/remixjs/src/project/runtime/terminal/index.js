@@ -7,6 +7,7 @@ import env from '../../../../env';
 class Runtime {
   constructor (context) {
     this.context = context;
+    this.options = null;
   }
 
   inspect (callback) {
@@ -16,17 +17,29 @@ class Runtime {
       });
 
       transports.app.on('reLaunch', () => {
-        wx.reLaunch({});
+        wx.reLaunch({
+          url: `/${this.options.path}`
+        });
+
+        transports.app.on('reConnect', () => {
+          wx.showTabBar();
+          wx.hideLoading();
+          transports.app.emit('launch', this.options);
+        })
+
         wx.hideTabBar();
         wx.showLoading({
           title: `等待连接...`
         });
-      })
+
+      });
     });
   }
 
   run () {
     const launchApplication = () => {
+      const ctrl = this;
+
       if (typeof App === 'function') {
         wx.showTabBar();
         wx.hideLoading();
@@ -35,6 +48,8 @@ class Runtime {
           onLaunch (options) {
             transports.app.launch(options);
             transports.app.emit('launch', options);
+
+            ctrl.options = options
             
             env.isApplicationLaunched = true;
           },

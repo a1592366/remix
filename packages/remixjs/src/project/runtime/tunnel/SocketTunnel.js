@@ -25,7 +25,9 @@ class MessageEmitter extends EventEmitter {
       try {
         const json = JSON.parse(data);
         this.onMessage(json);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err)
+      }
     });
 
     this.socket.onOpen(this.onOpen);
