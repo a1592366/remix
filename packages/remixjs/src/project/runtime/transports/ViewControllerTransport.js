@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
-import { VIEW, Type } from './types';
+import { VIEW } from './types';
 import { isFunction } from '../../../shared/is';
 
 export default class ViewControllerTransport  extends Tunnel {
@@ -8,30 +8,6 @@ export default class ViewControllerTransport  extends Tunnel {
     super();
 
     this.on(VIEW, this.onMessage);
-  }
-
-  onMessage = ({ type, argv, callbackId }) => {
-    if (callbackId) {
-      if (this.eventNames().includes(callbackId)) {
-        return this.emit(callbackId, ...argv);
-      }
-    } 
-
-    if (type) {   
-      const t = new Type(type.type, type.value);
-  
-      if (callbackId) {
-        argv.push((...argv) => {
-          this.reply({
-            argv,
-            type,
-            callbackId
-          });
-        })
-      }
-  
-      this.emit(t, ...argv);
-    }
   }
 
   post = (type, argv, callback) => {

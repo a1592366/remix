@@ -3,7 +3,7 @@ import { document } from 'remixjs/document';
 import env from 'remixjs/env';
 import Application from '../../src';
 
-env.isDevToolRunTime = true;
+env.isDevToolRuntime = true;
 
 const container = document.createElement('div');
 document.body.appendChild(container);

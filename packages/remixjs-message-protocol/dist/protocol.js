@@ -179,7 +179,11 @@ var VIEW = defineNotificationTypes('view', {
   HIDE: 'hide'
 });
 exports.VIEW = VIEW;
-var API = defineNotificationTypes('api', {});
+var API = defineNotificationTypes('api', {
+  REQUEST: 'request',
+  NAVIGATE_TO: 'navigateTo',
+  NAVIGATE_BACK: 'navigateBack'
+});
 exports.API = API;
 var COMMON = defineNotificationTypes('common', {
   CALLBACK: 'callback'

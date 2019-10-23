@@ -96,7 +96,7 @@ export default class Program {
   }
 
   start () {
-    if (env.isDevToolRunTime) {
+    if (env.isDevToolRuntime) {
       devtool(this.context, this.instance);
     } else {
       terminal(this.context, this.instance);

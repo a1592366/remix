@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
-import { APPLICATION, Type } from './types';
+import { APPLICATION } from './types';
 import { isFunction } from '../../../shared/is';
 
 export default class ApplicationTransport extends Tunnel {
@@ -8,31 +8,6 @@ export default class ApplicationTransport extends Tunnel {
     super();
 
     this.on(APPLICATION, this.onMessage);
-  }
-
-  onMessage = ({ type, argv, callbackId }) => {
-    if (callbackId) {
-      if (this.eventNames().includes(callbackId)) {
-        return this.emit(callbackId, ...argv);
-      }
-    } 
-
-    if (type) {
-      const t = new Type(type.type, type.value);
-  
-      if (callbackId) {
-        argv.push(function (...argv) {
-          this.reply({
-            argv,
-            type,
-            callbackId
-          });
-        })
-      }
-  
-      this.emit(t, ...argv);
-    }
-    
   }
 
   onDisconnect (callback) {

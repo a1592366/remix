@@ -3,7 +3,7 @@ import { document } from 'remixjs/document';
 import env from 'remixjs/env';
 import Application from '../../src';
 
-env.isTerminalRunTime = true;
+env.isTerminalRuntime = true;
 
 const container = document.createElement('div');
 document.body.appendChild(container);

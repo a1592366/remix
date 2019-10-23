@@ -1,5 +1,6 @@
 import EventEmitter from 'events';
 import uuid from 'uuid';
+import { Type } from 'remixjs-message-protocol';
 import Socket from './Socket';
 import env from '../../../../env';
 import { isFunction } from '../../../shared/is';
@@ -17,7 +18,7 @@ class MessageEmitter extends EventEmitter {
       url: env.inspectWSURL,
       protocols: [
         this.id, 
-        env.inspectTerminalTypes[env.isDevToolRunTime ? 'LOGIC' : 'VIEW']
+        env.inspectTerminalTypes[env.isDevToolRuntime ? 'LOGIC' : 'VIEW']
       ]
     });
 
@@ -89,12 +90,34 @@ export default class SocketTunnel extends EventEmitter {
     this.id = uuid.v4();
     this.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter());
 
-    this.emitter.on('message', this.onMessage);
+    this.emitter.on('message', ({ post }) => {
+      const { type, body } = post;
+      this.emit(type, body);
+    });
   }
 
-  onMessage = ({ post }) => {
-    const { type, body } = post;
-    this.emit(type, body);
+  onMessage = ({ type, argv, callbackId }) => {
+    if (callbackId) {
+      if (this.eventNames().includes(callbackId)) {
+        return this.emit(callbackId, ...argv);
+      }
+    } 
+
+    if (type) {
+      const t = new Type(type.type, type.value);
+  
+      if (callbackId) {
+        argv.push((...argv) => {
+          this.reply({
+            argv,
+            type,
+            callbackId
+          });
+        })
+      }
+  
+      this.emit(t, ...argv);
+    }
   }
 
   post (data) {

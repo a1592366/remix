@@ -1,7 +1,7 @@
 import env from '../../../../env';
 
 export default function (options) {
-  const Socket = env.isDevToolRunTime ?
+  const Socket = env.isDevToolRuntime ?
     class {
       constructor (url, protocols) {
         this.socket = new WebSocket(url, protocols);

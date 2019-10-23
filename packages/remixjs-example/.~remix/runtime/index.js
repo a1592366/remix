@@ -1,4 +1,4 @@
-/*** MARK_1571851596322 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571857520859 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -180,7 +180,7 @@ var _env = _interopRequireDefault(__webpack_require__(/*! remixjs/env */ "../rem
 
 var _src = _interopRequireDefault(__webpack_require__(/*! ../../src */ "./src/index.js"));
 
-_env["default"].isTerminalRunTime = true;
+_env["default"].isTerminalRuntime = true;
 
 var container = _document.document.createElement('div');
 

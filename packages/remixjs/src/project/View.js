@@ -9,7 +9,6 @@ export default class ViewController {
     this.id = uuid.v4();
 
     this.init();
-    transports.app.on('launch', this.onLaunch)
   }
 
   init () {
@@ -33,6 +32,12 @@ export default class ViewController {
     this.query = query;
 
     console.log(`[View] onLoad(${this.route})`);
+
+    if (env.isApplicationLaunched) {
+      this.onLaunch(env.applicationLaunchedOptions);
+    }  else {
+      transports.app.on('launch', this.onLaunch);
+    }
   }
 
   onLaunch = ({ path }) => {

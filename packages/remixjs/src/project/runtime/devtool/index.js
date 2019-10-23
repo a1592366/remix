@@ -7,7 +7,7 @@ import { isFunction } from '../../../shared/is';
 import env from '../../../../env';
 
 
-class DevTool {
+class DevToolRuntime {
   constructor (context, instance) {
     this.id = uuid.v4();
     this.context = context;
@@ -45,7 +45,7 @@ class DevTool {
 }  
 
 export default function (context, instance) {
-  const devTool = new DevTool(context, instance);
+  const devTool = new DevToolRuntime(context, instance);
 
 
   devTool.run();

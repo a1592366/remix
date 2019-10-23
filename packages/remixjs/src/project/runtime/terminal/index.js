@@ -1,11 +1,14 @@
 import uuid from 'uuid';
 import transports from '../transports';
 import ViewManager from '../ViewManager';
+import NativeRuntime from './NativeRuntime';
 import env from '../../../../env';
 
 
-class Runtime {
+class TerminalRuntime extends NativeRuntime {
   constructor (context) {
+    super();
+
     this.context = context;
     this.options = null;
   }
@@ -52,6 +55,7 @@ class Runtime {
             ctrl.options = options
             
             env.isApplicationLaunched = true;
+            env.applicationLaunchedOptions = options;
           },
           
           onError (e) {
@@ -80,9 +84,9 @@ class Runtime {
 export {
   transports
 }
-export * from '../transports/types';
+export * from 'remixjs-message-protocol';
 export default function (context) {
-  const runtime =  new Runtime(context);
+  const runtime =  new TerminalRuntime(context);
   const viewManager = new ViewManager(context);
 
   runtime.run();

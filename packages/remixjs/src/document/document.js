@@ -27,4 +27,4 @@ export default fakeDocument;
 
 // export default typeof document === 'undefined' ? 
 //   virtualDocument : 
-//   env.isDevToolRunTime ? fakeDocument : document;
+//   env.isDevToolRuntime ? fakeDocument : document;

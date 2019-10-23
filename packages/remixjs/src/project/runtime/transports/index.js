@@ -1,5 +1,6 @@
 import ApplicationTransport from './ApplicationTransport';
 import ViewControllerTransport from './ViewControllerTransport';
+import APITransport from './APITransport';
 
 const transports = {};
 
@@ -23,5 +24,13 @@ export default {
     transports.app = transports.app || new ApplicationTransport();
 
     return transports.view = new ViewControllerTransport()
+  },
+
+  get api () {
+    if (transports.api) {
+      return transports.api;
+    }
+
+    return transports.api = new APITransport();
   }
 }
