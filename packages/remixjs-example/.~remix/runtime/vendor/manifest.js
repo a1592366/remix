@@ -11805,29 +11805,7 @@ function (_ViewController) {
 
   (0, _createClass2["default"])(Index, [{
     key: "componentWillMount",
-    value: function componentWillMount() {
-      _project.transports.api.request({
-        url: 'http://127.0.0.1:10002/api/inspect'
-      }).then(function (res) {
-        _project.transports.api.navigateTo({
-          url: '/pages/User/Index'
-        }).then(function (res) {
-          debubger;
-        });
-      });
-
-      var socket = _project.transports.api.connectSocket({
-        url: 'ws://127.0.0.1:10002',
-        protocols: ['test']
-      });
-
-      socket.onOpen(function () {
-        debugger;
-        socket.send({
-          data: 'hello world'
-        });
-      });
-    }
+    value: function componentWillMount() {}
   }, {
     key: "render",
     value: function render() {
