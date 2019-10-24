@@ -94,7 +94,7 @@ class Project {
 import { View } from 'remixjs/project';
 new View('${page}');`
         );
-        await fs.writeFile(xml, ``);
+        await fs.writeFile(xml, `<block wx:if="{{element}}">test</block>`);
 
         resolve();
       });

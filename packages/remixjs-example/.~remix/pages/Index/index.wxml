@@ -1,3 +1,1 @@
-<block wx:if="{{element}}">
-1
-</block>
+<block wx:if="{{element}}">test</block>

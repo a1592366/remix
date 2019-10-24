@@ -27,10 +27,12 @@ export default class NativeRuntime {
   }
 
   onNavigateBack = (options, callback) => {
-    return this.createCommonAPIRequst('onNavigateBack', options, callback);
+    return this.createCommonAPIRequst('navigateBack', options, callback);
   }
 
   onConnectSocket = (id, options, callback) => {
-    return createNativeSocket(transports.api, id, options, callback);
+    return env.isInspectMode ? 
+      createNativeSocket(transports.api, id, options, callback) : 
+      this.createCommonAPIRequst('connectSocket', options, callback);
   }
 }

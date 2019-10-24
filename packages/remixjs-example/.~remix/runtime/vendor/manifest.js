@@ -1,4 +1,4 @@
-/*** MARK_1571941892778 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571942881458 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1300,62 +1300,6 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "../remixjs/components.js":
-/*!********************************!*\
-  !*** ../remixjs/components.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _components = __webpack_require__(/*! ./src/components */ "../remixjs/src/components/index.js");
-
-Object.keys(_components).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _components[key];
-    }
-  });
-});
-
-/***/ }),
-
-/***/ "../remixjs/document.js":
-/*!******************************!*\
-  !*** ../remixjs/document.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _document = __webpack_require__(/*! ./src/document */ "../remixjs/src/document/index.js");
-
-Object.keys(_document).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _document[key];
-    }
-  });
-});
-
-/***/ }),
-
 /***/ "../remixjs/env.js":
 /*!*************************!*\
   !*** ../remixjs/env.js ***!
@@ -1370,7 +1314,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = exports.inspectLogicUUID = exports.inspectTerminalUUID = exports.inspectTerminalTypes = exports.inspectMessageTypes = exports.internalUIURL = exports.inspectWSURL = exports.isInspectMode = void 0;
-var isInspectMode = true;
+var isInspectMode = false;
 exports.isInspectMode = isInspectMode;
 var inspectWSURL = "ws://192.168.2.11:10002";
 exports.inspectWSURL = inspectWSURL;
@@ -1380,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "6d28d461-b438-4d6c-b9a3-f9b8dfb22210";
+var inspectTerminalUUID = "a35b93c1-eba1-454f-8799-bf03d569ca52";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "425cf31a-906c-4283-9993-f45e00a30ff6";
+var inspectLogicUUID = "aa3a7c7a-8b07-4f0f-9650-41b5f18a7cf6";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -1393,41 +1337,6 @@ var _default = {
   inspectTerminalUUID: inspectTerminalUUID,
   inspectLogicUUID: inspectLogicUUID
 };
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../remixjs/index.js":
-/*!***************************!*\
-  !*** ../remixjs/index.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _exportNames = {};
-exports["default"] = void 0;
-
-var _react = _interopRequireWildcard(__webpack_require__(/*! ./src/react */ "../remixjs/src/react/index.js"));
-
-Object.keys(_react).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _react[key];
-    }
-  });
-});
-var _default = _react["default"];
 exports["default"] = _default;
 
 /***/ }),
@@ -3255,34 +3164,6 @@ Object.keys(_project).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _project[key];
-    }
-  });
-});
-
-/***/ }),
-
-/***/ "../remixjs/router.js":
-/*!****************************!*\
-  !*** ../remixjs/router.js ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _router = __webpack_require__(/*! ./src/router */ "../remixjs/src/router/index.js");
-
-Object.keys(_router).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _router[key];
     }
   });
 });
@@ -5256,10 +5137,10 @@ function () {
       return _this.createCommonAPIRequst('navigateTo', options, callback);
     });
     (0, _defineProperty2["default"])(this, "onNavigateBack", function (options, callback) {
-      return _this.createCommonAPIRequst('onNavigateBack', options, callback);
+      return _this.createCommonAPIRequst('navigateBack', options, callback);
     });
     (0, _defineProperty2["default"])(this, "onConnectSocket", function (id, options, callback) {
-      return (0, _NativeSocket["default"])(_transports["default"].api, id, options, callback);
+      return _env["default"].isInspectMode ? (0, _NativeSocket["default"])(_transports["default"].api, id, options, callback) : _this.createCommonAPIRequst('connectSocket', options, callback);
     });
 
     _transports["default"].api.on(_transports.API.REQUEST, this.onRequest);
@@ -5671,6 +5552,131 @@ exports["default"] = APITransport;
 
 /***/ }),
 
+/***/ "../remixjs/src/project/runtime/transports/APITransportNative.js":
+/*!***********************************************************************!*\
+  !*** ../remixjs/src/project/runtime/transports/APITransportNative.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
+
+var _tunnel = _interopRequireDefault(__webpack_require__(/*! ../tunnel */ "../remixjs/src/project/runtime/tunnel/index.js"));
+
+var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
+
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
+
+var isSuccess = function isSuccess(data) {
+  if (/(\w)+\:ok/g.test(data.errMsg)) {
+    return true;
+  }
+};
+
+var APITransport =
+/*#__PURE__*/
+function (_Tunnel) {
+  (0, _inherits2["default"])(APITransport, _Tunnel);
+
+  function APITransport() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, APITransport);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(APITransport).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(APITransport.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
+        type: String(_types.API),
+        body: {
+          type: type,
+          argv: argv,
+          callback: callback
+        }
+      });
+    });
+    return _this;
+  }
+
+  (0, _createClass2["default"])(APITransport, [{
+    key: "reply",
+    value: function reply(body) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(APITransport.prototype), "post", this).call(this, {
+        type: String(_types.API),
+        body: body
+      });
+    }
+  }, {
+    key: "createCommonPromise",
+    value: function createCommonPromise(api, options) {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this2.post(api, [options], function (data) {
+          if (isSuccess(data)) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+
+          if ((0, _is.isFunction)(options.complete)) {
+            options.complete(data);
+          }
+        });
+      });
+    }
+  }, {
+    key: "request",
+    value: function request(options) {
+      return this.createCommonPromise(_types.API.REQUEST, options);
+    }
+  }, {
+    key: "navigateTo",
+    value: function navigateTo(options) {
+      return this.createCommonPromise(_types.API.NAVIGATE_TO, options);
+    }
+  }, {
+    key: "navigateBack",
+    value: function navigateBack(options) {
+      return this.createCommonPromise(_types.API.NAVIGATE_BACK, options);
+    }
+  }, {
+    key: "connectSocket",
+    value: function connectSocket(options) {
+      return new createLogicSocket(this, options);
+    }
+  }]);
+  return APITransport;
+}(_tunnel["default"]);
+
+exports["default"] = APITransport;
+
+/***/ }),
+
 /***/ "../remixjs/src/project/runtime/transports/ApplicationTransport.js":
 /*!*************************************************************************!*\
   !*** ../remixjs/src/project/runtime/transports/ApplicationTransport.js ***!
@@ -5771,6 +5777,111 @@ function (_Tunnel) {
     key: "inspect",
     value: function inspect(callback) {
       this.post(_types.APPLICATION.INSPECT, [], callback);
+    }
+  }, {
+    key: "launch",
+    value: function launch(options) {
+      this.post(_types.APPLICATION.LAUNCH, [options]);
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.post(_types.APPLICATION.SHOW, []);
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.post(_types.APPLICATION.HIDE, []);
+    }
+  }, {
+    key: "error",
+    value: function error(_error) {
+      this.post(_types.APPLICATION.ERROR, [_error]);
+    }
+  }]);
+  return ApplicationTransport;
+}(_tunnel["default"]);
+
+exports["default"] = ApplicationTransport;
+
+/***/ }),
+
+/***/ "../remixjs/src/project/runtime/transports/ApplicationTransportNative.js":
+/*!*******************************************************************************!*\
+  !*** ../remixjs/src/project/runtime/transports/ApplicationTransportNative.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
+
+var _tunnel = _interopRequireDefault(__webpack_require__(/*! ../tunnel */ "../remixjs/src/project/runtime/tunnel/index.js"));
+
+var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
+
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
+
+var ApplicationTransport =
+/*#__PURE__*/
+function (_Tunnel) {
+  (0, _inherits2["default"])(ApplicationTransport, _Tunnel);
+
+  function ApplicationTransport() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, ApplicationTransport);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ApplicationTransport).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ApplicationTransport.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
+        type: String(_types.APPLICATION),
+        body: {
+          type: type,
+          argv: argv,
+          callback: callback
+        }
+      });
+    });
+    return _this;
+  }
+
+  (0, _createClass2["default"])(ApplicationTransport, [{
+    key: "onLaunch",
+    value: function onLaunch(callback) {
+      this.on(_types.APPLICATION.LAUNCH, callback);
+    }
+  }, {
+    key: "reply",
+    value: function reply(body) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ApplicationTransport.prototype), "post", this).call(this, {
+        type: String(_types.APPLICATION),
+        body: body
+      });
     }
   }, {
     key: "launch",
@@ -6003,6 +6114,101 @@ exports["default"] = ViewControllerTransport;
 
 /***/ }),
 
+/***/ "../remixjs/src/project/runtime/transports/ViewControllerTransportNative.js":
+/*!**********************************************************************************!*\
+  !*** ../remixjs/src/project/runtime/transports/ViewControllerTransportNative.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
+
+var _tunnel = _interopRequireDefault(__webpack_require__(/*! ../tunnel */ "../remixjs/src/project/runtime/tunnel/index.js"));
+
+var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
+
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
+
+var ViewControllerTransport =
+/*#__PURE__*/
+function (_Tunnel) {
+  (0, _inherits2["default"])(ViewControllerTransport, _Tunnel);
+
+  function ViewControllerTransport() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, ViewControllerTransport);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerTransport).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
+        type: String(_types.VIEW),
+        body: {
+          type: type,
+          argv: argv,
+          callback: callback
+        }
+      });
+    });
+    return _this;
+  }
+
+  (0, _createClass2["default"])(ViewControllerTransport, [{
+    key: "reply",
+    value: function reply(body) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", this).call(this, {
+        type: String(_types.VIEW),
+        body: body
+      });
+    }
+  }, {
+    key: "load",
+    value: function load(data, callback) {
+      this.post(_types.VIEW.LOAD, [data], callback);
+    }
+  }, {
+    key: "onLoad",
+    value: function onLoad(callback) {
+      this.on(_types.VIEW.LOAD, callback);
+    }
+  }, {
+    key: "onReady",
+    value: function onReady(callback) {
+      this.on(_types.VIEW.READY, callback);
+    }
+  }]);
+  return ViewControllerTransport;
+}(_tunnel["default"]);
+
+exports["default"] = ViewControllerTransport;
+
+/***/ }),
+
 /***/ "../remixjs/src/project/runtime/transports/index.js":
 /*!**********************************************************!*\
   !*** ../remixjs/src/project/runtime/transports/index.js ***!
@@ -6027,6 +6233,14 @@ var _ViewControllerTransport = _interopRequireDefault(__webpack_require__(/*! ./
 
 var _APITransport = _interopRequireDefault(__webpack_require__(/*! ./APITransport */ "../remixjs/src/project/runtime/transports/APITransport.js"));
 
+var _ApplicationTransportNative = _interopRequireDefault(__webpack_require__(/*! ./ApplicationTransportNative */ "../remixjs/src/project/runtime/transports/ApplicationTransportNative.js"));
+
+var _ViewControllerTransportNative = _interopRequireDefault(__webpack_require__(/*! ./ViewControllerTransportNative */ "../remixjs/src/project/runtime/transports/ViewControllerTransportNative.js"));
+
+var _APITransportNative = _interopRequireDefault(__webpack_require__(/*! ./APITransportNative */ "../remixjs/src/project/runtime/transports/APITransportNative.js"));
+
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
 var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
 
 Object.keys(_types).forEach(function (key) {
@@ -6039,15 +6253,29 @@ Object.keys(_types).forEach(function (key) {
     }
   });
 });
+var isInspectMode = _env["default"].isInspectMode;
 var transports = {};
+
+var createApplicationTransport = function createApplicationTransport() {
+  return transports.app = transports.app || (!isInspectMode ? new _ApplicationTransportNative["default"]() : new _ApplicationTransport["default"]());
+};
+
+var createViewControllerTransport = function createViewControllerTransport() {
+  return transports.view = transports.view || (!isInspectMode ? new _ViewControllerTransportNative["default"]() : new _ViewControllerTransport["default"]());
+};
+
+var createAPITransport = function createAPITransport() {
+  return transports.api = transports.api || (!isInspectMode ? new _APITransportNative["default"]() : new _APITransport["default"]());
+};
+
 var _default = {
   get app() {
     if (transports.app) {
       return transports.app;
     }
 
-    transports.view = transports.view || new _ViewControllerTransport["default"]();
-    return transports.app = new _ApplicationTransport["default"]();
+    transports.view = createViewControllerTransport();
+    return transports.app = createApplicationTransport();
   },
 
   get view() {
@@ -6055,8 +6283,8 @@ var _default = {
       return transports.view;
     }
 
-    transports.app = transports.app || new _ApplicationTransport["default"]();
-    return transports.view = new _ViewControllerTransport["default"]();
+    transports.app = createApplicationTransport();
+    return transports.view = createViewControllerTransport();
   },
 
   get api() {
@@ -6064,7 +6292,7 @@ var _default = {
       return transports.api;
     }
 
-    return transports.api = new _APITransport["default"]();
+    return transports.api = createAPITransport();
   }
 
 };
@@ -6125,7 +6353,7 @@ var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtim
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
 var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
@@ -6137,95 +6365,49 @@ var _events = _interopRequireDefault(__webpack_require__(/*! events */ "../remix
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
-var MessageEmitter =
-/*#__PURE__*/
-function (_EventEmitter) {
-  (0, _inherits2["default"])(MessageEmitter, _EventEmitter);
-
-  function MessageEmitter() {
-    var _this;
-
-    (0, _classCallCheck2["default"])(this, MessageEmitter);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(MessageEmitter).call(this));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (data) {
-      _this.emit('message', data);
-    });
-    _this.id = _uuid["default"].v4();
-    return _this;
-  }
-
-  (0, _createClass2["default"])(MessageEmitter, [{
-    key: "post",
-    value: function post(_post) {
-      this.onMessage({
-        post: _post
-      });
-    }
-  }]);
-  return MessageEmitter;
-}(_events["default"]);
+var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
 var _default =
 /*#__PURE__*/
-function (_EventEmitter2) {
-  (0, _inherits2["default"])(_default, _EventEmitter2);
+function (_EventEmitter) {
+  (0, _inherits2["default"])(_default, _EventEmitter);
 
   function _default() {
-    var _this2;
+    var _getPrototypeOf2;
+
+    var _this;
 
     (0, _classCallCheck2["default"])(this, _default);
-    _this2 = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(_default).call(this));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "onMessage", function (_ref) {
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(_default)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (_ref) {
       var type = _ref.type,
           argv = _ref.argv,
-          callbackId = _ref.callbackId;
-
-      if (callbackId) {
-        if (_this2.eventNames().includes(callbackId)) {
-          var _this3;
-
-          return (_this3 = _this2).emit.apply(_this3, [callbackId].concat((0, _toConsumableArray2["default"])(argv)));
-        }
-      }
+          callback = _ref.callback;
 
       if (type) {
-        var _this4;
+        var _this2;
 
-        if (callbackId) {
-          argv.push(function () {
-            for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-              argv[_key] = arguments[_key];
-            }
-
-            _this2.reply({
-              argv: argv,
-              type: type,
-              callbackId: callbackId
-            });
-          });
+        if ((0, _is.isFunction)(callback)) {
+          argv.push(callback);
         }
 
-        (_this4 = _this2).emit.apply(_this4, [type].concat((0, _toConsumableArray2["default"])(argv)));
+        (_this2 = _this).emit.apply(_this2, [type].concat((0, _toConsumableArray2["default"])(argv)));
       }
     });
-    _this2.id = _uuid["default"].v4();
-    _this2.emitter = _events["default"].emitter || (_events["default"].emitter = new MessageEmitter());
-
-    _this2.emitter.on('message', function (_ref2) {
-      var post = _ref2.post;
-      var type = post.type,
-          body = post.body;
-
-      _this2.emit(type, body);
-    });
-
-    return _this2;
+    return _this;
   }
 
   (0, _createClass2["default"])(_default, [{
     key: "post",
-    value: function post(data) {
-      this.emitter.post(data);
+    value: function post(_post) {
+      var type = _post.type,
+          body = _post.body;
+      this.onMessage(body);
     }
   }]);
   return _default;
@@ -6530,7 +6712,7 @@ var _NativeTunnel = _interopRequireDefault(__webpack_require__(/*! ./NativeTunne
 
 var _SocketTunnel = _interopRequireDefault(__webpack_require__(/*! ./SocketTunnel */ "../remixjs/src/project/runtime/tunnel/SocketTunnel.js"));
 
-var Tunnel =  true ? _SocketTunnel["default"] : undefined;
+var Tunnel =  false ? undefined : _NativeTunnel["default"];
 var _default = Tunnel;
 exports["default"] = _default;
 
@@ -11372,450 +11554,6 @@ var CONTEXT_CONSUMER = 9;
 exports.CONTEXT_CONSUMER = CONTEXT_CONSUMER;
 var CONTEXT_PROVIDER = 10;
 exports.CONTEXT_PROVIDER = CONTEXT_PROVIDER;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-
-module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-
-  return cache;
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-
-  var cache = _getRequireWildcardCache();
-
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-
-  var newObj = {};
-
-  if (obj != null) {
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-
-        if (desc && (desc.get || desc.set)) {
-          Object.defineProperty(newObj, key, desc);
-        } else {
-          newObj[key] = obj[key];
-        }
-      }
-    }
-  }
-
-  newObj["default"] = obj;
-
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-
-  return newObj;
-}
-
-module.exports = _interopRequireWildcard;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
-
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof2(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof2 = function _typeof2(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof2 = function _typeof2(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof2(obj);
-}
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _remixjs = _interopRequireDefault(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
-
-var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
-
-var _router = __webpack_require__(/*! remixjs/router */ "../remixjs/router.js");
-
-var _Index = _interopRequireDefault(__webpack_require__(/*! ./pages/Index */ "./src/pages/Index/index.js"));
-
-var _me = _interopRequireDefault(__webpack_require__(/*! ./static/images/me.png */ "./src/static/images/me.png"));
-
-var _me_selected = _interopRequireDefault(__webpack_require__(/*! ./static/images/me_selected.png */ "./src/static/images/me_selected.png"));
-
-var _explore = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore.png */ "./src/static/images/explore.png"));
-
-var _explore_selected = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore_selected.png */ "./src/static/images/explore_selected.png"));
-
-var TabBarItem = _components.TabBar.TabBarItem;
-
-var _default = function _default() {
-  return _remixjs["default"].createElement(_components.Application, {
-    config: {
-      navigationBarBackgroundColor: '#000000',
-      navigationStyle: 'custom'
-    },
-    onLaunch: function onLaunch(options) {}
-  }, _remixjs["default"].createElement(_router.Router, null, _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Index/index",
-    component: _Index["default"]
-  }), _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Explore/index",
-    component: _Index["default"]
-  }), _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Home/index",
-    component: _Index["default"]
-  })), _remixjs["default"].createElement(_components.TabBar, {
-    selectedColor: '#333333'
-  }, _remixjs["default"].createElement(TabBarItem, {
-    path: "pages/Explore/index",
-    icon: _me["default"],
-    selectedIcon: _me_selected["default"]
-  }, "\u53D1\u73B0"), _remixjs["default"].createElement(TabBarItem, {
-    path: "pages/Index/index",
-    icon: _explore["default"],
-    selectedIcon: _explore_selected["default"]
-  }, "\u6211")));
-};
-
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "./src/pages/Index/index.js":
-/*!**********************************!*\
-  !*** ./src/pages/Index/index.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
-
-var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
-
-var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
-
-var _remixjsMessageProtocol = __webpack_require__(/*! remixjs-message-protocol */ "../remixjs-message-protocol/dist/protocol.js");
-
-__webpack_require__(/*! ./index.css */ "./src/pages/Index/index.css");
-
-var Index =
-/*#__PURE__*/
-function (_ViewController) {
-  (0, _inherits2["default"])(Index, _ViewController);
-
-  function Index() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    (0, _classCallCheck2["default"])(this, Index);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "config", {
-      navigationBarTitleText: '我的'
-    });
-    return _this;
-  }
-
-  (0, _createClass2["default"])(Index, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {}
-  }, {
-    key: "render",
-    value: function render() {
-      return _remixjs["default"].createElement(_components.View, null);
-    }
-  }]);
-  return Index;
-}(_components.ViewController);
-
-exports["default"] = Index;
 
 /***/ })
 
