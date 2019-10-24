@@ -1,4 +1,4 @@
-/*** MARK_1571942881458 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571944144362 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "a35b93c1-eba1-454f-8799-bf03d569ca52";
+var inspectTerminalUUID = "0265160f-0a92-4024-ad66-faf2b1725826";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "aa3a7c7a-8b07-4f0f-9650-41b5f18a7cf6";
+var inspectLogicUUID = "d7adf1ae-f0a6-4c29-b4b4-e4f6c56c59d1";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -5667,7 +5667,7 @@ function (_Tunnel) {
   }, {
     key: "connectSocket",
     value: function connectSocket(options) {
-      return new createLogicSocket(this, options);
+      return this.createCommonPromise(_types.API.CONNECT_SOCKET, options, function () {});
     }
   }]);
   return APITransport;

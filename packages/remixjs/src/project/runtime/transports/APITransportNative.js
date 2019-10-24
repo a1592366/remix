@@ -61,6 +61,6 @@ export default class APITransport extends Tunnel {
   }
 
   connectSocket (options) {
-    return new createLogicSocket(this, options);
+    return this.createCommonPromise(API.CONNECT_SOCKET, options, () => {});
   }
 }

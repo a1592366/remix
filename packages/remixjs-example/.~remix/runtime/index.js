@@ -1,4 +1,4 @@
-/*** MARK_1571942881458 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571944144362 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -771,7 +771,27 @@ function (_ViewController) {
 
   (0, _createClass2["default"])(Index, [{
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+      _project.transports.api.request({
+        url: 'http://127.0.0.1:10002/api/inspect'
+      }).then(function (res) {
+        _project.transports.api.navigateTo({
+          url: '/pages/User/Index'
+        }).then(function (res) {
+          debubger;
+        });
+      }); // const socket = transports.api.connectSocket({
+      //   url: 'ws://127.0.0.1:10002',
+      //   protocols: ['test']
+      // });
+      // socket.onOpen(function () {
+      //   debugger;
+      //   socket.send({
+      //     data: 'hello world'
+      //   })
+      // });
+
+    }
   }, {
     key: "render",
     value: function render() {
