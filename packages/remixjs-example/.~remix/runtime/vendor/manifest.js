@@ -1,4 +1,4 @@
-/*** MARK_1571887485090 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571937581794 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1380,9 +1380,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "9f2415f5-4713-4f75-8140-4f2493e7f987";
+var inspectTerminalUUID = "2bd1433c-3280-46f7-9b72-d291573159ba";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "1f859093-66b1-4d45-9520-3bcd835cff07";
+var inspectLogicUUID = "68661106-8026-4a4c-bf3d-bf4d50638b64";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -6117,6 +6117,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../remixjs/node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
@@ -6174,16 +6176,48 @@ function (_EventEmitter2) {
     (0, _classCallCheck2["default"])(this, _default);
     _this2 = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(_default).call(this));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "onMessage", function (_ref) {
-      var post = _ref.post;
+      var type = _ref.type,
+          argv = _ref.argv,
+          callbackId = _ref.callbackId;
+
+      if (callbackId) {
+        if (_this2.eventNames().includes(callbackId)) {
+          var _this3;
+
+          return (_this3 = _this2).emit.apply(_this3, [callbackId].concat((0, _toConsumableArray2["default"])(argv)));
+        }
+      }
+
+      if (type) {
+        var _this4;
+
+        if (callbackId) {
+          argv.push(function () {
+            for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
+              argv[_key] = arguments[_key];
+            }
+
+            _this2.reply({
+              argv: argv,
+              type: type,
+              callbackId: callbackId
+            });
+          });
+        }
+
+        (_this4 = _this2).emit.apply(_this4, [type].concat((0, _toConsumableArray2["default"])(argv)));
+      }
+    });
+    _this2.id = _uuid["default"].v4();
+    _this2.emitter = _events["default"].emitter || (_events["default"].emitter = new MessageEmitter());
+
+    _this2.emitter.on('message', function (_ref2) {
+      var post = _ref2.post;
       var type = post.type,
           body = post.body;
 
       _this2.emit(type, body);
     });
-    _this2.id = _uuid["default"].v4();
-    _this2.emitter = _events["default"].emitter || (_events["default"].emitter = new MessageEmitter());
-
-    _this2.emitter.on('message', _this2.onMessage);
 
     return _this2;
   }
