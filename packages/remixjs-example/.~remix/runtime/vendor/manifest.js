@@ -1,4 +1,4 @@
-/*** MARK_1571941299337 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571941892778 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1380,9 +1380,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "87cb0b10-4fe1-400f-98b1-2bed6c52ea74";
+var inspectTerminalUUID = "6d28d461-b438-4d6c-b9a3-f9b8dfb22210";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "0c844679-1b45-4a59-b87a-a53bfaf8fa9e";
+var inspectLogicUUID = "425cf31a-906c-4283-9993-f45e00a30ff6";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -4504,7 +4504,7 @@ var _router = __webpack_require__(/*! ../router */ "../remixjs/src/router/index.
 
 var _terminal = _interopRequireDefault(__webpack_require__(/*! ./runtime/terminal */ "../remixjs/src/project/runtime/terminal/index.js"));
 
-var _devtool = _interopRequireDefault(__webpack_require__(/*! ./runtime/devtool */ "../remixjs/src/project/runtime/devtool/index.js"));
+var _logic = _interopRequireDefault(__webpack_require__(/*! ./runtime/logic */ "../remixjs/src/project/runtime/logic/index.js"));
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
 
@@ -4605,7 +4605,7 @@ function () {
     key: "start",
     value: function start() {
       if (_env["default"].isDevToolRuntime) {
-        (0, _devtool["default"])(this.context, this.instance);
+        (0, _logic["default"])(this.context, this.instance);
       } else {
         (0, _terminal["default"])(this.context, this.instance);
       }
@@ -5119,10 +5119,10 @@ exports["default"] = ViewManager;
 
 /***/ }),
 
-/***/ "../remixjs/src/project/runtime/devtool/index.js":
-/*!*******************************************************!*\
-  !*** ../remixjs/src/project/runtime/devtool/index.js ***!
-  \*******************************************************/
+/***/ "../remixjs/src/project/runtime/logic/index.js":
+/*!*****************************************************!*\
+  !*** ../remixjs/src/project/runtime/logic/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5154,13 +5154,13 @@ var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/i
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
-var DevToolRuntime =
+var LogicRuntime =
 /*#__PURE__*/
 function () {
-  function DevToolRuntime(context, instance) {
+  function LogicRuntime(context, instance) {
     var _this = this;
 
-    (0, _classCallCheck2["default"])(this, DevToolRuntime);
+    (0, _classCallCheck2["default"])(this, LogicRuntime);
     (0, _defineProperty2["default"])(this, "onApplicationDisconnected", function () {
       top.postMessage({
         code: 'DISCONNECTED'
@@ -5183,7 +5183,7 @@ function () {
     _transports["default"].app.onDisconnect(this.onApplicationDisconnected);
   }
 
-  (0, _createClass2["default"])(DevToolRuntime, [{
+  (0, _createClass2["default"])(LogicRuntime, [{
     key: "run",
     value: function run() {
       var search = location.search.slice(1);
@@ -5195,12 +5195,12 @@ function () {
       });
     }
   }]);
-  return DevToolRuntime;
+  return LogicRuntime;
 }();
 
 function _default(context, instance) {
-  var devTool = new DevToolRuntime(context, instance);
-  devTool.run();
+  var logic = new LogicRuntime(context, instance);
+  logic.run();
 }
 
 /***/ }),

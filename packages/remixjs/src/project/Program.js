@@ -4,7 +4,7 @@ import { render } from '../renderer';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
 import terminal from './runtime/terminal';
-import devtool from './runtime/devtool';
+import logic from './runtime/logic';
 import env from '../../env';
 
 const { TabBarItem } = TabBar;
@@ -97,7 +97,7 @@ export default class Program {
 
   start () {
     if (env.isDevToolRuntime) {
-      devtool(this.context, this.instance);
+      logic(this.context, this.instance);
     } else {
       terminal(this.context, this.instance);
     }
