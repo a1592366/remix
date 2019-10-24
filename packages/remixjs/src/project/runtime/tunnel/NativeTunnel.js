@@ -1,9 +1,12 @@
 import EventEmitter from 'events';
-import uuid from 'uuid'
+import uuid from 'uuid';
+import env from '../../../../env';
 
 class MessageEmitter extends EventEmitter {
   constructor () {
     super();
+
+    console.log(env);
 
     this.id = uuid.v4();
   }

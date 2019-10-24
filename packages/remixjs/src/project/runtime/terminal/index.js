@@ -1,9 +1,10 @@
 import uuid from 'uuid';
-import transports from '../transports';
+import { terminalTransports } from '../transports';
 import ViewManager from '../ViewManager';
 import NativeRuntime from './NativeRuntime';
 import env from '../../../../env';
 
+const transports = terminalTransports;
 
 class TerminalRuntime extends NativeRuntime {
   constructor (context) {

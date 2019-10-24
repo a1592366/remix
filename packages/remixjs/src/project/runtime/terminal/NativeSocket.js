@@ -23,7 +23,6 @@ class NativeSocket {
     });
 
     socket.onMessage((data) => {
-      debugger;
       this.transport.reply({
         type: API.SOCKET_MESSAGE,
         argv: [this.id, data],

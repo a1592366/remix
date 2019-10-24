@@ -2,7 +2,9 @@ import ViewController from './ViewController';
 import { render } from '../../renderer';
 import { document } from '../../document';
 import createElement from '../../react/createElement';
-import transports, { VIEW } from './transports';
+import { logicTransports, VIEW } from './transports';
+
+const transports = logicTransports;
 
 export default class ViewManager {
   constructor (context) {
@@ -45,7 +47,7 @@ export default class ViewManager {
 
         viewController.onLoad(query, callback);
       } else {
-        logger.red(`Can not find route!`);
+        // logger.red(`Can not find route!`);
       }
     }
 

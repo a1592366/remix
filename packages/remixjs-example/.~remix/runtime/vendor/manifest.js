@@ -1,4 +1,4 @@
-/*** MARK_1571937581794 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571937794305 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1300,62 +1300,6 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "../remixjs/components.js":
-/*!********************************!*\
-  !*** ../remixjs/components.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _components = __webpack_require__(/*! ./src/components */ "../remixjs/src/components/index.js");
-
-Object.keys(_components).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _components[key];
-    }
-  });
-});
-
-/***/ }),
-
-/***/ "../remixjs/document.js":
-/*!******************************!*\
-  !*** ../remixjs/document.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _document = __webpack_require__(/*! ./src/document */ "../remixjs/src/document/index.js");
-
-Object.keys(_document).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _document[key];
-    }
-  });
-});
-
-/***/ }),
-
 /***/ "../remixjs/env.js":
 /*!*************************!*\
   !*** ../remixjs/env.js ***!
@@ -1370,7 +1314,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = exports.inspectLogicUUID = exports.inspectTerminalUUID = exports.inspectTerminalTypes = exports.inspectMessageTypes = exports.internalUIURL = exports.inspectWSURL = exports.isInspectMode = void 0;
-var isInspectMode = true;
+var isInspectMode = false;
 exports.isInspectMode = isInspectMode;
 var inspectWSURL = "ws://192.168.2.11:10002";
 exports.inspectWSURL = inspectWSURL;
@@ -1380,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "2bd1433c-3280-46f7-9b72-d291573159ba";
+var inspectTerminalUUID = "19f438d3-186f-419c-955f-73c722f61322";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "68661106-8026-4a4c-bf3d-bf4d50638b64";
+var inspectLogicUUID = "e83ff7f0-3c22-4489-96ba-b58400dc1c6f";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -1393,41 +1337,6 @@ var _default = {
   inspectTerminalUUID: inspectTerminalUUID,
   inspectLogicUUID: inspectLogicUUID
 };
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../remixjs/index.js":
-/*!***************************!*\
-  !*** ../remixjs/index.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _exportNames = {};
-exports["default"] = void 0;
-
-var _react = _interopRequireWildcard(__webpack_require__(/*! ./src/react */ "../remixjs/src/react/index.js"));
-
-Object.keys(_react).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _react[key];
-    }
-  });
-});
-var _default = _react["default"];
 exports["default"] = _default;
 
 /***/ }),
@@ -3261,34 +3170,6 @@ Object.keys(_project).forEach(function (key) {
 
 /***/ }),
 
-/***/ "../remixjs/router.js":
-/*!****************************!*\
-  !*** ../remixjs/router.js ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _router = __webpack_require__(/*! ./src/router */ "../remixjs/src/router/index.js");
-
-Object.keys(_router).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _router[key];
-    }
-  });
-});
-
-/***/ }),
-
 /***/ "../remixjs/src/components/Application.js":
 /*!************************************************!*\
   !*** ../remixjs/src/components/Application.js ***!
@@ -4645,17 +4526,19 @@ var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/n
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ./runtime/transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ./runtime/transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
 
-var ViewController =
+var transports = _transports.terminalTransports;
+
+var View =
 /*#__PURE__*/
 function () {
-  function ViewController(route) {
+  function View(route) {
     var _this = this;
 
-    (0, _classCallCheck2["default"])(this, ViewController);
+    (0, _classCallCheck2["default"])(this, View);
     (0, _defineProperty2["default"])(this, "onLoad", function (instance, query) {
       _this.instance = instance;
       _this.query = query;
@@ -4664,14 +4547,14 @@ function () {
       if (_env["default"].isApplicationLaunched) {
         _this.onLaunch(_env["default"].applicationLaunchedOptions);
       } else {
-        _transports["default"].app.on('launch', _this.onLaunch);
+        transports.app.on('launch', _this.onLaunch);
       }
     });
     (0, _defineProperty2["default"])(this, "onLaunch", function (_ref) {
       var path = _ref.path;
 
       if (path === _this.route) {
-        _transports["default"].view.load({
+        transports.view.load({
           id: _this.id,
           query: _this.query,
           route: _this.route
@@ -4687,7 +4570,7 @@ function () {
     this.init();
   }
 
-  (0, _createClass2["default"])(ViewController, [{
+  (0, _createClass2["default"])(View, [{
     key: "init",
     value: function init() {
       var ctrl = this;
@@ -4709,10 +4592,10 @@ function () {
       }
     }
   }]);
-  return ViewController;
+  return View;
 }();
 
-exports["default"] = ViewController;
+exports["default"] = View;
 
 /***/ }),
 
@@ -5037,8 +4920,6 @@ exports["default"] = ViewController;
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -5060,7 +4941,9 @@ var _document = __webpack_require__(/*! ../../document */ "../remixjs/src/docume
 
 var _createElement = _interopRequireDefault(__webpack_require__(/*! ../../react/createElement */ "../remixjs/src/react/createElement.js"));
 
-var _transports = _interopRequireWildcard(__webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js");
+
+var transports = _transports.logicTransports;
 
 var ViewManager =
 /*#__PURE__*/
@@ -5084,17 +4967,14 @@ function () {
         if (r) {
           _this.viewControllers[id] = viewController = new _ViewController["default"](id, r);
           viewController.onLoad(query, callback);
-        } else {
-          logger.red("Can not find route!");
+        } else {// logger.red(`Can not find route!`);
         }
       }
     });
     this.context = context;
     this.viewControllers = {};
-
-    _transports["default"].view.onLoad(this.onLoad);
-
-    _transports["default"].view.onReady(this.onReady);
+    transports.view.onLoad(this.onLoad);
+    transports.view.onReady(this.onReady);
   }
 
   (0, _createClass2["default"])(ViewManager, [{
@@ -5146,13 +5026,15 @@ var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/n
 
 var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "../remixjs/node_modules/qs/lib/index.js"));
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
 var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
+var transports = _transports.logicTransports;
 
 var DevToolRuntime =
 /*#__PURE__*/
@@ -5177,10 +5059,8 @@ function () {
     this.context = context;
     this.instance = instance;
     this.viewManager = new _ViewManager["default"](context);
-
-    _transports["default"].app.onLaunch(this.onApplicationLaunch);
-
-    _transports["default"].app.onDisconnect(this.onApplicationDisconnected);
+    transports.app.onLaunch(this.onApplicationLaunch);
+    transports.app.onDisconnect(this.onApplicationDisconnected);
   }
 
   (0, _createClass2["default"])(DevToolRuntime, [{
@@ -5190,7 +5070,7 @@ function () {
 
       var query = _qs["default"].parse(search);
 
-      _transports["default"].app.connect(query.id, function (code) {
+      transports.app.connect(query.id, function (code) {
         if (code === 'NO_EXIST') {}
       });
     }
@@ -5215,8 +5095,6 @@ function _default(context, instance) {
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -5232,7 +5110,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
-var _transports = _interopRequireWildcard(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
@@ -5241,6 +5119,8 @@ var _NativeSocket = _interopRequireDefault(__webpack_require__(/*! ./NativeSocke
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var transports = _transports.terminalTransports;
 
 var NativeRuntime =
 /*#__PURE__*/
@@ -5259,16 +5139,12 @@ function () {
       return _this.createCommonAPIRequst('onNavigateBack', options, callback);
     });
     (0, _defineProperty2["default"])(this, "onConnectSocket", function (id, options, callback) {
-      return (0, _NativeSocket["default"])(_transports["default"].api, id, options, callback);
+      return (0, _NativeSocket["default"])(transports.api, id, options, callback);
     });
-
-    _transports["default"].api.on(_transports.API.REQUEST, this.onRequest);
-
-    _transports["default"].api.on(_transports.API.NAVIGATE_TO, this.onNavigateTo);
-
-    _transports["default"].api.on(_transports.API.NAVIGATE_BACK, this.onNavigateBack);
-
-    _transports["default"].api.on(_transports.API.CONNECT_SOCKET, this.onConnectSocket);
+    transports.api.on(_transports.API.REQUEST, this.onRequest);
+    transports.api.on(_transports.API.NAVIGATE_TO, this.onNavigateTo);
+    transports.api.on(_transports.API.NAVIGATE_BACK, this.onNavigateBack);
+    transports.api.on(_transports.API.CONNECT_SOCKET, this.onConnectSocket);
   }
 
   (0, _createClass2["default"])(NativeRuntime, [{
@@ -5352,8 +5228,6 @@ function () {
         });
       });
       socket.onMessage(function (data) {
-        debugger;
-
         _this2.transport.reply({
           type: _transports.API.SOCKET_MESSAGE,
           argv: [_this2.id, data]
@@ -5395,12 +5269,7 @@ var _exportNames = {
   transports: true
 };
 exports["default"] = _default;
-Object.defineProperty(exports, "transports", {
-  enumerable: true,
-  get: function get() {
-    return _transports["default"];
-  }
-});
+exports.transports = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
@@ -5414,7 +5283,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
@@ -5434,6 +5303,8 @@ Object.keys(_remixjsMessageProtocol).forEach(function (key) {
     }
   });
 });
+var transports = _transports.terminalTransports;
+exports.transports = transports;
 
 var TerminalRuntime =
 /*#__PURE__*/
@@ -5456,22 +5327,18 @@ function (_NativeRuntime) {
       var _this2 = this;
 
       return new Promise(function (resolve, reject) {
-        _transports["default"].app.inspect(function () {
+        transports.app.inspect(function () {
           resolve();
         });
-
-        _transports["default"].app.on('reLaunch', function () {
+        transports.app.on('reLaunch', function () {
           wx.reLaunch({
             url: "/".concat(_this2.options.path)
           });
-
-          _transports["default"].app.on('reConnect', function () {
+          transports.app.on('reConnect', function () {
             wx.showTabBar();
             wx.hideLoading();
-
-            _transports["default"].app.emit('launch', _this2.options);
+            transports.app.emit('launch', _this2.options);
           });
-
           wx.hideTabBar();
           wx.showLoading({
             title: "\u7B49\u5F85\u8FDE\u63A5..."
@@ -5492,16 +5359,14 @@ function (_NativeRuntime) {
           wx.hideLoading();
           App({
             onLaunch: function onLaunch(options) {
-              _transports["default"].app.launch(options);
-
-              _transports["default"].app.emit('launch', options);
-
+              transports.app.launch(options);
+              transports.app.emit('launch', options);
               ctrl.options = options;
               _env["default"].isApplicationLaunched = true;
               _env["default"].applicationLaunchedOptions = options;
             },
             onError: function onError(e) {
-              _transports["default"].app.error(e);
+              transports.app.error(e);
             }
           });
         }
@@ -6018,14 +5883,19 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _exportNames = {};
-exports["default"] = void 0;
+var _exportNames = {
+  logicTransports: true,
+  terminalTransports: true
+};
+exports.terminalTransports = exports.logicTransports = void 0;
 
 var _ApplicationTransport = _interopRequireDefault(__webpack_require__(/*! ./ApplicationTransport */ "../remixjs/src/project/runtime/transports/ApplicationTransport.js"));
 
 var _ViewControllerTransport = _interopRequireDefault(__webpack_require__(/*! ./ViewControllerTransport */ "../remixjs/src/project/runtime/transports/ViewControllerTransport.js"));
 
 var _APITransport = _interopRequireDefault(__webpack_require__(/*! ./APITransport */ "../remixjs/src/project/runtime/transports/APITransport.js"));
+
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
 var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
 
@@ -6039,36 +5909,43 @@ Object.keys(_types).forEach(function (key) {
     }
   });
 });
-var transports = {};
-var _default = {
-  get app() {
-    if (transports.app) {
-      return transports.app;
+
+function createTransport() {
+  var transports = {};
+  return {
+    get app() {
+      if (transports.app) {
+        return transports.app;
+      }
+
+      transports.view = transports.view || new _ViewControllerTransport["default"]();
+      return transports.app = new _ApplicationTransport["default"]();
+    },
+
+    get view() {
+      if (transports.view) {
+        return transports.view;
+      }
+
+      transports.app = transports.app || new _ApplicationTransport["default"]();
+      return transports.view = new _ViewControllerTransport["default"]();
+    },
+
+    get api() {
+      if (transports.api) {
+        return transports.api;
+      }
+
+      return transports.api = new _APITransport["default"]();
     }
 
-    transports.view = transports.view || new _ViewControllerTransport["default"]();
-    return transports.app = new _ApplicationTransport["default"]();
-  },
+  };
+}
 
-  get view() {
-    if (transports.view) {
-      return transports.view;
-    }
-
-    transports.app = transports.app || new _ApplicationTransport["default"]();
-    return transports.view = new _ViewControllerTransport["default"]();
-  },
-
-  get api() {
-    if (transports.api) {
-      return transports.api;
-    }
-
-    return transports.api = new _APITransport["default"]();
-  }
-
-};
-exports["default"] = _default;
+var logicTransports = createTransport();
+exports.logicTransports = logicTransports;
+var terminalTransports = _env["default"].isInspectMode ? logicTransports : createTransport();
+exports.terminalTransports = terminalTransports;
 
 /***/ }),
 
@@ -6137,6 +6014,8 @@ var _events = _interopRequireDefault(__webpack_require__(/*! events */ "../remix
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
 var MessageEmitter =
 /*#__PURE__*/
 function (_EventEmitter) {
@@ -6150,6 +6029,7 @@ function (_EventEmitter) {
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (data) {
       _this.emit('message', data);
     });
+    console.log(_env["default"]);
     _this.id = _uuid["default"].v4();
     return _this;
   }
@@ -6530,7 +6410,7 @@ var _NativeTunnel = _interopRequireDefault(__webpack_require__(/*! ./NativeTunne
 
 var _SocketTunnel = _interopRequireDefault(__webpack_require__(/*! ./SocketTunnel */ "../remixjs/src/project/runtime/tunnel/SocketTunnel.js"));
 
-var Tunnel =  true ? _SocketTunnel["default"] : undefined;
+var Tunnel =  false ? undefined : _NativeTunnel["default"];
 var _default = Tunnel;
 exports["default"] = _default;
 
@@ -11372,450 +11252,6 @@ var CONTEXT_CONSUMER = 9;
 exports.CONTEXT_CONSUMER = CONTEXT_CONSUMER;
 var CONTEXT_PROVIDER = 10;
 exports.CONTEXT_PROVIDER = CONTEXT_PROVIDER;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-
-module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-
-  return cache;
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-
-  var cache = _getRequireWildcardCache();
-
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-
-  var newObj = {};
-
-  if (obj != null) {
-    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-
-        if (desc && (desc.get || desc.set)) {
-          Object.defineProperty(newObj, key, desc);
-        } else {
-          newObj[key] = obj[key];
-        }
-      }
-    }
-  }
-
-  newObj["default"] = obj;
-
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-
-  return newObj;
-}
-
-module.exports = _interopRequireWildcard;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
-
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof2(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof2 = function _typeof2(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof2 = function _typeof2(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof2(obj);
-}
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _remixjs = _interopRequireDefault(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
-
-var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
-
-var _router = __webpack_require__(/*! remixjs/router */ "../remixjs/router.js");
-
-var _Index = _interopRequireDefault(__webpack_require__(/*! ./pages/Index */ "./src/pages/Index/index.js"));
-
-var _me = _interopRequireDefault(__webpack_require__(/*! ./static/images/me.png */ "./src/static/images/me.png"));
-
-var _me_selected = _interopRequireDefault(__webpack_require__(/*! ./static/images/me_selected.png */ "./src/static/images/me_selected.png"));
-
-var _explore = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore.png */ "./src/static/images/explore.png"));
-
-var _explore_selected = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore_selected.png */ "./src/static/images/explore_selected.png"));
-
-var TabBarItem = _components.TabBar.TabBarItem;
-
-var _default = function _default() {
-  return _remixjs["default"].createElement(_components.Application, {
-    config: {
-      navigationBarBackgroundColor: '#000000',
-      navigationStyle: 'custom'
-    },
-    onLaunch: function onLaunch(options) {}
-  }, _remixjs["default"].createElement(_router.Router, null, _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Index/index",
-    component: _Index["default"]
-  }), _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Explore/index",
-    component: _Index["default"]
-  }), _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Home/index",
-    component: _Index["default"]
-  })), _remixjs["default"].createElement(_components.TabBar, {
-    selectedColor: '#333333'
-  }, _remixjs["default"].createElement(TabBarItem, {
-    path: "pages/Explore/index",
-    icon: _me["default"],
-    selectedIcon: _me_selected["default"]
-  }, "\u53D1\u73B0"), _remixjs["default"].createElement(TabBarItem, {
-    path: "pages/Index/index",
-    icon: _explore["default"],
-    selectedIcon: _explore_selected["default"]
-  }, "\u6211")));
-};
-
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "./src/pages/Index/index.js":
-/*!**********************************!*\
-  !*** ./src/pages/Index/index.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
-
-var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
-
-var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
-
-var _remixjsMessageProtocol = __webpack_require__(/*! remixjs-message-protocol */ "../remixjs-message-protocol/dist/protocol.js");
-
-__webpack_require__(/*! ./index.css */ "./src/pages/Index/index.css");
-
-var Index =
-/*#__PURE__*/
-function (_ViewController) {
-  (0, _inherits2["default"])(Index, _ViewController);
-
-  function Index() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    (0, _classCallCheck2["default"])(this, Index);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "config", {
-      navigationBarTitleText: '我的'
-    });
-    return _this;
-  }
-
-  (0, _createClass2["default"])(Index, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {}
-  }, {
-    key: "render",
-    value: function render() {
-      return _remixjs["default"].createElement(_components.View, null);
-    }
-  }]);
-  return Index;
-}(_components.ViewController);
-
-exports["default"] = Index;
 
 /***/ })
 
