@@ -1,9 +1,11 @@
 import uuid from 'uuid';
 import { isFunction } from '../shared/is';
-import transports from './runtime/transports';
+import { terminalTransports } from './runtime/transports';
 import env from '../../env';
 
-export default class ViewController {
+const transports = terminalTransports;
+
+export default class View {
   constructor (route) {
     this.route = route;
     this.id = uuid.v4();

@@ -1,7 +1,9 @@
 import uuid from 'uuid';
-import transports, { API } from '../transports';
+import { API, terminalTransports } from '../transports';
 import env from '../../../../env';
 import createNativeSocket from './NativeSocket';
+
+const transports = terminalTransports;
 
 export default class NativeRuntime {
   constructor () {

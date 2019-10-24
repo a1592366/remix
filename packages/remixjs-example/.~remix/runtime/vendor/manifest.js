@@ -4645,17 +4645,19 @@ var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/n
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ./runtime/transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ./runtime/transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
 
-var ViewController =
+var transports = _transports.terminalTransports;
+
+var View =
 /*#__PURE__*/
 function () {
-  function ViewController(route) {
+  function View(route) {
     var _this = this;
 
-    (0, _classCallCheck2["default"])(this, ViewController);
+    (0, _classCallCheck2["default"])(this, View);
     (0, _defineProperty2["default"])(this, "onLoad", function (instance, query) {
       _this.instance = instance;
       _this.query = query;
@@ -4664,14 +4666,14 @@ function () {
       if (_env["default"].isApplicationLaunched) {
         _this.onLaunch(_env["default"].applicationLaunchedOptions);
       } else {
-        _transports["default"].app.on('launch', _this.onLaunch);
+        transports.app.on('launch', _this.onLaunch);
       }
     });
     (0, _defineProperty2["default"])(this, "onLaunch", function (_ref) {
       var path = _ref.path;
 
       if (path === _this.route) {
-        _transports["default"].view.load({
+        transports.view.load({
           id: _this.id,
           query: _this.query,
           route: _this.route
@@ -4687,7 +4689,7 @@ function () {
     this.init();
   }
 
-  (0, _createClass2["default"])(ViewController, [{
+  (0, _createClass2["default"])(View, [{
     key: "init",
     value: function init() {
       var ctrl = this;
@@ -4709,10 +4711,10 @@ function () {
       }
     }
   }]);
-  return ViewController;
+  return View;
 }();
 
-exports["default"] = ViewController;
+exports["default"] = View;
 
 /***/ }),
 
@@ -5037,8 +5039,6 @@ exports["default"] = ViewController;
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -5060,7 +5060,9 @@ var _document = __webpack_require__(/*! ../../document */ "../remixjs/src/docume
 
 var _createElement = _interopRequireDefault(__webpack_require__(/*! ../../react/createElement */ "../remixjs/src/react/createElement.js"));
 
-var _transports = _interopRequireWildcard(__webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js");
+
+var transports = _transports.logicTransports;
 
 var ViewManager =
 /*#__PURE__*/
@@ -5084,17 +5086,14 @@ function () {
         if (r) {
           _this.viewControllers[id] = viewController = new _ViewController["default"](id, r);
           viewController.onLoad(query, callback);
-        } else {
-          logger.red("Can not find route!");
+        } else {// logger.red(`Can not find route!`);
         }
       }
     });
     this.context = context;
     this.viewControllers = {};
-
-    _transports["default"].view.onLoad(this.onLoad);
-
-    _transports["default"].view.onReady(this.onReady);
+    transports.view.onLoad(this.onLoad);
+    transports.view.onReady(this.onReady);
   }
 
   (0, _createClass2["default"])(ViewManager, [{
@@ -5146,13 +5145,15 @@ var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/n
 
 var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "../remixjs/node_modules/qs/lib/index.js"));
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
 var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
+var transports = _transports.logicTransports;
 
 var DevToolRuntime =
 /*#__PURE__*/
@@ -5177,10 +5178,8 @@ function () {
     this.context = context;
     this.instance = instance;
     this.viewManager = new _ViewManager["default"](context);
-
-    _transports["default"].app.onLaunch(this.onApplicationLaunch);
-
-    _transports["default"].app.onDisconnect(this.onApplicationDisconnected);
+    transports.app.onLaunch(this.onApplicationLaunch);
+    transports.app.onDisconnect(this.onApplicationDisconnected);
   }
 
   (0, _createClass2["default"])(DevToolRuntime, [{
@@ -5190,7 +5189,7 @@ function () {
 
       var query = _qs["default"].parse(search);
 
-      _transports["default"].app.connect(query.id, function (code) {
+      transports.app.connect(query.id, function (code) {
         if (code === 'NO_EXIST') {}
       });
     }
@@ -5215,8 +5214,6 @@ function _default(context, instance) {
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -5232,7 +5229,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
-var _transports = _interopRequireWildcard(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
@@ -5241,6 +5238,8 @@ var _NativeSocket = _interopRequireDefault(__webpack_require__(/*! ./NativeSocke
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var transports = _transports.terminalTransports;
 
 var NativeRuntime =
 /*#__PURE__*/
@@ -5259,16 +5258,12 @@ function () {
       return _this.createCommonAPIRequst('onNavigateBack', options, callback);
     });
     (0, _defineProperty2["default"])(this, "onConnectSocket", function (id, options, callback) {
-      return (0, _NativeSocket["default"])(_transports["default"].api, id, options, callback);
+      return (0, _NativeSocket["default"])(transports.api, id, options, callback);
     });
-
-    _transports["default"].api.on(_transports.API.REQUEST, this.onRequest);
-
-    _transports["default"].api.on(_transports.API.NAVIGATE_TO, this.onNavigateTo);
-
-    _transports["default"].api.on(_transports.API.NAVIGATE_BACK, this.onNavigateBack);
-
-    _transports["default"].api.on(_transports.API.CONNECT_SOCKET, this.onConnectSocket);
+    transports.api.on(_transports.API.REQUEST, this.onRequest);
+    transports.api.on(_transports.API.NAVIGATE_TO, this.onNavigateTo);
+    transports.api.on(_transports.API.NAVIGATE_BACK, this.onNavigateBack);
+    transports.api.on(_transports.API.CONNECT_SOCKET, this.onConnectSocket);
   }
 
   (0, _createClass2["default"])(NativeRuntime, [{
@@ -5352,8 +5347,6 @@ function () {
         });
       });
       socket.onMessage(function (data) {
-        debugger;
-
         _this2.transport.reply({
           type: _transports.API.SOCKET_MESSAGE,
           argv: [_this2.id, data]
@@ -5395,12 +5388,7 @@ var _exportNames = {
   transports: true
 };
 exports["default"] = _default;
-Object.defineProperty(exports, "transports", {
-  enumerable: true,
-  get: function get() {
-    return _transports["default"];
-  }
-});
+exports.transports = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
@@ -5414,7 +5402,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
-var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
@@ -5434,6 +5422,8 @@ Object.keys(_remixjsMessageProtocol).forEach(function (key) {
     }
   });
 });
+var transports = _transports.terminalTransports;
+exports.transports = transports;
 
 var TerminalRuntime =
 /*#__PURE__*/
@@ -5456,22 +5446,18 @@ function (_NativeRuntime) {
       var _this2 = this;
 
       return new Promise(function (resolve, reject) {
-        _transports["default"].app.inspect(function () {
+        transports.app.inspect(function () {
           resolve();
         });
-
-        _transports["default"].app.on('reLaunch', function () {
+        transports.app.on('reLaunch', function () {
           wx.reLaunch({
             url: "/".concat(_this2.options.path)
           });
-
-          _transports["default"].app.on('reConnect', function () {
+          transports.app.on('reConnect', function () {
             wx.showTabBar();
             wx.hideLoading();
-
-            _transports["default"].app.emit('launch', _this2.options);
+            transports.app.emit('launch', _this2.options);
           });
-
           wx.hideTabBar();
           wx.showLoading({
             title: "\u7B49\u5F85\u8FDE\u63A5..."
@@ -5492,16 +5478,14 @@ function (_NativeRuntime) {
           wx.hideLoading();
           App({
             onLaunch: function onLaunch(options) {
-              _transports["default"].app.launch(options);
-
-              _transports["default"].app.emit('launch', options);
-
+              transports.app.launch(options);
+              transports.app.emit('launch', options);
               ctrl.options = options;
               _env["default"].isApplicationLaunched = true;
               _env["default"].applicationLaunchedOptions = options;
             },
             onError: function onError(e) {
-              _transports["default"].app.error(e);
+              transports.app.error(e);
             }
           });
         }
@@ -6018,14 +6002,19 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _exportNames = {};
-exports["default"] = void 0;
+var _exportNames = {
+  logicTransports: true,
+  terminalTransports: true
+};
+exports.terminalTransports = exports.logicTransports = void 0;
 
 var _ApplicationTransport = _interopRequireDefault(__webpack_require__(/*! ./ApplicationTransport */ "../remixjs/src/project/runtime/transports/ApplicationTransport.js"));
 
 var _ViewControllerTransport = _interopRequireDefault(__webpack_require__(/*! ./ViewControllerTransport */ "../remixjs/src/project/runtime/transports/ViewControllerTransport.js"));
 
 var _APITransport = _interopRequireDefault(__webpack_require__(/*! ./APITransport */ "../remixjs/src/project/runtime/transports/APITransport.js"));
+
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
 
 var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/transports/types.js");
 
@@ -6039,36 +6028,43 @@ Object.keys(_types).forEach(function (key) {
     }
   });
 });
-var transports = {};
-var _default = {
-  get app() {
-    if (transports.app) {
-      return transports.app;
+
+function createTransport() {
+  var transports = {};
+  return {
+    get app() {
+      if (transports.app) {
+        return transports.app;
+      }
+
+      transports.view = transports.view || new _ViewControllerTransport["default"]();
+      return transports.app = new _ApplicationTransport["default"]();
+    },
+
+    get view() {
+      if (transports.view) {
+        return transports.view;
+      }
+
+      transports.app = transports.app || new _ApplicationTransport["default"]();
+      return transports.view = new _ViewControllerTransport["default"]();
+    },
+
+    get api() {
+      if (transports.api) {
+        return transports.api;
+      }
+
+      return transports.api = new _APITransport["default"]();
     }
 
-    transports.view = transports.view || new _ViewControllerTransport["default"]();
-    return transports.app = new _ApplicationTransport["default"]();
-  },
+  };
+}
 
-  get view() {
-    if (transports.view) {
-      return transports.view;
-    }
-
-    transports.app = transports.app || new _ApplicationTransport["default"]();
-    return transports.view = new _ViewControllerTransport["default"]();
-  },
-
-  get api() {
-    if (transports.api) {
-      return transports.api;
-    }
-
-    return transports.api = new _APITransport["default"]();
-  }
-
-};
-exports["default"] = _default;
+var logicTransports = createTransport();
+exports.logicTransports = logicTransports;
+var terminalTransports = _env["default"].isInspectMode ? logicTransports : createTransport();
+exports.terminalTransports = terminalTransports;
 
 /***/ }),
 
@@ -6137,6 +6133,8 @@ var _events = _interopRequireDefault(__webpack_require__(/*! events */ "../remix
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
+var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
 var MessageEmitter =
 /*#__PURE__*/
 function (_EventEmitter) {
@@ -6150,6 +6148,7 @@ function (_EventEmitter) {
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (data) {
       _this.emit('message', data);
     });
+    console.log(_env["default"]);
     _this.id = _uuid["default"].v4();
     return _this;
   }
