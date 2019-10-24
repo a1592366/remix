@@ -1,4 +1,4 @@
-/*** MARK_1571941299337 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1571940597896 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"pages/Explore/index": 0
+/******/ 		"runtime/logic": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,16 +148,16 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./.~remix/pages/Explore/.~index.js","runtime/vendor/manifest"]);
+/******/ 	deferredModules.push(["./.~remix/runtime/logic.runtime.js","runtime/vendor/manifest"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./.~remix/pages/Explore/.~index.js":
+/***/ "./.~remix/runtime/logic.runtime.js":
 /*!******************************************!*\
-  !*** ./.~remix/pages/Explore/.~index.js ***!
+  !*** ./.~remix/runtime/logic.runtime.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -165,11 +165,81 @@
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
 var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
 
-new _project.View('pages/Explore/index');
+var _document = __webpack_require__(/*! remixjs/document */ "../remixjs/document.js");
+
+var _env = _interopRequireDefault(__webpack_require__(/*! remixjs/env */ "../remixjs/env.js"));
+
+var _src = _interopRequireDefault(__webpack_require__(/*! ../../src */ "./src/index.js"));
+
+_env["default"].isLogicRuntime = true;
+
+var container = _document.document.createElement('div');
+
+_document.document.body.appendChild(container);
+
+var program = new _project.Program(_src["default"], container);
+program.start();
+
+/***/ }),
+
+/***/ "./src/pages/Index/index.css":
+/*!***********************************!*\
+  !*** ./src/pages/Index/index.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/static/images/explore.png":
+/*!***************************************!*\
+  !*** ./src/static/images/explore.png ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "src/static/images/explore.png";
+
+/***/ }),
+
+/***/ "./src/static/images/explore_selected.png":
+/*!************************************************!*\
+  !*** ./src/static/images/explore_selected.png ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "src/static/images/explore_selected.png";
+
+/***/ }),
+
+/***/ "./src/static/images/me.png":
+/*!**********************************!*\
+  !*** ./src/static/images/me.png ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "src/static/images/me.png";
+
+/***/ }),
+
+/***/ "./src/static/images/me_selected.png":
+/*!*******************************************!*\
+  !*** ./src/static/images/me_selected.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "src/static/images/me_selected.png";
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=logic.js.map
