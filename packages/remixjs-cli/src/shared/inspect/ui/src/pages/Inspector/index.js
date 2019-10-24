@@ -63,7 +63,7 @@ class Inspector extends React.Component {
   }
 
   scriptRender () {
-    return <iframe className="app__inspector-runtime" src={`/runtime.html?id=${this.query.id}`} />
+    return <iframe ref={ref => this.runtime = ref} className="app__inspector-runtime" src={`/runtime.html?id=${this.query.id}`} />
   }
 
   onReTry = () => {
@@ -71,6 +71,17 @@ class Inspector extends React.Component {
     this.setState({
       isDevToolStart
     });
+  }
+
+  onReConnect = () => {
+
+    if (this.runtime) {
+      this.setState({
+        isDisconnected: false
+      }, () => {
+        this.runtime.contentWindow.location.reload();
+      })
+    }
   }
 
   render () {
@@ -89,7 +100,7 @@ class Inspector extends React.Component {
         }
         <div className="app__inspector-mask">
           <div className="app__inspector-mask-text">已断开</div>
-          <Link className="app__inspector-mask-return" to="/" >点击返回</Link>
+          <a className="app__inspector-mask-return" onClick={this.onReConnect} >重新连接</a>
         </div>
       </div>
     );

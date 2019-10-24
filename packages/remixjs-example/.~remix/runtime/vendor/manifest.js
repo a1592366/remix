@@ -1,4 +1,4 @@
-/*** MARK_1571857520859 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1571887485090 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -863,7 +863,10 @@ var _typeof2 = _interopRequireDefault2(__webpack_require__(/*! @babel/runtime/he
         var API = defineNotificationTypes('api', {
           REQUEST: 'request',
           NAVIGATE_TO: 'navigateTo',
-          NAVIGATE_BACK: 'navigateBack'
+          NAVIGATE_BACK: 'navigateBack',
+          CONNECT_SOCKET: 'connectSocket',
+          SOCKET_OPEN: 'socketOpen',
+          SOCKET_MESSAGE: 'socketMessage'
         });
         exports.API = API;
         var COMMON = defineNotificationTypes('common', {
@@ -1366,7 +1369,7 @@ Object.keys(_document).forEach(function (key) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.inspectTerminalTypes = exports.inspectMessageTypes = exports.internalUIURL = exports.inspectWSURL = exports.isInspectMode = void 0;
+exports["default"] = exports.inspectLogicUUID = exports.inspectTerminalUUID = exports.inspectTerminalTypes = exports.inspectMessageTypes = exports.internalUIURL = exports.inspectWSURL = exports.isInspectMode = void 0;
 var isInspectMode = true;
 exports.isInspectMode = isInspectMode;
 var inspectWSURL = "ws://192.168.2.11:10002";
@@ -1377,12 +1380,18 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
+var inspectTerminalUUID = "9f2415f5-4713-4f75-8140-4f2493e7f987";
+exports.inspectTerminalUUID = inspectTerminalUUID;
+var inspectLogicUUID = "1f859093-66b1-4d45-9520-3bcd835cff07";
+exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
   inspectWSURL: inspectWSURL,
   internalUIURL: internalUIURL,
   inspectMessageTypes: inspectMessageTypes,
-  inspectTerminalTypes: inspectTerminalTypes
+  inspectTerminalTypes: inspectTerminalTypes,
+  inspectTerminalUUID: inspectTerminalUUID,
+  inspectLogicUUID: inspectLogicUUID
 };
 exports["default"] = _default;
 
@@ -5215,17 +5224,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
 
 var _transports = _interopRequireWildcard(__webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js"));
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
+
+var _NativeSocket = _interopRequireDefault(__webpack_require__(/*! ./NativeSocket */ "../remixjs/src/project/runtime/terminal/NativeSocket.js"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -5235,39 +5246,37 @@ var NativeRuntime =
 /*#__PURE__*/
 function () {
   function NativeRuntime() {
+    var _this = this;
+
     (0, _classCallCheck2["default"])(this, NativeRuntime);
+    (0, _defineProperty2["default"])(this, "onRequest", function (options, callback) {
+      return _this.createCommonAPIRequst('request', options, callback);
+    });
+    (0, _defineProperty2["default"])(this, "onNavigateTo", function (options, callback) {
+      return _this.createCommonAPIRequst('navigateTo', options, callback);
+    });
+    (0, _defineProperty2["default"])(this, "onNavigateBack", function (options, callback) {
+      return _this.createCommonAPIRequst('onNavigateBack', options, callback);
+    });
+    (0, _defineProperty2["default"])(this, "onConnectSocket", function (id, options, callback) {
+      return (0, _NativeSocket["default"])(_transports["default"].api, id, options, callback);
+    });
 
     _transports["default"].api.on(_transports.API.REQUEST, this.onRequest);
 
     _transports["default"].api.on(_transports.API.NAVIGATE_TO, this.onNavigateTo);
 
     _transports["default"].api.on(_transports.API.NAVIGATE_BACK, this.onNavigateBack);
+
+    _transports["default"].api.on(_transports.API.CONNECT_SOCKET, this.onConnectSocket);
   }
 
   (0, _createClass2["default"])(NativeRuntime, [{
-    key: "onRequest",
-    value: function onRequest(options, callback) {
-      wx.request(_objectSpread({}, options, {
-        complete: function complete(data) {
-          callback(data);
-        }
-      }));
-    }
-  }, {
-    key: "onNavigateTo",
-    value: function onNavigateTo(options, callback) {
-      wx.navigateTo(_objectSpread({}, options, {
-        complete: function complete(data) {
-          callback(data);
-        }
-      }));
-    }
-  }, {
-    key: "onNavigateBack",
-    value: function onNavigateBack(options, callback) {
-      wx.navigateBack(_objectSpread({}, options, {
-        complete: function complete(data) {
-          callback(data);
+    key: "createCommonAPIRequst",
+    value: function createCommonAPIRequst(api, options, callback) {
+      return wx[api](_objectSpread({}, options, {
+        complete: function complete(res) {
+          callback(res);
         }
       }));
     }
@@ -5276,6 +5285,94 @@ function () {
 }();
 
 exports["default"] = NativeRuntime;
+
+/***/ }),
+
+/***/ "../remixjs/src/project/runtime/terminal/NativeSocket.js":
+/*!***************************************************************!*\
+  !*** ../remixjs/src/project/runtime/terminal/NativeSocket.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = createNativeSocket;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
+
+var _transports = __webpack_require__(/*! ../transports */ "../remixjs/src/project/runtime/transports/index.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var NativeSocket =
+/*#__PURE__*/
+function () {
+  function NativeSocket(transport) {
+    var _this = this;
+
+    (0, _classCallCheck2["default"])(this, NativeSocket);
+    (0, _defineProperty2["default"])(this, "onMessage", function (id, message) {
+      if (id === _this.id) {
+        _this.socket.send(message);
+      }
+    });
+    this.transport = transport;
+  }
+
+  (0, _createClass2["default"])(NativeSocket, [{
+    key: "connect",
+    value: function connect(id, options, callback) {
+      var _this2 = this;
+
+      this.id = id;
+      var socket = wx.connectSocket(_objectSpread({}, options, {
+        complete: function complete(res) {
+          callback(res);
+        }
+      }));
+      socket.onOpen(function () {
+        _this2.transport.reply({
+          type: _transports.API.SOCKET_OPEN,
+          argv: [_this2.id]
+        });
+      });
+      socket.onMessage(function (data) {
+        debugger;
+
+        _this2.transport.reply({
+          type: _transports.API.SOCKET_MESSAGE,
+          argv: [_this2.id, data]
+        });
+      });
+      socket.onClose(function () {
+        _this2.transport.off(_transports.API.SOCKET_MESSAGE);
+      });
+      this.socket = socket;
+      this.transport.on(_transports.API.SOCKET_MESSAGE, this.onMessage);
+    }
+  }]);
+  return NativeSocket;
+}();
+
+function createNativeSocket(transport, id, options, callback) {
+  var socket = new NativeSocket(transport);
+  return socket.connect(id, options, callback);
+}
 
 /***/ }),
 
@@ -5479,6 +5576,8 @@ var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/
 
 var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
+var _LogicSocket = _interopRequireDefault(__webpack_require__(/*! ./Classes/LogicSocket */ "../remixjs/src/project/runtime/transports/Classes/LogicSocket.js"));
+
 var isSuccess = function isSuccess(data) {
   if (/(\w)+\:ok/g.test(data.errMsg)) {
     return true;
@@ -5558,6 +5657,11 @@ function (_Tunnel) {
     key: "navigateBack",
     value: function navigateBack(options) {
       return this.createCommonPromise(_types.API.NAVIGATE_BACK, options);
+    }
+  }, {
+    key: "connectSocket",
+    value: function connectSocket(options) {
+      return new _LogicSocket["default"](this, options);
     }
   }]);
   return APITransport;
@@ -5693,6 +5797,105 @@ function (_Tunnel) {
 }(_tunnel["default"]);
 
 exports["default"] = ApplicationTransport;
+
+/***/ }),
+
+/***/ "../remixjs/src/project/runtime/transports/Classes/LogicSocket.js":
+/*!************************************************************************!*\
+  !*** ../remixjs/src/project/runtime/transports/Classes/LogicSocket.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = createLogicSocket;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remixjs/node_modules/uuid/index.js"));
+
+var _events = _interopRequireDefault(__webpack_require__(/*! events */ "../remixjs-cli/node_modules/events/events.js"));
+
+var _types = __webpack_require__(/*! ../types */ "../remixjs/src/project/runtime/transports/types.js");
+
+var LogicSocket =
+/*#__PURE__*/
+function (_EventEmitter) {
+  (0, _inherits2["default"])(LogicSocket, _EventEmitter);
+
+  function LogicSocket(transport) {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, LogicSocket);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(LogicSocket).call(this));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onSocketOpen", function (id) {
+      if (_this.id === id) {
+        _this.emit('open');
+      }
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onSocketMessage", function (id, data) {
+      if (id === _this.id) {
+        _this.emit('message', data);
+      }
+    });
+    _this.id = _uuid["default"].v4();
+    _this.transport = transport;
+    return _this;
+  }
+
+  (0, _createClass2["default"])(LogicSocket, [{
+    key: "connect",
+    value: function connect(options) {
+      this.transport.post(_types.API.CONNECT_SOCKET, [this.id, options], function () {});
+      this.transport.on(_types.API.SOCKET_OPEN, this.onSocketOpen);
+      this.transport.on(_types.API.SOCKET_MESSAGE, this.onSocketMessage);
+    }
+  }, {
+    key: "onOpen",
+    value: function onOpen(_onOpen) {
+      this.on('open', _onOpen);
+    }
+  }, {
+    key: "onMessage",
+    value: function onMessage(_onMessage) {
+      this.on('message', _onMessage);
+    }
+  }, {
+    key: "send",
+    value: function send(data) {
+      this.transport.reply({
+        type: _types.API.SOCKET_MESSAGE,
+        argv: [this.id, data]
+      });
+    }
+  }]);
+  return LogicSocket;
+}(_events["default"]);
+
+function createLogicSocket(transport, options) {
+  var socket = new LogicSocket(transport);
+  socket.connect(options);
+  return socket;
+}
 
 /***/ }),
 
@@ -6167,7 +6370,8 @@ function (_EventEmitter) {
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMessage", function (data) {
       _this.emit('message', data);
     });
-    _this.id = _uuid["default"].v4();
+    var isDevToolRuntime = _env["default"].isDevToolRuntime;
+    _this.id = isDevToolRuntime ? _env["default"].inspectLogicUUID : _env["default"].inspectTerminalUUID;
     _this.connected = false;
     _this.queue = [];
     _this.socket = new _Socket["default"]({
@@ -11575,6 +11779,18 @@ function (_ViewController) {
           url: '/pages/User/Index'
         }).then(function (res) {
           debubger;
+        });
+      });
+
+      var socket = _project.transports.api.connectSocket({
+        url: 'ws://127.0.0.1:10002',
+        protocols: ['test']
+      });
+
+      socket.onOpen(function () {
+        debugger;
+        socket.send({
+          data: 'hello world'
         });
       });
     }

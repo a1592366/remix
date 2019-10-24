@@ -2,6 +2,7 @@ import uuid from 'uuid';
 import Tunnel from '../tunnel';
 import { API } from './types';
 import { isFunction } from '../../../shared/is';
+import createLogicSocket from './Classes/LogicSocket';
 
 const isSuccess = (data) => {
   if (/(\w)+\:ok/g.test(data.errMsg)) {
@@ -66,5 +67,9 @@ export default class APITransport extends Tunnel {
 
   navigateBack (options) {
     return this.createCommonPromise(API.NAVIGATE_BACK, options);
+  }
+
+  connectSocket (options) {
+    return new createLogicSocket(this, options);
   }
 }

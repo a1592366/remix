@@ -39453,6 +39453,16 @@ function (_React$Component) {
       });
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "onReConnect", function () {
+      if (_this.runtime) {
+        _this.setState({
+          isDisconnected: false
+        }, function () {
+          _this.runtime.contentWindow.location.reload();
+        });
+      }
+    });
+
     var location = props.location;
     var search = location.search.slice(1);
     var query = qs__WEBPACK_IMPORTED_MODULE_9___default.a.parse(search);
@@ -39489,7 +39499,12 @@ function (_React$Component) {
   }, {
     key: "scriptRender",
     value: function scriptRender() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("iframe", {
+        ref: function ref(_ref2) {
+          return _this2.runtime = _ref2;
+        },
         className: "app__inspector-runtime",
         src: "/runtime.html?id=".concat(this.query.id)
       });
@@ -39510,10 +39525,10 @@ function (_React$Component) {
         className: "app__inspector-mask"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "app__inspector-mask-text"
-      }, "\u5DF2\u65AD\u5F00"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Link"], {
+      }, "\u5DF2\u65AD\u5F00"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
         className: "app__inspector-mask-return",
-        to: "/"
-      }, "\u70B9\u51FB\u8FD4\u56DE")));
+        onClick: this.onReConnect
+      }, "\u91CD\u65B0\u8FDE\u63A5")));
     }
   }]);
 

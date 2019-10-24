@@ -10,7 +10,9 @@ class MessageEmitter extends EventEmitter {
   constructor () {
     super();
 
-    this.id = uuid.v4();
+    const { isDevToolRuntime } = env;
+
+    this.id = isDevToolRuntime ? env.inspectLogicUUID : env.inspectTerminalUUID;
     this.connected = false;
     this.queue = [];
 

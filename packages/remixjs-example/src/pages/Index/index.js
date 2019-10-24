@@ -20,7 +20,19 @@ export default class Index extends ViewController {
       }).then(res => {
         debubger;
       })
-    })
+    });
+
+    const socket = transports.api.connectSocket({
+      url: 'ws://127.0.0.1:10002',
+      protocols: ['test']
+    });
+
+    socket.onOpen(function () {
+      debugger;
+      socket.send({
+        data: 'hello world'
+      })
+    });
 
   }
 

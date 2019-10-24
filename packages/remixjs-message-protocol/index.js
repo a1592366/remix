@@ -55,7 +55,10 @@ export const VIEW = defineNotificationTypes('view', {
 export const API = defineNotificationTypes('api', {
   REQUEST: 'request',
   NAVIGATE_TO: 'navigateTo',
-  NAVIGATE_BACK: 'navigateBack'
+  NAVIGATE_BACK: 'navigateBack',
+  CONNECT_SOCKET: 'connectSocket',
+  SOCKET_OPEN: 'socketOpen',
+  SOCKET_MESSAGE: 'socketMessage'
 });
 
 export const COMMON = defineNotificationTypes('common', {

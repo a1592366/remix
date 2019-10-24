@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
-const webpack = require('webpack')
+const webpack = require('webpack');
+const uuid = require('uuid');
 const RemixJSPlugin = require('webpack-remixjs-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -52,6 +53,8 @@ const defaultWebpackConfig = {
       'process.env.INSPECT_WS_URL': `"${env.INSPECT_WS_URL}"`,
       'process.env.INSEPCT_MESSAGE_TYPES': `${JSON.stringify(env.INSEPCT_MESSAGE_TYPES, 2, null)}`,
       'process.env.INSPECT_TERMINAL_TYPES': `${JSON.stringify(env.INSPECT_TERMINAL_TYPES, 2, null)}`,
+      'process.env.INSPECT_TERMINAL_UUID': `"${uuid.v4()}"`,
+      'process.env.INSPECT_LOGIC_UUID': `"${uuid.v4()}"`,
     })
   ],
 

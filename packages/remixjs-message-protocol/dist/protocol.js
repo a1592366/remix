@@ -182,7 +182,10 @@ exports.VIEW = VIEW;
 var API = defineNotificationTypes('api', {
   REQUEST: 'request',
   NAVIGATE_TO: 'navigateTo',
-  NAVIGATE_BACK: 'navigateBack'
+  NAVIGATE_BACK: 'navigateBack',
+  CONNECT_SOCKET: 'connectSocket',
+  SOCKET_OPEN: 'socketOpen',
+  SOCKET_MESSAGE: 'socketMessage'
 });
 exports.API = API;
 var COMMON = defineNotificationTypes('common', {
