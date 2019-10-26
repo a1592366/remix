@@ -10,6 +10,10 @@ export default class ViewControllerTransport  extends Tunnel {
     this.on(VIEW, this.onMessage);
   }
 
+  dispatch () {
+    debugger;
+  }
+
   post = (type, argv, callback) => {
     const callbackId = isFunction(callback) ? uuid.v4() : null
 

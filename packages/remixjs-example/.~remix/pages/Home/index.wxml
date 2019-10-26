@@ -1,1 +1,1 @@
-<block wx:if="{{element}}">test</block>
+<import src="../../.~xml/remix-ui/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>

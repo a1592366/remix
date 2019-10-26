@@ -1,6 +1,7 @@
 const path = require('path');
 
 const names = [
+  'view',
   'text',
   'audio',
   'image',

@@ -40,5 +40,5 @@
 </template>
 
 <template name="<% tagName %>">
-  <template is="_<% tagName %>" data="{{ ...props, children: children, dataId: dataId, type: type, props: props }}" />
+  <template is="_<% tagName %>" data="{{ ...props, children: children, uuid: uuid, tagName: tagName, props: props }}" />
 </template>

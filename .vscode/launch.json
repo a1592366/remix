@@ -7,6 +7,13 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "调试COMPONENT命令",
+      "cwd": "${workspaceFolder}/packages/remixjs-components-builder/__test__",
+      "program": "${workspaceFolder}/packages/remixjs-components-builder/__test__/index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "调试START命令",
       "cwd": "${workspaceFolder}/packages/remixjs-example",
       "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"

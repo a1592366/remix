@@ -1,0 +1,66 @@
+<template name="selection">
+  <block wx:if="{{element.tagName == 'view'}}">
+    <view 
+      child="{{element.child}}" 
+      uuid="{{element.uuid}}" 
+      id="{{element.uuid}}" 
+      class="{{element.className || ''}}"
+      style="{{element.style || ''}}"
+      catchtouchstart="{{element.onTouchStart || ''}}"
+      catchtouchmove="{{element.onTouchMove || ''}}"
+      catchtouchcancel="{{element.onTouchCancel || ''}}"
+      catchtouchend="{{element.onTouchEnd || ''}}"
+      catchtap="{{element.onTap || ''}}"
+      catchlongpress="{{element.onLongPress || ''}}"
+      catchlongtap="{{element.onLongTap || ''}}"
+      catchtransitionend="{{element.onTransitionEnd || ''}}"
+      catchanimationstart="{{element.onAnimationStart || ''}}"
+      catchanimationiteration="{{element.onAnimationIteration || ''}}"
+      catchanimationend="{{element.onAnimationEnd || ''}}"
+      catchtouchforcechange="{{element.onTouchForceChange || ''}}"
+    />
+  </block>
+
+  <block wx:if="{{element.tagName == 'text'}}">
+    <text 
+      child="{{element.child}}" 
+      uuid="{{element.uuid}}" 
+      id="{{element.uuid}}" 
+      class="{{element.className || ''}}"
+      style="{{element.style || ''}}"
+      catchtouchstart="{{element.onTouchStart || ''}}"
+      catchtouchmove="{{element.onTouchMove || ''}}"
+      catchtouchcancel="{{element.onTouchCancel || ''}}"
+      catchtouchend="{{element.onTouchEnd || ''}}"
+      catchtap="{{element.onTap || ''}}"
+      catchlongpress="{{element.onLongPress || ''}}"
+      catchlongtap="{{element.onLongTap || ''}}"
+      catchtransitionend="{{element.onTransitionEnd || ''}}"
+      catchanimationstart="{{element.onAnimationStart || ''}}"
+      catchanimationiteration="{{element.onAnimationIteration || ''}}"
+      catchanimationend="{{element.onAnimationEnd || ''}}"
+      catchtouchforcechange="{{element.onTouchForceChange || ''}}"
+    />
+  </block>
+
+  <block wx:elif="{{ element.tagName == 'map' }}">
+		<remix-map uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" onTap="{{element.onTap}}" onMarkerTap="{{element.onMarkerTap}}" onLabelTap="{{element.onLabelTap}}" onControlTap="{{element.onControlTap}}" onCalloutTap="{{element.onCalloutTap}}" onUpdated="{{element.onUpdated}}" onRegionChange="{{element.onRegionChange}}" onPoiTap="{{element.onPoiTap}}" longitude="{{element.longitude}}" latitude="{{element.latitude}}" scale="{{element.scale}}" markers="{{element.markers}}" covers="{{element.covers}}" polyline="{{element.polyline}}" circles="{{element.circles}}" controls="{{element.controls}}" includePoints="{{element.includePoints}}" showLocation="{{element.showLocation}}" polygons="{{element.polygons}}" subkey="{{element.subkey}}" layerStyle="{{element.layerStyle}}" rotate="{{element.rotate}}" skew="{{element.skew}}" enable3D="{{element.enable3D}}" showCompass="{{element.showCompass}}" showScale="{{element.showScale}}" enableOverlooking="{{element.enableOverlooking}}" enableZoom="{{element.enableZoom}}" enableScroll="{{element.enableScroll}}" enableRotate="{{element.enableRotate}}" enableSatellite="{{element.enableSatellite}}" enableTraffic="{{element.enableTraffic}}" setting="{{element.setting}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'image' }}">
+		<remix-image uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" onLoad="{{element.onLoad}}" onError="{{element.onError}}" src="{{element.src}}" mode="{{element.mode}}" webp="{{element.webp}}" lazyLoad="{{element.lazyLoad}}" showMenuByLongpress="{{element.showMenuByLongpress}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'button' }}">
+		<remix-button child="{{element.child}}" uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" onGetUserInfo="{{element.onGetUserInfo}}" onContact="{{element.onContact}}" onGetPhoneNumber="{{element.onGetPhoneNumber}}" onOpenSetting="{{element.onOpenSetting}}" onLaunchApp="{{element.onLaunchApp}}" onError="{{element.onError}}" size="{{element.size}}" type="{{element.type}}" plain="{{element.plain}}" disabled="{{element.disabled}}" loading="{{element.loading}}" formType="{{element.formType}}" openType="{{element.openType}}" hoverClass="{{element.hoverClass}}" hoverStopPropagation="{{element.hoverStopPropagation}}" hoverStartTime="{{element.hoverStartTime}}" hoverStayTime="{{element.hoverStayTime}}" lang="{{element.lang}}" sessionFrom="{{element.sessionFrom}}" sendMessageTitle="{{element.sendMessageTitle}}" sendMessagePath="{{element.sendMessagePath}}" sendMessageImg="{{element.sendMessageImg}}" appParameter="{{element.appParameter}}" showMessageCard="{{element.showMessageCard}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'input' }}">
+		<remix-input uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" onInput="{{element.onInput}}" onFocus="{{element.onFocus}}" onBlur="{{element.onBlur}}" onConfirm="{{element.onConfirm}}" onKeyboardHeightChange="{{element.onKeyboardHeightChange}}" value="{{element.value}}" type="{{element.type}}" password="{{element.password}}" placeholder="{{element.placeholder}}" placeholderStyle="{{element.placeholderStyle}}" placeholderClass="{{element.placeholderClass}}" disabled="{{element.disabled}}" maxlength="{{element.maxlength}}" cursorSpacing="{{element.cursorSpacing}}" autoFocus="{{element.autoFocus}}" focus="{{element.focus}}" confirmType="{{element.confirmType}}" confirmHold="{{element.confirmHold}}" cursor="{{element.cursor}}" selectionStart="{{element.selectionStart}}" selectionEnd="{{element.selectionEnd}}" adjustPosition="{{element.adjustPosition}}" holdKeyboard="{{element.holdKeyboard}}" />
+	</block>
+
+</template>
+
+<template name="remix-worker">  
+  <template is="selection" data="{{ element }}" />
+  <block wx:if="{{element.slibing}}">
+    <template is="selection" data="{{ element: element.slibing }}" />
+  </block>
+</template>

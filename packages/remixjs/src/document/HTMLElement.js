@@ -1,11 +1,13 @@
 import { isNullOrUndefined } from '../shared/is';
 import Element from './Element';
+import StyleSheet from './StyleSheet';
 
 export default class HTMLElement extends Element {
   constructor (tagName) {
     super();
 
     this.tagName = tagName;
+    this.style = new StyleSheet();
   }
 
   appendChild (child) {
@@ -35,7 +37,7 @@ export default class HTMLElement extends Element {
     const element = {
       uuid: this.uuid,
       nodeType: this.nodeType,
-      tagName: this.tagName
+      tagName: this.tagName,
     };
 
     if (!isNullOrUndefined(this.child)) {
@@ -45,7 +47,6 @@ export default class HTMLElement extends Element {
     if (!isNullOrUndefined(this.slibing)) {
       element.slibing = this.slibing.serialize();
     }
-
 
     return element;
   }

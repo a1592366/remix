@@ -88,13 +88,23 @@ class Project {
       return new Promise(async (resolve, reject) => {
         const dist = path.resolve(env.REMIX_SOURCE, parsed.dir);
         const filename = path.resolve(dist,`${env.REMIX_VIEW_SYMBOL}${parsed.base}.js`);
-        const xml = path.resolve(dist, `${parsed.base}.wxml`)
+        const xml = path.resolve(dist, `${parsed.base}.wxml`);
+        const json = path.resolve(dist, `${parsed.base}.json`);
+
         await fs.mkdirp(dist);
+
+        
         await fs.writeFile(filename, `
 import { View } from 'remixjs/project';
 new View('${page}');`
         );
-        await fs.writeFile(xml, `<block wx:if="{{element}}">test</block>`);
+        await fs.writeFile(xml, `<import src="../../.~xml/remix-ui/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
+        await fs.writeFile(json, JSON.stringify({
+          usingComponents: {
+            view: '../../.~xml/remix-ui/view/index',
+            text: '../../.~xml/remix-ui/text/index'
+          }
+        }, null, 2));
 
         resolve();
       });
@@ -118,7 +128,7 @@ new View('${page}');`
   }
 
   async start () {
-    this.engine.update(this.context);
+    await this.engine.update(this.context);
 
     logger.green(`正在编译...`);
 

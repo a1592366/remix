@@ -1,0 +1,2 @@
+<% if (openComponent) { %><import src="../remix-worker.wxml" /><% } %> 
+<<%=tagName %> <%- props %>><% if (openComponent) { %><block wx:if="{{child}}"><template name="remix-worker" data="{{ element: child }}" /></block><% } %></<%=tagName %>>

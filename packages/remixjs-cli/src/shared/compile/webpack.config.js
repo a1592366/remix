@@ -6,6 +6,7 @@ const RemixJSPlugin = require('webpack-remixjs-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPulgin = require('copy-webpack-plugin');
+const globby = require('globby');
 
 const env = require('../env');
 
@@ -131,13 +132,20 @@ const defaultWebpackConfig = {
 
 
 module.exports = {
-  createDevelopment (context) {
+  async createDevelopment (context) {
     const { router: { routes }, tabBar } = context;
     const config = {
       ...defaultWebpackConfig,
       mode: 'development'
     }
 
+    const files = await globby('./**', {
+      cwd: env.PROJ_XML,
+      dot: true,
+      onlyDirectories: true
+    });
+
+    // pages
     routes.forEach(route => {
       const parsed = path.parse(route.path);
       const source = path.join(
@@ -149,6 +157,14 @@ module.exports = {
       config.entry[`${route.path}`] = source;
     });
 
+    // remix-ui
+    files.forEach(file => {
+      const source = path.join(env.PROJ_XML, file, env.REMIX_UI_ENTRY_NAME)
+
+      config.entry[`${env.REMIX_UI_NAME}/${file}/index`] = source
+    });
+
+    // inspectMode
     if (env.IS_INSPECT_MODE) {
       config.entry['runtime/devtool'] = env.REMIX_DEVTOOL_RUNTIME;
     }

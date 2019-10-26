@@ -25,9 +25,9 @@ class CompileEngine {
     return new Promise((resolve, reject) => {
       this.webpack.watch({}, (err, stats) => {
         if (err) {
-          logger.red(err);
+          return logger.red(err);
         } else {
-          // console.log(stats.toString({ color: true }));
+          console.log(stats.toString({ color: true }));
         }
 
         resolve();
@@ -39,9 +39,9 @@ class CompileEngine {
 
   }
 
-  update (context) {
+  async update (context) {
     this.context = context;
-    this.config = createDevelopment(context);
+    this.config = await createDevelopment(context);
   }
 }
 

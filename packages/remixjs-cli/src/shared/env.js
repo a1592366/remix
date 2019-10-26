@@ -31,11 +31,12 @@ const REMIX_NAME = '.~remix';
 const REMIX_CONFIG_NAME = 'configrc';
 const REMIX_RPC_PORT = 10001;
 const REMIX_VIEW_SYMBOL = '.~';
+const REMIX_UI_ENTRY_NAME = '~index.js';
 const REMIX_BOOT_NAME = 'runtime/boot.js';
 const REMIX_NODE_RUNTIME_NAME = 'runtime/node.runtime.js';
 const REMIX_CLIENT_RUNTIME_NAME = 'runtime/client.runtime.js';
 const REMIX_DEVTOOL_RUNTIME_NAME = 'runtime/devtool.runtime.js';
-
+const REMIX_UI_NAME = `.~xml/remix-ui`;
 
 
 
@@ -51,7 +52,7 @@ const REMIX_NODE_RUNTIME = path.resolve(REMIX_SOURCE, REMIX_NODE_RUNTIME_NAME);
 const REMIX_CLIENT_RUNTIME = path.resolve(REMIX_SOURCE, REMIX_CLIENT_RUNTIME_NAME);
 const REMIX_DEVTOOL_RUNTIME = path.resolve(REMIX_SOURCE, REMIX_DEVTOOL_RUNTIME_NAME);
 
-const PROJ_XML = path.resolve(REMIX_NAME, `.~xml/ui`);
+const PROJ_XML = path.resolve(REMIX_NAME, REMIX_UI_NAME);
 
 
 module.exports = {
@@ -66,6 +67,8 @@ module.exports = {
   REMIX_NODE_RUNTIME,
   REMIX_CLIENT_RUNTIME,
   REMIX_DEVTOOL_RUNTIME,
+  REMIX_UI_ENTRY_NAME,
+  REMIX_UI_NAME,
 
   PROJ,
   PROJ_XML,

@@ -21,7 +21,11 @@ export default class ViewController {
       this.container
     );
 
-    callback(this.container.serialize());
+    const elements = this.container.serialize();
+
+    console.log(elements);
+
+    callback(elements);
   }
 
   onReady () {

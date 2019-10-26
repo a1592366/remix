@@ -3,9 +3,13 @@ import Tunnel from '../tunnel';
 import { VIEW } from './types';
 import { isFunction } from '../../../shared/is';
 
-export default class ViewControllerTransport  extends Tunnel {
+export default class ViewControllerTransportNative  extends Tunnel {
   constructor () {
     super();
+  }
+
+  dispatch (type, id, e) {
+    // console.log(id);
   }
 
   post = (type, argv, callback) => {

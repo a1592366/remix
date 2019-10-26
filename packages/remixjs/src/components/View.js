@@ -31,7 +31,7 @@ export default class View extends Component {
 
   render () {
     return (
-      <view {...this.props.children}>{this.props.children}</view>
+      <view {...this.props.children} onTouchStart={this.props.onTouchStart ? 'onTouchStart' : null}>{this.props.children}</view>
     )
   }
 }

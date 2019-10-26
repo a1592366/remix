@@ -1,2 +1,6 @@
 @import "./static/wxss/runtime.ui.wxss";
 @import "./static/wxss/app.ui.wxss";
+
+image {
+  border: 1px solid black;
+}

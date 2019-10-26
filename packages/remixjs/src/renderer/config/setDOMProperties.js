@@ -60,7 +60,7 @@ export function setValueForStyles (
   element,
   nextProp
 ) {
-  const style = element.style;
+  const styles = element.style;
 
   for (let styleName in styles) {
     if (styles.hasOwnProperty(styleName)) {
@@ -71,7 +71,7 @@ export function setValueForStyles (
       }
     }
 
-    style[styleName] = styleValue;
+    styles[styleName] = styleValue;
   }
 }
 
@@ -90,6 +90,7 @@ export function setValueForProperty (
   const property = getProperty(propName);
 
   if (property) {
+    
     element.setAttribute(property.attributeName, nextProp);
   }
 

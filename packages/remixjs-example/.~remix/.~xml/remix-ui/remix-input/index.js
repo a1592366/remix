@@ -1,0 +1,272 @@
+/*** MARK_1572116202383 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/ 		var executeModules = data[2];
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 		// add entry modules from loaded chunk to deferred list
+/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
+/******/
+/******/ 		// run deferred modules when all chunks ready
+/******/ 		return checkDeferredModules();
+/******/ 	};
+/******/ 	function checkDeferredModules() {
+/******/ 		var result;
+/******/ 		for(var i = 0; i < deferredModules.length; i++) {
+/******/ 			var deferredModule = deferredModules[i];
+/******/ 			var fulfilled = true;
+/******/ 			for(var j = 1; j < deferredModule.length; j++) {
+/******/ 				var depId = deferredModule[j];
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 			}
+/******/ 			if(fulfilled) {
+/******/ 				deferredModules.splice(i--, 1);
+/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 			}
+/******/ 		}
+/******/
+/******/ 		return result;
+/******/ 	}
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = window.installedModules || (window.installedModules = {});
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		".~xml/remix-ui/remix-input/index": 0
+/******/ 	};
+/******/
+/******/ 	var deferredModules = [];
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
+/******/
+/******/
+/******/ 	// add entry module to deferred list
+/******/ 	deferredModules.push(["./.~remix/.~xml/remix-ui/remix-input/~index.js","runtime/vendor/manifest"]);
+/******/ 	// run deferred modules when ready
+/******/ 	return checkDeferredModules();
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./.~remix/.~xml/remix-ui/remix-input/~index.js":
+/*!******************************************************!*\
+  !*** ./.~remix/.~xml/remix-ui/remix-input/~index.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
+
+Component({
+  options: {
+    addGlobalClass: true
+  },
+  properties: {
+    uuid: String,
+    style: String,
+    className: String,
+    onInput: String,
+    onFocus: String,
+    onBlur: String,
+    onConfirm: String,
+    onKeyboardHeightChange: String,
+    value: String,
+    type: String,
+    password: Boolean,
+    placeholder: String,
+    placeholderStyle: String,
+    placeholderClass: String,
+    disabled: Boolean,
+    maxlength: Number,
+    cursorSpacing: Number,
+    autoFocus: Boolean,
+    focus: Boolean,
+    confirmType: String,
+    confirmHold: Boolean,
+    cursor: Number,
+    selectionStart: Number,
+    selectionEnd: Number,
+    adjustPosition: Boolean,
+    holdKeyboard: Boolean
+  },
+  data: {
+    uuid: null,
+    style: null,
+    className: null,
+    onInput: null,
+    onFocus: null,
+    onBlur: null,
+    onConfirm: null,
+    onKeyboardHeightChange: null,
+    value: null,
+    type: 'text',
+    password: false,
+    placeholder: null,
+    placeholderStyle: null,
+    placeholderClass: 'input-placeholder',
+    disabled: false,
+    maxlength: 140,
+    cursorSpacing: 0,
+    autoFocus: false,
+    focus: false,
+    confirmType: 'done',
+    confirmHold: false,
+    cursor: 0,
+    selectionStart: -1,
+    selectionEnd: -1,
+    adjustPosition: true,
+    holdKeyboard: false
+  },
+  methods: {
+    onInput: function onInput(e) {
+      _project.transports.view.dispatch('onInput', this.data.uuid, e);
+    },
+    onFocus: function onFocus(e) {
+      _project.transports.view.dispatch('onFocus', this.data.uuid, e);
+    },
+    onBlur: function onBlur(e) {
+      _project.transports.view.dispatch('onBlur', this.data.uuid, e);
+    },
+    onConfirm: function onConfirm(e) {
+      _project.transports.view.dispatch('onConfirm', this.data.uuid, e);
+    },
+    onKeyboardHeightChange: function onKeyboardHeightChange(e) {
+      _project.transports.view.dispatch('onKeyboardHeightChange', this.data.uuid, e);
+    }
+  },
+  lifetimes: {
+    created: function created() {
+      _project.transports.view.dispatch('created', this.data.uuid);
+    },
+    attached: function attached() {
+      _project.transports.view.dispatch('attached', this.data.uuid);
+    },
+    detached: function detached() {
+      _project.transports.view.dispatch('detached', this.data.uuid);
+    },
+    ready: function ready() {
+      _project.transports.view.dispatch('ready', this.data.uuid);
+    },
+    moved: function moved() {
+      _project.transports.view.dispatch('moved', this.data.uuid);
+    },
+    error: function error(_error) {
+      _project.transports.view.dispatch('detached', this.data.uuid, _error);
+    }
+  }
+});
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=index.js.map

@@ -1,4 +1,4 @@
-/*** MARK_1571944144362 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572116202383 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "0265160f-0a92-4024-ad66-faf2b1725826";
+var inspectTerminalUUID = "054e1fd9-7196-4b32-975d-5e0066b31774";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "d7adf1ae-f0a6-4c29-b4b4-e4f6c56c59d1";
+var inspectLogicUUID = "d292bd80-0318-439e-bfea-e6f2fd76338d";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -1463,6 +1463,35 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "../remixjs/node_modules/@babel/runtime/helpers/extends.js":
+/*!*****************************************************************!*\
+  !*** ../remixjs/node_modules/@babel/runtime/helpers/extends.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
 
 /***/ }),
 
@@ -3389,9 +3418,9 @@ exports["default"] = TabBar;
 
 /***/ }),
 
-/***/ "../remixjs/src/components/View.js":
+/***/ "../remixjs/src/components/Text.js":
 /*!*****************************************!*\
-  !*** ../remixjs/src/components/View.js ***!
+  !*** ../remixjs/src/components/Text.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -3426,6 +3455,83 @@ var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTyp
 
 var _defineProperty2, _defineProperty3;
 
+var Text =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2["default"])(Text, _Component);
+
+  function Text() {
+    (0, _classCallCheck2["default"])(this, Text);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(Text).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(Text, [{
+    key: "render",
+    value: function render() {
+      return _react["default"].createElement("text", this.props.children, this.props.children);
+    }
+  }]);
+  return Text;
+}(_Component2["default"]);
+
+exports["default"] = Text;
+(0, _defineProperty4["default"])(Text, "propTypes", (_defineProperty2 = {
+  style: _PropTypes["default"].object,
+  className: _PropTypes["default"].string,
+  onPress: _PropTypes["default"].func,
+  onLongPress: _PropTypes["default"].func,
+  onClick: _PropTypes["default"].func,
+  onTap: _PropTypes["default"].func
+}, (0, _defineProperty4["default"])(_defineProperty2, "onPress", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchStart", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchMove", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchEnd", _PropTypes["default"].func), _defineProperty2));
+(0, _defineProperty4["default"])(Text, "defaultProps", (_defineProperty3 = {
+  style: null,
+  className: null,
+  onPress: null,
+  onLongPress: null,
+  onClick: null
+}, (0, _defineProperty4["default"])(_defineProperty3, "onPress", null), (0, _defineProperty4["default"])(_defineProperty3, "onTap", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchStart", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchMove", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchEnd", null), _defineProperty3));
+
+/***/ }),
+
+/***/ "../remixjs/src/components/View.js":
+/*!*****************************************!*\
+  !*** ../remixjs/src/components/View.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../remixjs/node_modules/@babel/runtime/helpers/extends.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty4 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remixjs/src/react/index.js"));
+
+var _Component2 = _interopRequireDefault(__webpack_require__(/*! ../react/Component */ "../remixjs/src/react/Component.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var _defineProperty2, _defineProperty3;
+
 var View =
 /*#__PURE__*/
 function (_Component) {
@@ -3439,7 +3545,9 @@ function (_Component) {
   (0, _createClass2["default"])(View, [{
     key: "render",
     value: function render() {
-      return _react["default"].createElement("view", this.props.children, this.props.children);
+      return _react["default"].createElement("view", (0, _extends2["default"])({}, this.props.children, {
+        onTouchStart: this.props.onTouchStart ? 'onTouchStart' : null
+      }), this.props.children);
     }
   }]);
   return View;
@@ -3561,16 +3669,46 @@ Object.defineProperty(exports, "ViewController", {
     return _ViewController["default"];
   }
 });
+Object.defineProperty(exports, "TabBar", {
+  enumerable: true,
+  get: function get() {
+    return _TabBar["default"];
+  }
+});
 Object.defineProperty(exports, "View", {
   enumerable: true,
   get: function get() {
     return _View["default"];
   }
 });
-Object.defineProperty(exports, "TabBar", {
+Object.defineProperty(exports, "Text", {
   enumerable: true,
   get: function get() {
-    return _TabBar["default"];
+    return _Text["default"];
+  }
+});
+Object.defineProperty(exports, "Image", {
+  enumerable: true,
+  get: function get() {
+    return _remixImage["default"];
+  }
+});
+Object.defineProperty(exports, "Input", {
+  enumerable: true,
+  get: function get() {
+    return _remixInput["default"];
+  }
+});
+Object.defineProperty(exports, "Map", {
+  enumerable: true,
+  get: function get() {
+    return _remixMap["default"];
+  }
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function get() {
+    return _remixButton["default"];
   }
 });
 
@@ -3578,9 +3716,663 @@ var _Application = _interopRequireDefault(__webpack_require__(/*! ./Application 
 
 var _ViewController = _interopRequireDefault(__webpack_require__(/*! ./ViewController */ "../remixjs/src/components/ViewController.js"));
 
+var _TabBar = _interopRequireDefault(__webpack_require__(/*! ./TabBar */ "../remixjs/src/components/TabBar.js"));
+
 var _View = _interopRequireDefault(__webpack_require__(/*! ./View */ "../remixjs/src/components/View.js"));
 
-var _TabBar = _interopRequireDefault(__webpack_require__(/*! ./TabBar */ "../remixjs/src/components/TabBar.js"));
+var _Text = _interopRequireDefault(__webpack_require__(/*! ./Text */ "../remixjs/src/components/Text.js"));
+
+var _remixImage = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-image */ "../remixjs/src/components/remix-element/remix-image/index.js"));
+
+var _remixInput = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-input */ "../remixjs/src/components/remix-element/remix-input/index.js"));
+
+var _remixMap = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-map */ "../remixjs/src/components/remix-element/remix-map/index.js"));
+
+var _remixButton = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-button */ "../remixjs/src/components/remix-element/remix-button/index.js"));
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-button/index.js":
+/*!*********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-button/index.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixButton =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixButton, _React$Component);
+
+  function RemixButton() {
+    (0, _classCallCheck2["default"])(this, RemixButton);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixButton).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixButton, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          uuid = _this$props.uuid,
+          style = _this$props.style,
+          className = _this$props.className,
+          onGetUserInfo = _this$props.onGetUserInfo,
+          onContact = _this$props.onContact,
+          onGetPhoneNumber = _this$props.onGetPhoneNumber,
+          onOpenSetting = _this$props.onOpenSetting,
+          onLaunchApp = _this$props.onLaunchApp,
+          onError = _this$props.onError,
+          size = _this$props.size,
+          type = _this$props.type,
+          plain = _this$props.plain,
+          disabled = _this$props.disabled,
+          loading = _this$props.loading,
+          formType = _this$props.formType,
+          openType = _this$props.openType,
+          hoverClass = _this$props.hoverClass,
+          hoverStopPropagation = _this$props.hoverStopPropagation,
+          hoverStartTime = _this$props.hoverStartTime,
+          hoverStayTime = _this$props.hoverStayTime,
+          lang = _this$props.lang,
+          sessionFrom = _this$props.sessionFrom,
+          sendMessageTitle = _this$props.sendMessageTitle,
+          sendMessagePath = _this$props.sendMessagePath,
+          sendMessageImg = _this$props.sendMessageImg,
+          appParameter = _this$props.appParameter,
+          showMessageCard = _this$props.showMessageCard;
+      return _react["default"].createElement("button", {
+        uuid: uuid,
+        style: style,
+        className: className,
+        onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
+        onContact: onContact ? 'onContact' : null,
+        onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
+        onOpenSetting: onOpenSetting ? 'onOpenSetting' : null,
+        onLaunchApp: onLaunchApp ? 'onLaunchApp' : null,
+        onError: onError ? 'onError' : null,
+        size: size,
+        type: type,
+        plain: plain,
+        disabled: disabled,
+        loading: loading,
+        formType: formType,
+        openType: openType,
+        hoverClass: hoverClass,
+        hoverStopPropagation: hoverStopPropagation,
+        hoverStartTime: hoverStartTime,
+        hoverStayTime: hoverStayTime,
+        lang: lang,
+        sessionFrom: sessionFrom,
+        sendMessageTitle: sendMessageTitle,
+        sendMessagePath: sendMessagePath,
+        sendMessageImg: sendMessageImg,
+        appParameter: appParameter,
+        showMessageCard: showMessageCard
+      }, this.props.children);
+    }
+  }]);
+  return RemixButton;
+}(_react["default"].Component);
+
+exports["default"] = RemixButton;
+(0, _defineProperty2["default"])(RemixButton, "propTypes", {
+  uuid: _PropTypes["default"].string,
+  style: _PropTypes["default"].object,
+  className: _PropTypes["default"].string,
+  onGetUserInfo: _PropTypes["default"].event,
+  onContact: _PropTypes["default"].event,
+  onGetPhoneNumber: _PropTypes["default"].event,
+  onOpenSetting: _PropTypes["default"].event,
+  onLaunchApp: _PropTypes["default"].event,
+  onError: _PropTypes["default"].event,
+  size: _PropTypes["default"].string,
+  type: _PropTypes["default"].string,
+  plain: _PropTypes["default"].bool,
+  disabled: _PropTypes["default"].bool,
+  loading: _PropTypes["default"].bool,
+  formType: _PropTypes["default"].string,
+  openType: _PropTypes["default"].string,
+  hoverClass: _PropTypes["default"].string,
+  hoverStopPropagation: _PropTypes["default"].bool,
+  hoverStartTime: _PropTypes["default"].number,
+  hoverStayTime: _PropTypes["default"].number,
+  lang: _PropTypes["default"].string,
+  sessionFrom: _PropTypes["default"].string,
+  sendMessageTitle: _PropTypes["default"].string,
+  sendMessagePath: _PropTypes["default"].string,
+  sendMessageImg: _PropTypes["default"].string,
+  appParameter: _PropTypes["default"].string,
+  showMessageCard: _PropTypes["default"].string
+});
+(0, _defineProperty2["default"])(RemixButton, "defaultProps", {
+  uuid: null,
+  style: null,
+  className: null,
+  onGetUserInfo: null,
+  onContact: null,
+  onGetPhoneNumber: null,
+  onOpenSetting: null,
+  onLaunchApp: null,
+  onError: null,
+  size: 'default',
+  type: 'default',
+  plain: false,
+  disabled: false,
+  loading: false,
+  formType: null,
+  openType: null,
+  hoverClass: 'button-hover',
+  hoverStopPropagation: false,
+  hoverStartTime: 20,
+  hoverStayTime: 70,
+  lang: 'en',
+  sessionFrom: null,
+  sendMessageTitle: null,
+  sendMessagePath: null,
+  sendMessageImg: null,
+  appParameter: null,
+  showMessageCard: null
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-image/index.js":
+/*!********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-image/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixImage =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixImage, _React$Component);
+
+  function RemixImage() {
+    (0, _classCallCheck2["default"])(this, RemixImage);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixImage).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixImage, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          uuid = _this$props.uuid,
+          style = _this$props.style,
+          className = _this$props.className,
+          onLoad = _this$props.onLoad,
+          onError = _this$props.onError,
+          src = _this$props.src,
+          mode = _this$props.mode,
+          webp = _this$props.webp,
+          lazyLoad = _this$props.lazyLoad,
+          showMenuByLongpress = _this$props.showMenuByLongpress;
+      return _react["default"].createElement("image", {
+        uuid: uuid,
+        style: style,
+        className: className,
+        onLoad: onLoad ? 'onLoad' : null,
+        onError: onError ? 'onError' : null,
+        src: src,
+        mode: mode,
+        webp: webp,
+        lazyLoad: lazyLoad,
+        showMenuByLongpress: showMenuByLongpress
+      });
+    }
+  }]);
+  return RemixImage;
+}(_react["default"].Component);
+
+exports["default"] = RemixImage;
+(0, _defineProperty2["default"])(RemixImage, "propTypes", {
+  uuid: _PropTypes["default"].string,
+  style: _PropTypes["default"].object,
+  className: _PropTypes["default"].string,
+  onLoad: _PropTypes["default"].event,
+  onError: _PropTypes["default"].event,
+  src: _PropTypes["default"].string,
+  mode: _PropTypes["default"].string,
+  webp: _PropTypes["default"].bool,
+  lazyLoad: _PropTypes["default"].bool,
+  showMenuByLongpress: _PropTypes["default"].bool
+});
+(0, _defineProperty2["default"])(RemixImage, "defaultProps", {
+  uuid: null,
+  style: null,
+  className: null,
+  onLoad: null,
+  onError: null,
+  src: null,
+  mode: 'scaleToFill',
+  webp: false,
+  lazyLoad: false,
+  showMenuByLongpress: false
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-input/index.js":
+/*!********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-input/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixInput =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixInput, _React$Component);
+
+  function RemixInput() {
+    (0, _classCallCheck2["default"])(this, RemixInput);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixInput).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixInput, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          uuid = _this$props.uuid,
+          style = _this$props.style,
+          className = _this$props.className,
+          onInput = _this$props.onInput,
+          onFocus = _this$props.onFocus,
+          onBlur = _this$props.onBlur,
+          onConfirm = _this$props.onConfirm,
+          onKeyboardHeightChange = _this$props.onKeyboardHeightChange,
+          value = _this$props.value,
+          type = _this$props.type,
+          password = _this$props.password,
+          placeholder = _this$props.placeholder,
+          placeholderStyle = _this$props.placeholderStyle,
+          placeholderClass = _this$props.placeholderClass,
+          disabled = _this$props.disabled,
+          maxlength = _this$props.maxlength,
+          cursorSpacing = _this$props.cursorSpacing,
+          autoFocus = _this$props.autoFocus,
+          focus = _this$props.focus,
+          confirmType = _this$props.confirmType,
+          confirmHold = _this$props.confirmHold,
+          cursor = _this$props.cursor,
+          selectionStart = _this$props.selectionStart,
+          selectionEnd = _this$props.selectionEnd,
+          adjustPosition = _this$props.adjustPosition,
+          holdKeyboard = _this$props.holdKeyboard;
+      return _react["default"].createElement("input", {
+        uuid: uuid,
+        style: style,
+        className: className,
+        onInput: onInput ? 'onInput' : null,
+        onFocus: onFocus ? 'onFocus' : null,
+        onBlur: onBlur ? 'onBlur' : null,
+        onConfirm: onConfirm ? 'onConfirm' : null,
+        onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : null,
+        value: value,
+        type: type,
+        password: password,
+        placeholder: placeholder,
+        placeholderStyle: placeholderStyle,
+        placeholderClass: placeholderClass,
+        disabled: disabled,
+        maxlength: maxlength,
+        cursorSpacing: cursorSpacing,
+        autoFocus: autoFocus,
+        focus: focus,
+        confirmType: confirmType,
+        confirmHold: confirmHold,
+        cursor: cursor,
+        selectionStart: selectionStart,
+        selectionEnd: selectionEnd,
+        adjustPosition: adjustPosition,
+        holdKeyboard: holdKeyboard
+      });
+    }
+  }]);
+  return RemixInput;
+}(_react["default"].Component);
+
+exports["default"] = RemixInput;
+(0, _defineProperty2["default"])(RemixInput, "propTypes", {
+  uuid: _PropTypes["default"].string,
+  style: _PropTypes["default"].object,
+  className: _PropTypes["default"].string,
+  onInput: _PropTypes["default"].event,
+  onFocus: _PropTypes["default"].event,
+  onBlur: _PropTypes["default"].event,
+  onConfirm: _PropTypes["default"].event,
+  onKeyboardHeightChange: _PropTypes["default"].event,
+  value: _PropTypes["default"].string,
+  type: _PropTypes["default"].string,
+  password: _PropTypes["default"].bool,
+  placeholder: _PropTypes["default"].string,
+  placeholderStyle: _PropTypes["default"].string,
+  placeholderClass: _PropTypes["default"].string,
+  disabled: _PropTypes["default"].bool,
+  maxlength: _PropTypes["default"].number,
+  cursorSpacing: _PropTypes["default"].number,
+  autoFocus: _PropTypes["default"].bool,
+  focus: _PropTypes["default"].bool,
+  confirmType: _PropTypes["default"].string,
+  confirmHold: _PropTypes["default"].bool,
+  cursor: _PropTypes["default"].number,
+  selectionStart: _PropTypes["default"].number,
+  selectionEnd: _PropTypes["default"].number,
+  adjustPosition: _PropTypes["default"].bool,
+  holdKeyboard: _PropTypes["default"].bool
+});
+(0, _defineProperty2["default"])(RemixInput, "defaultProps", {
+  uuid: null,
+  style: null,
+  className: null,
+  onInput: null,
+  onFocus: null,
+  onBlur: null,
+  onConfirm: null,
+  onKeyboardHeightChange: null,
+  value: null,
+  type: 'text',
+  password: false,
+  placeholder: null,
+  placeholderStyle: null,
+  placeholderClass: 'input-placeholder',
+  disabled: false,
+  maxlength: 140,
+  cursorSpacing: 0,
+  autoFocus: false,
+  focus: false,
+  confirmType: 'done',
+  confirmHold: false,
+  cursor: 0,
+  selectionStart: -1,
+  selectionEnd: -1,
+  adjustPosition: true,
+  holdKeyboard: false
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-map/index.js":
+/*!******************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-map/index.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixMap =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixMap, _React$Component);
+
+  function RemixMap() {
+    (0, _classCallCheck2["default"])(this, RemixMap);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixMap).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixMap, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          uuid = _this$props.uuid,
+          style = _this$props.style,
+          className = _this$props.className,
+          onTap = _this$props.onTap,
+          onMarkerTap = _this$props.onMarkerTap,
+          onLabelTap = _this$props.onLabelTap,
+          onControlTap = _this$props.onControlTap,
+          onCalloutTap = _this$props.onCalloutTap,
+          onUpdated = _this$props.onUpdated,
+          onRegionChange = _this$props.onRegionChange,
+          onPoiTap = _this$props.onPoiTap,
+          longitude = _this$props.longitude,
+          latitude = _this$props.latitude,
+          scale = _this$props.scale,
+          markers = _this$props.markers,
+          covers = _this$props.covers,
+          polyline = _this$props.polyline,
+          circles = _this$props.circles,
+          controls = _this$props.controls,
+          includePoints = _this$props.includePoints,
+          showLocation = _this$props.showLocation,
+          polygons = _this$props.polygons,
+          subkey = _this$props.subkey,
+          layerStyle = _this$props.layerStyle,
+          rotate = _this$props.rotate,
+          skew = _this$props.skew,
+          enable3D = _this$props.enable3D,
+          showCompass = _this$props.showCompass,
+          showScale = _this$props.showScale,
+          enableOverlooking = _this$props.enableOverlooking,
+          enableZoom = _this$props.enableZoom,
+          enableScroll = _this$props.enableScroll,
+          enableRotate = _this$props.enableRotate,
+          enableSatellite = _this$props.enableSatellite,
+          enableTraffic = _this$props.enableTraffic,
+          setting = _this$props.setting;
+      return _react["default"].createElement("map", {
+        uuid: uuid,
+        style: style,
+        className: className,
+        onTap: onTap ? 'onTap' : null,
+        onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
+        onLabelTap: onLabelTap ? 'onLabelTap' : null,
+        onControlTap: onControlTap ? 'onControlTap' : null,
+        onCalloutTap: onCalloutTap ? 'onCalloutTap' : null,
+        onUpdated: onUpdated ? 'onUpdated' : null,
+        onRegionChange: onRegionChange ? 'onRegionChange' : null,
+        onPoiTap: onPoiTap ? 'onPoiTap' : null,
+        longitude: longitude,
+        latitude: latitude,
+        scale: scale,
+        markers: markers,
+        covers: covers,
+        polyline: polyline,
+        circles: circles,
+        controls: controls,
+        includePoints: includePoints,
+        showLocation: showLocation,
+        polygons: polygons,
+        subkey: subkey,
+        layerStyle: layerStyle,
+        rotate: rotate,
+        skew: skew,
+        enable3D: enable3D,
+        showCompass: showCompass,
+        showScale: showScale,
+        enableOverlooking: enableOverlooking,
+        enableZoom: enableZoom,
+        enableScroll: enableScroll,
+        enableRotate: enableRotate,
+        enableSatellite: enableSatellite,
+        enableTraffic: enableTraffic,
+        setting: setting
+      });
+    }
+  }]);
+  return RemixMap;
+}(_react["default"].Component);
+
+exports["default"] = RemixMap;
+(0, _defineProperty2["default"])(RemixMap, "propTypes", {
+  uuid: _PropTypes["default"].string,
+  style: _PropTypes["default"].object,
+  className: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].event,
+  onMarkerTap: _PropTypes["default"].event,
+  onLabelTap: _PropTypes["default"].event,
+  onControlTap: _PropTypes["default"].event,
+  onCalloutTap: _PropTypes["default"].event,
+  onUpdated: _PropTypes["default"].event,
+  onRegionChange: _PropTypes["default"].event,
+  onPoiTap: _PropTypes["default"].event,
+  longitude: _PropTypes["default"].number,
+  latitude: _PropTypes["default"].number,
+  scale: _PropTypes["default"].number,
+  markers: _PropTypes["default"].array,
+  covers: _PropTypes["default"].array,
+  polyline: _PropTypes["default"].array,
+  circles: _PropTypes["default"].array,
+  controls: _PropTypes["default"].array,
+  includePoints: _PropTypes["default"].array,
+  showLocation: _PropTypes["default"].bool,
+  polygons: _PropTypes["default"].array,
+  subkey: _PropTypes["default"].string,
+  layerStyle: _PropTypes["default"].number,
+  rotate: _PropTypes["default"].number,
+  skew: _PropTypes["default"].number,
+  enable3D: _PropTypes["default"].bool,
+  showCompass: _PropTypes["default"].bool,
+  showScale: _PropTypes["default"].bool,
+  enableOverlooking: _PropTypes["default"].bool,
+  enableZoom: _PropTypes["default"].bool,
+  enableScroll: _PropTypes["default"].bool,
+  enableRotate: _PropTypes["default"].bool,
+  enableSatellite: _PropTypes["default"].bool,
+  enableTraffic: _PropTypes["default"].bool,
+  setting: _PropTypes["default"].object
+});
+(0, _defineProperty2["default"])(RemixMap, "defaultProps", {
+  uuid: null,
+  style: null,
+  className: null,
+  onTap: null,
+  onMarkerTap: null,
+  onLabelTap: null,
+  onControlTap: null,
+  onCalloutTap: null,
+  onUpdated: null,
+  onRegionChange: null,
+  onPoiTap: null,
+  longitude: null,
+  latitude: null,
+  scale: 16,
+  markers: null,
+  covers: null,
+  polyline: null,
+  circles: null,
+  controls: null,
+  includePoints: null,
+  showLocation: false,
+  polygons: null,
+  subkey: null,
+  layerStyle: 1,
+  rotate: 0,
+  skew: 0,
+  enable3D: false,
+  showCompass: false,
+  showScale: false,
+  enableOverlooking: false,
+  enableZoom: false,
+  enableScroll: false,
+  enableRotate: false,
+  enableSatellite: false,
+  enableTraffic: false,
+  setting: null
+});
 
 /***/ }),
 
@@ -3863,9 +4655,9 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _v = _interopRequireDefault(__webpack_require__(/*! uuid/v4 */ "../remixjs/node_modules/uuid/v4.js"));
+
+var _globalElements = _interopRequireDefault(__webpack_require__(/*! ./globalElements */ "../remixjs/src/document/globalElements.js"));
 
 var _document = _interopRequireDefault(__webpack_require__(/*! ./document */ "../remixjs/src/document/document.js"));
 
@@ -3874,12 +4666,13 @@ var Element =
 function () {
   function Element() {
     (0, _classCallCheck2["default"])(this, Element);
-    (0, _defineProperty2["default"])(this, "uuid", (0, _v["default"])());
-    (0, _defineProperty2["default"])(this, "tagName", null);
-    (0, _defineProperty2["default"])(this, "nodeType", null);
-    (0, _defineProperty2["default"])(this, "child", null);
-    (0, _defineProperty2["default"])(this, "return", null);
-    (0, _defineProperty2["default"])(this, "lastChild", null);
+    this.uuid = (0, _v["default"])();
+    this.tagName = null;
+    this.nodeType = null;
+    this.child = null;
+    this["return"] = null;
+    this.lastChild = null;
+    _globalElements["default"][this.uuid] = this;
   }
 
   (0, _createClass2["default"])(Element, [{
@@ -3998,6 +4791,8 @@ var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js")
 
 var _Element2 = _interopRequireDefault(__webpack_require__(/*! ./Element */ "../remixjs/src/document/Element.js"));
 
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
 var HTMLElement =
 /*#__PURE__*/
 function (_Element) {
@@ -4009,6 +4804,7 @@ function (_Element) {
     (0, _classCallCheck2["default"])(this, HTMLElement);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLElement).call(this));
     _this.tagName = tagName;
+    _this.style = new _StyleSheet["default"]();
     return _this;
   }
 
@@ -4074,6 +4870,90 @@ exports["default"] = HTMLElement;
 
 /***/ }),
 
+/***/ "../remixjs/src/document/HTMLImage.js":
+/*!********************************************!*\
+  !*** ../remixjs/src/document/HTMLImage.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLImage =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLImage, _HTMLElement);
+
+  function HTMLImage() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLImage);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLImage).call(this));
+    _this.tagName = 'image';
+    _this.style = new _StyleSheet["default"]();
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLImage, [{
+    key: "appendChild",
+    value: function appendChild(child) {}
+  }, {
+    key: "removeEventListener",
+    value: function removeEventListener() {}
+  }, {
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLImage.prototype), "serialize", this).call(this), {
+        src: this.src,
+        mode: this.mode
+      });
+
+      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
+        element.slibing = this.slibing.serialize();
+      }
+
+      return element;
+    }
+  }]);
+  return HTMLImage;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLImage;
+
+/***/ }),
+
 /***/ "../remixjs/src/document/HTMLTextElement.js":
 /*!**************************************************!*\
   !*** ../remixjs/src/document/HTMLTextElement.js ***!
@@ -4135,6 +5015,58 @@ exports["default"] = HTMLTextElement;
 
 /***/ }),
 
+/***/ "../remixjs/src/document/HTMLTypes.js":
+/*!********************************************!*\
+  !*** ../remixjs/src/document/HTMLTypes.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
+var IMAGE = 'image';
+exports.IMAGE = IMAGE;
+var BUTTON = 'button';
+exports.BUTTON = BUTTON;
+var MAP = 'map';
+exports.MAP = MAP;
+var INPUT = 'input';
+exports.INPUT = INPUT;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/StyleSheet.js":
+/*!*********************************************!*\
+  !*** ../remixjs/src/document/StyleSheet.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var StyleSheet = function StyleSheet() {
+  (0, _classCallCheck2["default"])(this, StyleSheet);
+};
+
+exports["default"] = StyleSheet;
+
+/***/ }),
+
 /***/ "../remixjs/src/document/createContainer.js":
 /*!**************************************************!*\
   !*** ../remixjs/src/document/createContainer.js ***!
@@ -4173,10 +5105,29 @@ exports["default"] = createElement;
 
 var _HTMLElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
+var _HTMLImage = _interopRequireDefault(__webpack_require__(/*! ./HTMLImage */ "../remixjs/src/document/HTMLImage.js"));
+
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
 function createElement(tagName, properties) {
-  var element = new _HTMLElement["default"](tagName);
+  var element;
+
+  switch (tagName) {
+    case _HTMLTypes.IMAGE:
+      {
+        element = new _HTMLImage["default"]();
+        break;
+      }
+
+    default:
+      {
+        element = new _HTMLElement["default"](tagName);
+        break;
+      }
+  }
+
   element.nodeType = _HTMLNodeType.ELEMENT_NODE;
   return element;
 }
@@ -4231,9 +5182,14 @@ var _createTextNode = _interopRequireDefault(__webpack_require__(/*! ./createTex
 
 var _createContainer = _interopRequireDefault(__webpack_require__(/*! ./createContainer */ "../remixjs/src/document/createContainer.js"));
 
+var _globalElements = _interopRequireDefault(__webpack_require__(/*! ./globalElements */ "../remixjs/src/document/globalElements.js"));
+
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remixjs/env.js"));
 
 var fakeDocument = {
+  findElement: function findElement(uuid) {
+    return _globalElements["default"][uuid];
+  },
   body: new _HTMLBodyElement["default"](),
   getElementById: function getElementById(id) {
     return (0, _createContainer["default"])('container');
@@ -4246,6 +5202,7 @@ var fakeDocument = {
   removeEventListener: function removeEventListener() {
     debugger;
   },
+  dispatchEvent: function dispatchEvent() {},
   createElement: _createElement["default"],
   createTextNode: _createTextNode["default"]
 };
@@ -4253,6 +5210,25 @@ var _default = fakeDocument; // export default typeof document === 'undefined' ?
 //   virtualDocument : 
 //   env.isDevToolRuntime ? fakeDocument : document;
 
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/globalElements.js":
+/*!*************************************************!*\
+  !*** ../remixjs/src/document/globalElements.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _default = {};
 exports["default"] = _default;
 
 /***/ }),
@@ -4895,7 +5871,9 @@ function () {
           component = _this$route.component,
           r = _this$route.render;
       var rendered = (0, _renderer["default"])((0, _react.createElement)(component || r), this.container);
-      callback(this.container.serialize());
+      var elements = this.container.serialize();
+      console.log(elements);
+      callback(elements);
     }
   }, {
     key: "onReady",
@@ -6084,6 +7062,11 @@ function (_Tunnel) {
   }
 
   (0, _createClass2["default"])(ViewControllerTransport, [{
+    key: "dispatch",
+    value: function dispatch() {
+      debugger;
+    }
+  }, {
     key: "reply",
     value: function reply(body) {
       (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", this).call(this, {
@@ -6155,18 +7138,18 @@ var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/
 
 var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
-var ViewControllerTransport =
+var ViewControllerTransportNative =
 /*#__PURE__*/
 function (_Tunnel) {
-  (0, _inherits2["default"])(ViewControllerTransport, _Tunnel);
+  (0, _inherits2["default"])(ViewControllerTransportNative, _Tunnel);
 
-  function ViewControllerTransport() {
+  function ViewControllerTransportNative() {
     var _this;
 
-    (0, _classCallCheck2["default"])(this, ViewControllerTransport);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerTransport).call(this));
+    (0, _classCallCheck2["default"])(this, ViewControllerTransportNative);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ViewControllerTransportNative).call(this));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "post", function (type, argv, callback) {
-      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransportNative.prototype), "post", (0, _assertThisInitialized2["default"])(_this)).call((0, _assertThisInitialized2["default"])(_this), {
         type: String(_types.VIEW),
         body: {
           type: type,
@@ -6178,10 +7161,14 @@ function (_Tunnel) {
     return _this;
   }
 
-  (0, _createClass2["default"])(ViewControllerTransport, [{
+  (0, _createClass2["default"])(ViewControllerTransportNative, [{
+    key: "dispatch",
+    value: function dispatch(type, id, e) {// console.log(id);
+    }
+  }, {
     key: "reply",
     value: function reply(body) {
-      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransport.prototype), "post", this).call(this, {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(ViewControllerTransportNative.prototype), "post", this).call(this, {
         type: String(_types.VIEW),
         body: body
       });
@@ -6202,10 +7189,10 @@ function (_Tunnel) {
       this.on(_types.VIEW.READY, callback);
     }
   }]);
-  return ViewControllerTransport;
+  return ViewControllerTransportNative;
 }(_tunnel["default"]);
 
-exports["default"] = ViewControllerTransport;
+exports["default"] = ViewControllerTransportNative;
 
 /***/ }),
 
@@ -8391,7 +9378,7 @@ function setInitialDOMProperties(tag, element, rootContainerElement, nextProps) 
 function setInnerHTML() {}
 
 function setValueForStyles(element, nextProp) {
-  var style = element.style;
+  var styles = element.style;
 
   for (var styleName in styles) {
     if (styles.hasOwnProperty(styleName)) {
@@ -8402,7 +9389,7 @@ function setValueForStyles(element, nextProp) {
       }
     }
 
-    style[styleName] = styleValue;
+    styles[styleName] = styleValue;
   }
 }
 

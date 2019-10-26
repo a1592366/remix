@@ -2,11 +2,14 @@ import HTMLBodyElement from './HTMLBodyElement';
 import createElement from './createElement';
 import createTextNode from './createTextNode';
 import createContainer from './createContainer';
-
+import globalElements from './globalElements';
 import env from '../../env';
 
 
 const fakeDocument = {
+  findElement (uuid) {
+    return globalElements[uuid];
+  },
   body: new HTMLBodyElement(),
   getElementById (id) {
     return createContainer('container');
@@ -19,6 +22,8 @@ const fakeDocument = {
   removeEventListener () {
     debugger;
   },
+
+  dispatchEvent () {},
   createElement,
   createTextNode
 }

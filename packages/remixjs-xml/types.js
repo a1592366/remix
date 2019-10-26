@@ -1,4 +1,5 @@
 module.exports = {
+  VIEW: 'Conditional',
   PICKER: 'Picker',
   PICKER_VIEW: 'PickerView',
   TEXT: 'Text',
