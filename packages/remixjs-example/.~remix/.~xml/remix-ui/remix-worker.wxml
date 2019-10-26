@@ -1,3 +1,6 @@
+
+<wxs src="./remix-slibings.wxs" module="getSlibings" />
+
 <template name="selection">
   <block wx:if="{{element.tagName == 'view'}}">
     <view 
@@ -58,9 +61,13 @@
 
 </template>
 
+<template name="slibings">
+  <block wx:for="{{getSlibings(element)}}" wx:key="uuid" wx:for-item="slibing">
+    <template is="selection" data="{{ element: slibing }}" />
+  </block>
+</template>
+
 <template name="remix-worker">  
   <template is="selection" data="{{ element }}" />
-  <block wx:if="{{element.slibing}}">
-    <template is="selection" data="{{ element: element.slibing }}" />
-  </block>
+  <template is="slibings" data="{{ element }}" />
 </template>
