@@ -5,10 +5,17 @@ const input = require('./input');
 const picker = require('./picker');
 const view = require('./view');
 const text = require('./text');
+const scrollView = require('./scroll-view');
+const swiper = require('./swiper');
+const swiperItem  = require('./swiper-item');
 
 module.exports = {
   view,
   text,
+  picker,
+  'scroll-view': scrollView,
+  swiper,
+  'swiper-item': swiperItem,
   map,
   image,
   button,

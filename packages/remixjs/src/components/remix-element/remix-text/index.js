@@ -1,7 +1,9 @@
 import React from '../../../react';
 import PropTypes from '../../../react/PropTypes';
 
+
 export default class RemixText extends React.Component {
+  
   static propTypes = {
     onTouchStart: PropTypes.string,
 		onTouchMove: PropTypes.string,

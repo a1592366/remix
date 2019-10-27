@@ -1,7 +1,9 @@
 import React from '../../../react';
 import PropTypes from '../../../react/PropTypes';
 
+
 export default class RemixImage extends React.Component {
+  
   static propTypes = {
     onLoad: PropTypes.string,
 		onError: PropTypes.string,

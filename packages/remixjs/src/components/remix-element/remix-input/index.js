@@ -1,7 +1,9 @@
 import React from '../../../react';
 import PropTypes from '../../../react/PropTypes';
 
+
 export default class RemixInput extends React.Component {
+  
   static propTypes = {
     onInput: PropTypes.string,
 		onFocus: PropTypes.string,

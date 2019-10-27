@@ -199,6 +199,7 @@ async function buildJS(dist, components) {
     return builder.render(path.resolve(dist, `remix-${data.name}`), {
       openComponent: data.open,
       tagName: data.name,
+      name: data.name,
       className: `${camelcase(`remix-${data.name}`, { pascalCase: true })}`,
       properties: properties.map(props => {
         return props.camel
@@ -223,7 +224,7 @@ async function buildJS(dist, components) {
 async function buildWorkWXML (dist) {
   const builder = new Builder(
     path.resolve(__dirname, 'fixed'),
-    ['remix-worker.wxml'],
+    ['remix-worker.wxml', 'remix-slibings.wxs'],
   );
 
   const names = keys(components);
@@ -237,60 +238,20 @@ async function buildWorkWXML (dist) {
       );
       const symbol = 'elif';
 
+      if (data.name === 'swiper-item') {
+        return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<swiper-item item-id="{{element.itemId}}"><remix-view child="{{element.child}}" innerText="{{element.innerText}}" uuid="{{element.uuid}}" styles="{{element.styles || ''}}" className="{{element.className}}" /></swiper-item>\n\t</block>`;
+      }
+
       const props = properties.map((props, index) => {
         if (props.name === 'styles') {
           return `${props.camel}="{{element.${props.camel} || ''}}"`
         }
 
         return `${props.camel}="{{element.${props.camel}}}"`
-      }).join(' ')
+      }).join(' ');
 
       return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} ${props} />\n\t</block>`
     }).join('\n\t')
-  });
-}
-
-async function buildView (dist) {
-  const files = await globby('./**/*', {
-    cwd: path.resolve(__dirname, 'fixed/view'),
-    dot: true
-  });
-  const builder = new Builder(
-    path.resolve(__dirname, 'fixed/view'),
-    files,
-  );
-
-  const names = keys(components);
-
-  await builder.render(path.resolve(dist, 'view'), {
-    usingComponents: names.map((name, index) => {
-      const data = components[name];
-      const symbol = index === names.length - 1 ? '' : ',';
-
-      return `"remix-${name}": "../remix-${name}/index"${symbol}\n\t\t`
-    }).join('')
-  });
-}
-
-async function buildText (dist) {
-  const files = await globby('./**/*', {
-    cwd: path.resolve(__dirname, 'fixed/text'),
-    dot: true
-  });
-  const builder = new Builder(
-    path.resolve(__dirname, 'fixed/text'),
-    files,
-  );
-
-  const names = keys(components);
-
-  await builder.render(path.resolve(dist, 'text'), {
-    usingComponents: names.map((name, index) => {
-      const data = components[name];
-      const symbol = index === names.length - 1 ? '' : ',';
-
-      return `"remix-${name}": "../remix-${name}/index"${symbol}\n\t\t`
-    }).join('')
   });
 }
 

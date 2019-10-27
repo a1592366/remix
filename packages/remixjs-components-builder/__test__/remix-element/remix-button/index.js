@@ -1,7 +1,9 @@
 import React from '../../../react';
 import PropTypes from '../../../react/PropTypes';
 
+
 export default class RemixButton extends React.Component {
+  
   static propTypes = {
     onGetUserInfo: PropTypes.string,
 		onContact: PropTypes.string,

@@ -1,10 +1,13 @@
+import { IMAGE, INPUT, MAP, BUTTON, VIEW, TEXT, PICKER, SWIPER_ITEM, SWIPER } from './HTMLTypes';
+import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import HTMLElement from './HTMLElement';
 import HTMLImageElement from './HTMLImageElement';
 import HTMLButtonElement from './HTMLButtonElement';
 import HTMLViewElement from './HTMLViewElement';
 import HTMLTextElement from './HTMLTextElement';
-import { ELEMENT_NODE } from '../shared/HTMLNodeType';
-import { IMAGE, INPUT, MAP, BUTTON, VIEW, TEXT } from './HTMLTypes';
+import HTMLPickerElement from './HTMLPickerElement';
+import HTMLSwiperItemElement from './HTMLSwiperItemElement';
+import HTMLSwiperElement from './HTMLSwiperElement';
 
 export default function createElement (tagName) {
   let element;
@@ -24,6 +27,18 @@ export default function createElement (tagName) {
 
     case TEXT: {
       return new HTMLTextElement();
+    }
+
+    case PICKER: {
+      return new HTMLPickerElement();
+    }
+
+    case SWIPER_ITEM: {
+      return new HTMLSwiperItemElement();
+    }
+
+    case SWIPER: {
+      return new HTMLSwiperElement();
     }
   
     default: {

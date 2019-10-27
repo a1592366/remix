@@ -1,7 +1,9 @@
 import React from '../../../react';
 import PropTypes from '../../../react/PropTypes';
 
+
 export default class RemixMap extends React.Component {
+  
   static propTypes = {
     onMarkerTap: PropTypes.string,
 		onLabelTap: PropTypes.string,

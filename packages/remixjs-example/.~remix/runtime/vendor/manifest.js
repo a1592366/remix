@@ -1,4 +1,4 @@
-/*** MARK_1572195887871 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572209764837 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "4fc8b054-2c7f-43c7-8fc7-ad010ae1a0e9";
+var inspectTerminalUUID = "55a5c20d-d994-41c3-87e5-18b847ca69f3";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "82885c51-5500-4db4-a092-c15fdd03c879";
+var inspectLogicUUID = "87618e61-1abe-497e-bab3-33e4499a0e77";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -3436,6 +3436,30 @@ Object.defineProperty(exports, "Button", {
     return _remixButton["default"];
   }
 });
+Object.defineProperty(exports, "Picker", {
+  enumerable: true,
+  get: function get() {
+    return _remixPicker["default"];
+  }
+});
+Object.defineProperty(exports, "ScrollView", {
+  enumerable: true,
+  get: function get() {
+    return _remixScrollView["default"];
+  }
+});
+Object.defineProperty(exports, "Swiper", {
+  enumerable: true,
+  get: function get() {
+    return _remixSwiper["default"];
+  }
+});
+Object.defineProperty(exports, "SwiperItem", {
+  enumerable: true,
+  get: function get() {
+    return _remixSwiperItem["default"];
+  }
+});
 
 var _Application = _interopRequireDefault(__webpack_require__(/*! ./Application */ "../remixjs/src/components/Application.js"));
 
@@ -3454,6 +3478,14 @@ var _remixInput = _interopRequireDefault(__webpack_require__(/*! ./remix-element
 var _remixMap = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-map */ "../remixjs/src/components/remix-element/remix-map/index.js"));
 
 var _remixButton = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-button */ "../remixjs/src/components/remix-element/remix-button/index.js"));
+
+var _remixPicker = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-picker */ "../remixjs/src/components/remix-element/remix-picker/index.js"));
+
+var _remixScrollView = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-scroll-view */ "../remixjs/src/components/remix-element/remix-scroll-view/index.js"));
+
+var _remixSwiper = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-swiper */ "../remixjs/src/components/remix-element/remix-swiper/index.js"));
+
+var _remixSwiperItem = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-swiper-item */ "../remixjs/src/components/remix-element/remix-swiper-item/index.js"));
 
 /***/ }),
 
@@ -4273,6 +4305,657 @@ exports["default"] = RemixMap;
 
 /***/ }),
 
+/***/ "../remixjs/src/components/remix-element/remix-picker/index.js":
+/*!*********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-picker/index.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixPicker =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixPicker, _React$Component);
+
+  function RemixPicker() {
+    (0, _classCallCheck2["default"])(this, RemixPicker);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixPicker).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixPicker, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onCancel = _this$props.onCancel,
+          onError = _this$props.onError,
+          onChange = _this$props.onChange,
+          onColumnChange = _this$props.onColumnChange,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          mode = _this$props.mode,
+          disabled = _this$props.disabled,
+          range = _this$props.range,
+          rangeKey = _this$props.rangeKey,
+          value = _this$props.value,
+          start = _this$props.start,
+          end = _this$props.end,
+          fields = _this$props.fields,
+          customItem = _this$props.customItem;
+      return _react["default"].createElement("picker", {
+        onCancel: onCancel ? 'onCancel' : null,
+        onError: onError ? 'onError' : null,
+        onChange: onChange ? 'onChange' : null,
+        onColumnChange: onColumnChange ? 'onColumnChange' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        mode: mode,
+        disabled: disabled,
+        range: range,
+        rangeKey: rangeKey,
+        value: value,
+        start: start,
+        end: end,
+        fields: fields,
+        customItem: customItem
+      }, this.props.children);
+    }
+  }]);
+  return RemixPicker;
+}(_react["default"].Component);
+
+exports["default"] = RemixPicker;
+(0, _defineProperty2["default"])(RemixPicker, "propTypes", {
+  onCancel: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
+  onChange: _PropTypes["default"].string,
+  onColumnChange: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  mode: _PropTypes["default"].string,
+  disabled: _PropTypes["default"].bool,
+  range: _PropTypes["default"].object,
+  rangeKey: _PropTypes["default"].string,
+  value: _PropTypes["default"].number,
+  start: _PropTypes["default"].string,
+  end: _PropTypes["default"].string,
+  fields: _PropTypes["default"].string,
+  customItem: _PropTypes["default"].string
+});
+(0, _defineProperty2["default"])(RemixPicker, "defaultProps", {
+  onCancel: null,
+  onError: null,
+  onChange: null,
+  onColumnChange: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  mode: 'selector',
+  disabled: false,
+  range: [],
+  rangeKey: null,
+  value: 0,
+  start: null,
+  end: null,
+  fields: 'day',
+  customItem: null
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-scroll-view/index.js":
+/*!**************************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-scroll-view/index.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixScrollView =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixScrollView, _React$Component);
+
+  function RemixScrollView() {
+    (0, _classCallCheck2["default"])(this, RemixScrollView);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixScrollView).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixScrollView, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onScrollToUpper = _this$props.onScrollToUpper,
+          onScrollToLower = _this$props.onScrollToLower,
+          onScroll = _this$props.onScroll,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          scrollX = _this$props.scrollX,
+          scrollY = _this$props.scrollY,
+          upperThreshold = _this$props.upperThreshold,
+          lowerThreshold = _this$props.lowerThreshold,
+          scrollTop = _this$props.scrollTop,
+          scrollLeft = _this$props.scrollLeft,
+          scrollIntoView = _this$props.scrollIntoView,
+          scrollWithAnimation = _this$props.scrollWithAnimation,
+          enableBackToTop = _this$props.enableBackToTop,
+          enableFlex = _this$props.enableFlex,
+          scrollAnchoring = _this$props.scrollAnchoring;
+      return _react["default"].createElement("scroll-view", {
+        onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : null,
+        onScrollToLower: onScrollToLower ? 'onScrollToLower' : null,
+        onScroll: onScroll ? 'onScroll' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        scrollX: scrollX,
+        scrollY: scrollY,
+        upperThreshold: upperThreshold,
+        lowerThreshold: lowerThreshold,
+        scrollTop: scrollTop,
+        scrollLeft: scrollLeft,
+        scrollIntoView: scrollIntoView,
+        scrollWithAnimation: scrollWithAnimation,
+        enableBackToTop: enableBackToTop,
+        enableFlex: enableFlex,
+        scrollAnchoring: scrollAnchoring
+      }, this.props.children);
+    }
+  }]);
+  return RemixScrollView;
+}(_react["default"].Component);
+
+exports["default"] = RemixScrollView;
+(0, _defineProperty2["default"])(RemixScrollView, "propTypes", {
+  onScrollToUpper: _PropTypes["default"].string,
+  onScrollToLower: _PropTypes["default"].string,
+  onScroll: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  scrollX: _PropTypes["default"].bool,
+  scrollY: _PropTypes["default"].bool,
+  upperThreshold: _PropTypes["default"].number,
+  lowerThreshold: _PropTypes["default"].number,
+  scrollTop: _PropTypes["default"].number,
+  scrollLeft: _PropTypes["default"].number,
+  scrollIntoView: _PropTypes["default"].string,
+  scrollWithAnimation: _PropTypes["default"].bool,
+  enableBackToTop: _PropTypes["default"].bool,
+  enableFlex: _PropTypes["default"].bool,
+  scrollAnchoring: _PropTypes["default"].bool
+});
+(0, _defineProperty2["default"])(RemixScrollView, "defaultProps", {
+  onScrollToUpper: null,
+  onScrollToLower: null,
+  onScroll: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  scrollX: false,
+  scrollY: false,
+  upperThreshold: 50,
+  lowerThreshold: 50,
+  scrollTop: null,
+  scrollLeft: null,
+  scrollIntoView: null,
+  scrollWithAnimation: false,
+  enableBackToTop: false,
+  enableFlex: false,
+  scrollAnchoring: false
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-swiper-item/index.js":
+/*!**************************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-swiper-item/index.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixSwiperItem =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixSwiperItem, _React$Component);
+
+  function RemixSwiperItem() {
+    (0, _classCallCheck2["default"])(this, RemixSwiperItem);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixSwiperItem).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixSwiperItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          itemId = _this$props.itemId;
+      return _react["default"].createElement("swiper-item", {
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        itemId: itemId
+      }, this.props.children);
+    }
+  }]);
+  return RemixSwiperItem;
+}(_react["default"].Component);
+
+exports["default"] = RemixSwiperItem;
+(0, _defineProperty2["default"])(RemixSwiperItem, "propTypes", {
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  itemId: _PropTypes["default"].string
+});
+(0, _defineProperty2["default"])(RemixSwiperItem, "defaultProps", {
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  itemId: null
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-swiper/index.js":
+/*!*********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-swiper/index.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var _index = _interopRequireDefault(__webpack_require__(/*! ../remix-swiper-item/index */ "../remixjs/src/components/remix-element/remix-swiper-item/index.js"));
+
+var RemixSwiper =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixSwiper, _React$Component);
+
+  function RemixSwiper() {
+    (0, _classCallCheck2["default"])(this, RemixSwiper);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixSwiper).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixSwiper, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onChange = _this$props.onChange,
+          onAnimationFinish = _this$props.onAnimationFinish,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          indicatorDots = _this$props.indicatorDots,
+          indicatorColor = _this$props.indicatorColor,
+          indicatorActiveColor = _this$props.indicatorActiveColor,
+          autoplay = _this$props.autoplay,
+          current = _this$props.current,
+          interval = _this$props.interval,
+          duration = _this$props.duration,
+          circular = _this$props.circular,
+          vertical = _this$props.vertical,
+          previousMargin = _this$props.previousMargin,
+          nextMargin = _this$props.nextMargin,
+          displayMultipleItems = _this$props.displayMultipleItems,
+          skipHiddenItemLayou = _this$props.skipHiddenItemLayou,
+          easingFunction = _this$props.easingFunction;
+      return _react["default"].createElement("swiper", {
+        onChange: onChange ? 'onChange' : null,
+        onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        indicatorDots: indicatorDots,
+        indicatorColor: indicatorColor,
+        indicatorActiveColor: indicatorActiveColor,
+        autoplay: autoplay,
+        current: current,
+        interval: interval,
+        duration: duration,
+        circular: circular,
+        vertical: vertical,
+        previousMargin: previousMargin,
+        nextMargin: nextMargin,
+        displayMultipleItems: displayMultipleItems,
+        skipHiddenItemLayou: skipHiddenItemLayou,
+        easingFunction: easingFunction
+      }, this.props.children);
+    }
+  }]);
+  return RemixSwiper;
+}(_react["default"].Component);
+
+exports["default"] = RemixSwiper;
+(0, _defineProperty2["default"])(RemixSwiper, "SwiperItem", _index["default"]);
+(0, _defineProperty2["default"])(RemixSwiper, "propTypes", {
+  onChange: _PropTypes["default"].string,
+  onAnimationFinish: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  indicatorDots: _PropTypes["default"].bool,
+  indicatorColor: _PropTypes["default"].string,
+  indicatorActiveColor: _PropTypes["default"].string,
+  autoplay: _PropTypes["default"].bool,
+  current: _PropTypes["default"].number,
+  interval: _PropTypes["default"].number,
+  duration: _PropTypes["default"].number,
+  circular: _PropTypes["default"].bool,
+  vertical: _PropTypes["default"].bool,
+  previousMargin: _PropTypes["default"].string,
+  nextMargin: _PropTypes["default"].string,
+  displayMultipleItems: _PropTypes["default"].number,
+  skipHiddenItemLayou: _PropTypes["default"].bool,
+  easingFunction: _PropTypes["default"].string
+});
+(0, _defineProperty2["default"])(RemixSwiper, "defaultProps", {
+  onChange: null,
+  onAnimationFinish: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  indicatorDots: false,
+  indicatorColor: 'rgba(0, 0, 0, .3)',
+  indicatorActiveColor: '#000000',
+  autoplay: false,
+  current: 0,
+  interval: 5000,
+  duration: 500,
+  circular: false,
+  vertical: false,
+  previousMargin: '0px',
+  nextMargin: '0px',
+  displayMultipleItems: 1,
+  skipHiddenItemLayou: false,
+  easingFunction: 'default'
+});
+
+/***/ }),
+
 /***/ "../remixjs/src/components/remix-element/remix-text/index.js":
 /*!*******************************************************************!*\
   !*** ../remixjs/src/components/remix-element/remix-text/index.js ***!
@@ -4987,7 +5670,8 @@ function (_HTMLElement) {
     key: "serialize",
     value: function serialize() {
       var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLButtonElement.prototype), "serialize", this).call(this), {
-        plain: this.plain
+        plain: this.plain,
+        openType: this.openType
       });
 
       return element;
@@ -5223,6 +5907,243 @@ exports["default"] = HTMLImage;
 
 /***/ }),
 
+/***/ "../remixjs/src/document/HTMLPickerElement.js":
+/*!****************************************************!*\
+  !*** ../remixjs/src/document/HTMLPickerElement.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLPickerElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLPickerElement, _HTMLElement);
+
+  function HTMLPickerElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLPickerElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLPickerElement).call(this));
+    _this.tagName = _HTMLTypes.PICKER;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLPickerElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLPickerElement.prototype), "serialize", this).call(this), {
+        mode: this.mode
+      });
+
+      return element;
+    }
+  }]);
+  return HTMLPickerElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLPickerElement;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/HTMLSwiperElement.js":
+/*!****************************************************!*\
+  !*** ../remixjs/src/document/HTMLSwiperElement.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLSwiperElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLSwiperElement, _HTMLElement);
+
+  function HTMLSwiperElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLSwiperElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLSwiperElement).call(this));
+    _this.tagName = _HTMLTypes.SWIPER;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLSwiperElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLSwiperElement.prototype), "serialize", this).call(this), {
+        interval: this.interval,
+        indicatorDots: this.indicatorDots,
+        duration: this.duration
+      });
+
+      return element;
+    }
+  }]);
+  return HTMLSwiperElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLSwiperElement;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/HTMLSwiperItemElement.js":
+/*!********************************************************!*\
+  !*** ../remixjs/src/document/HTMLSwiperItemElement.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLSwiperItemElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLSwiperItemElement, _HTMLElement);
+
+  function HTMLSwiperItemElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLSwiperItemElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLSwiperItemElement).call(this));
+    _this.tagName = _HTMLTypes.SWIPER_ITEM;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLSwiperItemElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLSwiperItemElement.prototype), "serialize", this).call(this));
+
+      return element;
+    }
+  }]);
+  return HTMLSwiperItemElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLSwiperItemElement;
+
+/***/ }),
+
 /***/ "../remixjs/src/document/HTMLTextElement.js":
 /*!**************************************************!*\
   !*** ../remixjs/src/document/HTMLTextElement.js ***!
@@ -5308,7 +6229,7 @@ exports["default"] = HTMLTextElement;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PLAIN_TEXT = exports.TEXT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
+exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
 var IMAGE = 'image';
 exports.IMAGE = IMAGE;
 var BUTTON = 'button';
@@ -5323,6 +6244,12 @@ var TEXT = 'text';
 exports.TEXT = TEXT;
 var PLAIN_TEXT = '#text';
 exports.PLAIN_TEXT = PLAIN_TEXT;
+var PICKER = 'picker';
+exports.PICKER = PICKER;
+var SWIPER_ITEM = 'swiper-item';
+exports.SWIPER_ITEM = SWIPER_ITEM;
+var SWIPER = 'swiper';
+exports.SWIPER = SWIPER;
 
 /***/ }),
 
@@ -5464,6 +6391,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = createElement;
 
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
 var _HTMLElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
 var _HTMLImageElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLImageElement */ "../remixjs/src/document/HTMLImageElement.js"));
@@ -5474,9 +6405,11 @@ var _HTMLViewElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLView
 
 var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
 
-var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+var _HTMLPickerElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLPickerElement */ "../remixjs/src/document/HTMLPickerElement.js"));
 
-var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+var _HTMLSwiperItemElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLSwiperItemElement */ "../remixjs/src/document/HTMLSwiperItemElement.js"));
+
+var _HTMLSwiperElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLSwiperElement */ "../remixjs/src/document/HTMLSwiperElement.js"));
 
 function createElement(tagName) {
   var element;
@@ -5500,6 +6433,21 @@ function createElement(tagName) {
     case _HTMLTypes.TEXT:
       {
         return new _HTMLTextElement["default"]();
+      }
+
+    case _HTMLTypes.PICKER:
+      {
+        return new _HTMLPickerElement["default"]();
+      }
+
+    case _HTMLTypes.SWIPER_ITEM:
+      {
+        return new _HTMLSwiperItemElement["default"]();
+      }
+
+    case _HTMLTypes.SWIPER:
+      {
+        return new _HTMLSwiperElement["default"]();
       }
 
     default:

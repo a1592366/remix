@@ -1,0 +1,11 @@
+module.exports = function (element) {
+  var slibings = [];
+  var slibing = element.slibing;
+
+  while (slibing) {
+    slibings.push(slibing);
+    slibing = slibing.slibing;
+  }
+
+  return slibings;
+}

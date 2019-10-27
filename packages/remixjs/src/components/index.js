@@ -8,7 +8,10 @@ import Image from './remix-element/remix-image';
 import Input from './remix-element/remix-input';
 import Map from './remix-element/remix-map';
 import Button from './remix-element/remix-button';
-
+import Picker from './remix-element/remix-picker';
+import ScrollView from './remix-element/remix-scroll-view';
+import Swiper from './remix-element/remix-swiper';
+import SwiperItem from './remix-element/remix-swiper-item';
 
 export {
   Application,
@@ -19,5 +22,9 @@ export {
   Image,
   Button,
   Map,
-  Input
+  Input,
+  Picker,
+  Swiper,
+  SwiperItem,
+  ScrollView
 }

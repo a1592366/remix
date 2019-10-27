@@ -9,5 +9,6 @@ export default function createTextInstance (
 ) {
   const element = createTextNode(text, rootContainerInstance);
   element[INTERNAL_INSTANCE_KEY] = workInProgress;
+  
   return element;
 }

@@ -16,7 +16,8 @@ export default class HTMLButtonElement extends HTMLElement {
   serialize () {
     const element = {
       ...super.serialize(),
-      plain: this.plain
+      plain: this.plain,
+      openType: this.openType
     };
 
     return element;
