@@ -98,11 +98,10 @@ class Project {
 import { View } from 'remixjs/project';
 new View('${page}');`
         );
-        await fs.writeFile(xml, `<import src="../../.~xml/remix-ui/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
+        await fs.writeFile(xml, `<import src="../../${env.REMIX_UI_NAME}/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
         await fs.writeFile(json, JSON.stringify({
           usingComponents: {
-            view: '../../.~xml/remix-ui/view/index',
-            text: '../../.~xml/remix-ui/text/index'
+            'remix-view': `../../${env.REMIX_UI_NAME}/remix-view/index`,
           }
         }, null, 2));
 

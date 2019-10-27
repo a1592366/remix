@@ -9,6 +9,49 @@ const components = require('./components');
 const { keys } = Object;
 
 
+const baseEvents = [
+  { name: 'onTouchStart', type: 'String', alias: 'catchtouchstart', defaultValue: 'null' },
+  { name: 'onTouchMove', type: 'String', alias: 'catchtouchmove', defaultValue: 'null' },
+  { name: 'onTouchCancel', type: 'String', alias: 'catchtouchcancel', defaultValue: 'null' },
+  { name: 'onTouchEnd', type: 'String', alias: 'catchtouchend', defaultValue: 'null' },
+  { name: 'onTap', type: 'String', alias: 'catchtap', defaultValue: 'null' },
+  { name: 'onLongPress', type: 'String', alias: 'catchlongpress', defaultValue: 'null' },
+  { name: 'onLongTap', type: 'String', alias: 'catchlongtap', defaultValue: 'null' },
+  { name: 'onTransitionEnd', type: 'String', alias: 'catchtransitionend', defaultValue: 'null' },
+  { name: 'onAnimationStart', type: 'String', alias: 'catchanimationstart', defaultValue: 'null' },
+  { name: 'onAnimationIteration', type: 'String', alias: 'catchanimationiteration', defaultValue: 'null' },
+  { name: 'onAnimationEnd', type: 'String', alias: 'catchanimationend', defaultValue: 'null' },
+  { name: 'onTouchForceChange', type: 'String', alias: 'catchtouchforcechange', defaultValue: 'null' },
+]
+
+keys(components).forEach(key => {
+  const component = components[key];
+
+  component.events = component.events.concat(baseEvents).map(event => {
+    event.isEvent = true;
+    event.camel = event.name;
+
+    return event;
+  });
+
+  component.properties = [
+    { name: 'uuid', type: 'String', defaultValue: 'null' },
+    { name: 'styles', type: 'String', defaultValue: 'null' },
+    { name: 'className', type: 'String', defaultValue: 'null' }
+  ].concat(component.properties).map(prop => {
+    prop.camel = camelcase(prop.name);
+
+    return prop;
+  })
+
+  if (component.open) {
+    component.properties.unshift(
+      { name: 'child', type: 'Object', defaultValue: 'null', camel: 'child' },
+      { name: 'innerText', type: 'String', defaultValue: 'null', camel: 'innerText' },
+    );
+  }
+})
+
 class Builder {
   constructor (src, files) {
     this.src = src;
@@ -70,19 +113,10 @@ async function buildWXML (dist, components) {
       return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
     }).join(',\n\t\t');
 
-    const properties = [
-      { name: 'uuid', type: 'String', defaultValue: 'null' },
-      { name: 'style', type: 'String', defaultValue: 'null' },
-      { name: 'className', type: 'String', defaultValue: 'null' }
-    ].concat(
+    const properties = [].concat(
       data.events,
       data.properties
-    );
-
-    if (data.open) {
-      properties.unshift({ name: 'child', type: 'Object', defaultValue: 'null' })
-    }
-    
+    );    
 
     fs.mkdirpSync(path.resolve(dist, `remix-${data.name}`));
 
@@ -90,14 +124,24 @@ async function buildWXML (dist, components) {
       openComponent: data.open,
       tagName: data.name,
       props: properties.map(props => {
-        if (props.name === 'className') {
-          return `class="{{${camelcase(props.name)}}}"`;
+        if (props.isEvent) {
+          return `${props.alias}="{{${props.camel}}}"`
         }
 
-        return `${props.name}="{{${camelcase(props.name)}}}"`
+        switch (props.name) {
+          case 'className':
+            return `class="{{${props.camel}}}"`;
+
+          case 'styles':
+            return `style="{{${props.camel}}}"`;
+
+          default: {
+            return `${props.name}="{{${props.camel}}}"`
+          }
+        }
       }).join(' '),
       properties: properties.map(props => {
-        return `${camelcase(props.name)}: ${props.type},\n\t\t`
+        return `${props.camel}: ${props.type},\n\t\t`;
       }).join(''),
       usingComponents: names.map((name, index) => {
         const symbol = index === names.length - 1 ? '' : ',';
@@ -109,7 +153,7 @@ async function buildWXML (dist, components) {
         return `"remix-${name}": "../remix-${name}/index"${symbol}\n\t\t`
       }).join(''),
       data: properties.map(props => {
-        return `${camelcase(props.name)}: ${props.defaultValue},\n\t\t`
+        return `${props.camel}: ${props.defaultValue},\n\t\t`
       }).join(''),
       events
     });
@@ -128,16 +172,27 @@ async function buildJS(dist, components) {
     const data = components[name];
 
     const properties = [
-      { name: 'uuid', type: 'String', defaultValue: 'null' },
-      { name: 'style', type: 'Object', defaultValue: 'null' },
-      { name: 'className', type: 'String', defaultValue: 'null' }
     ].concat(
-      data.events.map(event => {
-        event.type = 'event';
-        return event;
-      }),
-      data.properties
-    );
+      data.events,
+      data.properties.map(prop => {
+        if (prop.name === 'styles') {
+          prop.name = 'style';
+          prop.camel = 'style';
+        }
+
+        return prop;
+      })
+    ).filter(prop => {
+      if (
+        prop.name === 'innerText' ||
+        prop.name === 'child' ||
+        prop.name === 'uuid'
+      ) {
+        return false;
+      }
+
+      return true
+    });
 
     fs.mkdirpSync(path.resolve(dist, `remix-${data.name}`));
 
@@ -146,20 +201,20 @@ async function buildJS(dist, components) {
       tagName: data.name,
       className: `${camelcase(`remix-${data.name}`, { pascalCase: true })}`,
       properties: properties.map(props => {
-        return camelcase(props.name)
+        return props.camel
       }).join(', '),
       props: properties.map(props => {
-        if (props.type === 'event') {
-          return `${camelcase(props.name)}={${camelcase(props.name)} ? '${camelcase(props.name)}' : null}`
+        if (props.isEvent) {
+          return `${props.camel}={${props.camel} ? '${props.camel}' : null}`
         }
 
-        return `${camelcase(props.name)}={${camelcase(props.name)}}`
+        return `${props.camel}={${props.camel}}`
       }).join(' '),
       propTypes: properties.map(props => {
-        return `${camelcase(props.name)}: PropTypes.${(props.type === 'Boolean' ? 'bool' : props.type).toLowerCase()},\n\t\t`
+        return `${props.camel}: PropTypes.${(props.type === 'Boolean' ? 'bool' : props.type).toLowerCase()},\n\t\t`
       }).join(''),
       defaultProps: properties.map(props => {
-        return `${camelcase(props.name)}: ${props.defaultValue},\n\t\t`
+        return `${props.camel}: ${props.defaultValue},\n\t\t`
       }).join('')
     });
   }));
@@ -174,30 +229,23 @@ async function buildWorkWXML (dist) {
   const names = keys(components);
 
   await builder.render(dist, {
-    components: names.map(name => {
+    components: names.map((name, index) => {
       const data = components[name];
-      const properties = [
-        { name: 'uuid', type: 'String', defaultValue: 'null' },
-        { name: 'style', type: 'Object', defaultValue: 'null' },
-        { name: 'className', type: 'String', defaultValue: 'null' }
-      ].concat(
+      const properties = [].concat(
         data.events,
         data.properties
       );
+      const symbol = 'elif';
 
-      if (data.open) {
-        properties.unshift({ name: 'child', type: 'Object', defaultValue: 'null' })
-      }
-
-      const props = properties.map(props => {
-        if (props.name === 'style') {
-          return `${camelcase(props.name)}="{{element.${camelcase(props.name)} || ''}}"`
+      const props = properties.map((props, index) => {
+        if (props.name === 'styles') {
+          return `${props.camel}="{{element.${props.camel} || ''}}"`
         }
 
-        return `${camelcase(props.name)}="{{element.${camelcase(props.name)}}}"`
+        return `${props.camel}="{{element.${props.camel}}}"`
       }).join(' ')
 
-      return `<block wx:elif="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} ${props} />\n\t</block>`
+      return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} ${props} />\n\t</block>`
     }).join('\n\t')
   });
 }
@@ -249,7 +297,7 @@ async function buildText (dist) {
 module.exports = async function (dist) {
   await buildWXML(path.resolve(dist, 'remix-ui'), components);
   await buildWorkWXML(path.resolve(dist, 'remix-ui'), components);
-  await buildView(path.resolve(dist, 'remix-ui'), components);
-  await buildText(path.resolve(dist, 'remix-ui'), components);
+  // await buildView(path.resolve(dist, 'remix-ui'), components);
+  // await buildText(path.resolve(dist, 'remix-ui'), components);
   await buildJS(path.resolve(dist, 'remix-element'), components);
 }

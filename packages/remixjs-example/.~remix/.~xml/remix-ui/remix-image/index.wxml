@@ -1,2 +1,0 @@
- 
-<image uuid="{{uuid}}" style="{{style}}" class="{{className}}" onLoad="{{onLoad}}" onError="{{onError}}" src="{{src}}" mode="{{mode}}" webp="{{webp}}" lazy-load="{{lazyLoad}}" show-menu-by-longpress="{{showMenuByLongpress}}"></image>

@@ -21,7 +21,7 @@ export default class ViewController {
       this.container
     );
 
-    const elements = this.container.serialize();
+    const elements = document.getContainerElements(this.container);
 
     console.log(elements);
 

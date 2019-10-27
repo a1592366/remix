@@ -1,11 +1,13 @@
-import { INDETERMINATE_COMPONENT, HOST_ROOT, CLASS_COMPONENT, HOST_COMPONENT, FUNCTION_COMPONENT } from '../../shared/workTags';
+import { INDETERMINATE_COMPONENT, HOST_ROOT, CLASS_COMPONENT, HOST_COMPONENT, FUNCTION_COMPONENT, HOST_TEXT } from '../../shared/workTags';
 import { PLACEMENT } from '../../shared/effectTags';
-import { isNullOrUndefined, isContextProvider } from '../../shared/is';
+import { isNullOrUndefined, isContextProvider, isString } from '../../shared/is';
 import updateHostInstance from '../updater/updateHostInstance';
 import createInstance from '../../renderer/config/createInstance';
+import createTextInstance from '../../renderer/config/createTextInstance';
 import ReactCurrentRootInstance from '../../react/ReactCurrentRootInstance';
 import setInitialProperties from '../../renderer/config/setInitialProperties';
 import appendAllChildren from '../../renderer/config/appendAllChildren';
+import updateHostText from '../updater/updateHostText';
 
 
 export default function completeWork (
@@ -59,6 +61,18 @@ export default function completeWork (
 
         appendAllChildren(instance, workInProgress);
         setInitialProperties(instance, type, nextProps, rootContainerInstance);
+      }
+
+      break;
+    }
+
+    case HOST_TEXT: {
+      const text = nextProps;
+      if (current && !isNullOrUndefined(workInProgress.stateNode)) {
+        updateHostText(current, workInProgress, current.memoizedProps, text);
+      } else {
+        const rootContainerInstance = getRootHostContainer();
+        workInProgress.stateNode = createTextInstance(text, rootContainerInstance, {}, workInProgress);
       }
 
       break;

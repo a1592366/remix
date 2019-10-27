@@ -1,50 +1,6 @@
 <template name="selection">
-  <block wx:if="{{element.tagName == 'view'}}">
-    <view 
-      child="{{element.child}}" 
-      uuid="{{element.uuid}}" 
-      id="{{element.uuid}}" 
-      class="{{element.className || ''}}"
-      style="{{element.style || ''}}"
-      catchtouchstart="{{element.onTouchStart || ''}}"
-      catchtouchmove="{{element.onTouchMove || ''}}"
-      catchtouchcancel="{{element.onTouchCancel || ''}}"
-      catchtouchend="{{element.onTouchEnd || ''}}"
-      catchtap="{{element.onTap || ''}}"
-      catchlongpress="{{element.onLongPress || ''}}"
-      catchlongtap="{{element.onLongTap || ''}}"
-      catchtransitionend="{{element.onTransitionEnd || ''}}"
-      catchanimationstart="{{element.onAnimationStart || ''}}"
-      catchanimationiteration="{{element.onAnimationIteration || ''}}"
-      catchanimationend="{{element.onAnimationEnd || ''}}"
-      catchtouchforcechange="{{element.onTouchForceChange || ''}}"
-    />
-  </block>
-
-  <block wx:if="{{element.tagName == 'text'}}">
-    <text 
-      child="{{element.child}}" 
-      uuid="{{element.uuid}}" 
-      id="{{element.uuid}}" 
-      class="{{element.className || ''}}"
-      style="{{element.style || ''}}"
-      catchtouchstart="{{element.onTouchStart || ''}}"
-      catchtouchmove="{{element.onTouchMove || ''}}"
-      catchtouchcancel="{{element.onTouchCancel || ''}}"
-      catchtouchend="{{element.onTouchEnd || ''}}"
-      catchtap="{{element.onTap || ''}}"
-      catchlongpress="{{element.onLongPress || ''}}"
-      catchlongtap="{{element.onLongTap || ''}}"
-      catchtransitionend="{{element.onTransitionEnd || ''}}"
-      catchanimationstart="{{element.onAnimationStart || ''}}"
-      catchanimationiteration="{{element.onAnimationIteration || ''}}"
-      catchanimationend="{{element.onAnimationEnd || ''}}"
-      catchtouchforcechange="{{element.onTouchForceChange || ''}}"
-    />
-  </block>
-
+  <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
   <%- components %>
-
 </template>
 
 <template name="remix-worker">  

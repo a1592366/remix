@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "view": "../../.~xml/remix-ui/view/index",
-    "text": "../../.~xml/remix-ui/text/index"
+    "remix-view": "../../remix-ui/remix-view/index"
   }
 }

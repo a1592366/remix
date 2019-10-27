@@ -10,6 +10,10 @@ export default class HTMLElement extends Element {
     this.style = new StyleSheet();
   }
 
+  set innerHTML (innerHTML) {
+    throw new Error('Sorry, innerHTML is not be supportted');
+  }
+
   appendChild (child) {
     if (isNullOrUndefined(this.child)) {
       this.child = this.lastChild = child;
@@ -20,14 +24,27 @@ export default class HTMLElement extends Element {
 
     child.return = this;
   }
-  removeChild () {}
 
-  getAttribute () {}
-  setAttribute () {}
-  removeAttribute () {}
+  removeChild (child) {
+
+  }
+
+  getAttribute (name) {
+    return this[name];
+  }
+  setAttribute (name, value) {
+    this[name] = value;
+  }
+
+  removeAttribute (name) {
+    this[name] = null;
+  }
 
   addEventListener () {}
   removeEventListener () {}
+  dispatchEvent (type, id, e) {
+    console.log()
+  }
 
   toString () {
     return `[object HTML${this.tagName}Element]`;
@@ -38,6 +55,14 @@ export default class HTMLElement extends Element {
       uuid: this.uuid,
       nodeType: this.nodeType,
       tagName: this.tagName,
+      className: this.className || null,
+      innerText: this.innerText || null,
+      onTouchStart: this.onTouchStart || null,
+      onTouchMove: this.onTouchMove || null,
+      onTouchEnd: this.onTouchEnd || null,
+      onTransitionEnd: this.onTransitionEnd || null,
+      onAnimationStart: this.onAnimationStart || null,
+      onAnimationEnd: this.onAnimationEnd || null
     };
 
     if (!isNullOrUndefined(this.child)) {

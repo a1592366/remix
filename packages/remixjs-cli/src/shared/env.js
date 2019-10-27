@@ -36,7 +36,7 @@ const REMIX_BOOT_NAME = 'runtime/boot.js';
 const REMIX_NODE_RUNTIME_NAME = 'runtime/node.runtime.js';
 const REMIX_CLIENT_RUNTIME_NAME = 'runtime/client.runtime.js';
 const REMIX_DEVTOOL_RUNTIME_NAME = 'runtime/devtool.runtime.js';
-const REMIX_UI_NAME = `.~xml/remix-ui`;
+const REMIX_UI_NAME = `remix-ui`;
 
 
 

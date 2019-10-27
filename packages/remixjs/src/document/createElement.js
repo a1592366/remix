@@ -1,24 +1,33 @@
 import HTMLElement from './HTMLElement';
-import HTMLImage from './HTMLImage';
+import HTMLImageElement from './HTMLImageElement';
+import HTMLButtonElement from './HTMLButtonElement';
+import HTMLViewElement from './HTMLViewElement';
+import HTMLTextElement from './HTMLTextElement';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
-import { IMAGE, INPUT, MAP, BUTTON } from './HTMLTypes';
+import { IMAGE, INPUT, MAP, BUTTON, VIEW, TEXT } from './HTMLTypes';
 
-export default function createElement (tagName, properties) {
+export default function createElement (tagName) {
   let element;
 
   switch (tagName) {
     case IMAGE: {
-      element = new HTMLImage();
-      break;
+      return new HTMLImageElement();
+    }
+
+    case BUTTON: {
+      return new HTMLButtonElement();
+    }
+
+    case VIEW: {
+      return new HTMLViewElement();
+    }
+
+    case TEXT: {
+      return new HTMLTextElement();
     }
   
     default: {
-      element = new HTMLElement(tagName);
-      break;
+      return new HTMLElement(tagName);
     }
   }
-
-  
-  element.nodeType = ELEMENT_NODE;
-  return element;
 }

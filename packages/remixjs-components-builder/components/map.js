@@ -30,7 +30,7 @@ module.exports = {
   ],
 
   events: [
-    { name: 'onTap', type: 'String', defaultValue: 'null', alias: 'bindtap' },
+    // { name: 'onTap', type: 'String', defaultValue: 'null', alias: 'bindtap' },
     { name: 'onMarkerTap', type: 'String', defaultValue: 'null', alias: 'bindmarkertap' },
     { name: 'onLabelTap', type: 'String', defaultValue: 'null', alias: 'bindlabeltap' },
     { name: 'onControlTap', type: 'String', defaultValue: 'null', alias: 'bindcontroltap' },

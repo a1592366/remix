@@ -10,6 +10,9 @@ const fakeDocument = {
   findElement (uuid) {
     return globalElements[uuid];
   },
+  getContainerElements (container) {
+    return container.serialize();
+  },
   body: new HTMLBodyElement(),
   getElementById (id) {
     return createContainer('container');

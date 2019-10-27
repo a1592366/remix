@@ -1,9 +1,8 @@
 import { DANGEROUSLY_SET_INNER_HTML, HTML, CHILDREN, STYLE, STYLE_NAME_FLOAT } from '../../shared';
-import { isNullOrUndefined, isString, isFunction, isNumber } from '../../shared/is';
+import { isNullOrUndefined, isString, isFunction, isNumber, isNull } from '../../shared/is';
 import ensureListeningTo from '../../event/ensureListeningTo';
 import registrationNameModules from '../../event/registrationNameModules';
 
-import { getProperty } from './properties';
 
 export default function setInitialDOMProperties (
   tag, 
@@ -85,13 +84,19 @@ export function setTextContent (
 export function setValueForProperty (
   element, 
   propName, 
-  nextProp
+  value
 ) {
-  const property = getProperty(propName);
+  if (isNull(value)) {
+    element.removeAttribute(propName, value);
+  } else {
+    element.setAttribute(propName, value);
+  }
+}
 
-  if (property) {
-    
-    element.setAttribute(property.attributeName, nextProp);
+function shouldIgnoreAttribute (name) {
+  if (name.length > 2 && name.slice(0, 2).toLowerCase() === 'on') {
+    return true;
   }
 
+  return false;
 }

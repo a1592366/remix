@@ -1,4 +1,4 @@
-/*** MARK_1572116202383 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572195887871 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "054e1fd9-7196-4b32-975d-5e0066b31774";
+var inspectTerminalUUID = "4fc8b054-2c7f-43c7-8fc7-ad010ae1a0e9";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "d292bd80-0318-439e-bfea-e6f2fd76338d";
+var inspectLogicUUID = "82885c51-5500-4db4-a092-c15fdd03c879";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -1338,21 +1338,6 @@ var _default = {
   inspectLogicUUID: inspectLogicUUID
 };
 exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../remixjs/node_modules/@babel/runtime/helpers/arrayWithHoles.js":
-/*!************************************************************************!*\
-  !*** ../remixjs/node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-module.exports = _arrayWithHoles;
 
 /***/ }),
 
@@ -1463,35 +1448,6 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "../remixjs/node_modules/@babel/runtime/helpers/extends.js":
-/*!*****************************************************************!*\
-  !*** ../remixjs/node_modules/@babel/runtime/helpers/extends.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
 
 /***/ }),
 
@@ -1666,62 +1622,6 @@ module.exports = _iterableToArray;
 
 /***/ }),
 
-/***/ "../remixjs/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
-/*!******************************************************************************!*\
-  !*** ../remixjs/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-module.exports = _iterableToArrayLimit;
-
-/***/ }),
-
-/***/ "../remixjs/node_modules/@babel/runtime/helpers/nonIterableRest.js":
-/*!*************************************************************************!*\
-  !*** ../remixjs/node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-module.exports = _nonIterableRest;
-
-/***/ }),
-
 /***/ "../remixjs/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
 /*!***************************************************************************!*\
   !*** ../remixjs/node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
@@ -1792,27 +1692,6 @@ function _setPrototypeOf(o, p) {
 }
 
 module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "../remixjs/node_modules/@babel/runtime/helpers/slicedToArray.js":
-/*!***********************************************************************!*\
-  !*** ../remixjs/node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "../remixjs/node_modules/@babel/runtime/helpers/arrayWithHoles.js");
-
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "../remixjs/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
-
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "../remixjs/node_modules/@babel/runtime/helpers/nonIterableRest.js");
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
-}
-
-module.exports = _slicedToArray;
 
 /***/ }),
 
@@ -3418,160 +3297,6 @@ exports["default"] = TabBar;
 
 /***/ }),
 
-/***/ "../remixjs/src/components/Text.js":
-/*!*****************************************!*\
-  !*** ../remixjs/src/components/Text.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _defineProperty4 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remixjs/src/react/index.js"));
-
-var _Component2 = _interopRequireDefault(__webpack_require__(/*! ../react/Component */ "../remixjs/src/react/Component.js"));
-
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
-
-var _defineProperty2, _defineProperty3;
-
-var Text =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2["default"])(Text, _Component);
-
-  function Text() {
-    (0, _classCallCheck2["default"])(this, Text);
-    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(Text).apply(this, arguments));
-  }
-
-  (0, _createClass2["default"])(Text, [{
-    key: "render",
-    value: function render() {
-      return _react["default"].createElement("text", this.props.children, this.props.children);
-    }
-  }]);
-  return Text;
-}(_Component2["default"]);
-
-exports["default"] = Text;
-(0, _defineProperty4["default"])(Text, "propTypes", (_defineProperty2 = {
-  style: _PropTypes["default"].object,
-  className: _PropTypes["default"].string,
-  onPress: _PropTypes["default"].func,
-  onLongPress: _PropTypes["default"].func,
-  onClick: _PropTypes["default"].func,
-  onTap: _PropTypes["default"].func
-}, (0, _defineProperty4["default"])(_defineProperty2, "onPress", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchStart", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchMove", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchEnd", _PropTypes["default"].func), _defineProperty2));
-(0, _defineProperty4["default"])(Text, "defaultProps", (_defineProperty3 = {
-  style: null,
-  className: null,
-  onPress: null,
-  onLongPress: null,
-  onClick: null
-}, (0, _defineProperty4["default"])(_defineProperty3, "onPress", null), (0, _defineProperty4["default"])(_defineProperty3, "onTap", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchStart", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchMove", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchEnd", null), _defineProperty3));
-
-/***/ }),
-
-/***/ "../remixjs/src/components/View.js":
-/*!*****************************************!*\
-  !*** ../remixjs/src/components/View.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../remixjs/node_modules/@babel/runtime/helpers/extends.js"));
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _defineProperty4 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remixjs/src/react/index.js"));
-
-var _Component2 = _interopRequireDefault(__webpack_require__(/*! ../react/Component */ "../remixjs/src/react/Component.js"));
-
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
-
-var _defineProperty2, _defineProperty3;
-
-var View =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2["default"])(View, _Component);
-
-  function View() {
-    (0, _classCallCheck2["default"])(this, View);
-    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(View).apply(this, arguments));
-  }
-
-  (0, _createClass2["default"])(View, [{
-    key: "render",
-    value: function render() {
-      return _react["default"].createElement("view", (0, _extends2["default"])({}, this.props.children, {
-        onTouchStart: this.props.onTouchStart ? 'onTouchStart' : null
-      }), this.props.children);
-    }
-  }]);
-  return View;
-}(_Component2["default"]);
-
-exports["default"] = View;
-(0, _defineProperty4["default"])(View, "propTypes", (_defineProperty2 = {
-  style: _PropTypes["default"].object,
-  className: _PropTypes["default"].string,
-  onPress: _PropTypes["default"].func,
-  onLongPress: _PropTypes["default"].func,
-  onClick: _PropTypes["default"].func,
-  onTap: _PropTypes["default"].func
-}, (0, _defineProperty4["default"])(_defineProperty2, "onPress", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchStart", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchMove", _PropTypes["default"].func), (0, _defineProperty4["default"])(_defineProperty2, "onTouchEnd", _PropTypes["default"].func), _defineProperty2));
-(0, _defineProperty4["default"])(View, "defaultProps", (_defineProperty3 = {
-  style: null,
-  className: null,
-  onPress: null,
-  onLongPress: null,
-  onClick: null
-}, (0, _defineProperty4["default"])(_defineProperty3, "onPress", null), (0, _defineProperty4["default"])(_defineProperty3, "onTap", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchStart", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchMove", null), (0, _defineProperty4["default"])(_defineProperty3, "onTouchEnd", null), _defineProperty3));
-
-/***/ }),
-
 /***/ "../remixjs/src/components/ViewController.js":
 /*!***************************************************!*\
   !*** ../remixjs/src/components/ViewController.js ***!
@@ -3678,13 +3403,13 @@ Object.defineProperty(exports, "TabBar", {
 Object.defineProperty(exports, "View", {
   enumerable: true,
   get: function get() {
-    return _View["default"];
+    return _remixView["default"];
   }
 });
 Object.defineProperty(exports, "Text", {
   enumerable: true,
   get: function get() {
-    return _Text["default"];
+    return _remixText["default"];
   }
 });
 Object.defineProperty(exports, "Image", {
@@ -3718,9 +3443,9 @@ var _ViewController = _interopRequireDefault(__webpack_require__(/*! ./ViewContr
 
 var _TabBar = _interopRequireDefault(__webpack_require__(/*! ./TabBar */ "../remixjs/src/components/TabBar.js"));
 
-var _View = _interopRequireDefault(__webpack_require__(/*! ./View */ "../remixjs/src/components/View.js"));
+var _remixView = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-view */ "../remixjs/src/components/remix-element/remix-view/index.js"));
 
-var _Text = _interopRequireDefault(__webpack_require__(/*! ./Text */ "../remixjs/src/components/Text.js"));
+var _remixText = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-text */ "../remixjs/src/components/remix-element/remix-text/index.js"));
 
 var _remixImage = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-image */ "../remixjs/src/components/remix-element/remix-image/index.js"));
 
@@ -3779,15 +3504,26 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          uuid = _this$props.uuid,
-          style = _this$props.style,
-          className = _this$props.className,
           onGetUserInfo = _this$props.onGetUserInfo,
           onContact = _this$props.onContact,
           onGetPhoneNumber = _this$props.onGetPhoneNumber,
           onOpenSetting = _this$props.onOpenSetting,
           onLaunchApp = _this$props.onLaunchApp,
           onError = _this$props.onError,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
           size = _this$props.size,
           type = _this$props.type,
           plain = _this$props.plain,
@@ -3807,15 +3543,26 @@ function (_React$Component) {
           appParameter = _this$props.appParameter,
           showMessageCard = _this$props.showMessageCard;
       return _react["default"].createElement("button", {
-        uuid: uuid,
-        style: style,
-        className: className,
         onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
         onContact: onContact ? 'onContact' : null,
         onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
         onOpenSetting: onOpenSetting ? 'onOpenSetting' : null,
         onLaunchApp: onLaunchApp ? 'onLaunchApp' : null,
         onError: onError ? 'onError' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
         size: size,
         type: type,
         plain: plain,
@@ -3842,15 +3589,26 @@ function (_React$Component) {
 
 exports["default"] = RemixButton;
 (0, _defineProperty2["default"])(RemixButton, "propTypes", {
-  uuid: _PropTypes["default"].string,
-  style: _PropTypes["default"].object,
+  onGetUserInfo: _PropTypes["default"].string,
+  onContact: _PropTypes["default"].string,
+  onGetPhoneNumber: _PropTypes["default"].string,
+  onOpenSetting: _PropTypes["default"].string,
+  onLaunchApp: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
-  onGetUserInfo: _PropTypes["default"].event,
-  onContact: _PropTypes["default"].event,
-  onGetPhoneNumber: _PropTypes["default"].event,
-  onOpenSetting: _PropTypes["default"].event,
-  onLaunchApp: _PropTypes["default"].event,
-  onError: _PropTypes["default"].event,
   size: _PropTypes["default"].string,
   type: _PropTypes["default"].string,
   plain: _PropTypes["default"].bool,
@@ -3871,15 +3629,26 @@ exports["default"] = RemixButton;
   showMessageCard: _PropTypes["default"].string
 });
 (0, _defineProperty2["default"])(RemixButton, "defaultProps", {
-  uuid: null,
-  style: null,
-  className: null,
   onGetUserInfo: null,
   onContact: null,
   onGetPhoneNumber: null,
   onOpenSetting: null,
   onLaunchApp: null,
   onError: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
   size: 'default',
   type: 'default',
   plain: false,
@@ -3949,22 +3718,44 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          uuid = _this$props.uuid,
-          style = _this$props.style,
-          className = _this$props.className,
           onLoad = _this$props.onLoad,
           onError = _this$props.onError,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
           src = _this$props.src,
           mode = _this$props.mode,
           webp = _this$props.webp,
           lazyLoad = _this$props.lazyLoad,
           showMenuByLongpress = _this$props.showMenuByLongpress;
       return _react["default"].createElement("image", {
-        uuid: uuid,
-        style: style,
-        className: className,
         onLoad: onLoad ? 'onLoad' : null,
         onError: onError ? 'onError' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
         src: src,
         mode: mode,
         webp: webp,
@@ -3978,11 +3769,22 @@ function (_React$Component) {
 
 exports["default"] = RemixImage;
 (0, _defineProperty2["default"])(RemixImage, "propTypes", {
-  uuid: _PropTypes["default"].string,
-  style: _PropTypes["default"].object,
+  onLoad: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
-  onLoad: _PropTypes["default"].event,
-  onError: _PropTypes["default"].event,
   src: _PropTypes["default"].string,
   mode: _PropTypes["default"].string,
   webp: _PropTypes["default"].bool,
@@ -3990,11 +3792,22 @@ exports["default"] = RemixImage;
   showMenuByLongpress: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixImage, "defaultProps", {
-  uuid: null,
-  style: null,
-  className: null,
   onLoad: null,
   onError: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
   src: null,
   mode: 'scaleToFill',
   webp: false,
@@ -4051,14 +3864,25 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          uuid = _this$props.uuid,
-          style = _this$props.style,
-          className = _this$props.className,
           onInput = _this$props.onInput,
           onFocus = _this$props.onFocus,
           onBlur = _this$props.onBlur,
           onConfirm = _this$props.onConfirm,
           onKeyboardHeightChange = _this$props.onKeyboardHeightChange,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
           value = _this$props.value,
           type = _this$props.type,
           password = _this$props.password,
@@ -4078,14 +3902,25 @@ function (_React$Component) {
           adjustPosition = _this$props.adjustPosition,
           holdKeyboard = _this$props.holdKeyboard;
       return _react["default"].createElement("input", {
-        uuid: uuid,
-        style: style,
-        className: className,
         onInput: onInput ? 'onInput' : null,
         onFocus: onFocus ? 'onFocus' : null,
         onBlur: onBlur ? 'onBlur' : null,
         onConfirm: onConfirm ? 'onConfirm' : null,
         onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
         value: value,
         type: type,
         password: password,
@@ -4112,14 +3947,25 @@ function (_React$Component) {
 
 exports["default"] = RemixInput;
 (0, _defineProperty2["default"])(RemixInput, "propTypes", {
-  uuid: _PropTypes["default"].string,
-  style: _PropTypes["default"].object,
+  onInput: _PropTypes["default"].string,
+  onFocus: _PropTypes["default"].string,
+  onBlur: _PropTypes["default"].string,
+  onConfirm: _PropTypes["default"].string,
+  onKeyboardHeightChange: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
-  onInput: _PropTypes["default"].event,
-  onFocus: _PropTypes["default"].event,
-  onBlur: _PropTypes["default"].event,
-  onConfirm: _PropTypes["default"].event,
-  onKeyboardHeightChange: _PropTypes["default"].event,
   value: _PropTypes["default"].string,
   type: _PropTypes["default"].string,
   password: _PropTypes["default"].bool,
@@ -4140,14 +3986,25 @@ exports["default"] = RemixInput;
   holdKeyboard: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixInput, "defaultProps", {
-  uuid: null,
-  style: null,
-  className: null,
   onInput: null,
   onFocus: null,
   onBlur: null,
   onConfirm: null,
   onKeyboardHeightChange: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
   value: null,
   type: 'text',
   password: false,
@@ -4217,10 +4074,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          uuid = _this$props.uuid,
-          style = _this$props.style,
-          className = _this$props.className,
-          onTap = _this$props.onTap,
           onMarkerTap = _this$props.onMarkerTap,
           onLabelTap = _this$props.onLabelTap,
           onControlTap = _this$props.onControlTap,
@@ -4228,6 +4081,20 @@ function (_React$Component) {
           onUpdated = _this$props.onUpdated,
           onRegionChange = _this$props.onRegionChange,
           onPoiTap = _this$props.onPoiTap,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
           longitude = _this$props.longitude,
           latitude = _this$props.latitude,
           scale = _this$props.scale,
@@ -4254,10 +4121,6 @@ function (_React$Component) {
           enableTraffic = _this$props.enableTraffic,
           setting = _this$props.setting;
       return _react["default"].createElement("map", {
-        uuid: uuid,
-        style: style,
-        className: className,
-        onTap: onTap ? 'onTap' : null,
         onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
         onLabelTap: onLabelTap ? 'onLabelTap' : null,
         onControlTap: onControlTap ? 'onControlTap' : null,
@@ -4265,6 +4128,20 @@ function (_React$Component) {
         onUpdated: onUpdated ? 'onUpdated' : null,
         onRegionChange: onRegionChange ? 'onRegionChange' : null,
         onPoiTap: onPoiTap ? 'onPoiTap' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
         longitude: longitude,
         latitude: latitude,
         scale: scale,
@@ -4298,17 +4175,27 @@ function (_React$Component) {
 
 exports["default"] = RemixMap;
 (0, _defineProperty2["default"])(RemixMap, "propTypes", {
-  uuid: _PropTypes["default"].string,
-  style: _PropTypes["default"].object,
+  onMarkerTap: _PropTypes["default"].string,
+  onLabelTap: _PropTypes["default"].string,
+  onControlTap: _PropTypes["default"].string,
+  onCalloutTap: _PropTypes["default"].string,
+  onUpdated: _PropTypes["default"].string,
+  onRegionChange: _PropTypes["default"].string,
+  onPoiTap: _PropTypes["default"].string,
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
-  onTap: _PropTypes["default"].event,
-  onMarkerTap: _PropTypes["default"].event,
-  onLabelTap: _PropTypes["default"].event,
-  onControlTap: _PropTypes["default"].event,
-  onCalloutTap: _PropTypes["default"].event,
-  onUpdated: _PropTypes["default"].event,
-  onRegionChange: _PropTypes["default"].event,
-  onPoiTap: _PropTypes["default"].event,
   longitude: _PropTypes["default"].number,
   latitude: _PropTypes["default"].number,
   scale: _PropTypes["default"].number,
@@ -4336,10 +4223,6 @@ exports["default"] = RemixMap;
   setting: _PropTypes["default"].object
 });
 (0, _defineProperty2["default"])(RemixMap, "defaultProps", {
-  uuid: null,
-  style: null,
-  className: null,
-  onTap: null,
   onMarkerTap: null,
   onLabelTap: null,
   onControlTap: null,
@@ -4347,6 +4230,20 @@ exports["default"] = RemixMap;
   onUpdated: null,
   onRegionChange: null,
   onPoiTap: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
   longitude: null,
   latitude: null,
   scale: 16,
@@ -4372,6 +4269,270 @@ exports["default"] = RemixMap;
   enableSatellite: false,
   enableTraffic: false,
   setting: null
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-text/index.js":
+/*!*******************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-text/index.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixText =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixText, _React$Component);
+
+  function RemixText() {
+    (0, _classCallCheck2["default"])(this, RemixText);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixText).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixText, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          selectable = _this$props.selectable,
+          space = _this$props.space,
+          decode = _this$props.decode;
+      return _react["default"].createElement("text", {
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        selectable: selectable,
+        space: space,
+        decode: decode
+      }, this.props.children);
+    }
+  }]);
+  return RemixText;
+}(_react["default"].Component);
+
+exports["default"] = RemixText;
+(0, _defineProperty2["default"])(RemixText, "propTypes", {
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  selectable: _PropTypes["default"].bool,
+  space: _PropTypes["default"].bool,
+  decode: _PropTypes["default"].bool
+});
+(0, _defineProperty2["default"])(RemixText, "defaultProps", {
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  selectable: false,
+  space: false,
+  decode: false
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-view/index.js":
+/*!*******************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-view/index.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixView =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixView, _React$Component);
+
+  function RemixView() {
+    (0, _classCallCheck2["default"])(this, RemixView);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixView).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixView, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className,
+          hoverClass = _this$props.hoverClass,
+          hoverStopPropagation = _this$props.hoverStopPropagation,
+          hoverStartTime = _this$props.hoverStartTime,
+          hoverStayTime = _this$props.hoverStayTime;
+      return _react["default"].createElement("view", {
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className,
+        hoverClass: hoverClass,
+        hoverStopPropagation: hoverStopPropagation,
+        hoverStartTime: hoverStartTime,
+        hoverStayTime: hoverStayTime
+      }, this.props.children);
+    }
+  }]);
+  return RemixView;
+}(_react["default"].Component);
+
+exports["default"] = RemixView;
+(0, _defineProperty2["default"])(RemixView, "propTypes", {
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  hoverClass: _PropTypes["default"].string,
+  hoverStopPropagation: _PropTypes["default"].bool,
+  hoverStartTime: _PropTypes["default"].number,
+  hoverStayTime: _PropTypes["default"].number
+});
+(0, _defineProperty2["default"])(RemixView, "defaultProps", {
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
+  style: null,
+  className: null,
+  hoverClass: 'none',
+  hoverStopPropagation: false,
+  hoverStartTime: 50,
+  hoverStayTime: 400
 });
 
 /***/ }),
@@ -4760,6 +4921,85 @@ exports["default"] = HTMLBodyElement;
 
 /***/ }),
 
+/***/ "../remixjs/src/document/HTMLButtonElement.js":
+/*!****************************************************!*\
+  !*** ../remixjs/src/document/HTMLButtonElement.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLButtonElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLButtonElement, _HTMLElement);
+
+  function HTMLButtonElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLButtonElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLButtonElement).call(this));
+    _this.tagName = _HTMLTypes.BUTTON;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLButtonElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLButtonElement.prototype), "serialize", this).call(this), {
+        plain: this.plain
+      });
+
+      return element;
+    }
+  }]);
+  return HTMLButtonElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLButtonElement;
+
+/***/ }),
+
 /***/ "../remixjs/src/document/HTMLElement.js":
 /*!**********************************************!*\
   !*** ../remixjs/src/document/HTMLElement.js ***!
@@ -4822,22 +5062,33 @@ function (_Element) {
     }
   }, {
     key: "removeChild",
-    value: function removeChild() {}
+    value: function removeChild(child) {}
   }, {
     key: "getAttribute",
-    value: function getAttribute() {}
+    value: function getAttribute(name) {
+      return this[name];
+    }
   }, {
     key: "setAttribute",
-    value: function setAttribute() {}
+    value: function setAttribute(name, value) {
+      this[name] = value;
+    }
   }, {
     key: "removeAttribute",
-    value: function removeAttribute() {}
+    value: function removeAttribute(name) {
+      this[name] = null;
+    }
   }, {
     key: "addEventListener",
     value: function addEventListener() {}
   }, {
     key: "removeEventListener",
     value: function removeEventListener() {}
+  }, {
+    key: "dispatchEvent",
+    value: function dispatchEvent(type, id, e) {
+      console.log();
+    }
   }, {
     key: "toString",
     value: function toString() {
@@ -4849,7 +5100,15 @@ function (_Element) {
       var element = {
         uuid: this.uuid,
         nodeType: this.nodeType,
-        tagName: this.tagName
+        tagName: this.tagName,
+        className: this.className || null,
+        innerText: this.innerText || null,
+        onTouchStart: this.onTouchStart || null,
+        onTouchMove: this.onTouchMove || null,
+        onTouchEnd: this.onTouchEnd || null,
+        onTransitionEnd: this.onTransitionEnd || null,
+        onAnimationStart: this.onAnimationStart || null,
+        onAnimationEnd: this.onAnimationEnd || null
       };
 
       if (!(0, _is.isNullOrUndefined)(this.child)) {
@@ -4862,6 +5121,11 @@ function (_Element) {
 
       return element;
     }
+  }, {
+    key: "innerHTML",
+    set: function set(innerHTML) {
+      throw new Error('Sorry, innerHTML is not be supportted');
+    }
   }]);
   return HTMLElement;
 }(_Element2["default"]);
@@ -4870,10 +5134,10 @@ exports["default"] = HTMLElement;
 
 /***/ }),
 
-/***/ "../remixjs/src/document/HTMLImage.js":
-/*!********************************************!*\
-  !*** ../remixjs/src/document/HTMLImage.js ***!
-  \********************************************/
+/***/ "../remixjs/src/document/HTMLImageElement.js":
+/*!***************************************************!*\
+  !*** ../remixjs/src/document/HTMLImageElement.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4907,6 +5171,10 @@ var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement
 
 var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
 
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4921,7 +5189,8 @@ function (_HTMLElement) {
 
     (0, _classCallCheck2["default"])(this, HTMLImage);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLImage).call(this));
-    _this.tagName = 'image';
+    _this.tagName = _HTMLTypes.IMAGE;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
     _this.style = new _StyleSheet["default"]();
     return _this;
   }
@@ -4930,8 +5199,8 @@ function (_HTMLElement) {
     key: "appendChild",
     value: function appendChild(child) {}
   }, {
-    key: "removeEventListener",
-    value: function removeEventListener() {}
+    key: "removeChild",
+    value: function removeChild(child) {}
   }, {
     key: "serialize",
     value: function serialize() {
@@ -4971,45 +5240,56 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remixjs/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
 
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _Element2 = _interopRequireDefault(__webpack_require__(/*! ./Element */ "../remixjs/src/document/Element.js"));
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 var HTMLTextElement =
 /*#__PURE__*/
-function (_Element) {
-  (0, _inherits2["default"])(HTMLTextElement, _Element);
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLTextElement, _HTMLElement);
 
-  function HTMLTextElement() {
-    var _getPrototypeOf2;
-
+  function HTMLTextElement(textContent) {
     var _this;
 
     (0, _classCallCheck2["default"])(this, HTMLTextElement);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(HTMLTextElement)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "nodeType", _HTMLNodeType.TEXT_NODE);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLTextElement).call(this));
+    _this.textContent = textContent;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    _this.tagName = _HTMLTypes.TEXT;
     return _this;
   }
 
+  (0, _createClass2["default"])(HTMLTextElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLTextElement.prototype), "serialize", this).call(this));
+
+      return element;
+    }
+  }]);
   return HTMLTextElement;
-}(_Element2["default"]);
+}(_HTMLElement2["default"]);
 
 exports["default"] = HTMLTextElement;
 
@@ -5028,7 +5308,7 @@ exports["default"] = HTMLTextElement;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
+exports.PLAIN_TEXT = exports.TEXT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
 var IMAGE = 'image';
 exports.IMAGE = IMAGE;
 var BUTTON = 'button';
@@ -5037,6 +5317,87 @@ var MAP = 'map';
 exports.MAP = MAP;
 var INPUT = 'input';
 exports.INPUT = INPUT;
+var VIEW = 'view';
+exports.VIEW = VIEW;
+var TEXT = 'text';
+exports.TEXT = TEXT;
+var PLAIN_TEXT = '#text';
+exports.PLAIN_TEXT = PLAIN_TEXT;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/HTMLViewElement.js":
+/*!**************************************************!*\
+  !*** ../remixjs/src/document/HTMLViewElement.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var HTMLViewElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLViewElement, _HTMLElement);
+
+  function HTMLViewElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLViewElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLViewElement).call(this));
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    _this.tagName = 'view';
+    return _this;
+  }
+
+  (0, _createClass2["default"])(HTMLViewElement, [{
+    key: "serialize",
+    value: function serialize() {
+      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLViewElement.prototype), "serialize", this).call(this));
+
+      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
+        element.slibing = this.slibing.serialize();
+      }
+
+      return element;
+    }
+  }]);
+  return HTMLViewElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLViewElement;
 
 /***/ }),
 
@@ -5105,31 +5466,47 @@ exports["default"] = createElement;
 
 var _HTMLElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
-var _HTMLImage = _interopRequireDefault(__webpack_require__(/*! ./HTMLImage */ "../remixjs/src/document/HTMLImage.js"));
+var _HTMLImageElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLImageElement */ "../remixjs/src/document/HTMLImageElement.js"));
+
+var _HTMLButtonElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLButtonElement */ "../remixjs/src/document/HTMLButtonElement.js"));
+
+var _HTMLViewElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLViewElement */ "../remixjs/src/document/HTMLViewElement.js"));
+
+var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
 
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
 var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
 
-function createElement(tagName, properties) {
+function createElement(tagName) {
   var element;
 
   switch (tagName) {
     case _HTMLTypes.IMAGE:
       {
-        element = new _HTMLImage["default"]();
-        break;
+        return new _HTMLImageElement["default"]();
+      }
+
+    case _HTMLTypes.BUTTON:
+      {
+        return new _HTMLButtonElement["default"]();
+      }
+
+    case _HTMLTypes.VIEW:
+      {
+        return new _HTMLViewElement["default"]();
+      }
+
+    case _HTMLTypes.TEXT:
+      {
+        return new _HTMLTextElement["default"]();
       }
 
     default:
       {
-        element = new _HTMLElement["default"](tagName);
-        break;
+        return new _HTMLElement["default"](tagName);
       }
   }
-
-  element.nodeType = _HTMLNodeType.ELEMENT_NODE;
-  return element;
 }
 
 /***/ }),
@@ -5144,16 +5521,36 @@ function createElement(tagName, properties) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = createTextNode;
 
-var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLTextElement */ "../remixjs/src/document/HTMLTextElement.js"));
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
-function createTextNode(text) {}
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+function createTextNode(text) {
+  return {
+    nodeType: _HTMLNodeType.TEXT_NODE,
+    tagName: _HTMLTypes.PLAIN_TEXT,
+    text: text,
+    serialize: function serialize() {
+      var element = {
+        tagName: this.tagName,
+        text: this.text
+      };
+
+      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
+        element.slibing = this.slibing.serialize();
+      }
+
+      return element;
+    }
+  };
+}
 
 /***/ }),
 
@@ -5189,6 +5586,9 @@ var _env = _interopRequireDefault(__webpack_require__(/*! ../../env */ "../remix
 var fakeDocument = {
   findElement: function findElement(uuid) {
     return _globalElements["default"][uuid];
+  },
+  getContainerElements: function getContainerElements(container) {
+    return container.serialize();
   },
   body: new _HTMLBodyElement["default"](),
   getElementById: function getElementById(id) {
@@ -5871,7 +6271,9 @@ function () {
           component = _this$route.component,
           r = _this$route.render;
       var rendered = (0, _renderer["default"])((0, _react.createElement)(component || r), this.container);
-      var elements = this.container.serialize();
+
+      var elements = _document.document.getContainerElements(this.container);
+
       console.log(elements);
       callback(elements);
     }
@@ -7138,6 +7540,8 @@ var _types = __webpack_require__(/*! ./types */ "../remixjs/src/project/runtime/
 
 var _is = __webpack_require__(/*! ../../../shared/is */ "../remixjs/src/shared/is.js");
 
+var _document = __webpack_require__(/*! ../../../document */ "../remixjs/src/document/index.js");
+
 var ViewControllerTransportNative =
 /*#__PURE__*/
 function (_Tunnel) {
@@ -7163,7 +7567,14 @@ function (_Tunnel) {
 
   (0, _createClass2["default"])(ViewControllerTransportNative, [{
     key: "dispatch",
-    value: function dispatch(type, id, e) {// console.log(id);
+    value: function dispatch(type, id, e) {
+      if (id) {
+        var element = _document.document.findElement(id);
+
+        if (element) {
+          element.dispatchEvent(type, id, e);
+        }
+      }
     }
   }, {
     key: "reply",
@@ -9264,10 +9675,10 @@ function createInstance(type, props, rootContainerInstance, context, workInProgr
 
 /***/ }),
 
-/***/ "../remixjs/src/renderer/config/properties.js":
-/*!****************************************************!*\
-  !*** ../remixjs/src/renderer/config/properties.js ***!
-  \****************************************************/
+/***/ "../remixjs/src/renderer/config/createTextInstance.js":
+/*!************************************************************!*\
+  !*** ../remixjs/src/renderer/config/createTextInstance.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9279,29 +9690,39 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProperty = getProperty;
+exports["default"] = createTextInstance;
 
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../remixjs/node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _createTextNode = _interopRequireDefault(__webpack_require__(/*! ./createTextNode */ "../remixjs/src/renderer/config/createTextNode.js"));
 
-var properties = {};
-[['className', 'class']].forEach(function (_ref) {
-  var _ref2 = (0, _slicedToArray2["default"])(_ref, 2),
-      propertyName = _ref2[0],
-      attributeName = _ref2[1];
+var _shared = __webpack_require__(/*! ../../shared */ "../remixjs/src/shared/index.js");
 
-  properties[propertyName] = createProperty(propertyName, null, attributeName);
-});
-
-function createProperty(propertyName, type, attributeName) {
-  return {
-    type: type,
-    propertyName: propertyName,
-    attributeName: attributeName
-  };
+function createTextInstance(text, rootContainerInstance, context, workInProgress) {
+  var element = (0, _createTextNode["default"])(text, rootContainerInstance);
+  element[_shared.INTERNAL_INSTANCE_KEY] = workInProgress;
+  return element;
 }
 
-function getProperty(name) {
-  return properties[name];
+/***/ }),
+
+/***/ "../remixjs/src/renderer/config/createTextNode.js":
+/*!********************************************************!*\
+  !*** ../remixjs/src/renderer/config/createTextNode.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = createTextNode;
+
+function createTextNode(text, rootContainerElement) {
+  var document = rootContainerElement.ownerDocument;
+  var textNode = document.createTextNode(text);
+  return textNode;
 }
 
 /***/ }),
@@ -9334,8 +9755,6 @@ var _is = __webpack_require__(/*! ../../shared/is */ "../remixjs/src/shared/is.j
 var _ensureListeningTo = _interopRequireDefault(__webpack_require__(/*! ../../event/ensureListeningTo */ "../remixjs/src/event/ensureListeningTo.js"));
 
 var _registrationNameModules = _interopRequireDefault(__webpack_require__(/*! ../../event/registrationNameModules */ "../remixjs/src/event/registrationNameModules.js"));
-
-var _properties = __webpack_require__(/*! ./properties */ "../remixjs/src/renderer/config/properties.js");
 
 function setInitialDOMProperties(tag, element, rootContainerElement, nextProps) {
   for (var propName in nextProps) {
@@ -9397,12 +9816,20 @@ function setTextContent(element, content) {
   element.innerText = content;
 }
 
-function setValueForProperty(element, propName, nextProp) {
-  var property = (0, _properties.getProperty)(propName);
-
-  if (property) {
-    element.setAttribute(property.attributeName, nextProp);
+function setValueForProperty(element, propName, value) {
+  if ((0, _is.isNull)(value)) {
+    element.removeAttribute(propName, value);
+  } else {
+    element.setAttribute(propName, value);
   }
+}
+
+function shouldIgnoreAttribute(name) {
+  if (name.length > 2 && name.slice(0, 2).toLowerCase() === 'on') {
+    return true;
+  }
+
+  return false;
 }
 
 /***/ }),
@@ -11682,11 +12109,15 @@ var _updateHostInstance = _interopRequireDefault(__webpack_require__(/*! ../upda
 
 var _createInstance = _interopRequireDefault(__webpack_require__(/*! ../../renderer/config/createInstance */ "../remixjs/src/renderer/config/createInstance.js"));
 
+var _createTextInstance = _interopRequireDefault(__webpack_require__(/*! ../../renderer/config/createTextInstance */ "../remixjs/src/renderer/config/createTextInstance.js"));
+
 var _ReactCurrentRootInstance = _interopRequireDefault(__webpack_require__(/*! ../../react/ReactCurrentRootInstance */ "../remixjs/src/react/ReactCurrentRootInstance.js"));
 
 var _setInitialProperties = _interopRequireDefault(__webpack_require__(/*! ../../renderer/config/setInitialProperties */ "../remixjs/src/renderer/config/setInitialProperties.js"));
 
 var _appendAllChildren = _interopRequireDefault(__webpack_require__(/*! ../../renderer/config/appendAllChildren */ "../remixjs/src/renderer/config/appendAllChildren.js"));
+
+var _updateHostText = _interopRequireDefault(__webpack_require__(/*! ../updater/updateHostText */ "../remixjs/src/scheduler/updater/updateHostText.js"));
 
 function completeWork(current, workInProgress) {
   var nextProps = workInProgress.pendingProps;
@@ -11739,6 +12170,21 @@ function completeWork(current, workInProgress) {
           workInProgress.stateNode = instance;
           (0, _appendAllChildren["default"])(instance, workInProgress);
           (0, _setInitialProperties["default"])(instance, type, _nextProps, rootContainerInstance);
+        }
+
+        break;
+      }
+
+    case _workTags.HOST_TEXT:
+      {
+        var text = nextProps;
+
+        if (current && !(0, _is.isNullOrUndefined)(workInProgress.stateNode)) {
+          (0, _updateHostText["default"])(current, workInProgress, current.memoizedProps, text);
+        } else {
+          var _rootContainerInstance = getRootHostContainer();
+
+          workInProgress.stateNode = (0, _createTextInstance["default"])(text, _rootContainerInstance, {}, workInProgress);
         }
 
         break;

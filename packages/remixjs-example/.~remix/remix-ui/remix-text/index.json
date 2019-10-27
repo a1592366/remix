@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "remix-view": "../remix-view/index",
+		"remix-text": "./index",
+		"remix-map": "../remix-map/index",
+		"remix-image": "../remix-image/index",
+		"remix-button": "../remix-button/index",
+		"remix-input": "../remix-input/index"
+		
+  }
+}

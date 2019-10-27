@@ -2,6 +2,7 @@ import uuid from 'uuid';
 import Tunnel from '../tunnel';
 import { VIEW } from './types';
 import { isFunction } from '../../../shared/is';
+import { document } from '../../../document'
 
 export default class ViewControllerTransportNative  extends Tunnel {
   constructor () {
@@ -9,7 +10,13 @@ export default class ViewControllerTransportNative  extends Tunnel {
   }
 
   dispatch (type, id, e) {
-    // console.log(id);
+    if (id) {
+      const element = document.findElement(id);
+  
+      if (element) {
+        element.dispatchEvent(type, id, e);
+      }
+    }
   }
 
   post = (type, argv, callback) => {
