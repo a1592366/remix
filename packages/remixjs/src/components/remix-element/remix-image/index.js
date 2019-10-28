@@ -5,9 +5,7 @@ import PropTypes from '../../../react/PropTypes';
 export default class RemixImage extends React.Component {
   
   static propTypes = {
-    onLoad: PropTypes.string,
-		onError: PropTypes.string,
-		onTouchStart: PropTypes.string,
+    onTouchStart: PropTypes.string,
 		onTouchMove: PropTypes.string,
 		onTouchCancel: PropTypes.string,
 		onTouchEnd: PropTypes.string,
@@ -19,6 +17,8 @@ export default class RemixImage extends React.Component {
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
 		onTouchForceChange: PropTypes.string,
+		onLoad: PropTypes.string,
+		onError: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		src: PropTypes.string,
@@ -30,9 +30,7 @@ export default class RemixImage extends React.Component {
   };
 
   static defaultProps = {
-    onLoad: null,
-		onError: null,
-		onTouchStart: null,
+    onTouchStart: null,
 		onTouchMove: null,
 		onTouchCancel: null,
 		onTouchEnd: null,
@@ -44,6 +42,8 @@ export default class RemixImage extends React.Component {
 		onAnimationIteration: null,
 		onAnimationEnd: null,
 		onTouchForceChange: null,
+		onLoad: null,
+		onError: null,
 		style: null,
 		className: null,
 		src: null,
@@ -55,9 +55,9 @@ export default class RemixImage extends React.Component {
   };
 
   render () {
-    const { onLoad, onError, onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, src, mode, webp, lazyLoad, showMenuByLongpress } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, onLoad, onError, style, className, src, mode, webp, lazyLoad, showMenuByLongpress } = this.props;
 
-    return <image onLoad={onLoad ? 'onLoad' : null} onError={onError ? 'onError' : null} onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} src={src} mode={mode} webp={webp} lazyLoad={lazyLoad} showMenuByLongpress={showMenuByLongpress}></image>;
+    return <image onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onLoad={onLoad ? 'onLoad' : null} onError={onError ? 'onError' : null} style={style} className={className} src={src} mode={mode} webp={webp} lazyLoad={lazyLoad} showMenuByLongpress={showMenuByLongpress}></image>;
   }
 }
 

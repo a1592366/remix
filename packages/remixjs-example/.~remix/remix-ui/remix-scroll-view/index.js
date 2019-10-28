@@ -1,4 +1,4 @@
-/*** MARK_1572237290965 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572285754602 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -175,18 +175,6 @@ Component({
     onScrollToUpper: String,
     onScrollToLower: String,
     onScroll: String,
-    onTouchStart: String,
-    onTouchMove: String,
-    onTouchCancel: String,
-    onTouchEnd: String,
-    onTap: String,
-    onLongPress: String,
-    onLongTap: String,
-    onTransitionEnd: String,
-    onAnimationStart: String,
-    onAnimationIteration: String,
-    onAnimationEnd: String,
-    onTouchForceChange: String,
     child: Object,
     innerText: String,
     uuid: String,
@@ -208,18 +196,6 @@ Component({
     onScrollToUpper: null,
     onScrollToLower: null,
     onScroll: null,
-    onTouchStart: null,
-    onTouchMove: null,
-    onTouchCancel: null,
-    onTouchEnd: null,
-    onTap: null,
-    onLongPress: null,
-    onLongTap: null,
-    onTransitionEnd: null,
-    onAnimationStart: null,
-    onAnimationIteration: null,
-    onAnimationEnd: null,
-    onTouchForceChange: null,
     child: null,
     innerText: null,
     uuid: null,
@@ -246,42 +222,6 @@ Component({
     },
     onScroll: function onScroll(e) {
       _project.transports.view.dispatch('onScroll', this.data.uuid, e);
-    },
-    onTouchStart: function onTouchStart(e) {
-      _project.transports.view.dispatch('onTouchStart', this.data.uuid, e);
-    },
-    onTouchMove: function onTouchMove(e) {
-      _project.transports.view.dispatch('onTouchMove', this.data.uuid, e);
-    },
-    onTouchCancel: function onTouchCancel(e) {
-      _project.transports.view.dispatch('onTouchCancel', this.data.uuid, e);
-    },
-    onTouchEnd: function onTouchEnd(e) {
-      _project.transports.view.dispatch('onTouchEnd', this.data.uuid, e);
-    },
-    onTap: function onTap(e) {
-      _project.transports.view.dispatch('onTap', this.data.uuid, e);
-    },
-    onLongPress: function onLongPress(e) {
-      _project.transports.view.dispatch('onLongPress', this.data.uuid, e);
-    },
-    onLongTap: function onLongTap(e) {
-      _project.transports.view.dispatch('onLongTap', this.data.uuid, e);
-    },
-    onTransitionEnd: function onTransitionEnd(e) {
-      _project.transports.view.dispatch('onTransitionEnd', this.data.uuid, e);
-    },
-    onAnimationStart: function onAnimationStart(e) {
-      _project.transports.view.dispatch('onAnimationStart', this.data.uuid, e);
-    },
-    onAnimationIteration: function onAnimationIteration(e) {
-      _project.transports.view.dispatch('onAnimationIteration', this.data.uuid, e);
-    },
-    onAnimationEnd: function onAnimationEnd(e) {
-      _project.transports.view.dispatch('onAnimationEnd', this.data.uuid, e);
-    },
-    onTouchForceChange: function onTouchForceChange(e) {
-      _project.transports.view.dispatch('onTouchForceChange', this.data.uuid, e);
     }
   },
   lifetimes: {

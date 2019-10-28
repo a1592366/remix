@@ -5,14 +5,7 @@ import PropTypes from '../../../react/PropTypes';
 export default class RemixMap extends React.Component {
   
   static propTypes = {
-    onMarkerTap: PropTypes.string,
-		onLabelTap: PropTypes.string,
-		onControlTap: PropTypes.string,
-		onCalloutTap: PropTypes.string,
-		onUpdated: PropTypes.string,
-		onRegionChange: PropTypes.string,
-		onPoiTap: PropTypes.string,
-		onTouchStart: PropTypes.string,
+    onTouchStart: PropTypes.string,
 		onTouchMove: PropTypes.string,
 		onTouchCancel: PropTypes.string,
 		onTouchEnd: PropTypes.string,
@@ -24,6 +17,13 @@ export default class RemixMap extends React.Component {
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
 		onTouchForceChange: PropTypes.string,
+		onMarkerTap: PropTypes.string,
+		onLabelTap: PropTypes.string,
+		onControlTap: PropTypes.string,
+		onCalloutTap: PropTypes.string,
+		onUpdated: PropTypes.string,
+		onRegionChange: PropTypes.string,
+		onPoiTap: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		longitude: PropTypes.number,
@@ -55,14 +55,7 @@ export default class RemixMap extends React.Component {
   };
 
   static defaultProps = {
-    onMarkerTap: null,
-		onLabelTap: null,
-		onControlTap: null,
-		onCalloutTap: null,
-		onUpdated: null,
-		onRegionChange: null,
-		onPoiTap: null,
-		onTouchStart: null,
+    onTouchStart: null,
 		onTouchMove: null,
 		onTouchCancel: null,
 		onTouchEnd: null,
@@ -74,6 +67,13 @@ export default class RemixMap extends React.Component {
 		onAnimationIteration: null,
 		onAnimationEnd: null,
 		onTouchForceChange: null,
+		onMarkerTap: null,
+		onLabelTap: null,
+		onControlTap: null,
+		onCalloutTap: null,
+		onUpdated: null,
+		onRegionChange: null,
+		onPoiTap: null,
 		style: null,
 		className: null,
 		longitude: null,
@@ -105,9 +105,9 @@ export default class RemixMap extends React.Component {
   };
 
   render () {
-    const { onMarkerTap, onLabelTap, onControlTap, onCalloutTap, onUpdated, onRegionChange, onPoiTap, onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, longitude, latitude, scale, markers, covers, polyline, circles, controls, includePoints, showLocation, polygons, subkey, layerStyle, rotate, skew, enable3D, showCompass, showScale, enableOverlooking, enableZoom, enableScroll, enableRotate, enableSatellite, enableTraffic, setting } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, onMarkerTap, onLabelTap, onControlTap, onCalloutTap, onUpdated, onRegionChange, onPoiTap, style, className, longitude, latitude, scale, markers, covers, polyline, circles, controls, includePoints, showLocation, polygons, subkey, layerStyle, rotate, skew, enable3D, showCompass, showScale, enableOverlooking, enableZoom, enableScroll, enableRotate, enableSatellite, enableTraffic, setting } = this.props;
 
-    return <map onMarkerTap={onMarkerTap ? 'onMarkerTap' : null} onLabelTap={onLabelTap ? 'onLabelTap' : null} onControlTap={onControlTap ? 'onControlTap' : null} onCalloutTap={onCalloutTap ? 'onCalloutTap' : null} onUpdated={onUpdated ? 'onUpdated' : null} onRegionChange={onRegionChange ? 'onRegionChange' : null} onPoiTap={onPoiTap ? 'onPoiTap' : null} onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} longitude={longitude} latitude={latitude} scale={scale} markers={markers} covers={covers} polyline={polyline} circles={circles} controls={controls} includePoints={includePoints} showLocation={showLocation} polygons={polygons} subkey={subkey} layerStyle={layerStyle} rotate={rotate} skew={skew} enable3D={enable3D} showCompass={showCompass} showScale={showScale} enableOverlooking={enableOverlooking} enableZoom={enableZoom} enableScroll={enableScroll} enableRotate={enableRotate} enableSatellite={enableSatellite} enableTraffic={enableTraffic} setting={setting}></map>;
+    return <map onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onMarkerTap={onMarkerTap ? 'onMarkerTap' : null} onLabelTap={onLabelTap ? 'onLabelTap' : null} onControlTap={onControlTap ? 'onControlTap' : null} onCalloutTap={onCalloutTap ? 'onCalloutTap' : null} onUpdated={onUpdated ? 'onUpdated' : null} onRegionChange={onRegionChange ? 'onRegionChange' : null} onPoiTap={onPoiTap ? 'onPoiTap' : null} style={style} className={className} longitude={longitude} latitude={latitude} scale={scale} markers={markers} covers={covers} polyline={polyline} circles={circles} controls={controls} includePoints={includePoints} showLocation={showLocation} polygons={polygons} subkey={subkey} layerStyle={layerStyle} rotate={rotate} skew={skew} enable3D={enable3D} showCompass={showCompass} showScale={showScale} enableOverlooking={enableOverlooking} enableZoom={enableZoom} enableScroll={enableScroll} enableRotate={enableRotate} enableSatellite={enableSatellite} enableTraffic={enableTraffic} setting={setting}></map>;
   }
 }
 

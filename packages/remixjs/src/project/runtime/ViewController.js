@@ -6,7 +6,7 @@ export default class ViewController {
   constructor (id, route) {
     this.id = id;
     this.route = route;
-    this.container = document.createElement('view');
+    this.container = document.createElement('root');
 
     document.body.appendChild(this.container);
   }
@@ -22,6 +22,9 @@ export default class ViewController {
     );
 
     const elements = document.getContainerElements(this.container);
+    console.log(elements);
+
+    elements.onTouchStart = 'onTouchStart'
 
     callback(elements);
   }

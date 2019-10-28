@@ -22,7 +22,12 @@ export default class ViewController {
         onHide () {},
         onUnload () {},
         onPullDownRefresh () {},
-        onShareAppMessage () {}
+        onShareAppMessage () {},
+
+        touchstart (e) {
+          debugger;
+          console.log(e);
+        }
       })
     }
   }

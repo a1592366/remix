@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "remix-view": "../remix-view/index",
+    "remix-root": "../remix-root/index",
+		"remix-view": "../remix-view/index",
 		"remix-text": "../remix-text/index",
 		"remix-picker": "../remix-picker/index",
 		"remix-scroll-view": "./index",

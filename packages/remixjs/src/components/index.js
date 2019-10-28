@@ -2,6 +2,7 @@ import Application from './Application';
 import ViewController from './ViewController'
 import TabBar from './TabBar';
 
+import Root from './remix-element/remix-root';
 import View from './remix-element/remix-view';
 import Text from './remix-element/remix-text';
 import Image from './remix-element/remix-image';
@@ -17,6 +18,7 @@ export {
   Application,
   ViewController,
   TabBar,
+  Root,
   View,
   Text,
   Image,

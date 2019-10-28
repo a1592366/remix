@@ -5,10 +5,7 @@ import Application from '../../src';
 
 env.isTerminalRuntime = true;
 
-const container = document.createElement('view');
-document.body.appendChild(container);
-
-const program = new Program(Application, container);
+const program = new Program(Application, document.body);
 
 export { program }
 export default program;

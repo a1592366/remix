@@ -12,11 +12,11 @@ export default class RemixSwiperItem extends React.Component {
 		onTap: PropTypes.string,
 		onLongPress: PropTypes.string,
 		onLongTap: PropTypes.string,
+		onTouchForceChange: PropTypes.string,
 		onTransitionEnd: PropTypes.string,
 		onAnimationStart: PropTypes.string,
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
-		onTouchForceChange: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		itemId: PropTypes.string,
@@ -31,11 +31,11 @@ export default class RemixSwiperItem extends React.Component {
 		onTap: null,
 		onLongPress: null,
 		onLongTap: null,
+		onTouchForceChange: null,
 		onTransitionEnd: null,
 		onAnimationStart: null,
 		onAnimationIteration: null,
 		onAnimationEnd: null,
-		onTouchForceChange: null,
 		style: null,
 		className: null,
 		itemId: null,
@@ -43,9 +43,9 @@ export default class RemixSwiperItem extends React.Component {
   };
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, itemId } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, style, className, itemId } = this.props;
 
-    return <swiper-item onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} itemId={itemId}>{this.props.children}</swiper-item>;
+    return <swiper-item onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} style={style} className={className} itemId={itemId}>{this.props.children}</swiper-item>;
   }
 }
 

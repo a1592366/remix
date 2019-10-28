@@ -1,4 +1,4 @@
-/*** MARK_1572237290965 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572285754602 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "d01e751a-19d9-4bea-b0d3-9b31566260ca";
+var inspectTerminalUUID = "5c1e9084-531a-4fe5-a133-60f6d23d561b";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "1aa372bd-1b3c-4292-8af0-6e5e3cb0d5f5";
+var inspectLogicUUID = "3e8c3b03-31ec-4117-921f-023e9138235f";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -3400,6 +3400,12 @@ Object.defineProperty(exports, "TabBar", {
     return _TabBar["default"];
   }
 });
+Object.defineProperty(exports, "Root", {
+  enumerable: true,
+  get: function get() {
+    return _remixRoot["default"];
+  }
+});
 Object.defineProperty(exports, "View", {
   enumerable: true,
   get: function get() {
@@ -3466,6 +3472,8 @@ var _Application = _interopRequireDefault(__webpack_require__(/*! ./Application 
 var _ViewController = _interopRequireDefault(__webpack_require__(/*! ./ViewController */ "../remixjs/src/components/ViewController.js"));
 
 var _TabBar = _interopRequireDefault(__webpack_require__(/*! ./TabBar */ "../remixjs/src/components/TabBar.js"));
+
+var _remixRoot = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-root */ "../remixjs/src/components/remix-element/remix-root/index.js"));
 
 var _remixView = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-view */ "../remixjs/src/components/remix-element/remix-view/index.js"));
 
@@ -3536,12 +3544,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onGetUserInfo = _this$props.onGetUserInfo,
-          onContact = _this$props.onContact,
-          onGetPhoneNumber = _this$props.onGetPhoneNumber,
-          onOpenSetting = _this$props.onOpenSetting,
-          onLaunchApp = _this$props.onLaunchApp,
-          onError = _this$props.onError,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -3554,6 +3556,12 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onGetUserInfo = _this$props.onGetUserInfo,
+          onContact = _this$props.onContact,
+          onGetPhoneNumber = _this$props.onGetPhoneNumber,
+          onOpenSetting = _this$props.onOpenSetting,
+          onLaunchApp = _this$props.onLaunchApp,
+          onError = _this$props.onError,
           style = _this$props.style,
           className = _this$props.className,
           size = _this$props.size,
@@ -3575,12 +3583,6 @@ function (_React$Component) {
           appParameter = _this$props.appParameter,
           showMessageCard = _this$props.showMessageCard;
       return _react["default"].createElement("button", {
-        onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
-        onContact: onContact ? 'onContact' : null,
-        onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
-        onOpenSetting: onOpenSetting ? 'onOpenSetting' : null,
-        onLaunchApp: onLaunchApp ? 'onLaunchApp' : null,
-        onError: onError ? 'onError' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -3593,6 +3595,12 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
+        onContact: onContact ? 'onContact' : null,
+        onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
+        onOpenSetting: onOpenSetting ? 'onOpenSetting' : null,
+        onLaunchApp: onLaunchApp ? 'onLaunchApp' : null,
+        onError: onError ? 'onError' : null,
         style: style,
         className: className,
         size: size,
@@ -3621,12 +3629,6 @@ function (_React$Component) {
 
 exports["default"] = RemixButton;
 (0, _defineProperty2["default"])(RemixButton, "propTypes", {
-  onGetUserInfo: _PropTypes["default"].string,
-  onContact: _PropTypes["default"].string,
-  onGetPhoneNumber: _PropTypes["default"].string,
-  onOpenSetting: _PropTypes["default"].string,
-  onLaunchApp: _PropTypes["default"].string,
-  onError: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -3639,6 +3641,12 @@ exports["default"] = RemixButton;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onGetUserInfo: _PropTypes["default"].string,
+  onContact: _PropTypes["default"].string,
+  onGetPhoneNumber: _PropTypes["default"].string,
+  onOpenSetting: _PropTypes["default"].string,
+  onLaunchApp: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   size: _PropTypes["default"].string,
@@ -3661,12 +3669,6 @@ exports["default"] = RemixButton;
   showMessageCard: _PropTypes["default"].string
 });
 (0, _defineProperty2["default"])(RemixButton, "defaultProps", {
-  onGetUserInfo: null,
-  onContact: null,
-  onGetPhoneNumber: null,
-  onOpenSetting: null,
-  onLaunchApp: null,
-  onError: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -3679,6 +3681,12 @@ exports["default"] = RemixButton;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onGetUserInfo: null,
+  onContact: null,
+  onGetPhoneNumber: null,
+  onOpenSetting: null,
+  onLaunchApp: null,
+  onError: null,
   style: null,
   className: null,
   size: 'default',
@@ -3750,8 +3758,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onLoad = _this$props.onLoad,
-          onError = _this$props.onError,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -3764,6 +3770,8 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onLoad = _this$props.onLoad,
+          onError = _this$props.onError,
           style = _this$props.style,
           className = _this$props.className,
           src = _this$props.src,
@@ -3772,8 +3780,6 @@ function (_React$Component) {
           lazyLoad = _this$props.lazyLoad,
           showMenuByLongpress = _this$props.showMenuByLongpress;
       return _react["default"].createElement("image", {
-        onLoad: onLoad ? 'onLoad' : null,
-        onError: onError ? 'onError' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -3786,6 +3792,8 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onLoad: onLoad ? 'onLoad' : null,
+        onError: onError ? 'onError' : null,
         style: style,
         className: className,
         src: src,
@@ -3801,8 +3809,6 @@ function (_React$Component) {
 
 exports["default"] = RemixImage;
 (0, _defineProperty2["default"])(RemixImage, "propTypes", {
-  onLoad: _PropTypes["default"].string,
-  onError: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -3815,6 +3821,8 @@ exports["default"] = RemixImage;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onLoad: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   src: _PropTypes["default"].string,
@@ -3824,8 +3832,6 @@ exports["default"] = RemixImage;
   showMenuByLongpress: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixImage, "defaultProps", {
-  onLoad: null,
-  onError: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -3838,6 +3844,8 @@ exports["default"] = RemixImage;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onLoad: null,
+  onError: null,
   style: null,
   className: null,
   src: null,
@@ -3896,11 +3904,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onInput = _this$props.onInput,
-          onFocus = _this$props.onFocus,
-          onBlur = _this$props.onBlur,
-          onConfirm = _this$props.onConfirm,
-          onKeyboardHeightChange = _this$props.onKeyboardHeightChange,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -3913,6 +3916,11 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onInput = _this$props.onInput,
+          onFocus = _this$props.onFocus,
+          onBlur = _this$props.onBlur,
+          onConfirm = _this$props.onConfirm,
+          onKeyboardHeightChange = _this$props.onKeyboardHeightChange,
           style = _this$props.style,
           className = _this$props.className,
           value = _this$props.value,
@@ -3934,11 +3942,6 @@ function (_React$Component) {
           adjustPosition = _this$props.adjustPosition,
           holdKeyboard = _this$props.holdKeyboard;
       return _react["default"].createElement("input", {
-        onInput: onInput ? 'onInput' : null,
-        onFocus: onFocus ? 'onFocus' : null,
-        onBlur: onBlur ? 'onBlur' : null,
-        onConfirm: onConfirm ? 'onConfirm' : null,
-        onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -3951,6 +3954,11 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onInput: onInput ? 'onInput' : null,
+        onFocus: onFocus ? 'onFocus' : null,
+        onBlur: onBlur ? 'onBlur' : null,
+        onConfirm: onConfirm ? 'onConfirm' : null,
+        onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : null,
         style: style,
         className: className,
         value: value,
@@ -3979,11 +3987,6 @@ function (_React$Component) {
 
 exports["default"] = RemixInput;
 (0, _defineProperty2["default"])(RemixInput, "propTypes", {
-  onInput: _PropTypes["default"].string,
-  onFocus: _PropTypes["default"].string,
-  onBlur: _PropTypes["default"].string,
-  onConfirm: _PropTypes["default"].string,
-  onKeyboardHeightChange: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -3996,6 +3999,11 @@ exports["default"] = RemixInput;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onInput: _PropTypes["default"].string,
+  onFocus: _PropTypes["default"].string,
+  onBlur: _PropTypes["default"].string,
+  onConfirm: _PropTypes["default"].string,
+  onKeyboardHeightChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   value: _PropTypes["default"].string,
@@ -4018,11 +4026,6 @@ exports["default"] = RemixInput;
   holdKeyboard: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixInput, "defaultProps", {
-  onInput: null,
-  onFocus: null,
-  onBlur: null,
-  onConfirm: null,
-  onKeyboardHeightChange: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -4035,6 +4038,11 @@ exports["default"] = RemixInput;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onInput: null,
+  onFocus: null,
+  onBlur: null,
+  onConfirm: null,
+  onKeyboardHeightChange: null,
   style: null,
   className: null,
   value: null,
@@ -4106,13 +4114,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onMarkerTap = _this$props.onMarkerTap,
-          onLabelTap = _this$props.onLabelTap,
-          onControlTap = _this$props.onControlTap,
-          onCalloutTap = _this$props.onCalloutTap,
-          onUpdated = _this$props.onUpdated,
-          onRegionChange = _this$props.onRegionChange,
-          onPoiTap = _this$props.onPoiTap,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -4125,6 +4126,13 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onMarkerTap = _this$props.onMarkerTap,
+          onLabelTap = _this$props.onLabelTap,
+          onControlTap = _this$props.onControlTap,
+          onCalloutTap = _this$props.onCalloutTap,
+          onUpdated = _this$props.onUpdated,
+          onRegionChange = _this$props.onRegionChange,
+          onPoiTap = _this$props.onPoiTap,
           style = _this$props.style,
           className = _this$props.className,
           longitude = _this$props.longitude,
@@ -4153,13 +4161,6 @@ function (_React$Component) {
           enableTraffic = _this$props.enableTraffic,
           setting = _this$props.setting;
       return _react["default"].createElement("map", {
-        onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
-        onLabelTap: onLabelTap ? 'onLabelTap' : null,
-        onControlTap: onControlTap ? 'onControlTap' : null,
-        onCalloutTap: onCalloutTap ? 'onCalloutTap' : null,
-        onUpdated: onUpdated ? 'onUpdated' : null,
-        onRegionChange: onRegionChange ? 'onRegionChange' : null,
-        onPoiTap: onPoiTap ? 'onPoiTap' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4172,6 +4173,13 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
+        onLabelTap: onLabelTap ? 'onLabelTap' : null,
+        onControlTap: onControlTap ? 'onControlTap' : null,
+        onCalloutTap: onCalloutTap ? 'onCalloutTap' : null,
+        onUpdated: onUpdated ? 'onUpdated' : null,
+        onRegionChange: onRegionChange ? 'onRegionChange' : null,
+        onPoiTap: onPoiTap ? 'onPoiTap' : null,
         style: style,
         className: className,
         longitude: longitude,
@@ -4207,13 +4215,6 @@ function (_React$Component) {
 
 exports["default"] = RemixMap;
 (0, _defineProperty2["default"])(RemixMap, "propTypes", {
-  onMarkerTap: _PropTypes["default"].string,
-  onLabelTap: _PropTypes["default"].string,
-  onControlTap: _PropTypes["default"].string,
-  onCalloutTap: _PropTypes["default"].string,
-  onUpdated: _PropTypes["default"].string,
-  onRegionChange: _PropTypes["default"].string,
-  onPoiTap: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -4226,6 +4227,13 @@ exports["default"] = RemixMap;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onMarkerTap: _PropTypes["default"].string,
+  onLabelTap: _PropTypes["default"].string,
+  onControlTap: _PropTypes["default"].string,
+  onCalloutTap: _PropTypes["default"].string,
+  onUpdated: _PropTypes["default"].string,
+  onRegionChange: _PropTypes["default"].string,
+  onPoiTap: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   longitude: _PropTypes["default"].number,
@@ -4255,13 +4263,6 @@ exports["default"] = RemixMap;
   setting: _PropTypes["default"].object
 });
 (0, _defineProperty2["default"])(RemixMap, "defaultProps", {
-  onMarkerTap: null,
-  onLabelTap: null,
-  onControlTap: null,
-  onCalloutTap: null,
-  onUpdated: null,
-  onRegionChange: null,
-  onPoiTap: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -4274,6 +4275,13 @@ exports["default"] = RemixMap;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onMarkerTap: null,
+  onLabelTap: null,
+  onControlTap: null,
+  onCalloutTap: null,
+  onUpdated: null,
+  onRegionChange: null,
+  onPoiTap: null,
   style: null,
   className: null,
   longitude: null,
@@ -4352,10 +4360,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onCancel = _this$props.onCancel,
-          onError = _this$props.onError,
-          onChange = _this$props.onChange,
-          onColumnChange = _this$props.onColumnChange,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -4368,6 +4372,10 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onCancel = _this$props.onCancel,
+          onError = _this$props.onError,
+          onChange = _this$props.onChange,
+          onColumnChange = _this$props.onColumnChange,
           style = _this$props.style,
           className = _this$props.className,
           mode = _this$props.mode,
@@ -4380,10 +4388,6 @@ function (_React$Component) {
           fields = _this$props.fields,
           customItem = _this$props.customItem;
       return _react["default"].createElement("picker", {
-        onCancel: onCancel ? 'onCancel' : null,
-        onError: onError ? 'onError' : null,
-        onChange: onChange ? 'onChange' : null,
-        onColumnChange: onColumnChange ? 'onColumnChange' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4396,6 +4400,10 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onCancel: onCancel ? 'onCancel' : null,
+        onError: onError ? 'onError' : null,
+        onChange: onChange ? 'onChange' : null,
+        onColumnChange: onColumnChange ? 'onColumnChange' : null,
         style: style,
         className: className,
         mode: mode,
@@ -4415,10 +4423,6 @@ function (_React$Component) {
 
 exports["default"] = RemixPicker;
 (0, _defineProperty2["default"])(RemixPicker, "propTypes", {
-  onCancel: _PropTypes["default"].string,
-  onError: _PropTypes["default"].string,
-  onChange: _PropTypes["default"].string,
-  onColumnChange: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -4431,6 +4435,10 @@ exports["default"] = RemixPicker;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onCancel: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
+  onChange: _PropTypes["default"].string,
+  onColumnChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   mode: _PropTypes["default"].string,
@@ -4444,10 +4452,137 @@ exports["default"] = RemixPicker;
   customItem: _PropTypes["default"].string
 });
 (0, _defineProperty2["default"])(RemixPicker, "defaultProps", {
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onTouchForceChange: null,
   onCancel: null,
   onError: null,
   onChange: null,
   onColumnChange: null,
+  style: null,
+  className: null,
+  mode: 'selector',
+  disabled: false,
+  range: [],
+  rangeKey: null,
+  value: 0,
+  start: null,
+  end: null,
+  fields: 'day',
+  customItem: null
+});
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-root/index.js":
+/*!*******************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-root/index.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var RemixRoot =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixRoot, _React$Component);
+
+  function RemixRoot() {
+    (0, _classCallCheck2["default"])(this, RemixRoot);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixRoot).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixRoot, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          style = _this$props.style,
+          className = _this$props.className;
+      return _react["default"].createElement("root", {
+        onTouchStart: onTouchStart ? 'onTouchStart' : null,
+        onTouchMove: onTouchMove ? 'onTouchMove' : null,
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
+        onTap: onTap ? 'onTap' : null,
+        onLongPress: onLongPress ? 'onLongPress' : null,
+        onLongTap: onLongTap ? 'onLongTap' : null,
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        style: style,
+        className: className
+      }, this.props.children);
+    }
+  }]);
+  return RemixRoot;
+}(_react["default"].Component);
+
+exports["default"] = RemixRoot;
+(0, _defineProperty2["default"])(RemixRoot, "propTypes", {
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string
+});
+(0, _defineProperty2["default"])(RemixRoot, "defaultProps", {
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -4461,16 +4596,7 @@ exports["default"] = RemixPicker;
   onAnimationEnd: null,
   onTouchForceChange: null,
   style: null,
-  className: null,
-  mode: 'selector',
-  disabled: false,
-  range: [],
-  rangeKey: null,
-  value: 0,
-  start: null,
-  end: null,
-  fields: 'day',
-  customItem: null
+  className: null
 });
 
 /***/ }),
@@ -4522,9 +4648,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onScrollToUpper = _this$props.onScrollToUpper,
-          onScrollToLower = _this$props.onScrollToLower,
-          onScroll = _this$props.onScroll,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -4537,6 +4660,9 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onScrollToUpper = _this$props.onScrollToUpper,
+          onScrollToLower = _this$props.onScrollToLower,
+          onScroll = _this$props.onScroll,
           style = _this$props.style,
           className = _this$props.className,
           scrollX = _this$props.scrollX,
@@ -4551,9 +4677,6 @@ function (_React$Component) {
           enableFlex = _this$props.enableFlex,
           scrollAnchoring = _this$props.scrollAnchoring;
       return _react["default"].createElement("scroll-view", {
-        onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : null,
-        onScrollToLower: onScrollToLower ? 'onScrollToLower' : null,
-        onScroll: onScroll ? 'onScroll' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4566,6 +4689,9 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : null,
+        onScrollToLower: onScrollToLower ? 'onScrollToLower' : null,
+        onScroll: onScroll ? 'onScroll' : null,
         style: style,
         className: className,
         scrollX: scrollX,
@@ -4587,9 +4713,6 @@ function (_React$Component) {
 
 exports["default"] = RemixScrollView;
 (0, _defineProperty2["default"])(RemixScrollView, "propTypes", {
-  onScrollToUpper: _PropTypes["default"].string,
-  onScrollToLower: _PropTypes["default"].string,
-  onScroll: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -4602,6 +4725,9 @@ exports["default"] = RemixScrollView;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onScrollToUpper: _PropTypes["default"].string,
+  onScrollToLower: _PropTypes["default"].string,
+  onScroll: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   scrollX: _PropTypes["default"].bool,
@@ -4617,9 +4743,6 @@ exports["default"] = RemixScrollView;
   scrollAnchoring: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixScrollView, "defaultProps", {
-  onScrollToUpper: null,
-  onScrollToLower: null,
-  onScroll: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -4632,6 +4755,9 @@ exports["default"] = RemixScrollView;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onScrollToUpper: null,
+  onScrollToLower: null,
+  onScroll: null,
   style: null,
   className: null,
   scrollX: false,
@@ -4820,8 +4946,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onChange = _this$props.onChange,
-          onAnimationFinish = _this$props.onAnimationFinish,
           onTouchStart = _this$props.onTouchStart,
           onTouchMove = _this$props.onTouchMove,
           onTouchCancel = _this$props.onTouchCancel,
@@ -4834,6 +4958,8 @@ function (_React$Component) {
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
           onTouchForceChange = _this$props.onTouchForceChange,
+          onChange = _this$props.onChange,
+          onAnimationFinish = _this$props.onAnimationFinish,
           style = _this$props.style,
           className = _this$props.className,
           indicatorDots = _this$props.indicatorDots,
@@ -4851,8 +4977,6 @@ function (_React$Component) {
           skipHiddenItemLayou = _this$props.skipHiddenItemLayou,
           easingFunction = _this$props.easingFunction;
       return _react["default"].createElement("swiper", {
-        onChange: onChange ? 'onChange' : null,
-        onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : null,
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4865,6 +4989,8 @@ function (_React$Component) {
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
         onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
+        onChange: onChange ? 'onChange' : null,
+        onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : null,
         style: style,
         className: className,
         indicatorDots: indicatorDots,
@@ -4890,8 +5016,6 @@ function (_React$Component) {
 exports["default"] = RemixSwiper;
 (0, _defineProperty2["default"])(RemixSwiper, "SwiperItem", _index["default"]);
 (0, _defineProperty2["default"])(RemixSwiper, "propTypes", {
-  onChange: _PropTypes["default"].string,
-  onAnimationFinish: _PropTypes["default"].string,
   onTouchStart: _PropTypes["default"].string,
   onTouchMove: _PropTypes["default"].string,
   onTouchCancel: _PropTypes["default"].string,
@@ -4904,6 +5028,8 @@ exports["default"] = RemixSwiper;
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
   onTouchForceChange: _PropTypes["default"].string,
+  onChange: _PropTypes["default"].string,
+  onAnimationFinish: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   indicatorDots: _PropTypes["default"].bool,
@@ -4922,8 +5048,6 @@ exports["default"] = RemixSwiper;
   easingFunction: _PropTypes["default"].string
 });
 (0, _defineProperty2["default"])(RemixSwiper, "defaultProps", {
-  onChange: null,
-  onAnimationFinish: null,
   onTouchStart: null,
   onTouchMove: null,
   onTouchCancel: null,
@@ -4936,6 +5060,8 @@ exports["default"] = RemixSwiper;
   onAnimationIteration: null,
   onAnimationEnd: null,
   onTouchForceChange: null,
+  onChange: null,
+  onAnimationFinish: null,
   style: null,
   className: null,
   indicatorDots: false,
@@ -5567,6 +5693,8 @@ var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement
 
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
 var _document = _interopRequireDefault(__webpack_require__(/*! ./document */ "../remixjs/src/document/document.js"));
 
 var HTMLBodyElement =
@@ -5586,7 +5714,7 @@ function (_HTMLElement) {
     }
 
     _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(HTMLBodyElement)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "tagName", 'body');
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "tagName", _HTMLTypes.BODY);
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "nodeType", _HTMLNodeType.ELEMENT_NODE);
     return _this;
   }
@@ -5952,6 +6080,66 @@ exports["default"] = HTMLPickerElement;
 
 /***/ }),
 
+/***/ "../remixjs/src/document/HTMLRootElement.js":
+/*!**************************************************!*\
+  !*** ../remixjs/src/document/HTMLRootElement.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _remixRoot = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-root */ "../remixjs/src/components/remix-element/remix-root/index.js"));
+
+var HTMLViewElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(HTMLViewElement, _HTMLElement);
+
+  function HTMLViewElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, HTMLViewElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLViewElement).call(this));
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    _this.tagName = _HTMLTypes.ROOT;
+    return _this;
+  }
+
+  return HTMLViewElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = HTMLViewElement;
+(0, _defineProperty2["default"])(HTMLViewElement, "defaultProps", _remixRoot["default"].defaultProps);
+
+/***/ }),
+
 /***/ "../remixjs/src/document/HTMLSwiperElement.js":
 /*!****************************************************!*\
   !*** ../remixjs/src/document/HTMLSwiperElement.js ***!
@@ -6151,7 +6339,7 @@ exports["default"] = HTMLTextElement;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
+exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
 var IMAGE = 'image';
 exports.IMAGE = IMAGE;
 var BUTTON = 'button';
@@ -6162,6 +6350,10 @@ var INPUT = 'input';
 exports.INPUT = INPUT;
 var VIEW = 'view';
 exports.VIEW = VIEW;
+var ROOT = 'root';
+exports.ROOT = ROOT;
+var BODY = 'body';
+exports.BODY = BODY;
 var TEXT = 'text';
 exports.TEXT = TEXT;
 var PLAIN_TEXT = '#text';
@@ -6318,10 +6510,17 @@ var _HTMLSwiperItemElement = _interopRequireDefault(__webpack_require__(/*! ./HT
 
 var _HTMLSwiperElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLSwiperElement */ "../remixjs/src/document/HTMLSwiperElement.js"));
 
+var _HTMLRootElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLRootElement */ "../remixjs/src/document/HTMLRootElement.js"));
+
 function createElement(tagName) {
   var element;
 
   switch (tagName) {
+    case _HTMLTypes.ROOT:
+      {
+        return new _HTMLRootElement["default"]();
+      }
+
     case _HTMLTypes.IMAGE:
       {
         return new _HTMLImageElement["default"]();
@@ -6816,7 +7015,11 @@ function () {
           onHide: function onHide() {},
           onUnload: function onUnload() {},
           onPullDownRefresh: function onPullDownRefresh() {},
-          onShareAppMessage: function onShareAppMessage() {}
+          onShareAppMessage: function onShareAppMessage() {},
+          touchstart: function touchstart(e) {
+            debugger;
+            console.log(e);
+          }
         });
       }
     }
@@ -7114,7 +7317,7 @@ function () {
     (0, _classCallCheck2["default"])(this, ViewController);
     this.id = id;
     this.route = route;
-    this.container = _document.document.createElement('view');
+    this.container = _document.document.createElement('root');
 
     _document.document.body.appendChild(this.container);
   }
@@ -7129,6 +7332,8 @@ function () {
 
       var elements = _document.document.getContainerElements(this.container);
 
+      console.log(elements);
+      elements.onTouchStart = 'onTouchStart';
       callback(elements);
     }
   }, {

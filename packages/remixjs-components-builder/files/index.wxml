@@ -1,3 +1,3 @@
 <% if (openComponent) { %><import src="../remix-worker.wxml" /><% } %> 
-<<%=tagName %> <%- props %>><% if (openComponent) { %><block wx:if="{{innerText}}">{{innerText}}</block><block wx:elif="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block><% } %>
+<<%=tagName %> <%- props %>><% if (openComponent) { %><% if (name != 'root') { %><block wx:if="{{innerText}}">{{innerText}}</block><% } %><block wx:<% if (name != 'root') { %>el<% } %>if="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block><% } %>
 </<%=tagName %>>

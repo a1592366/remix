@@ -5,24 +5,24 @@ import PropTypes from '../../../react/PropTypes';
 export default class RemixButton extends React.Component {
   
   static propTypes = {
-    onGetUserInfo: PropTypes.string,
-		onContact: PropTypes.string,
-		onGetPhoneNumber: PropTypes.string,
-		onOpenSetting: PropTypes.string,
-		onLaunchApp: PropTypes.string,
-		onError: PropTypes.string,
-		onTouchStart: PropTypes.string,
+    onTouchStart: PropTypes.string,
 		onTouchMove: PropTypes.string,
 		onTouchCancel: PropTypes.string,
 		onTouchEnd: PropTypes.string,
 		onTap: PropTypes.string,
 		onLongPress: PropTypes.string,
 		onLongTap: PropTypes.string,
+		onTouchForceChange: PropTypes.string,
 		onTransitionEnd: PropTypes.string,
 		onAnimationStart: PropTypes.string,
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
-		onTouchForceChange: PropTypes.string,
+		onGetUserInfo: PropTypes.string,
+		onContact: PropTypes.string,
+		onGetPhoneNumber: PropTypes.string,
+		onOpenSetting: PropTypes.string,
+		onLaunchApp: PropTypes.string,
+		onError: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		size: PropTypes.string,
@@ -47,24 +47,24 @@ export default class RemixButton extends React.Component {
   };
 
   static defaultProps = {
-    onGetUserInfo: null,
-		onContact: null,
-		onGetPhoneNumber: null,
-		onOpenSetting: null,
-		onLaunchApp: null,
-		onError: null,
-		onTouchStart: null,
+    onTouchStart: null,
 		onTouchMove: null,
 		onTouchCancel: null,
 		onTouchEnd: null,
 		onTap: null,
 		onLongPress: null,
 		onLongTap: null,
+		onTouchForceChange: null,
 		onTransitionEnd: null,
 		onAnimationStart: null,
 		onAnimationIteration: null,
 		onAnimationEnd: null,
-		onTouchForceChange: null,
+		onGetUserInfo: null,
+		onContact: null,
+		onGetPhoneNumber: null,
+		onOpenSetting: null,
+		onLaunchApp: null,
+		onError: null,
 		style: null,
 		className: null,
 		size: 'default',
@@ -89,9 +89,9 @@ export default class RemixButton extends React.Component {
   };
 
   render () {
-    const { onGetUserInfo, onContact, onGetPhoneNumber, onOpenSetting, onLaunchApp, onError, onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, size, type, plain, disabled, loading, formType, openType, hoverClass, hoverStopPropagation, hoverStartTime, hoverStayTime, lang, sessionFrom, sendMessageTitle, sendMessagePath, sendMessageImg, appParameter, showMessageCard } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onGetUserInfo, onContact, onGetPhoneNumber, onOpenSetting, onLaunchApp, onError, style, className, size, type, plain, disabled, loading, formType, openType, hoverClass, hoverStopPropagation, hoverStartTime, hoverStayTime, lang, sessionFrom, sendMessageTitle, sendMessagePath, sendMessageImg, appParameter, showMessageCard } = this.props;
 
-    return <button onGetUserInfo={onGetUserInfo ? 'onGetUserInfo' : null} onContact={onContact ? 'onContact' : null} onGetPhoneNumber={onGetPhoneNumber ? 'onGetPhoneNumber' : null} onOpenSetting={onOpenSetting ? 'onOpenSetting' : null} onLaunchApp={onLaunchApp ? 'onLaunchApp' : null} onError={onError ? 'onError' : null} onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} size={size} type={type} plain={plain} disabled={disabled} loading={loading} formType={formType} openType={openType} hoverClass={hoverClass} hoverStopPropagation={hoverStopPropagation} hoverStartTime={hoverStartTime} hoverStayTime={hoverStayTime} lang={lang} sessionFrom={sessionFrom} sendMessageTitle={sendMessageTitle} sendMessagePath={sendMessagePath} sendMessageImg={sendMessageImg} appParameter={appParameter} showMessageCard={showMessageCard}>{this.props.children}</button>;
+    return <button onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onGetUserInfo={onGetUserInfo ? 'onGetUserInfo' : null} onContact={onContact ? 'onContact' : null} onGetPhoneNumber={onGetPhoneNumber ? 'onGetPhoneNumber' : null} onOpenSetting={onOpenSetting ? 'onOpenSetting' : null} onLaunchApp={onLaunchApp ? 'onLaunchApp' : null} onError={onError ? 'onError' : null} style={style} className={className} size={size} type={type} plain={plain} disabled={disabled} loading={loading} formType={formType} openType={openType} hoverClass={hoverClass} hoverStopPropagation={hoverStopPropagation} hoverStartTime={hoverStartTime} hoverStayTime={hoverStayTime} lang={lang} sessionFrom={sessionFrom} sendMessageTitle={sendMessageTitle} sendMessagePath={sendMessagePath} sendMessageImg={sendMessageImg} appParameter={appParameter} showMessageCard={showMessageCard}>{this.props.children}</button>;
   }
 }
 

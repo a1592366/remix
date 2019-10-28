@@ -12,11 +12,11 @@ export default class RemixText extends React.Component {
 		onTap: PropTypes.string,
 		onLongPress: PropTypes.string,
 		onLongTap: PropTypes.string,
+		onTouchForceChange: PropTypes.string,
 		onTransitionEnd: PropTypes.string,
 		onAnimationStart: PropTypes.string,
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
-		onTouchForceChange: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		selectable: PropTypes.bool,
@@ -33,11 +33,11 @@ export default class RemixText extends React.Component {
 		onTap: null,
 		onLongPress: null,
 		onLongTap: null,
+		onTouchForceChange: null,
 		onTransitionEnd: null,
 		onAnimationStart: null,
 		onAnimationIteration: null,
 		onAnimationEnd: null,
-		onTouchForceChange: null,
 		style: null,
 		className: null,
 		selectable: false,
@@ -47,9 +47,9 @@ export default class RemixText extends React.Component {
   };
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, selectable, space, decode } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, style, className, selectable, space, decode } = this.props;
 
-    return <text onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} selectable={selectable} space={space} decode={decode}>{this.props.children}</text>;
+    return <text onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} style={style} className={className} selectable={selectable} space={space} decode={decode}>{this.props.children}</text>;
   }
 }
 

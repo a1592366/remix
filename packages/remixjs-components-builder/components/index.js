@@ -8,8 +8,10 @@ const text = require('./text');
 const scrollView = require('./scroll-view');
 const swiper = require('./swiper');
 const swiperItem  = require('./swiper-item');
+const root = require('./root');
 
 module.exports = {
+  root,
   view,
   text,
   picker,

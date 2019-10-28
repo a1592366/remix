@@ -10,24 +10,29 @@ const { keys } = Object;
 
 
 const baseEvents = [
-  { name: 'onTouchStart', type: 'String', alias: 'bindtouchstart', defaultValue: 'null' },
-  { name: 'onTouchMove', type: 'String', alias: 'bindtouchmove', defaultValue: 'null' },
-  { name: 'onTouchCancel', type: 'String', alias: 'bindtouchcancel', defaultValue: 'null' },
-  { name: 'onTouchEnd', type: 'String', alias: 'bindtouchend', defaultValue: 'null' },
-  { name: 'onTap', type: 'String', alias: 'bindtap', defaultValue: 'null' },
-  { name: 'onLongPress', type: 'String', alias: 'bindlongpress', defaultValue: 'null' },
-  { name: 'onLongTap', type: 'String', alias: 'bindlongtap', defaultValue: 'null' },
-  { name: 'onTransitionEnd', type: 'String', alias: 'bindtransitionend', defaultValue: 'null' },
-  { name: 'onAnimationStart', type: 'String', alias: 'bindanimationstart', defaultValue: 'null' },
-  { name: 'onAnimationIteration', type: 'String', alias: 'bindanimationiteration', defaultValue: 'null' },
-  { name: 'onAnimationEnd', type: 'String', alias: 'bindanimationend', defaultValue: 'null' },
-  { name: 'onTouchForceChange', type: 'String', alias: 'bindtouchforcechange', defaultValue: 'null' },
-]
+  { name: 'onTouchStart', type: 'String', alias: 'capture-catch:touchstart', defaultValue: 'null' },
+  { name: 'onTouchMove', type: 'String', alias: 'capture-catch:touchmove', defaultValue: 'null' },
+  { name: 'onTouchCancel', type: 'String', alias: 'capture-catch:touchcancel', defaultValue: 'null' },
+  { name: 'onTouchEnd', type: 'String', alias: 'capture-catch:touchend', defaultValue: 'null' },
+  { name: 'onTap', type: 'String', alias: 'capture-catch:tap', defaultValue: 'null' },
+  { name: 'onLongPress', type: 'String', alias: 'capture-catch:longpress', defaultValue: 'null' },
+  { name: 'onLongTap', type: 'String', alias: 'capture-catch:longtap', defaultValue: 'null' },
+  { name: 'onTouchForceChange', type: 'String', alias: 'capture-catch:touchforcechange', defaultValue: 'null' },
+  { name: 'onTransitionEnd', type: 'String', alias: 'catch:transitionend', defaultValue: 'null' },
+  { name: 'onAnimationStart', type: 'String', alias: 'catch:animationstart', defaultValue: 'null' },
+  { name: 'onAnimationIteration', type: 'String', alias: 'catch:animationiteration', defaultValue: 'null' },
+  { name: 'onAnimationEnd', type: 'String', alias: 'catch:animationend', defaultValue: 'null' },
+].map((event) => {
+  event.isEvent = true;
+  event.camel = event.name;
+
+  return event;
+});
 
 keys(components).forEach(key => {
   const component = components[key];
 
-  component.events = component.events.concat(baseEvents).map(event => {
+  component.events = component.events.map(event => {
     event.isEvent = true;
     event.camel = event.name;
 
@@ -109,20 +114,29 @@ async function buildWXML (dist, components) {
 
   await Promise.all(names.map(name => {
     const data = components[name];
-    const events = data.events.map(event => {
+    const events = (data.name === 'root' ? baseEvents : data.events).map(event => {
       return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
     }).join(',\n\t\t');
 
-    const properties = [].concat(
-      data.events,
-      data.properties
-    );    
+    const properties = data.name === 'root' ? 
+      [].concat(
+        baseEvents, 
+        [
+          { name: 'child', type: 'Object', defaultValue: 'null', camel: 'child' },
+          { name: 'uuid', type: 'String', defaultValue: 'null', camel: 'uuid' }
+        ]
+      ) : 
+      [].concat(
+        data.events,
+        data.properties
+      );    
 
     fs.mkdirpSync(path.resolve(dist, `remix-${data.name}`));
 
     return builder.render(path.resolve(dist, `remix-${data.name}`), {
       openComponent: data.open,
-      tagName: data.name,
+      name: data.name,
+      tagName: data.name === 'root' ? 'view' : data.name,
       props: properties.map(props => {
         if (props.isEvent) {
           return `${props.alias}="{{${props.camel}}}"`
@@ -176,6 +190,7 @@ async function buildJS(dist, components) {
 
     const properties = [
     ].concat(
+      baseEvents,
       data.events,
       data.properties.map(prop => {
         if (prop.name === 'styles') {
@@ -236,7 +251,7 @@ async function buildWorkWXML (dist) {
     components: names.map((name, index) => {
       const data = components[name];
       const properties = [].concat(
-        data.events,
+        data.name === 'root' ? baseEvents : data.events,
         data.properties
       );
       const symbol = 'elif';
@@ -253,7 +268,7 @@ async function buildWorkWXML (dist) {
         return `${props.camel}="{{element.${props.camel}}}"`
       }).join(' ');
 
-      return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} ${props} />\n\t</block>`
+      return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} data-remix-id="{{element.uuid}}" ${props} />\n\t</block>`
     }).join('\n\t')
   });
 }

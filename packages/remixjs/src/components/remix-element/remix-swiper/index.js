@@ -5,9 +5,7 @@ import SwiperItem from '../remix-swiper-item/index';
 export default class RemixSwiper extends React.Component {
   static SwiperItem = SwiperItem; 
   static propTypes = {
-    onChange: PropTypes.string,
-		onAnimationFinish: PropTypes.string,
-		onTouchStart: PropTypes.string,
+    onTouchStart: PropTypes.string,
 		onTouchMove: PropTypes.string,
 		onTouchCancel: PropTypes.string,
 		onTouchEnd: PropTypes.string,
@@ -19,6 +17,8 @@ export default class RemixSwiper extends React.Component {
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
 		onTouchForceChange: PropTypes.string,
+		onChange: PropTypes.string,
+		onAnimationFinish: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		indicatorDots: PropTypes.bool,
@@ -39,9 +39,7 @@ export default class RemixSwiper extends React.Component {
   };
 
   static defaultProps = {
-    onChange: null,
-		onAnimationFinish: null,
-		onTouchStart: null,
+    onTouchStart: null,
 		onTouchMove: null,
 		onTouchCancel: null,
 		onTouchEnd: null,
@@ -53,6 +51,8 @@ export default class RemixSwiper extends React.Component {
 		onAnimationIteration: null,
 		onAnimationEnd: null,
 		onTouchForceChange: null,
+		onChange: null,
+		onAnimationFinish: null,
 		style: null,
 		className: null,
 		indicatorDots: false,
@@ -73,9 +73,9 @@ export default class RemixSwiper extends React.Component {
   };
 
   render () {
-    const { onChange, onAnimationFinish, onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, style, className, indicatorDots, indicatorColor, indicatorActiveColor, autoplay, current, interval, duration, circular, vertical, previousMargin, nextMargin, displayMultipleItems, skipHiddenItemLayou, easingFunction } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, onChange, onAnimationFinish, style, className, indicatorDots, indicatorColor, indicatorActiveColor, autoplay, current, interval, duration, circular, vertical, previousMargin, nextMargin, displayMultipleItems, skipHiddenItemLayou, easingFunction } = this.props;
 
-    return <swiper onChange={onChange ? 'onChange' : null} onAnimationFinish={onAnimationFinish ? 'onAnimationFinish' : null} onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} style={style} className={className} indicatorDots={indicatorDots} indicatorColor={indicatorColor} indicatorActiveColor={indicatorActiveColor} autoplay={autoplay} current={current} interval={interval} duration={duration} circular={circular} vertical={vertical} previousMargin={previousMargin} nextMargin={nextMargin} displayMultipleItems={displayMultipleItems} skipHiddenItemLayou={skipHiddenItemLayou} easingFunction={easingFunction}>{this.props.children}</swiper>;
+    return <swiper onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onChange={onChange ? 'onChange' : null} onAnimationFinish={onAnimationFinish ? 'onAnimationFinish' : null} style={style} className={className} indicatorDots={indicatorDots} indicatorColor={indicatorColor} indicatorActiveColor={indicatorActiveColor} autoplay={autoplay} current={current} interval={interval} duration={duration} circular={circular} vertical={vertical} previousMargin={previousMargin} nextMargin={nextMargin} displayMultipleItems={displayMultipleItems} skipHiddenItemLayou={skipHiddenItemLayou} easingFunction={easingFunction}>{this.props.children}</swiper>;
   }
 }
 

@@ -101,7 +101,7 @@ new View('${page}');`
         await fs.writeFile(xml, `<import src="../../${env.REMIX_UI_NAME}/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
         await fs.writeFile(json, JSON.stringify({
           usingComponents: {
-            'remix-view': `../../${env.REMIX_UI_NAME}/remix-view/index`,
+            'remix-root': `../../${env.REMIX_UI_NAME}/remix-root/index`,
           }
         }, null, 2));
 
