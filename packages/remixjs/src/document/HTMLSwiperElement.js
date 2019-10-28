@@ -5,22 +5,15 @@ import HTMLElement from './HTMLElement';
 import HTMLTextElement from './HTMLTextElement';
 import StyleSheet from './StyleSheet';
 
+import RemixSwiper from '../components/remix-element/remix-swiper';
+
 export default class HTMLSwiperElement extends HTMLElement {
+  static defaultProps = RemixSwiper.defaultProps;
+
   constructor () {
     super();
 
     this.tagName = SWIPER;
     this.nodeType = ELEMENT_NODE;
-  }
-
-  serialize () {
-    const element = {
-      ...super.serialize(),
-      interval: this.interval,
-      indicatorDots: this.indicatorDots,
-      duration: this.duration
-    };
-
-    return element;
   }
 }

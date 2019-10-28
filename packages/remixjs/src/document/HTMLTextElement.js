@@ -2,20 +2,16 @@ import HTMLElement from './HTMLElement';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { TEXT } from './HTMLTypes';
 
+import RemixText from '../components/remix-element/remix-text';
+
+
 export default class HTMLTextElement extends HTMLElement {
+  static defaultProps = RemixText.defaultProps;
+
   constructor (textContent) {
     super();
 
-    this.textContent = textContent;
     this.nodeType = ELEMENT_NODE;
     this.tagName = TEXT;
-  }
-
-  serialize () {
-    const element = {
-      ...super.serialize()
-    };
-
-    return element;
   }
 }

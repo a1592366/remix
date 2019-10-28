@@ -1,6 +1,27 @@
-import { isNullOrUndefined } from '../shared/is';
+import { isUndefined, isNullOrUndefined } from '../shared/is';
 import Element from './Element';
 import StyleSheet from './StyleSheet';
+
+function resolveDefaultProps (
+  defaultProps,
+  unresolvedProps
+) {
+  if (defaultProps) {
+    const props = {};
+    
+    for (let propName in defaultProps) {
+      if (isUndefined(unresolvedProps[propName])) {
+        props[propName] = defaultProps[propName];
+      } else {
+        props[propName] = unresolvedProps[propName];
+      }
+    }
+
+    return props;
+  }
+  
+  return {};
+}
 
 export default class HTMLElement extends Element {
   constructor (tagName) {
@@ -51,19 +72,8 @@ export default class HTMLElement extends Element {
   }
 
   serialize () {
-    const element = {
-      uuid: this.uuid,
-      nodeType: this.nodeType,
-      tagName: this.tagName,
-      className: this.className || null,
-      innerText: this.innerText || null,
-      onTouchStart: this.onTouchStart || null,
-      onTouchMove: this.onTouchMove || null,
-      onTouchEnd: this.onTouchEnd || null,
-      onTransitionEnd: this.onTransitionEnd || null,
-      onAnimationStart: this.onAnimationStart || null,
-      onAnimationEnd: this.onAnimationEnd || null
-    };
+    const defaultProps = this.constructor.defaultProps;
+    const element = resolveDefaultProps(defaultProps, this);
 
     if (!isNullOrUndefined(this.child)) {
       element.child = this.child.serialize();
@@ -72,6 +82,14 @@ export default class HTMLElement extends Element {
     if (!isNullOrUndefined(this.slibing)) {
       element.slibing = this.slibing.serialize();
     }
+
+    if (!isNullOrUndefined(this.innerText)) {
+      element.innerText = this.innerText;
+    }
+
+    element.tagName = this.tagName;
+    element.uuid = this.uuid;
+    element.nodeType = this.nodeType;
 
     return element;
   }

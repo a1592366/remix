@@ -10,18 +10,18 @@ const { keys } = Object;
 
 
 const baseEvents = [
-  { name: 'onTouchStart', type: 'String', alias: 'catchtouchstart', defaultValue: 'null' },
-  { name: 'onTouchMove', type: 'String', alias: 'catchtouchmove', defaultValue: 'null' },
-  { name: 'onTouchCancel', type: 'String', alias: 'catchtouchcancel', defaultValue: 'null' },
-  { name: 'onTouchEnd', type: 'String', alias: 'catchtouchend', defaultValue: 'null' },
-  { name: 'onTap', type: 'String', alias: 'catchtap', defaultValue: 'null' },
-  { name: 'onLongPress', type: 'String', alias: 'catchlongpress', defaultValue: 'null' },
-  { name: 'onLongTap', type: 'String', alias: 'catchlongtap', defaultValue: 'null' },
-  { name: 'onTransitionEnd', type: 'String', alias: 'catchtransitionend', defaultValue: 'null' },
-  { name: 'onAnimationStart', type: 'String', alias: 'catchanimationstart', defaultValue: 'null' },
-  { name: 'onAnimationIteration', type: 'String', alias: 'catchanimationiteration', defaultValue: 'null' },
-  { name: 'onAnimationEnd', type: 'String', alias: 'catchanimationend', defaultValue: 'null' },
-  { name: 'onTouchForceChange', type: 'String', alias: 'catchtouchforcechange', defaultValue: 'null' },
+  { name: 'onTouchStart', type: 'String', alias: 'bindtouchstart', defaultValue: 'null' },
+  { name: 'onTouchMove', type: 'String', alias: 'bindtouchmove', defaultValue: 'null' },
+  { name: 'onTouchCancel', type: 'String', alias: 'bindtouchcancel', defaultValue: 'null' },
+  { name: 'onTouchEnd', type: 'String', alias: 'bindtouchend', defaultValue: 'null' },
+  { name: 'onTap', type: 'String', alias: 'bindtap', defaultValue: 'null' },
+  { name: 'onLongPress', type: 'String', alias: 'bindlongpress', defaultValue: 'null' },
+  { name: 'onLongTap', type: 'String', alias: 'bindlongtap', defaultValue: 'null' },
+  { name: 'onTransitionEnd', type: 'String', alias: 'bindtransitionend', defaultValue: 'null' },
+  { name: 'onAnimationStart', type: 'String', alias: 'bindanimationstart', defaultValue: 'null' },
+  { name: 'onAnimationIteration', type: 'String', alias: 'bindanimationiteration', defaultValue: 'null' },
+  { name: 'onAnimationEnd', type: 'String', alias: 'bindanimationend', defaultValue: 'null' },
+  { name: 'onTouchForceChange', type: 'String', alias: 'bindtouchforcechange', defaultValue: 'null' },
 ]
 
 keys(components).forEach(key => {
@@ -134,6 +134,9 @@ async function buildWXML (dist, components) {
 
           case 'styles':
             return `style="{{${props.camel}}}"`;
+
+          case 'uuid':
+            return `id="{{${props.camel}}}"`;
 
           default: {
             return `${props.name}="{{${props.camel}}}"`

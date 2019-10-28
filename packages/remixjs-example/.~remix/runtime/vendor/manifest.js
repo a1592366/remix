@@ -1,4 +1,4 @@
-/*** MARK_1572209764837 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572237290965 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1324,9 +1324,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "55a5c20d-d994-41c3-87e5-18b847ca69f3";
+var inspectTerminalUUID = "d01e751a-19d9-4bea-b0d3-9b31566260ca";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "87618e61-1abe-497e-bab3-33e4499a0e77";
+var inspectLogicUUID = "1aa372bd-1b3c-4292-8af0-6e5e3cb0d5f5";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -5621,19 +5621,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
@@ -5647,9 +5643,7 @@ var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */
 
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _remixButton = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-button */ "../remixjs/src/components/remix-element/remix-button/index.js"));
 
 var HTMLButtonElement =
 /*#__PURE__*/
@@ -5666,21 +5660,11 @@ function (_HTMLElement) {
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLButtonElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLButtonElement.prototype), "serialize", this).call(this), {
-        plain: this.plain,
-        openType: this.openType
-      });
-
-      return element;
-    }
-  }]);
   return HTMLButtonElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLButtonElement;
+(0, _defineProperty2["default"])(HTMLButtonElement, "defaultProps", _remixButton["default"].defaultProps);
 
 /***/ }),
 
@@ -5716,6 +5700,24 @@ var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js")
 var _Element2 = _interopRequireDefault(__webpack_require__(/*! ./Element */ "../remixjs/src/document/Element.js"));
 
 var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+function resolveDefaultProps(defaultProps, unresolvedProps) {
+  if (defaultProps) {
+    var props = {};
+
+    for (var propName in defaultProps) {
+      if ((0, _is.isUndefined)(unresolvedProps[propName])) {
+        props[propName] = defaultProps[propName];
+      } else {
+        props[propName] = unresolvedProps[propName];
+      }
+    }
+
+    return props;
+  }
+
+  return {};
+}
 
 var HTMLElement =
 /*#__PURE__*/
@@ -5781,19 +5783,8 @@ function (_Element) {
   }, {
     key: "serialize",
     value: function serialize() {
-      var element = {
-        uuid: this.uuid,
-        nodeType: this.nodeType,
-        tagName: this.tagName,
-        className: this.className || null,
-        innerText: this.innerText || null,
-        onTouchStart: this.onTouchStart || null,
-        onTouchMove: this.onTouchMove || null,
-        onTouchEnd: this.onTouchEnd || null,
-        onTransitionEnd: this.onTransitionEnd || null,
-        onAnimationStart: this.onAnimationStart || null,
-        onAnimationEnd: this.onAnimationEnd || null
-      };
+      var defaultProps = this.constructor.defaultProps;
+      var element = resolveDefaultProps(defaultProps, this);
 
       if (!(0, _is.isNullOrUndefined)(this.child)) {
         element.child = this.child.serialize();
@@ -5803,6 +5794,13 @@ function (_Element) {
         element.slibing = this.slibing.serialize();
       }
 
+      if (!(0, _is.isNullOrUndefined)(this.innerText)) {
+        element.innerText = this.innerText;
+      }
+
+      element.tagName = this.tagName;
+      element.uuid = this.uuid;
+      element.nodeType = this.nodeType;
       return element;
     }
   }, {
@@ -5835,8 +5833,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
@@ -5845,9 +5841,9 @@ var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*!
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
@@ -5859,51 +5855,36 @@ var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixj
 
 var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _remixImage = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-image */ "../remixjs/src/components/remix-element/remix-image/index.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var HTMLImage =
+var HTMLImageElement =
 /*#__PURE__*/
 function (_HTMLElement) {
-  (0, _inherits2["default"])(HTMLImage, _HTMLElement);
+  (0, _inherits2["default"])(HTMLImageElement, _HTMLElement);
 
-  function HTMLImage() {
+  function HTMLImageElement() {
     var _this;
 
-    (0, _classCallCheck2["default"])(this, HTMLImage);
-    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLImage).call(this));
+    (0, _classCallCheck2["default"])(this, HTMLImageElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLImageElement).call(this));
     _this.tagName = _HTMLTypes.IMAGE;
     _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
     _this.style = new _StyleSheet["default"]();
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLImage, [{
+  (0, _createClass2["default"])(HTMLImageElement, [{
     key: "appendChild",
     value: function appendChild(child) {}
   }, {
     key: "removeChild",
     value: function removeChild(child) {}
-  }, {
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLImage.prototype), "serialize", this).call(this), {
-        src: this.src,
-        mode: this.mode
-      });
-
-      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
-        element.slibing = this.slibing.serialize();
-      }
-
-      return element;
-    }
   }]);
-  return HTMLImage;
+  return HTMLImageElement;
 }(_HTMLElement2["default"]);
 
-exports["default"] = HTMLImage;
+exports["default"] = HTMLImageElement;
+(0, _defineProperty2["default"])(HTMLImageElement, "defaultProps", _remixImage["default"].defaultProps);
 
 /***/ }),
 
@@ -5924,19 +5905,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
@@ -5950,9 +5927,7 @@ var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */
 
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _remixPicker = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-picker */ "../remixjs/src/components/remix-element/remix-picker/index.js"));
 
 var HTMLPickerElement =
 /*#__PURE__*/
@@ -5969,20 +5944,11 @@ function (_HTMLElement) {
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLPickerElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLPickerElement.prototype), "serialize", this).call(this), {
-        mode: this.mode
-      });
-
-      return element;
-    }
-  }]);
   return HTMLPickerElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLPickerElement;
+(0, _defineProperty2["default"])(HTMLPickerElement, "defaultProps", _remixPicker["default"].defaultProps);
 
 /***/ }),
 
@@ -6003,19 +5969,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
@@ -6029,9 +5991,7 @@ var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLText
 
 var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _remixSwiper = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-swiper */ "../remixjs/src/components/remix-element/remix-swiper/index.js"));
 
 var HTMLSwiperElement =
 /*#__PURE__*/
@@ -6048,22 +6008,11 @@ function (_HTMLElement) {
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLSwiperElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLSwiperElement.prototype), "serialize", this).call(this), {
-        interval: this.interval,
-        indicatorDots: this.indicatorDots,
-        duration: this.duration
-      });
-
-      return element;
-    }
-  }]);
   return HTMLSwiperElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLSwiperElement;
+(0, _defineProperty2["default"])(HTMLSwiperElement, "defaultProps", _remixSwiper["default"].defaultProps);
 
 /***/ }),
 
@@ -6084,23 +6033,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
 var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
 var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
@@ -6108,11 +6055,7 @@ var _HTMLTextElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLText
 
 var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
 
-var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _remixSwiperItem = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-swiper-item */ "../remixjs/src/components/remix-element/remix-swiper-item/index.js"));
 
 var HTMLSwiperItemElement =
 /*#__PURE__*/
@@ -6129,18 +6072,11 @@ function (_HTMLElement) {
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLSwiperItemElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLSwiperItemElement.prototype), "serialize", this).call(this));
-
-      return element;
-    }
-  }]);
   return HTMLSwiperItemElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLSwiperItemElement;
+(0, _defineProperty2["default"])(HTMLSwiperItemElement, "defaultProps", _remixSwiperItem["default"].defaultProps);
 
 /***/ }),
 
@@ -6161,19 +6097,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
 
@@ -6181,9 +6113,7 @@ var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixj
 
 var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _remixText = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-text */ "../remixjs/src/components/remix-element/remix-text/index.js"));
 
 var HTMLTextElement =
 /*#__PURE__*/
@@ -6195,24 +6125,16 @@ function (_HTMLElement) {
 
     (0, _classCallCheck2["default"])(this, HTMLTextElement);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLTextElement).call(this));
-    _this.textContent = textContent;
     _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
     _this.tagName = _HTMLTypes.TEXT;
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLTextElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLTextElement.prototype), "serialize", this).call(this));
-
-      return element;
-    }
-  }]);
   return HTMLTextElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLTextElement;
+(0, _defineProperty2["default"])(HTMLTextElement, "defaultProps", _remixText["default"].defaultProps);
 
 /***/ }),
 
@@ -6270,29 +6192,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remixjs/node_modules/@babel/runtime/helpers/get.js"));
-
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
 
-var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
-
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _remixView = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-view */ "../remixjs/src/components/remix-element/remix-view/index.js"));
 
 var HTMLViewElement =
 /*#__PURE__*/
@@ -6305,26 +6223,15 @@ function (_HTMLElement) {
     (0, _classCallCheck2["default"])(this, HTMLViewElement);
     _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HTMLViewElement).call(this));
     _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
-    _this.tagName = 'view';
+    _this.tagName = _HTMLTypes.VIEW;
     return _this;
   }
 
-  (0, _createClass2["default"])(HTMLViewElement, [{
-    key: "serialize",
-    value: function serialize() {
-      var element = _objectSpread({}, (0, _get2["default"])((0, _getPrototypeOf2["default"])(HTMLViewElement.prototype), "serialize", this).call(this));
-
-      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
-        element.slibing = this.slibing.serialize();
-      }
-
-      return element;
-    }
-  }]);
   return HTMLViewElement;
 }(_HTMLElement2["default"]);
 
 exports["default"] = HTMLViewElement;
+(0, _defineProperty2["default"])(HTMLViewElement, "defaultProps", _remixView["default"].defaultProps);
 
 /***/ }),
 
@@ -7222,7 +7129,6 @@ function () {
 
       var elements = _document.document.getContainerElements(this.container);
 
-      console.log(elements);
       callback(elements);
     }
   }, {
@@ -8516,6 +8422,8 @@ function (_Tunnel) {
   (0, _createClass2["default"])(ViewControllerTransportNative, [{
     key: "dispatch",
     value: function dispatch(type, id, e) {
+      console.log(type, id, e);
+
       if (id) {
         var element = _document.document.findElement(id);
 

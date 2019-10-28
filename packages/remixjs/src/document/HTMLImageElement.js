@@ -4,7 +4,11 @@ import StyleSheet from './StyleSheet';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { IMAGE } from './HTMLTypes';
 
-export default class HTMLImage extends HTMLElement {
+import RemixImage from '../components/remix-element/remix-image';
+
+export default class HTMLImageElement extends HTMLElement {
+  static defaultProps = RemixImage.defaultProps;
+
   constructor () {
     super();
 
@@ -15,18 +19,4 @@ export default class HTMLImage extends HTMLElement {
 
   appendChild (child) {}
   removeChild (child) {}
-
-  serialize () {
-    const element = {
-      ...super.serialize(),
-      src: this.src,
-      mode: this.mode
-    };
-
-    if (!isNullOrUndefined(this.slibing)) {
-      element.slibing = this.slibing.serialize();
-    }
-
-    return element;
-  }
 }

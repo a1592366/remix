@@ -10,6 +10,7 @@ export default class ViewControllerTransportNative  extends Tunnel {
   }
 
   dispatch (type, id, e) {
+    console.log(type, id, e);
     if (id) {
       const element = document.findElement(id);
   

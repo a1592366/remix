@@ -23,8 +23,6 @@ export default class ViewController {
 
     const elements = document.getContainerElements(this.container);
 
-    console.log(elements);
-
     callback(elements);
   }
 

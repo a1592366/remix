@@ -1,25 +1,17 @@
 import { isNullOrUndefined } from '../shared/is';
-import HTMLElement from './HTMLElement';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
+import { VIEW } from './HTMLTypes';
+import HTMLElement from './HTMLElement';
+
+import RemixView from '../components/remix-element/remix-view';
 
 export default class HTMLViewElement extends HTMLElement {
+  static defaultProps = RemixView.defaultProps;
+
   constructor () {
     super();
 
     this.nodeType = ELEMENT_NODE;
-    this.tagName = 'view';
-  }
-
-  serialize () {
-    const element = {
-      ...super.serialize(),
-
-    };
-
-    if (!isNullOrUndefined(this.slibing)) {
-      element.slibing = this.slibing.serialize();
-    }
-
-    return element;
+    this.tagName = VIEW;
   }
 }
