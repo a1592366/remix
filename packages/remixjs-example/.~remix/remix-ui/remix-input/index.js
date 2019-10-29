@@ -1,4 +1,4 @@
-/*** MARK_1572285754602 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572366203747 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -172,6 +172,18 @@ Component({
     addGlobalClass: true
   },
   properties: {
+    onTouchStart: String,
+    onTouchMove: String,
+    onTouchCancel: String,
+    onTouchEnd: String,
+    onTap: String,
+    onLongPress: String,
+    onLongTap: String,
+    onTouchForceChange: String,
+    onTransitionEnd: String,
+    onAnimationStart: String,
+    onAnimationIteration: String,
+    onAnimationEnd: String,
     onInput: String,
     onFocus: String,
     onBlur: String,
@@ -200,6 +212,18 @@ Component({
     holdKeyboard: Boolean
   },
   data: {
+    onTouchStart: null,
+    onTouchMove: null,
+    onTouchCancel: null,
+    onTouchEnd: null,
+    onTap: null,
+    onLongPress: null,
+    onLongTap: null,
+    onTouchForceChange: null,
+    onTransitionEnd: null,
+    onAnimationStart: null,
+    onAnimationIteration: null,
+    onAnimationEnd: null,
     onInput: null,
     onFocus: null,
     onBlur: null,
@@ -228,6 +252,42 @@ Component({
     holdKeyboard: false
   },
   methods: {
+    onTouchStart: function onTouchStart(e) {
+      _project.transports.view.dispatch('onTouchStart', this.data.uuid, e);
+    },
+    onTouchMove: function onTouchMove(e) {
+      _project.transports.view.dispatch('onTouchMove', this.data.uuid, e);
+    },
+    onTouchCancel: function onTouchCancel(e) {
+      _project.transports.view.dispatch('onTouchCancel', this.data.uuid, e);
+    },
+    onTouchEnd: function onTouchEnd(e) {
+      _project.transports.view.dispatch('onTouchEnd', this.data.uuid, e);
+    },
+    onTap: function onTap(e) {
+      _project.transports.view.dispatch('onTap', this.data.uuid, e);
+    },
+    onLongPress: function onLongPress(e) {
+      _project.transports.view.dispatch('onLongPress', this.data.uuid, e);
+    },
+    onLongTap: function onLongTap(e) {
+      _project.transports.view.dispatch('onLongTap', this.data.uuid, e);
+    },
+    onTouchForceChange: function onTouchForceChange(e) {
+      _project.transports.view.dispatch('onTouchForceChange', this.data.uuid, e);
+    },
+    onTransitionEnd: function onTransitionEnd(e) {
+      _project.transports.view.dispatch('onTransitionEnd', this.data.uuid, e);
+    },
+    onAnimationStart: function onAnimationStart(e) {
+      _project.transports.view.dispatch('onAnimationStart', this.data.uuid, e);
+    },
+    onAnimationIteration: function onAnimationIteration(e) {
+      _project.transports.view.dispatch('onAnimationIteration', this.data.uuid, e);
+    },
+    onAnimationEnd: function onAnimationEnd(e) {
+      _project.transports.view.dispatch('onAnimationEnd', this.data.uuid, e);
+    },
     onInput: function onInput(e) {
       _project.transports.view.dispatch('onInput', this.data.uuid, e);
     },
@@ -246,22 +306,22 @@ Component({
   },
   lifetimes: {
     created: function created() {
-      _project.transports.view.dispatch('created', this.data.uuid);
+      _project.transports.view.callLifecycle('created', this.data.uuid);
     },
     attached: function attached() {
-      _project.transports.view.dispatch('attached', this.data.uuid);
+      _project.transports.view.callLifecycle('attached', this.data.uuid);
     },
     detached: function detached() {
-      _project.transports.view.dispatch('detached', this.data.uuid);
+      _project.transports.view.callLifecycle('detached', this.data.uuid);
     },
     ready: function ready() {
-      _project.transports.view.dispatch('ready', this.data.uuid);
+      _project.transports.view.callLifecycle('ready', this.data.uuid);
     },
     moved: function moved() {
-      _project.transports.view.dispatch('moved', this.data.uuid);
+      _project.transports.view.callLifecycle('moved', this.data.uuid);
     },
     error: function error(_error) {
-      _project.transports.view.dispatch('detached', this.data.uuid, _error);
+      _project.transports.view.callLifecycle('detached', this.data.uuid, _error);
     }
   }
 });

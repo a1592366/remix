@@ -49,7 +49,8 @@ export const VIEW = defineNotificationTypes('view', {
   LOAD: 'load',
   READY: 'ready',
   SHOW: 'show',
-  HIDE: 'hide'
+  HIDE: 'hide',
+  EVENT: 'event'
 });
 
 export const API = defineNotificationTypes('api', {

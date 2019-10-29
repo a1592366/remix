@@ -46,15 +46,13 @@ export default class ViewController {
   }
 
   onLaunch = ({ path }) => {
-    if (path === this.route) {
-      transports.view.load({
-        id: this.id,
-        query: this.query,
-        route: this.route
-      }, (element) => {
-        this.instance.setData({ element });
-      });
-    }
+    transports.view.load({
+      id: this.id,
+      query: this.query,
+      route: this.route
+    }, (element) => {
+      this.instance.setData({ element });
+    });
   }
 }
 

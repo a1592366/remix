@@ -10,18 +10,18 @@ const { keys } = Object;
 
 
 const baseEvents = [
-  { name: 'onTouchStart', type: 'String', alias: 'capture-catch:touchstart', defaultValue: 'null' },
-  { name: 'onTouchMove', type: 'String', alias: 'capture-catch:touchmove', defaultValue: 'null' },
-  { name: 'onTouchCancel', type: 'String', alias: 'capture-catch:touchcancel', defaultValue: 'null' },
-  { name: 'onTouchEnd', type: 'String', alias: 'capture-catch:touchend', defaultValue: 'null' },
-  { name: 'onTap', type: 'String', alias: 'capture-catch:tap', defaultValue: 'null' },
-  { name: 'onLongPress', type: 'String', alias: 'capture-catch:longpress', defaultValue: 'null' },
-  { name: 'onLongTap', type: 'String', alias: 'capture-catch:longtap', defaultValue: 'null' },
-  { name: 'onTouchForceChange', type: 'String', alias: 'capture-catch:touchforcechange', defaultValue: 'null' },
-  { name: 'onTransitionEnd', type: 'String', alias: 'catch:transitionend', defaultValue: 'null' },
-  { name: 'onAnimationStart', type: 'String', alias: 'catch:animationstart', defaultValue: 'null' },
-  { name: 'onAnimationIteration', type: 'String', alias: 'catch:animationiteration', defaultValue: 'null' },
-  { name: 'onAnimationEnd', type: 'String', alias: 'catch:animationend', defaultValue: 'null' },
+  { name: 'onTouchStart', type: 'String', alias: 'bind:touchstart', defaultValue: 'null' },
+  { name: 'onTouchMove', type: 'String', alias: 'bind:touchmove', defaultValue: 'null' },
+  { name: 'onTouchCancel', type: 'String', alias: 'bind:touchcancel', defaultValue: 'null' },
+  { name: 'onTouchEnd', type: 'String', alias: 'bind:touchend', defaultValue: 'null' },
+  { name: 'onTap', type: 'String', alias: 'bind:tap', defaultValue: 'null' },
+  { name: 'onLongPress', type: 'String', alias: 'bind:longpress', defaultValue: 'null' },
+  { name: 'onLongTap', type: 'String', alias: 'bind:longtap', defaultValue: 'null' },
+  { name: 'onTouchForceChange', type: 'String', alias: 'bind:touchforcechange', defaultValue: 'null' },
+  { name: 'onTransitionEnd', type: 'String', alias: 'bind:transitionend', defaultValue: 'null' },
+  { name: 'onAnimationStart', type: 'String', alias: 'bind:animationstart', defaultValue: 'null' },
+  { name: 'onAnimationIteration', type: 'String', alias: 'bind:animationiteration', defaultValue: 'null' },
+  { name: 'onAnimationEnd', type: 'String', alias: 'bind:animationend', defaultValue: 'null' },
 ].map((event) => {
   event.isEvent = true;
   event.camel = event.name;
@@ -114,7 +114,7 @@ async function buildWXML (dist, components) {
 
   await Promise.all(names.map(name => {
     const data = components[name];
-    const events = (data.name === 'root' ? baseEvents : data.events).map(event => {
+    const events = (data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events)).map(event => {
       return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
     }).join(',\n\t\t');
 
@@ -126,7 +126,7 @@ async function buildWXML (dist, components) {
           { name: 'uuid', type: 'String', defaultValue: 'null', camel: 'uuid' }
         ]
       ) : 
-      [].concat(
+      (data.name === 'text' ? [] : baseEvents).concat(
         data.events,
         data.properties
       );    
@@ -188,9 +188,7 @@ async function buildJS(dist, components) {
   await Promise.all(names.map(name => {
     const data = components[name];
 
-    const properties = [
-    ].concat(
-      baseEvents,
+    const properties = (data.name === 'text' ? [] : baseEvents).concat(
       data.events,
       data.properties.map(prop => {
         if (prop.name === 'styles') {
@@ -222,6 +220,9 @@ async function buildJS(dist, components) {
       properties: properties.map(props => {
         return props.camel
       }).join(', '),
+      events: (data.name === 'text' ? [] : baseEvents).concat(data.events).map(event => {
+        return `${event.camel} (e) { \n\t\tconst { ${event.camel} } = this.props;\n\t\tif (typeof ${event.camel} === 'function') { ${event.camel}(e); } \n\t}`
+      }).join('\n\n\t'),
       props: properties.map(props => {
         if (props.isEvent) {
           return `${props.camel}={${props.camel} ? '${props.camel}' : null}`
@@ -251,7 +252,7 @@ async function buildWorkWXML (dist) {
     components: names.map((name, index) => {
       const data = components[name];
       const properties = [].concat(
-        data.name === 'root' ? baseEvents : data.events,
+        data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events),
         data.properties
       );
       const symbol = 'elif';

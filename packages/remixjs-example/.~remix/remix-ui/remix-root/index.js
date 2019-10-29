@@ -1,4 +1,4 @@
-/*** MARK_1572285754602 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572366203747 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -243,22 +243,22 @@ Component({
   },
   lifetimes: {
     created: function created() {
-      _project.transports.view.dispatch('created', this.data.uuid);
+      _project.transports.view.callLifecycle('created', this.data.uuid);
     },
     attached: function attached() {
-      _project.transports.view.dispatch('attached', this.data.uuid);
+      _project.transports.view.callLifecycle('attached', this.data.uuid);
     },
     detached: function detached() {
-      _project.transports.view.dispatch('detached', this.data.uuid);
+      _project.transports.view.callLifecycle('detached', this.data.uuid);
     },
     ready: function ready() {
-      _project.transports.view.dispatch('ready', this.data.uuid);
+      _project.transports.view.callLifecycle('ready', this.data.uuid);
     },
     moved: function moved() {
-      _project.transports.view.dispatch('moved', this.data.uuid);
+      _project.transports.view.callLifecycle('moved', this.data.uuid);
     },
     error: function error(_error) {
-      _project.transports.view.dispatch('detached', this.data.uuid, _error);
+      _project.transports.view.callLifecycle('detached', this.data.uuid, _error);
     }
   }
 });

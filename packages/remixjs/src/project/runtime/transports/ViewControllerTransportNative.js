@@ -10,13 +10,14 @@ export default class ViewControllerTransportNative  extends Tunnel {
   }
 
   dispatch (type, id, e) {
-    console.log(type, id, e);
     if (id) {
-      const element = document.findElement(id);
-  
-      if (element) {
-        element.dispatchEvent(type, id, e);
-      }
+      this.post(VIEW.EVENT, [type, id, e]);
+    }
+  }
+
+  callLifecycle (type, id) {
+    if (id) {
+      this.post(VIEW.LIFECYCLE, [type, id]);
     }
   }
 
@@ -49,4 +50,9 @@ export default class ViewControllerTransportNative  extends Tunnel {
   onReady (callback) {
     this.on(VIEW.READY, callback);
   }
+
+  onDispatch (callback) {
+    this.on(VIEW.EVENT, callback);
+  }
+
 }

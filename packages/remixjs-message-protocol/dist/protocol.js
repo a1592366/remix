@@ -176,7 +176,8 @@ var VIEW = defineNotificationTypes('view', {
   LOAD: 'load',
   READY: 'ready',
   SHOW: 'show',
-  HIDE: 'hide'
+  HIDE: 'hide',
+  EVENT: 'event'
 });
 exports.VIEW = VIEW;
 var API = defineNotificationTypes('api', {

@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import transports from '../transports';
 import ViewManager from '../ViewManager';
+import ViewEventManager from '../ViewEventManger';
 import NativeRuntime from './NativeRuntime';
 import env from '../../../../env';
 
@@ -88,6 +89,7 @@ export * from 'remixjs-message-protocol';
 export default function (context) {
   const runtime =  new TerminalRuntime(context);
   const viewManager = new ViewManager(context);
+  const viewEventManager = new ViewEventManager(context);
 
   runtime.run();
 };

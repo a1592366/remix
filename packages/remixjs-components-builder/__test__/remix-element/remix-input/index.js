@@ -86,6 +86,91 @@ export default class RemixInput extends React.Component {
 		
   };
 
+  onTouchStart (e) { 
+		const { onTouchStart } = this.props;
+		if (typeof onTouchStart === 'function') { onTouchStart(e); } 
+	}
+
+	onTouchMove (e) { 
+		const { onTouchMove } = this.props;
+		if (typeof onTouchMove === 'function') { onTouchMove(e); } 
+	}
+
+	onTouchCancel (e) { 
+		const { onTouchCancel } = this.props;
+		if (typeof onTouchCancel === 'function') { onTouchCancel(e); } 
+	}
+
+	onTouchEnd (e) { 
+		const { onTouchEnd } = this.props;
+		if (typeof onTouchEnd === 'function') { onTouchEnd(e); } 
+	}
+
+	onTap (e) { 
+		const { onTap } = this.props;
+		if (typeof onTap === 'function') { onTap(e); } 
+	}
+
+	onLongPress (e) { 
+		const { onLongPress } = this.props;
+		if (typeof onLongPress === 'function') { onLongPress(e); } 
+	}
+
+	onLongTap (e) { 
+		const { onLongTap } = this.props;
+		if (typeof onLongTap === 'function') { onLongTap(e); } 
+	}
+
+	onTouchForceChange (e) { 
+		const { onTouchForceChange } = this.props;
+		if (typeof onTouchForceChange === 'function') { onTouchForceChange(e); } 
+	}
+
+	onTransitionEnd (e) { 
+		const { onTransitionEnd } = this.props;
+		if (typeof onTransitionEnd === 'function') { onTransitionEnd(e); } 
+	}
+
+	onAnimationStart (e) { 
+		const { onAnimationStart } = this.props;
+		if (typeof onAnimationStart === 'function') { onAnimationStart(e); } 
+	}
+
+	onAnimationIteration (e) { 
+		const { onAnimationIteration } = this.props;
+		if (typeof onAnimationIteration === 'function') { onAnimationIteration(e); } 
+	}
+
+	onAnimationEnd (e) { 
+		const { onAnimationEnd } = this.props;
+		if (typeof onAnimationEnd === 'function') { onAnimationEnd(e); } 
+	}
+
+	onInput (e) { 
+		const { onInput } = this.props;
+		if (typeof onInput === 'function') { onInput(e); } 
+	}
+
+	onFocus (e) { 
+		const { onFocus } = this.props;
+		if (typeof onFocus === 'function') { onFocus(e); } 
+	}
+
+	onBlur (e) { 
+		const { onBlur } = this.props;
+		if (typeof onBlur === 'function') { onBlur(e); } 
+	}
+
+	onConfirm (e) { 
+		const { onConfirm } = this.props;
+		if (typeof onConfirm === 'function') { onConfirm(e); } 
+	}
+
+	onKeyboardHeightChange (e) { 
+		const { onKeyboardHeightChange } = this.props;
+		if (typeof onKeyboardHeightChange === 'function') { onKeyboardHeightChange(e); } 
+	}
+
   render () {
     const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onInput, onFocus, onBlur, onConfirm, onKeyboardHeightChange, style, className, value, type, password, placeholder, placeholderStyle, placeholderClass, disabled, maxlength, cursorSpacing, autoFocus, focus, confirmType, confirmHold, cursor, selectionStart, selectionEnd, adjustPosition, holdKeyboard } = this.props;
 

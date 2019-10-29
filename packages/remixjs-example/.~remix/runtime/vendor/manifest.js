@@ -1,4 +1,4 @@
-/*** MARK_1572285754602 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572366203747 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -857,7 +857,8 @@ var _typeof2 = _interopRequireDefault2(__webpack_require__(/*! @babel/runtime/he
           LOAD: 'load',
           READY: 'ready',
           SHOW: 'show',
-          HIDE: 'hide'
+          HIDE: 'hide',
+          EVENT: 'event'
         });
         exports.VIEW = VIEW;
         var API = defineNotificationTypes('api', {
@@ -1324,9 +1325,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "5c1e9084-531a-4fe5-a133-60f6d23d561b";
+var inspectTerminalUUID = "98001441-cc50-475b-8dd8-0895d4948774";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "3e8c3b03-31ec-4117-921f-023e9138235f";
+var inspectLogicUUID = "1fc5a803-7470-4ca3-b346-05bfdc5fa7de";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -3541,6 +3542,168 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixButton, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onGetUserInfo",
+    value: function onGetUserInfo(e) {
+      var onGetUserInfo = this.props.onGetUserInfo;
+
+      if (typeof onGetUserInfo === 'function') {
+        onGetUserInfo(e);
+      }
+    }
+  }, {
+    key: "onContact",
+    value: function onContact(e) {
+      var onContact = this.props.onContact;
+
+      if (typeof onContact === 'function') {
+        onContact(e);
+      }
+    }
+  }, {
+    key: "onGetPhoneNumber",
+    value: function onGetPhoneNumber(e) {
+      var onGetPhoneNumber = this.props.onGetPhoneNumber;
+
+      if (typeof onGetPhoneNumber === 'function') {
+        onGetPhoneNumber(e);
+      }
+    }
+  }, {
+    key: "onOpenSetting",
+    value: function onOpenSetting(e) {
+      var onOpenSetting = this.props.onOpenSetting;
+
+      if (typeof onOpenSetting === 'function') {
+        onOpenSetting(e);
+      }
+    }
+  }, {
+    key: "onLaunchApp",
+    value: function onLaunchApp(e) {
+      var onLaunchApp = this.props.onLaunchApp;
+
+      if (typeof onLaunchApp === 'function') {
+        onLaunchApp(e);
+      }
+    }
+  }, {
+    key: "onError",
+    value: function onError(e) {
+      var onError = this.props.onError;
+
+      if (typeof onError === 'function') {
+        onError(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -3551,11 +3714,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onGetUserInfo = _this$props.onGetUserInfo,
           onContact = _this$props.onContact,
           onGetPhoneNumber = _this$props.onGetPhoneNumber,
@@ -3590,11 +3753,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
         onContact: onContact ? 'onContact' : null,
         onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
@@ -3636,11 +3799,11 @@ exports["default"] = RemixButton;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onGetUserInfo: _PropTypes["default"].string,
   onContact: _PropTypes["default"].string,
   onGetPhoneNumber: _PropTypes["default"].string,
@@ -3676,11 +3839,11 @@ exports["default"] = RemixButton;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onGetUserInfo: null,
   onContact: null,
   onGetPhoneNumber: null,
@@ -3755,6 +3918,132 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixImage, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onLoad",
+    value: function onLoad(e) {
+      var onLoad = this.props.onLoad;
+
+      if (typeof onLoad === 'function') {
+        onLoad(e);
+      }
+    }
+  }, {
+    key: "onError",
+    value: function onError(e) {
+      var onError = this.props.onError;
+
+      if (typeof onError === 'function') {
+        onError(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -3765,11 +4054,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onLoad = _this$props.onLoad,
           onError = _this$props.onError,
           style = _this$props.style,
@@ -3787,11 +4076,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onLoad: onLoad ? 'onLoad' : null,
         onError: onError ? 'onError' : null,
         style: style,
@@ -3816,11 +4105,11 @@ exports["default"] = RemixImage;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onLoad: _PropTypes["default"].string,
   onError: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
@@ -3839,11 +4128,11 @@ exports["default"] = RemixImage;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onLoad: null,
   onError: null,
   style: null,
@@ -3901,6 +4190,159 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixInput, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onInput",
+    value: function onInput(e) {
+      var onInput = this.props.onInput;
+
+      if (typeof onInput === 'function') {
+        onInput(e);
+      }
+    }
+  }, {
+    key: "onFocus",
+    value: function onFocus(e) {
+      var onFocus = this.props.onFocus;
+
+      if (typeof onFocus === 'function') {
+        onFocus(e);
+      }
+    }
+  }, {
+    key: "onBlur",
+    value: function onBlur(e) {
+      var onBlur = this.props.onBlur;
+
+      if (typeof onBlur === 'function') {
+        onBlur(e);
+      }
+    }
+  }, {
+    key: "onConfirm",
+    value: function onConfirm(e) {
+      var onConfirm = this.props.onConfirm;
+
+      if (typeof onConfirm === 'function') {
+        onConfirm(e);
+      }
+    }
+  }, {
+    key: "onKeyboardHeightChange",
+    value: function onKeyboardHeightChange(e) {
+      var onKeyboardHeightChange = this.props.onKeyboardHeightChange;
+
+      if (typeof onKeyboardHeightChange === 'function') {
+        onKeyboardHeightChange(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -3911,11 +4353,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onInput = _this$props.onInput,
           onFocus = _this$props.onFocus,
           onBlur = _this$props.onBlur,
@@ -3949,11 +4391,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onInput: onInput ? 'onInput' : null,
         onFocus: onFocus ? 'onFocus' : null,
         onBlur: onBlur ? 'onBlur' : null,
@@ -3994,11 +4436,11 @@ exports["default"] = RemixInput;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onInput: _PropTypes["default"].string,
   onFocus: _PropTypes["default"].string,
   onBlur: _PropTypes["default"].string,
@@ -4033,11 +4475,11 @@ exports["default"] = RemixInput;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onInput: null,
   onFocus: null,
   onBlur: null,
@@ -4111,6 +4553,177 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixMap, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onMarkerTap",
+    value: function onMarkerTap(e) {
+      var onMarkerTap = this.props.onMarkerTap;
+
+      if (typeof onMarkerTap === 'function') {
+        onMarkerTap(e);
+      }
+    }
+  }, {
+    key: "onLabelTap",
+    value: function onLabelTap(e) {
+      var onLabelTap = this.props.onLabelTap;
+
+      if (typeof onLabelTap === 'function') {
+        onLabelTap(e);
+      }
+    }
+  }, {
+    key: "onControlTap",
+    value: function onControlTap(e) {
+      var onControlTap = this.props.onControlTap;
+
+      if (typeof onControlTap === 'function') {
+        onControlTap(e);
+      }
+    }
+  }, {
+    key: "onCalloutTap",
+    value: function onCalloutTap(e) {
+      var onCalloutTap = this.props.onCalloutTap;
+
+      if (typeof onCalloutTap === 'function') {
+        onCalloutTap(e);
+      }
+    }
+  }, {
+    key: "onUpdated",
+    value: function onUpdated(e) {
+      var onUpdated = this.props.onUpdated;
+
+      if (typeof onUpdated === 'function') {
+        onUpdated(e);
+      }
+    }
+  }, {
+    key: "onRegionChange",
+    value: function onRegionChange(e) {
+      var onRegionChange = this.props.onRegionChange;
+
+      if (typeof onRegionChange === 'function') {
+        onRegionChange(e);
+      }
+    }
+  }, {
+    key: "onPoiTap",
+    value: function onPoiTap(e) {
+      var onPoiTap = this.props.onPoiTap;
+
+      if (typeof onPoiTap === 'function') {
+        onPoiTap(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4121,11 +4734,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onMarkerTap = _this$props.onMarkerTap,
           onLabelTap = _this$props.onLabelTap,
           onControlTap = _this$props.onControlTap,
@@ -4168,11 +4781,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
         onLabelTap: onLabelTap ? 'onLabelTap' : null,
         onControlTap: onControlTap ? 'onControlTap' : null,
@@ -4222,11 +4835,11 @@ exports["default"] = RemixMap;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onMarkerTap: _PropTypes["default"].string,
   onLabelTap: _PropTypes["default"].string,
   onControlTap: _PropTypes["default"].string,
@@ -4270,11 +4883,11 @@ exports["default"] = RemixMap;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onMarkerTap: null,
   onLabelTap: null,
   onControlTap: null,
@@ -4357,6 +4970,150 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixPicker, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onCancel",
+    value: function onCancel(e) {
+      var onCancel = this.props.onCancel;
+
+      if (typeof onCancel === 'function') {
+        onCancel(e);
+      }
+    }
+  }, {
+    key: "onError",
+    value: function onError(e) {
+      var onError = this.props.onError;
+
+      if (typeof onError === 'function') {
+        onError(e);
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      var onChange = this.props.onChange;
+
+      if (typeof onChange === 'function') {
+        onChange(e);
+      }
+    }
+  }, {
+    key: "onColumnChange",
+    value: function onColumnChange(e) {
+      var onColumnChange = this.props.onColumnChange;
+
+      if (typeof onColumnChange === 'function') {
+        onColumnChange(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4367,11 +5124,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onCancel = _this$props.onCancel,
           onError = _this$props.onError,
           onChange = _this$props.onChange,
@@ -4395,11 +5152,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onCancel: onCancel ? 'onCancel' : null,
         onError: onError ? 'onError' : null,
         onChange: onChange ? 'onChange' : null,
@@ -4430,11 +5187,11 @@ exports["default"] = RemixPicker;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onCancel: _PropTypes["default"].string,
   onError: _PropTypes["default"].string,
   onChange: _PropTypes["default"].string,
@@ -4459,11 +5216,11 @@ exports["default"] = RemixPicker;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onCancel: null,
   onError: null,
   onChange: null,
@@ -4527,6 +5284,114 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixRoot, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4537,11 +5402,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           style = _this$props.style,
           className = _this$props.className;
       return _react["default"].createElement("root", {
@@ -4552,11 +5417,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         style: style,
         className: className
       }, this.props.children);
@@ -4574,11 +5439,11 @@ exports["default"] = RemixRoot;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string
 });
@@ -4590,11 +5455,11 @@ exports["default"] = RemixRoot;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   style: null,
   className: null
 });
@@ -4645,6 +5510,141 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixScrollView, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onScrollToUpper",
+    value: function onScrollToUpper(e) {
+      var onScrollToUpper = this.props.onScrollToUpper;
+
+      if (typeof onScrollToUpper === 'function') {
+        onScrollToUpper(e);
+      }
+    }
+  }, {
+    key: "onScrollToLower",
+    value: function onScrollToLower(e) {
+      var onScrollToLower = this.props.onScrollToLower;
+
+      if (typeof onScrollToLower === 'function') {
+        onScrollToLower(e);
+      }
+    }
+  }, {
+    key: "onScroll",
+    value: function onScroll(e) {
+      var onScroll = this.props.onScroll;
+
+      if (typeof onScroll === 'function') {
+        onScroll(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4655,11 +5655,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onScrollToUpper = _this$props.onScrollToUpper,
           onScrollToLower = _this$props.onScrollToLower,
           onScroll = _this$props.onScroll,
@@ -4684,11 +5684,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : null,
         onScrollToLower: onScrollToLower ? 'onScrollToLower' : null,
         onScroll: onScroll ? 'onScroll' : null,
@@ -4720,11 +5720,11 @@ exports["default"] = RemixScrollView;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onScrollToUpper: _PropTypes["default"].string,
   onScrollToLower: _PropTypes["default"].string,
   onScroll: _PropTypes["default"].string,
@@ -4750,11 +5750,11 @@ exports["default"] = RemixScrollView;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onScrollToUpper: null,
   onScrollToLower: null,
   onScroll: null,
@@ -4819,6 +5819,114 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixSwiperItem, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4829,11 +5937,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           style = _this$props.style,
           className = _this$props.className,
           itemId = _this$props.itemId;
@@ -4845,11 +5953,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         style: style,
         className: className,
         itemId: itemId
@@ -4868,11 +5976,11 @@ exports["default"] = RemixSwiperItem;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   itemId: _PropTypes["default"].string
@@ -4885,11 +5993,11 @@ exports["default"] = RemixSwiperItem;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   style: null,
   className: null,
   itemId: null
@@ -4943,6 +6051,132 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixSwiper, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      var onChange = this.props.onChange;
+
+      if (typeof onChange === 'function') {
+        onChange(e);
+      }
+    }
+  }, {
+    key: "onAnimationFinish",
+    value: function onAnimationFinish(e) {
+      var onAnimationFinish = this.props.onAnimationFinish;
+
+      if (typeof onAnimationFinish === 'function') {
+        onAnimationFinish(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -4953,11 +6187,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           onChange = _this$props.onChange,
           onAnimationFinish = _this$props.onAnimationFinish,
           style = _this$props.style,
@@ -4984,11 +6218,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onChange: onChange ? 'onChange' : null,
         onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : null,
         style: style,
@@ -5023,11 +6257,11 @@ exports["default"] = RemixSwiper;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   onChange: _PropTypes["default"].string,
   onAnimationFinish: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
@@ -5055,11 +6289,11 @@ exports["default"] = RemixSwiper;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   onChange: null,
   onAnimationFinish: null,
   style: null,
@@ -5129,36 +6363,12 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          onTouchStart = _this$props.onTouchStart,
-          onTouchMove = _this$props.onTouchMove,
-          onTouchCancel = _this$props.onTouchCancel,
-          onTouchEnd = _this$props.onTouchEnd,
-          onTap = _this$props.onTap,
-          onLongPress = _this$props.onLongPress,
-          onLongTap = _this$props.onLongTap,
-          onTransitionEnd = _this$props.onTransitionEnd,
-          onAnimationStart = _this$props.onAnimationStart,
-          onAnimationIteration = _this$props.onAnimationIteration,
-          onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           style = _this$props.style,
           className = _this$props.className,
           selectable = _this$props.selectable,
           space = _this$props.space,
           decode = _this$props.decode;
       return _react["default"].createElement("text", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         style: style,
         className: className,
         selectable: selectable,
@@ -5172,18 +6382,6 @@ function (_React$Component) {
 
 exports["default"] = RemixText;
 (0, _defineProperty2["default"])(RemixText, "propTypes", {
-  onTouchStart: _PropTypes["default"].string,
-  onTouchMove: _PropTypes["default"].string,
-  onTouchCancel: _PropTypes["default"].string,
-  onTouchEnd: _PropTypes["default"].string,
-  onTap: _PropTypes["default"].string,
-  onLongPress: _PropTypes["default"].string,
-  onLongTap: _PropTypes["default"].string,
-  onTransitionEnd: _PropTypes["default"].string,
-  onAnimationStart: _PropTypes["default"].string,
-  onAnimationIteration: _PropTypes["default"].string,
-  onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   selectable: _PropTypes["default"].bool,
@@ -5191,18 +6389,6 @@ exports["default"] = RemixText;
   decode: _PropTypes["default"].bool
 });
 (0, _defineProperty2["default"])(RemixText, "defaultProps", {
-  onTouchStart: null,
-  onTouchMove: null,
-  onTouchCancel: null,
-  onTouchEnd: null,
-  onTap: null,
-  onLongPress: null,
-  onLongTap: null,
-  onTransitionEnd: null,
-  onAnimationStart: null,
-  onAnimationIteration: null,
-  onAnimationEnd: null,
-  onTouchForceChange: null,
   style: null,
   className: null,
   selectable: false,
@@ -5256,6 +6442,114 @@ function (_React$Component) {
   }
 
   (0, _createClass2["default"])(RemixView, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -5266,11 +6560,11 @@ function (_React$Component) {
           onTap = _this$props.onTap,
           onLongPress = _this$props.onLongPress,
           onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
           onTransitionEnd = _this$props.onTransitionEnd,
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd,
-          onTouchForceChange = _this$props.onTouchForceChange,
           style = _this$props.style,
           className = _this$props.className,
           hoverClass = _this$props.hoverClass,
@@ -5285,11 +6579,11 @@ function (_React$Component) {
         onTap: onTap ? 'onTap' : null,
         onLongPress: onLongPress ? 'onLongPress' : null,
         onLongTap: onLongTap ? 'onLongTap' : null,
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
         onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
         onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
         onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
         style: style,
         className: className,
         hoverClass: hoverClass,
@@ -5311,11 +6605,11 @@ exports["default"] = RemixView;
   onTap: _PropTypes["default"].string,
   onLongPress: _PropTypes["default"].string,
   onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
   onTransitionEnd: _PropTypes["default"].string,
   onAnimationStart: _PropTypes["default"].string,
   onAnimationIteration: _PropTypes["default"].string,
   onAnimationEnd: _PropTypes["default"].string,
-  onTouchForceChange: _PropTypes["default"].string,
   style: _PropTypes["default"].string,
   className: _PropTypes["default"].string,
   hoverClass: _PropTypes["default"].string,
@@ -5331,11 +6625,11 @@ exports["default"] = RemixView;
   onTap: null,
   onLongPress: null,
   onLongTap: null,
+  onTouchForceChange: null,
   onTransitionEnd: null,
   onAnimationStart: null,
   onAnimationIteration: null,
   onAnimationEnd: null,
-  onTouchForceChange: null,
   style: null,
   className: null,
   hoverClass: 'none',
@@ -6981,17 +8275,15 @@ function () {
     (0, _defineProperty2["default"])(this, "onLaunch", function (_ref) {
       var path = _ref.path;
 
-      if (path === _this.route) {
-        _transports["default"].view.load({
-          id: _this.id,
-          query: _this.query,
-          route: _this.route
-        }, function (element) {
-          _this.instance.setData({
-            element: element
-          });
+      _transports["default"].view.load({
+        id: _this.id,
+        query: _this.query,
+        route: _this.route
+      }, function (element) {
+        _this.instance.setData({
+          element: element
         });
-      }
+      });
     });
     this.route = route;
     this.id = _uuid["default"].v4();
@@ -7344,6 +8636,149 @@ function () {
 }();
 
 exports["default"] = ViewController;
+
+/***/ }),
+
+/***/ "../remixjs/src/project/runtime/ViewEventManger.js":
+/*!*********************************************************!*\
+  !*** ../remixjs/src/project/runtime/ViewEventManger.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _ViewController = _interopRequireDefault(__webpack_require__(/*! ./ViewController */ "../remixjs/src/project/runtime/ViewController.js"));
+
+var _renderer = __webpack_require__(/*! ../../renderer */ "../remixjs/src/renderer/index.js");
+
+var _document = __webpack_require__(/*! ../../document */ "../remixjs/src/document/index.js");
+
+var _createElement = _interopRequireDefault(__webpack_require__(/*! ../../react/createElement */ "../remixjs/src/react/createElement.js"));
+
+var _HTMLTypes = __webpack_require__(/*! ../../document/HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _transports = _interopRequireWildcard(__webpack_require__(/*! ./transports */ "../remixjs/src/project/runtime/transports/index.js"));
+
+var _is = __webpack_require__(/*! ../../shared/is */ "../remixjs/src/shared/is.js");
+
+var _shared = __webpack_require__(/*! ../../shared */ "../remixjs/src/shared/index.js");
+
+var bubbleEvent = ['touchstart', 'touchmove', 'touchcancel', 'touchend', 'tap', 'longpress', 'longtap', 'touchforcechange', 'transitionend', 'animationstart', 'animationiteration', 'animationend'];
+
+var EventObject =
+/*#__PURE__*/
+function () {
+  function EventObject(event) {
+    (0, _classCallCheck2["default"])(this, EventObject);
+    this.__original_event__ = event;
+    var type = event.type,
+        touches = event.touches,
+        timeStamp = event.timeStamp,
+        changedTouches = event.changedTouches;
+    this.type = type;
+    this.touches = touches;
+    this.timeStamp = timeStamp;
+    this.changedTouches = changedTouches;
+    this.bubbles = bubbleEvent.includes(this.type);
+    this.cancelBubble = false;
+  }
+
+  (0, _createClass2["default"])(EventObject, [{
+    key: "stopPropagation",
+    value: function stopPropagation() {
+      this.cancelBubble = true;
+    }
+  }, {
+    key: "preventDefault",
+    value: function preventDefault() {}
+  }]);
+  return EventObject;
+}();
+
+var ViewEventManager =
+/*#__PURE__*/
+function () {
+  function ViewEventManager(context) {
+    var _this = this;
+
+    (0, _classCallCheck2["default"])(this, ViewEventManager);
+    (0, _defineProperty2["default"])(this, "onDispatch", function (type, uuid, e) {
+      var timeStamp = e.timeStamp,
+          target = e.target; // const id = e.target.id || e.target.dataset.remixId;
+
+      var element = _document.document.findElement(uuid);
+
+      if (_this.events[timeStamp]) {
+        if (element.tagName === _HTMLTypes.ROOT) {
+          delete _this.events[timeStamp];
+        }
+      } else {
+        var event = _this.events[timeStamp] = new EventObject(e);
+        var id = e.currentTarget.id || e.currentTarget.dataset.remixId;
+        event.target = element;
+        event.currentTarget = _document.document.findElement(id);
+        var node = element;
+
+        if (event.bubbles) {
+          while (node && node.tagName !== _HTMLTypes.ROOT) {
+            event.target = node;
+
+            _this.callElementMethod(node, type, event);
+
+            if (event.cancelBubble) {
+              break;
+            }
+
+            node = node["return"];
+          }
+        } else {
+          _this.callElementMethod(node, type, event);
+        }
+      }
+    });
+    this.context = context;
+    this.events = {};
+
+    _transports["default"].view.onDispatch(this.onDispatch);
+  }
+
+  (0, _createClass2["default"])(ViewEventManager, [{
+    key: "callElementMethod",
+    value: function callElementMethod(element, type, event) {
+      var fiber = element[_shared.INTERNAL_INSTANCE_KEY];
+
+      if (fiber["return"]) {
+        var stateNode = fiber["return"].stateNode;
+
+        if (stateNode.isReactComponent) {
+          if ((0, _is.isFunction)(stateNode[type])) {
+            stateNode[type](event);
+          }
+        }
+      }
+    }
+  }]);
+  return ViewEventManager;
+}();
+
+exports["default"] = ViewEventManager;
 
 /***/ }),
 
@@ -7738,6 +9173,8 @@ var _transports = _interopRequireDefault(__webpack_require__(/*! ../transports *
 
 var _ViewManager = _interopRequireDefault(__webpack_require__(/*! ../ViewManager */ "../remixjs/src/project/runtime/ViewManager.js"));
 
+var _ViewEventManger = _interopRequireDefault(__webpack_require__(/*! ../ViewEventManger */ "../remixjs/src/project/runtime/ViewEventManger.js"));
+
 var _NativeRuntime2 = _interopRequireDefault(__webpack_require__(/*! ./NativeRuntime */ "../remixjs/src/project/runtime/terminal/NativeRuntime.js"));
 
 var _env = _interopRequireDefault(__webpack_require__(/*! ../../../../env */ "../remixjs/env.js"));
@@ -7848,6 +9285,7 @@ function (_NativeRuntime) {
 function _default(context) {
   var runtime = new TerminalRuntime(context);
   var viewManager = new _ViewManager["default"](context);
+  var viewEventManager = new _ViewEventManger["default"](context);
   runtime.run();
 }
 
@@ -8627,14 +10065,15 @@ function (_Tunnel) {
   (0, _createClass2["default"])(ViewControllerTransportNative, [{
     key: "dispatch",
     value: function dispatch(type, id, e) {
-      console.log(type, id, e);
-
       if (id) {
-        var element = _document.document.findElement(id);
-
-        if (element) {
-          element.dispatchEvent(type, id, e);
-        }
+        this.post(_types.VIEW.EVENT, [type, id, e]);
+      }
+    }
+  }, {
+    key: "callLifecycle",
+    value: function callLifecycle(type, id) {
+      if (id) {
+        this.post(_types.VIEW.LIFECYCLE, [type, id]);
       }
     }
   }, {
@@ -8659,6 +10098,11 @@ function (_Tunnel) {
     key: "onReady",
     value: function onReady(callback) {
       this.on(_types.VIEW.READY, callback);
+    }
+  }, {
+    key: "onDispatch",
+    value: function onDispatch(callback) {
+      this.on(_types.VIEW.EVENT, callback);
     }
   }]);
   return ViewControllerTransportNative;

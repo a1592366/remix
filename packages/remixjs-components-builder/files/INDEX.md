@@ -12,6 +12,8 @@ export default class <%= className %> extends React.Component {
     <%- defaultProps %>
   };
 
+  <%- events %>
+
   render () {
     const { <%= properties %> } = this.props;
 

@@ -12,11 +12,11 @@ export default class RemixMap extends React.Component {
 		onTap: PropTypes.string,
 		onLongPress: PropTypes.string,
 		onLongTap: PropTypes.string,
+		onTouchForceChange: PropTypes.string,
 		onTransitionEnd: PropTypes.string,
 		onAnimationStart: PropTypes.string,
 		onAnimationIteration: PropTypes.string,
 		onAnimationEnd: PropTypes.string,
-		onTouchForceChange: PropTypes.string,
 		onMarkerTap: PropTypes.string,
 		onLabelTap: PropTypes.string,
 		onControlTap: PropTypes.string,
@@ -62,11 +62,11 @@ export default class RemixMap extends React.Component {
 		onTap: null,
 		onLongPress: null,
 		onLongTap: null,
+		onTouchForceChange: null,
 		onTransitionEnd: null,
 		onAnimationStart: null,
 		onAnimationIteration: null,
 		onAnimationEnd: null,
-		onTouchForceChange: null,
 		onMarkerTap: null,
 		onLabelTap: null,
 		onControlTap: null,
@@ -104,10 +104,105 @@ export default class RemixMap extends React.Component {
 		
   };
 
-  render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onTouchForceChange, onMarkerTap, onLabelTap, onControlTap, onCalloutTap, onUpdated, onRegionChange, onPoiTap, style, className, longitude, latitude, scale, markers, covers, polyline, circles, controls, includePoints, showLocation, polygons, subkey, layerStyle, rotate, skew, enable3D, showCompass, showScale, enableOverlooking, enableZoom, enableScroll, enableRotate, enableSatellite, enableTraffic, setting } = this.props;
+  onTouchStart (e) { 
+		const { onTouchStart } = this.props;
+		if (typeof onTouchStart === 'function') { onTouchStart(e); } 
+	}
 
-    return <map onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onMarkerTap={onMarkerTap ? 'onMarkerTap' : null} onLabelTap={onLabelTap ? 'onLabelTap' : null} onControlTap={onControlTap ? 'onControlTap' : null} onCalloutTap={onCalloutTap ? 'onCalloutTap' : null} onUpdated={onUpdated ? 'onUpdated' : null} onRegionChange={onRegionChange ? 'onRegionChange' : null} onPoiTap={onPoiTap ? 'onPoiTap' : null} style={style} className={className} longitude={longitude} latitude={latitude} scale={scale} markers={markers} covers={covers} polyline={polyline} circles={circles} controls={controls} includePoints={includePoints} showLocation={showLocation} polygons={polygons} subkey={subkey} layerStyle={layerStyle} rotate={rotate} skew={skew} enable3D={enable3D} showCompass={showCompass} showScale={showScale} enableOverlooking={enableOverlooking} enableZoom={enableZoom} enableScroll={enableScroll} enableRotate={enableRotate} enableSatellite={enableSatellite} enableTraffic={enableTraffic} setting={setting}></map>;
+	onTouchMove (e) { 
+		const { onTouchMove } = this.props;
+		if (typeof onTouchMove === 'function') { onTouchMove(e); } 
+	}
+
+	onTouchCancel (e) { 
+		const { onTouchCancel } = this.props;
+		if (typeof onTouchCancel === 'function') { onTouchCancel(e); } 
+	}
+
+	onTouchEnd (e) { 
+		const { onTouchEnd } = this.props;
+		if (typeof onTouchEnd === 'function') { onTouchEnd(e); } 
+	}
+
+	onTap (e) { 
+		const { onTap } = this.props;
+		if (typeof onTap === 'function') { onTap(e); } 
+	}
+
+	onLongPress (e) { 
+		const { onLongPress } = this.props;
+		if (typeof onLongPress === 'function') { onLongPress(e); } 
+	}
+
+	onLongTap (e) { 
+		const { onLongTap } = this.props;
+		if (typeof onLongTap === 'function') { onLongTap(e); } 
+	}
+
+	onTouchForceChange (e) { 
+		const { onTouchForceChange } = this.props;
+		if (typeof onTouchForceChange === 'function') { onTouchForceChange(e); } 
+	}
+
+	onTransitionEnd (e) { 
+		const { onTransitionEnd } = this.props;
+		if (typeof onTransitionEnd === 'function') { onTransitionEnd(e); } 
+	}
+
+	onAnimationStart (e) { 
+		const { onAnimationStart } = this.props;
+		if (typeof onAnimationStart === 'function') { onAnimationStart(e); } 
+	}
+
+	onAnimationIteration (e) { 
+		const { onAnimationIteration } = this.props;
+		if (typeof onAnimationIteration === 'function') { onAnimationIteration(e); } 
+	}
+
+	onAnimationEnd (e) { 
+		const { onAnimationEnd } = this.props;
+		if (typeof onAnimationEnd === 'function') { onAnimationEnd(e); } 
+	}
+
+	onMarkerTap (e) { 
+		const { onMarkerTap } = this.props;
+		if (typeof onMarkerTap === 'function') { onMarkerTap(e); } 
+	}
+
+	onLabelTap (e) { 
+		const { onLabelTap } = this.props;
+		if (typeof onLabelTap === 'function') { onLabelTap(e); } 
+	}
+
+	onControlTap (e) { 
+		const { onControlTap } = this.props;
+		if (typeof onControlTap === 'function') { onControlTap(e); } 
+	}
+
+	onCalloutTap (e) { 
+		const { onCalloutTap } = this.props;
+		if (typeof onCalloutTap === 'function') { onCalloutTap(e); } 
+	}
+
+	onUpdated (e) { 
+		const { onUpdated } = this.props;
+		if (typeof onUpdated === 'function') { onUpdated(e); } 
+	}
+
+	onRegionChange (e) { 
+		const { onRegionChange } = this.props;
+		if (typeof onRegionChange === 'function') { onRegionChange(e); } 
+	}
+
+	onPoiTap (e) { 
+		const { onPoiTap } = this.props;
+		if (typeof onPoiTap === 'function') { onPoiTap(e); } 
+	}
+
+  render () {
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onMarkerTap, onLabelTap, onControlTap, onCalloutTap, onUpdated, onRegionChange, onPoiTap, style, className, longitude, latitude, scale, markers, covers, polyline, circles, controls, includePoints, showLocation, polygons, subkey, layerStyle, rotate, skew, enable3D, showCompass, showScale, enableOverlooking, enableZoom, enableScroll, enableRotate, enableSatellite, enableTraffic, setting } = this.props;
+
+    return <map onTouchStart={onTouchStart ? 'onTouchStart' : null} onTouchMove={onTouchMove ? 'onTouchMove' : null} onTouchCancel={onTouchCancel ? 'onTouchCancel' : null} onTouchEnd={onTouchEnd ? 'onTouchEnd' : null} onTap={onTap ? 'onTap' : null} onLongPress={onLongPress ? 'onLongPress' : null} onLongTap={onLongTap ? 'onLongTap' : null} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : null} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : null} onAnimationStart={onAnimationStart ? 'onAnimationStart' : null} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : null} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : null} onMarkerTap={onMarkerTap ? 'onMarkerTap' : null} onLabelTap={onLabelTap ? 'onLabelTap' : null} onControlTap={onControlTap ? 'onControlTap' : null} onCalloutTap={onCalloutTap ? 'onCalloutTap' : null} onUpdated={onUpdated ? 'onUpdated' : null} onRegionChange={onRegionChange ? 'onRegionChange' : null} onPoiTap={onPoiTap ? 'onPoiTap' : null} style={style} className={className} longitude={longitude} latitude={latitude} scale={scale} markers={markers} covers={covers} polyline={polyline} circles={circles} controls={controls} includePoints={includePoints} showLocation={showLocation} polygons={polygons} subkey={subkey} layerStyle={layerStyle} rotate={rotate} skew={skew} enable3D={enable3D} showCompass={showCompass} showScale={showScale} enableOverlooking={enableOverlooking} enableZoom={enableZoom} enableScroll={enableScroll} enableRotate={enableRotate} enableSatellite={enableSatellite} enableTraffic={enableTraffic} setting={setting}></map>;
   }
 }
 
