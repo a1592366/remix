@@ -21,7 +21,7 @@
         "key": null,
         "ref": null,
         "props": {
-          "path": "pages/Index/index",
+          "path": "pages/User/index",
           "icon": "./static/images/explore.png",
           "selectedIcon": "./static/images/explore_selected.png",
           "children": "我"
@@ -38,16 +38,15 @@
       },
       {
         "text": "我",
-        "pagePath": "pages/Index/index",
+        "pagePath": "pages/User/index",
         "iconPath": "./static/images/explore.png",
         "selectedIconPath": "./static/images/explore_selected.png"
       }
     ]
   },
   "pages": [
-    "pages/Index/index",
     "pages/Explore/index",
-    "pages/Home/index"
+    "pages/User/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#000000",

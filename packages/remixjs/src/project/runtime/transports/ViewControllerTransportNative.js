@@ -43,6 +43,14 @@ export default class ViewControllerTransportNative  extends Tunnel {
     this.post(VIEW.LOAD, [data], callback);
   }
 
+  shareMessage (options) {
+    this.post(VIEW.LOAD, [options]);
+  }
+
+  onShareMessage (callback) {
+    this.on(VIEW.SHARE_MESSAGE, callback);
+  }
+
   onLoad (callback) {
     this.on(VIEW.LOAD, callback);
   }

@@ -1,13 +1,2 @@
 @import "./static/wxss/runtime.ui.wxss";
 @import "./static/wxss/app.ui.wxss";
-
-image {
-  border: 1px solid black;
-}
-
-remix-swiper-item {
-  display:block;
-  overflow:hidden;
-  will-change:transform;
-
-}

@@ -1,4 +1,4 @@
-/*** MARK_1572366203747 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -242,6 +242,30 @@ Object.keys(_react).forEach(function (key) {
   });
 });
 var _default = _react["default"];
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../remixjs/prop-types.js":
+/*!********************************!*\
+  !*** ../remixjs/prop-types.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ./src/react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var _default = _PropTypes["default"];
 exports["default"] = _default;
 
 /***/ }),
@@ -619,6 +643,17 @@ module.exports = _typeof;
 
 /***/ }),
 
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -642,7 +677,9 @@ var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/comp
 
 var _router = __webpack_require__(/*! remixjs/router */ "../remixjs/router.js");
 
-var _Index = _interopRequireDefault(__webpack_require__(/*! ./pages/Index */ "./src/pages/Index/index.js"));
+var _User = _interopRequireDefault(__webpack_require__(/*! ./pages/User */ "./src/pages/User/index.js"));
+
+var _Explore = _interopRequireDefault(__webpack_require__(/*! ./pages/Explore */ "./src/pages/Explore/index.js"));
 
 var _me = _interopRequireDefault(__webpack_require__(/*! ./static/images/me.png */ "./src/static/images/me.png"));
 
@@ -651,6 +688,8 @@ var _me_selected = _interopRequireDefault(__webpack_require__(/*! ./static/image
 var _explore = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore.png */ "./src/static/images/explore.png"));
 
 var _explore_selected = _interopRequireDefault(__webpack_require__(/*! ./static/images/explore_selected.png */ "./src/static/images/explore_selected.png"));
+
+__webpack_require__(/*! ./index.css */ "./src/index.css");
 
 var TabBarItem = _components.TabBar.TabBarItem;
 
@@ -662,14 +701,11 @@ var _default = function _default() {
     },
     onLaunch: function onLaunch(options) {}
   }, _remixjs["default"].createElement(_router.Router, null, _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Index/index",
-    component: _Index["default"]
-  }), _remixjs["default"].createElement(_router.Route, {
     path: "pages/Explore/index",
-    component: _Index["default"]
+    component: _Explore["default"]
   }), _remixjs["default"].createElement(_router.Route, {
-    path: "pages/Home/index",
-    component: _Index["default"]
+    path: "pages/User/index",
+    component: _User["default"]
   })), _remixjs["default"].createElement(_components.TabBar, {
     selectedColor: '#333333'
   }, _remixjs["default"].createElement(TabBarItem, {
@@ -677,7 +713,7 @@ var _default = function _default() {
     icon: _me["default"],
     selectedIcon: _me_selected["default"]
   }, "\u53D1\u73B0"), _remixjs["default"].createElement(TabBarItem, {
-    path: "pages/Index/index",
+    path: "pages/User/index",
     icon: _explore["default"],
     selectedIcon: _explore_selected["default"]
   }, "\u6211")));
@@ -687,10 +723,10 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "./src/pages/Index/index.css":
-/*!***********************************!*\
-  !*** ./src/pages/Index/index.css ***!
-  \***********************************/
+/***/ "./src/pages/Explore/components/Menus/index.css":
+/*!******************************************************!*\
+  !*** ./src/pages/Explore/components/Menus/index.css ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -698,10 +734,280 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "./src/pages/Index/index.js":
+/***/ "./src/pages/Explore/components/Menus/index.js":
+/*!*****************************************************!*\
+  !*** ./src/pages/Explore/components/Menus/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../remixjs/prop-types.js"));
+
+var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Explore/components/Menus/index.css");
+
+var Item = function Item() {};
+
+var Menus =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2["default"])(Menus, _Component);
+
+  function Menus() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, Menus);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(Menus)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
+      current: _this.props.current || _this.getCurrentActiveKey()
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "getCurrentActiveKey", function () {});
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMenuItemClick", function () {});
+    return _this;
+  }
+
+  (0, _createClass2["default"])(Menus, [{
+    key: "headerRender",
+    value: function headerRender() {
+      var _this2 = this;
+
+      var children = [];
+
+      _remixjs.Children.forEach(this.props.children, function (child) {
+        if (child) {
+          if (child.type === Menus.Item) {
+            var props = child.props,
+                key = child.key;
+            children.push(_remixjs["default"].createElement(_components.View, {
+              className: "index__menu-item-tab",
+              key: key,
+              onTap: function onTap(e) {
+                return _this2.onMenuItemClick(child, e);
+              }
+            }, props.name));
+          }
+        }
+      });
+
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index__menus-tabs"
+      }, children);
+    }
+  }, {
+    key: "contentRender",
+    value: function contentRender() {
+      var _this3 = this;
+
+      var children = [];
+
+      _remixjs.Children.forEach(this.props.children, function (child) {
+        if (child) {
+          if (child.type === Menus.Item) {
+            var props = child.props,
+                key = child.key;
+            children.push(_remixjs["default"].createElement(_components.View, {
+              className: "index__menu-item-content",
+              key: key,
+              onTap: function onTap(e) {
+                return _this3.onMenuItemClick(child, e);
+              }
+            }, props.name));
+          }
+        }
+      });
+
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index__menus-content"
+      }, children);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index__menus"
+      }, this.headerRender(), this.contentRender());
+    }
+  }]);
+  return Menus;
+}(_remixjs.Component);
+
+exports["default"] = Menus;
+(0, _defineProperty2["default"])(Menus, "Item", Item);
+
+/***/ }),
+
+/***/ "./src/pages/Explore/index.css":
+/*!*************************************!*\
+  !*** ./src/pages/Explore/index.css ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/Explore/index.js":
+/*!************************************!*\
+  !*** ./src/pages/Explore/index.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
+
+var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
+
+var _Menus = _interopRequireDefault(__webpack_require__(/*! ./components/Menus */ "./src/pages/Explore/components/Menus/index.js"));
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Explore/index.css");
+
+var Index =
+/*#__PURE__*/
+function (_ViewController) {
+  (0, _inherits2["default"])(Index, _ViewController);
+
+  function Index() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, Index);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "config", {
+      navigationBarTitleText: '我的'
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
+      current: 'jx'
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChange", function () {});
+    return _this;
+  }
+
+  (0, _createClass2["default"])(Index, [{
+    key: "headerRender",
+    value: function headerRender() {
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index__header"
+      });
+    }
+  }, {
+    key: "contentRender",
+    value: function contentRender() {
+      var current = this.state.current;
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index__content"
+      }, _remixjs["default"].createElement(_Menus["default"], {
+        current: current,
+        onChange: this.onChange
+      }, _remixjs["default"].createElement(_Menus["default"].Item, {
+        name: "\u5F71\u7247",
+        key: "movies"
+      }), _remixjs["default"].createElement(_Menus["default"].Item, {
+        name: "\u884C\u7A0B",
+        key: "schedule"
+      }), _remixjs["default"].createElement(_Menus["default"].Item, {
+        name: "\u5173\u4E8E",
+        key: "about"
+      })));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _remixjs["default"].createElement(_components.View, {
+        className: "index"
+      }, this.headerRender(), this.contentRender());
+    }
+  }]);
+  return Index;
+}(_components.ViewController);
+
+exports["default"] = Index;
+
+/***/ }),
+
+/***/ "./src/pages/User/index.css":
 /*!**********************************!*\
-  !*** ./src/pages/Index/index.js ***!
+  !*** ./src/pages/User/index.css ***!
   \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/User/index.js":
+/*!*********************************!*\
+  !*** ./src/pages/User/index.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -739,9 +1045,7 @@ var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js
 
 var _remixjsMessageProtocol = __webpack_require__(/*! remixjs-message-protocol */ "../remixjs-message-protocol/dist/protocol.js");
 
-__webpack_require__(/*! ./index.css */ "./src/pages/Index/index.css");
-
-var _components2 = __webpack_require__(/*! remixjs/src/components */ "../remixjs/src/components/index.js");
+__webpack_require__(/*! ./index.css */ "./src/pages/User/index.css");
 
 var Index =
 /*#__PURE__*/

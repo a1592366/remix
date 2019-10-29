@@ -41,7 +41,7 @@ keys(components).forEach(key => {
 
   component.properties = [
     { name: 'uuid', type: 'String', defaultValue: 'null' },
-    { name: 'styles', type: 'String', defaultValue: 'null' },
+    { name: 'style', type: 'String', defaultValue: 'null' },
     { name: 'className', type: 'String', defaultValue: 'null' }
   ].concat(component.properties).map(prop => {
     prop.camel = camelcase(prop.name);
@@ -137,7 +137,10 @@ async function buildWXML (dist, components) {
       openComponent: data.open,
       name: data.name,
       tagName: data.name === 'root' ? 'view' : data.name,
-      props: properties.map(props => {
+      props: properties.filter(props => {
+        return props.name !== 'className' ||
+          props.name !== 'style'
+      }).map(props => {
         if (props.isEvent) {
           return `${props.alias}="{{${props.camel}}}"`
         }
@@ -146,7 +149,7 @@ async function buildWXML (dist, components) {
           case 'className':
             return `class="{{${props.camel}}}"`;
 
-          case 'styles':
+          case 'style':
             return `style="{{${props.camel}}}"`;
 
           case 'uuid':
@@ -258,12 +261,16 @@ async function buildWorkWXML (dist) {
       const symbol = 'elif';
 
       if (data.name === 'swiper-item') {
-        return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<swiper-item item-id="{{element.itemId}}"><remix-view child="{{element.child}}" innerText="{{element.innerText}}" uuid="{{element.uuid}}" styles="{{element.styles || ''}}" className="{{element.className}}" /></swiper-item>\n\t</block>`;
+        return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<swiper-item item-id="{{element.itemId}}"><remix-view child="{{element.child}}" innerText="{{element.innerText}}" uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" /></swiper-item>\n\t</block>`;
       }
 
       const props = properties.map((props, index) => {
-        if (props.name === 'styles') {
+        if (props.name === 'style') {
           return `${props.camel}="{{element.${props.camel} || ''}}"`
+        }
+
+        if (props.name === 'className') {
+          return `class="{{element.${props.camel} || ''}}"`
         }
 
         return `${props.camel}="{{element.${props.camel}}}"`

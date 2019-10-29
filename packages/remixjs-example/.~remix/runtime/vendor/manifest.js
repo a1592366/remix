@@ -1,4 +1,4 @@
-/*** MARK_1572366203747 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1325,9 +1325,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "98001441-cc50-475b-8dd8-0895d4948774";
+var inspectTerminalUUID = "c1e920ff-0a83-4e95-913d-e98fcfef60f6";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "1fc5a803-7470-4ca3-b346-05bfdc5fa7de";
+var inspectLogicUUID = "16aaab5b-3021-43bc-ac28-c655f960c637";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -8307,10 +8307,8 @@ function () {
           onHide: function onHide() {},
           onUnload: function onUnload() {},
           onPullDownRefresh: function onPullDownRefresh() {},
-          onShareAppMessage: function onShareAppMessage() {},
-          touchstart: function touchstart(e) {
-            debugger;
-            console.log(e);
+          onShareAppMessage: function onShareAppMessage(options) {
+            return _transports["default"].view.shareMessage(options);
           }
         });
       }
@@ -10088,6 +10086,16 @@ function (_Tunnel) {
     key: "load",
     value: function load(data, callback) {
       this.post(_types.VIEW.LOAD, [data], callback);
+    }
+  }, {
+    key: "shareMessage",
+    value: function shareMessage(options) {
+      this.post(_types.VIEW.LOAD, [options]);
+    }
+  }, {
+    key: "onShareMessage",
+    value: function onShareMessage(callback) {
+      this.on(_types.VIEW.SHARE_MESSAGE, callback);
     }
   }, {
     key: "onLoad",

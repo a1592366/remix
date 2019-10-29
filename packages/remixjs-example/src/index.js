@@ -6,13 +6,15 @@ import { Application } from 'remixjs/components';
 import { Router, Route } from 'remixjs/router';
 import { TabBar } from 'remixjs/components';
 
-import Index from './pages/Index';
+import User from './pages/User';
+import Explore from './pages/Explore';
 
 import me from './static/images/me.png';
 import meSelected from './static/images/me_selected.png';
 import explore from './static/images/explore.png';
 import exploreSelected from './static/images/explore_selected.png';
 
+import './index.css';
 
 const { TabBarItem } = TabBar;
 
@@ -28,9 +30,8 @@ export default () => {
     }}
   >
     <Router>
-      <Route path="pages/Index/index" component={Index} />
-      <Route path="pages/Explore/index" component={Index} />
-      <Route path="pages/Home/index" component={Index} />
+      <Route path="pages/Explore/index" component={Explore} />
+      <Route path="pages/User/index" component={User} />
     </Router>
 
     <TabBar
@@ -44,7 +45,7 @@ export default () => {
         发现
       </TabBarItem>
       <TabBarItem 
-        path="pages/Index/index"
+        path="pages/User/index"
         icon={explore}
         selectedIcon={exploreSelected}
       >

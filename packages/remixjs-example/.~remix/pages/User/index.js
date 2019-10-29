@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"remix-ui/view/index": 0
+/******/ 		"pages/User/index": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,17 +148,17 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./.~remix/remix-ui/view/~index.js","runtime/vendor/manifest"]);
+/******/ 	deferredModules.push(["./.~remix/pages/User/.~index.js","runtime/vendor/manifest"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./.~remix/remix-ui/view/~index.js":
-/*!*****************************************!*\
-  !*** ./.~remix/remix-ui/view/~index.js ***!
-  \*****************************************/
+/***/ "./.~remix/pages/User/.~index.js":
+/*!***************************************!*\
+  !*** ./.~remix/pages/User/.~index.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -167,105 +167,7 @@
 
 var _project = __webpack_require__(/*! remixjs/project */ "../remixjs/project.js");
 
-Component({
-  options: {
-    addGlobalClass: true
-  },
-  properties: {
-    child: Object,
-    uuid: String,
-    className: String,
-    style: String,
-    onTouchStart: String,
-    onTouchMove: String,
-    onTouchCancel: String,
-    onTouchEnd: String,
-    onTap: String,
-    onLongPress: String,
-    onLongTap: String,
-    onTransitionEnd: String,
-    onAnimationStart: String,
-    onAnimationIteration: String,
-    onAnimationEnd: String,
-    onTouchForceChange: String
-  },
-  data: {
-    child: null,
-    uuid: null,
-    className: null,
-    style: null,
-    onTouchStart: null,
-    onTouchMove: null,
-    onTouchCancel: null,
-    onTouchEnd: null,
-    onTap: null,
-    onLongPress: null,
-    onLongTap: null,
-    onTransitionEnd: null,
-    onAnimationStart: null,
-    onAnimationIteration: null,
-    onAnimationEnd: null,
-    onTouchForceChange: null
-  },
-  lifetimes: {
-    created: function created() {
-      _project.transports.view.dispatch('created', this.data.uuid);
-    },
-    attached: function attached() {
-      _project.transports.view.dispatch('attached', this.data.uuid);
-    },
-    detached: function detached() {
-      _project.transports.view.dispatch('detached', this.data.uuid);
-    },
-    ready: function ready() {
-      _project.transports.view.dispatch('ready', this.data.uuid);
-    },
-    moved: function moved() {
-      _project.transports.view.dispatch('moved', this.data.uuid);
-    },
-    error: function error(_error) {
-      _project.transports.view.dispatch('detached', this.data.uuid, _error);
-    }
-  },
-  methods: {
-    onTouchStart: function onTouchStart(e) {
-      _project.transports.view.dispatch('onTouchStart', e.target.id, e);
-    },
-    onTouchMove: function onTouchMove(e) {
-      _project.transports.view.dispatch('onTouchStart', e.target.id, e);
-    },
-    onTouchCancel: function onTouchCancel(e) {
-      _project.transports.view.dispatch('onTouchStart', e.target.id, e);
-    },
-    onTouchEnd: function onTouchEnd(e) {
-      _project.transports.view.dispatch('onTouchStart', e.target.id, e);
-    },
-    onTap: function onTap(e) {
-      _project.transports.view.dispatch('onTap', e.target.id, e);
-    },
-    onLongPress: function onLongPress(e) {
-      _project.transports.view.dispatch('onLongPress', e.target.id, e);
-    },
-    onLongTap: function onLongTap(e) {
-      _project.transports.view.dispatch('onLongTap', e.target.id, e);
-    },
-    onTransitionEnd: function onTransitionEnd(e) {
-      _project.transports.view.dispatch('onTransitionEnd', e.target.id, e);
-    },
-    onAnimationStart: function onAnimationStart(e) {
-      _project.transports.view.dispatch('onAnimationStart', e.target.id, e);
-    },
-    onAnimationIteration: function onAnimationIteration(e) {
-      _project.transports.view.dispatch('onAnimationIteration', e.target.id, e);
-    },
-    onAnimationEnd: function onAnimationEnd(e) {
-      _project.transports.view.dispatch('onAnimationEnd', e.target.id, e);
-    },
-    onTouchForceChange: function onTouchForceChange(e) {
-      _project.transports.view.dispatch('onTouchForceChange', e.target.id, e);
-    }
-  }
-});
+new _project.View('pages/User/index');
 
 /***/ })
 
