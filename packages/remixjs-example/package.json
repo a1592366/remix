@@ -19,6 +19,7 @@
     "@babel/register": "^7.6.2",
     "@babel/runtime": "^7.4.4",
     "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
     "css-loader": "^1.0.1",
     "file-loader": "^4.2.0",
     "fs-extra": "^8.1.0",
@@ -30,6 +31,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "remixjs": "^0.0.1"
+    "remixjs": "^0.0.1",
+    "remixjs-message-protocol": "^0.0.1"
   }
 }

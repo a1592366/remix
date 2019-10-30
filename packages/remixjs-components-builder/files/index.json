@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    <%- usingComponents %>
+    "remix-view": "../remix-view/index",
+    "text": "../remix-text/index",
+    "view": "../remix-view/index"
   }
 }

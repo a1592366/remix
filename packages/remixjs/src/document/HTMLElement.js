@@ -75,6 +75,8 @@ export default class HTMLElement extends Element {
     const defaultProps = this.constructor.defaultProps;
     const element = resolveDefaultProps(defaultProps, this);
 
+    element.style = String(element.style);
+
     if (!isNullOrUndefined(this.child)) {
       element.child = this.child.serialize();
     }

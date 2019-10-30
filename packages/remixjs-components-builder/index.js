@@ -44,7 +44,7 @@ keys(components).forEach(key => {
     { name: 'style', type: 'String', defaultValue: 'null' },
     { name: 'className', type: 'String', defaultValue: 'null' }
   ].concat(component.properties).map(prop => {
-    prop.camel = camelcase(prop.name);
+    prop.camel = camelcase(prop.fullname || prop.name);
 
     return prop;
   })
@@ -107,10 +107,12 @@ async function buildWXML (dist, components) {
 
   const builder = new Builder(
     path.resolve(__dirname, 'files'),
-    files.filter(file => file !== 'INDEX.md'),
+    files.filter(file => file === 'index.wxml'),
   );
 
-  const names = keys(components);
+  const names = keys(components).filter(name => {
+    return name !== 'text' && name !== 'root' && name !== 'view';
+  });
 
   await Promise.all(names.map(name => {
     const data = components[name];
@@ -177,6 +179,77 @@ async function buildWXML (dist, components) {
   }));
 }
 
+async function buildViewAndText (dist, components) {
+  const files = await globby('./**/*', {
+    cwd: path.resolve(__dirname, 'files'),
+    dot: true
+  });
+
+  const builder = new Builder(
+    path.resolve(__dirname, 'files'),
+    files.filter(file => file !== 'INDEX.md')
+  );
+
+  const names = keys(components).filter(name => {
+    return name === 'view' || name === 'text' || name === 'root';
+  });
+
+  await Promise.all(names.map(name => {
+    const data = components[name];
+    const events = (data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events)).map(event => {
+      return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
+    }).join(',\n\t\t');
+
+    const properties = data.name === 'root' ? 
+      [].concat(
+        baseEvents, 
+        [
+          { name: 'child', type: 'Object', defaultValue: 'null', camel: 'child' },
+          { name: 'uuid', type: 'String', defaultValue: 'null', camel: 'uuid' }
+        ]
+      ) : 
+      (data.name === 'text' ? [] : baseEvents).concat(
+        data.events,
+        data.properties
+      );    
+
+    fs.mkdirpSync(path.resolve(dist, `remix-${data.name}`));
+
+    return builder.render(path.resolve(dist, `remix-${data.name}`), {
+      openComponent: data.open,
+      name: data.name,
+      tagName: data.name === 'root' ? 'view' : data.name,
+      props: properties.map(props => {
+        if (props.isEvent) {
+          return `${props.alias}="{{${props.camel}}}"`
+        }
+
+        switch (props.name) {
+          case 'className':
+            return `class="{{${props.camel}}}"`;
+
+          case 'style':
+            return `style="{{${props.camel}}}"`;
+
+          case 'uuid':
+            return `id="{{${props.camel}}}"`;
+
+          default: {
+            return `${props.name}="{{${props.camel}}}"`
+          }
+        }
+      }).join('\n\t'),
+      properties: properties.map(props => {
+        return `${props.camel}: ${props.type},\n\t\t`;
+      }).join(''),
+      data: properties.map(props => {
+        return `${props.camel}: ${props.defaultValue},\n\t\t`
+      }).join(''),
+      events
+    });
+  }));
+}
+
 async function buildJS(dist, components) {
   const builder = new Builder(
     path.resolve(__dirname, 'files'),
@@ -225,7 +298,7 @@ async function buildJS(dist, components) {
       }).join('\n\n\t'),
       props: properties.map(props => {
         if (props.isEvent) {
-          return `${props.camel}={${props.camel} ? '${props.camel}' : null}`
+          return `${props.camel}={${props.camel} ? '${props.camel}' : ''}`
         }
 
         return `${props.camel}={${props.camel}}`
@@ -243,7 +316,7 @@ async function buildJS(dist, components) {
 async function buildWorkWXML (dist) {
   const builder = new Builder(
     path.resolve(__dirname, 'fixed'),
-    ['remix-worker.wxml', 'remix-slibings.wxs'],
+    ['inner-remix-worker.wxml', 'remix-worker.wxml', 'remix-slibings.wxs'],
   );
 
   const names = keys(components);
@@ -251,7 +324,8 @@ async function buildWorkWXML (dist) {
   await builder.render(dist, {
     imports: names.filter(name => {
       return name !== 'view' &&
-        name !== 'root'
+        name !== 'root' &&
+        name !== 'text'
     }).map((name) => {
       const data = components[name];
 
@@ -259,8 +333,37 @@ async function buildWorkWXML (dist) {
     }).join('\n'),
     components: names.map((name, index) => {
       const data = components[name];
-      
 
+      if (data.name === 'view' || data.name === 'root' || data.name === 'text') {
+        const tagName = data.name === 'root' ? `remix-${data.name}` : data.name;
+        let props = data.properties.map(prop => {
+          const key = data.name === 'root' ? prop.camel : prop.name;
+
+          if (data.name !== 'root') {
+            if (prop.name === 'className') {
+              return `class="{{element.${prop.camel}}}"`;
+            }
+
+            if (prop.name === 'uuid') {
+              return `id="{{element.${prop.camel}}}"`;
+            }
+          }
+
+          return `${key}="{{element.${prop.camel}}}"`;
+        });
+
+        if (data.name !== 'text') {
+          
+
+          props = props.concat(baseEvents.map((event) => {
+            const key = data.name === 'root' ? event.camel : event.alias;
+
+            return `${key}="{{element.${event.camel}}}"`
+          }));
+        }
+
+        return `<block wx:elif="{{ element.tagName == '${data.name}' }}">\n\t\t<${tagName} ${props.join(' ')}  />\n\t</block>`;
+      }
 
       return `<block wx:elif="{{ element.tagName == '${data.name}' }}">\n\t\t<template is="${data.name}" data="{{ ...element }}" />\n\t</block>`
     }).join('\n\t')
@@ -269,6 +372,7 @@ async function buildWorkWXML (dist) {
 
 module.exports = async function (dist) {
   await buildWXML(path.resolve(dist, 'remix-ui'), components);
+  await buildViewAndText(path.resolve(dist, 'remix-ui'), components);
   await buildWorkWXML(path.resolve(dist, 'remix-ui'), components);
   // await buildView(path.resolve(dist, 'remix-ui'), components);
   // await buildText(path.resolve(dist, 'remix-ui'), components);

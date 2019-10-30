@@ -158,7 +158,9 @@ module.exports = {
     });
 
     // remix-ui
-    files.forEach(file => {
+    files.filter(file => {
+      return file === 'remix-root' || file === 'remix-view' || file ==='remix-text'
+    }).forEach(file => {
       const source = path.join(env.PROJ_XML, file, env.REMIX_UI_ENTRY_NAME)
 
       config.entry[`${env.REMIX_UI_NAME}/${file}/index`] = source

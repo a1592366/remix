@@ -4,18 +4,23 @@
 
 .index__menus-tabs {
   height: 80rpx;
-  display: flex;
-  padding: 0 70rpx;
+  margin: 0 40rpx;
   box-sizing: border-box;
   position: relative;
+}
+
+.index__menus-tabs-inner {
+  display: flex;
 }
 
 .index__menus-tabs-line {
   position: absolute;
   height: 4rpx;
   width: 15%;
-  background-color: rgb(238, 13, 40);
+  background-color: rgb(189, 169, 80);
   bottom: 0;
+  transform: translateX(-50%);
+  transition: left .5s;
 }
 
 .index__menu-item-tab {
@@ -26,6 +31,8 @@
   line-height: 80rpx;
   position: relative;
 }
+
+
 
 .index__menu-item-tab:active {
   opacity: 0.7;
@@ -47,7 +54,7 @@
 }
 
 .index__menu-item-tab_active {
-  color: rgb(238, 13, 40);
+  color: rgb(189, 169, 80);
   position: relative;
 }
 

@@ -1,4 +1,4 @@
-/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572455999428 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -784,6 +784,72 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "./src/pages/Explore/components/Card/index.css":
+/*!*****************************************************!*\
+  !*** ./src/pages/Explore/components/Card/index.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/Explore/components/Card/index.js":
+/*!****************************************************!*\
+  !*** ./src/pages/Explore/components/Card/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Card;
+
+var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../remixjs/index.js"));
+
+var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Explore/components/Card/index.css");
+
+function Card(props) {
+  var cover = props.cover,
+      name = props.name,
+      tags = props.tags,
+      like = props.like;
+  return _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card"
+  }, _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-cover"
+  }, _remixjs["default"].createElement(_components.Image, {
+    mode: "aspectFill",
+    className: "index__movies-card-cover-image",
+    src: cover
+  })), _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-meta"
+  }, _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-name"
+  }, _remixjs["default"].createElement(_components.Text, {
+    className: "index__movies-card-title-text"
+  }, name), _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-share-icon"
+  })), _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-author"
+  }), _remixjs["default"].createElement(_components.View, {
+    className: "index__movies-card-tags"
+  }, tags.map(function (tag) {
+    return "#".concat(tag);
+  }).join(' '))));
+}
+
+/***/ }),
+
 /***/ "./src/pages/Explore/components/Menus/index.css":
 /*!******************************************************!*\
   !*** ./src/pages/Explore/components/Menus/index.css ***!
@@ -881,15 +947,22 @@ function (_Component) {
 
       var activedKey = this.state.activedKey;
       var children = [];
+      var activedIndex = 0;
 
-      _remixjs.Children.forEach(this.props.children, function (child) {
+      _remixjs.Children.forEach(this.props.children, function (child, index) {
         if (child) {
           if (child.type === Menus.Item) {
             var props = child.props;
             var key = props.key || child.key;
+            var isActived = key === activedKey;
+
+            if (isActived) {
+              activedIndex = index;
+            }
+
             var classes = (0, _classnames["default"])({
               'index__menu-item-tab': true,
-              'index__menu-item-tab_active': key === activedKey
+              'index__menu-item-tab_active': isActived
             });
             children.push(_remixjs["default"].createElement(_components.View, {
               className: classes,
@@ -897,18 +970,23 @@ function (_Component) {
               onTap: function onTap(e) {
                 return _this2.onMenuItemClick(key, e);
               }
-            }, props.name));
+            }, _remixjs["default"].createElement(_components.Text, null, props.name)));
           }
         }
       });
 
-      children.push(_remixjs["default"].createElement(_components.View, {
-        className: "index__menus-tabs-line",
-        key: "line"
-      }));
+      var left = (activedIndex + 1) * (100 / (children.length * 2)) + '%';
       return _remixjs["default"].createElement(_components.View, {
         className: "index__menus-tabs"
-      }, children);
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__menus-tabs-inner"
+      }, children), _remixjs["default"].createElement(_components.View, {
+        className: "index__menus-tabs-line",
+        key: "line",
+        style: {
+          left: left
+        }
+      }));
     }
   }, {
     key: "contentRender",
@@ -1003,6 +1081,8 @@ var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/comp
 
 var _Menus = _interopRequireDefault(__webpack_require__(/*! ./components/Menus */ "./src/pages/Explore/components/Menus/index.js"));
 
+var _Card = _interopRequireDefault(__webpack_require__(/*! ./components/Card */ "./src/pages/Explore/components/Card/index.js"));
+
 __webpack_require__(/*! ./index.css */ "./src/pages/Explore/index.css");
 
 var Index =
@@ -1041,7 +1121,18 @@ function (_ViewController) {
     value: function headerRender() {
       return _remixjs["default"].createElement(_components.View, {
         className: "index__header"
-      });
+      }, _remixjs["default"].createElement(_components.Video, {
+        loop: true,
+        autoplay: true,
+        objectFit: true,
+        controls: false,
+        showPlayButton: false,
+        showCenterPlayButton: false,
+        showProgress: false,
+        showMuteButton: false,
+        className: "index__video",
+        src: "http://f.video.weibocdn.com/001Npztxlx07y7EjSeUg01041200g3Xe0E010.mp4?label=mp4_hd&template=852x480.25.0&trans_finger=62b30a3f061b162e421008955c73f536&Expires=1572458748&ssig=KGBVxAVrS0&KID=unistore,video"
+      }));
     }
   }, {
     key: "contentRender",
@@ -1057,16 +1148,17 @@ function (_ViewController) {
         key: "movies"
       }, _remixjs["default"].createElement(_components.View, {
         className: "index__movies"
-      }, _remixjs["default"].createElement(_components.View, {
-        className: "index__movies-card"
-      }, _remixjs["default"].createElement(_components.View, {
-        className: "index__movies-card-thumb"
-      }, _remixjs["default"].createElement(_components.Image, {
-        onTouchStart: function onTouchStart() {},
-        className: "index__movies-card-image"
-      })), _remixjs["default"].createElement(_components.View, {
-        className: "index__movies-card-title"
-      }, "\u6784\u9020\u8BBE\u8BA1\u5F15\u64CE\uFF0C\u91CA\u653E\u8BBE\u8BA1\u80FD\u529B")))), _remixjs["default"].createElement(_Menus["default"].Item, {
+      }, _remixjs["default"].createElement(_Card["default"], {
+        name: "\u5C11\u5E74\u7684\u4F60",
+        cover: 'https://p1.meituan.net/movie/7b437e3a0d08d10e374ddc34f71b88fe3379132.jpg',
+        tags: ['爱情', '青春', '剧情'],
+        like: "10\u4E07"
+      }), _remixjs["default"].createElement(_Card["default"], {
+        name: "\u7EC8\u7ED3\u8005\uFF1A\u9ED1\u6697\u547D\u8FD0",
+        cover: 'http://p1.meituan.net/movie/b932f7f678a3e28763b3b281b3e120ef13622509.jpg',
+        tags: ['动作', '科幻', '冒险'],
+        like: "50\u4E07"
+      }))), _remixjs["default"].createElement(_Menus["default"].Item, {
         name: "\u884C\u7A0B",
         key: "schedule"
       }, _remixjs["default"].createElement(_components.View, {

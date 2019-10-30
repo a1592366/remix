@@ -57,20 +57,16 @@ export function setInnerHTML (
   
 export function setValueForStyles (
   element,
-  nextProp
+  styles
 ) {
-  const styles = element.style;
+  const style = element.style;
 
   for (let styleName in styles) {
-    if (styles.hasOwnProperty(styleName)) {
-      var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty);
-
-      if (styleName === STYLE_NAME_FLOAT) {
-        styleName = 'cssFloat';
-      }
+    if (styleName === STYLE_NAME_FLOAT) {
+      styleName = 'cssFloat';
     }
 
-    styles[styleName] = styleValue;
+    style[styleName] = styles[styleName];
   }
 }
 

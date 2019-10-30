@@ -1,3 +1,12 @@
+
 <import src="../remix-worker.wxml" /> 
-<text child="{{child}}" innerText="{{innerText}}" id="{{uuid}}" style="{{style}}" class="{{className}}" selectable="{{selectable}}" space="{{space}}" decode="{{decode}}"><block wx:if="{{innerText}}">{{innerText}}</block><block wx:elif="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block>
-</text>
+<import src="../inner-remix-worker.wxml" />
+
+<block wx:if="{{innerText}}">{{innerText}}</block><block wx:elif="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block>
+
+
+
+
+
+
+

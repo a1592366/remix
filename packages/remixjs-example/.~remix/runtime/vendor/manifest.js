@@ -1,4 +1,4 @@
-/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572455999428 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1325,9 +1325,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "1737b921-8a4d-439a-abc1-58e0bc904007";
+var inspectTerminalUUID = "d6f32867-b35b-4745-906c-f722d9c29559";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "a524cc91-fab4-49d2-b359-501bd2012a74";
+var inspectLogicUUID = "0afff74a-5372-4975-b8b0-d27850c190e7";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -3467,6 +3467,12 @@ Object.defineProperty(exports, "SwiperItem", {
     return _remixSwiperItem["default"];
   }
 });
+Object.defineProperty(exports, "Video", {
+  enumerable: true,
+  get: function get() {
+    return _remixVideo["default"];
+  }
+});
 
 var _Application = _interopRequireDefault(__webpack_require__(/*! ./Application */ "../remixjs/src/components/Application.js"));
 
@@ -3495,6 +3501,8 @@ var _remixScrollView = _interopRequireDefault(__webpack_require__(/*! ./remix-el
 var _remixSwiper = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-swiper */ "../remixjs/src/components/remix-element/remix-swiper/index.js"));
 
 var _remixSwiperItem = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-swiper-item */ "../remixjs/src/components/remix-element/remix-swiper-item/index.js"));
+
+var _remixVideo = _interopRequireDefault(__webpack_require__(/*! ./remix-element/remix-video */ "../remixjs/src/components/remix-element/remix-video/index.js"));
 
 /***/ }),
 
@@ -3746,24 +3754,24 @@ function (_React$Component) {
           appParameter = _this$props.appParameter,
           showMessageCard = _this$props.showMessageCard;
       return _react["default"].createElement("button", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : null,
-        onContact: onContact ? 'onContact' : null,
-        onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : null,
-        onOpenSetting: onOpenSetting ? 'onOpenSetting' : null,
-        onLaunchApp: onLaunchApp ? 'onLaunchApp' : null,
-        onError: onError ? 'onError' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onGetUserInfo: onGetUserInfo ? 'onGetUserInfo' : '',
+        onContact: onContact ? 'onContact' : '',
+        onGetPhoneNumber: onGetPhoneNumber ? 'onGetPhoneNumber' : '',
+        onOpenSetting: onOpenSetting ? 'onOpenSetting' : '',
+        onLaunchApp: onLaunchApp ? 'onLaunchApp' : '',
+        onError: onError ? 'onError' : '',
         style: style,
         className: className,
         size: size,
@@ -4069,20 +4077,20 @@ function (_React$Component) {
           lazyLoad = _this$props.lazyLoad,
           showMenuByLongpress = _this$props.showMenuByLongpress;
       return _react["default"].createElement("image", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onLoad: onLoad ? 'onLoad' : null,
-        onError: onError ? 'onError' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onLoad: onLoad ? 'onLoad' : '',
+        onError: onError ? 'onError' : '',
         style: style,
         className: className,
         src: src,
@@ -4384,23 +4392,23 @@ function (_React$Component) {
           adjustPosition = _this$props.adjustPosition,
           holdKeyboard = _this$props.holdKeyboard;
       return _react["default"].createElement("input", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onInput: onInput ? 'onInput' : null,
-        onFocus: onFocus ? 'onFocus' : null,
-        onBlur: onBlur ? 'onBlur' : null,
-        onConfirm: onConfirm ? 'onConfirm' : null,
-        onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onInput: onInput ? 'onInput' : '',
+        onFocus: onFocus ? 'onFocus' : '',
+        onBlur: onBlur ? 'onBlur' : '',
+        onConfirm: onConfirm ? 'onConfirm' : '',
+        onKeyboardHeightChange: onKeyboardHeightChange ? 'onKeyboardHeightChange' : '',
         style: style,
         className: className,
         value: value,
@@ -4774,25 +4782,25 @@ function (_React$Component) {
           enableTraffic = _this$props.enableTraffic,
           setting = _this$props.setting;
       return _react["default"].createElement("map", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onMarkerTap: onMarkerTap ? 'onMarkerTap' : null,
-        onLabelTap: onLabelTap ? 'onLabelTap' : null,
-        onControlTap: onControlTap ? 'onControlTap' : null,
-        onCalloutTap: onCalloutTap ? 'onCalloutTap' : null,
-        onUpdated: onUpdated ? 'onUpdated' : null,
-        onRegionChange: onRegionChange ? 'onRegionChange' : null,
-        onPoiTap: onPoiTap ? 'onPoiTap' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onMarkerTap: onMarkerTap ? 'onMarkerTap' : '',
+        onLabelTap: onLabelTap ? 'onLabelTap' : '',
+        onControlTap: onControlTap ? 'onControlTap' : '',
+        onCalloutTap: onCalloutTap ? 'onCalloutTap' : '',
+        onUpdated: onUpdated ? 'onUpdated' : '',
+        onRegionChange: onRegionChange ? 'onRegionChange' : '',
+        onPoiTap: onPoiTap ? 'onPoiTap' : '',
         style: style,
         className: className,
         longitude: longitude,
@@ -5145,22 +5153,22 @@ function (_React$Component) {
           fields = _this$props.fields,
           customItem = _this$props.customItem;
       return _react["default"].createElement("picker", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onCancel: onCancel ? 'onCancel' : null,
-        onError: onError ? 'onError' : null,
-        onChange: onChange ? 'onChange' : null,
-        onColumnChange: onColumnChange ? 'onColumnChange' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onCancel: onCancel ? 'onCancel' : '',
+        onError: onError ? 'onError' : '',
+        onChange: onChange ? 'onChange' : '',
+        onColumnChange: onColumnChange ? 'onColumnChange' : '',
         style: style,
         className: className,
         mode: mode,
@@ -5410,18 +5418,18 @@ function (_React$Component) {
           style = _this$props.style,
           className = _this$props.className;
       return _react["default"].createElement("root", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
         style: style,
         className: className
       }, this.props.children);
@@ -5677,21 +5685,21 @@ function (_React$Component) {
           enableFlex = _this$props.enableFlex,
           scrollAnchoring = _this$props.scrollAnchoring;
       return _react["default"].createElement("scroll-view", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : null,
-        onScrollToLower: onScrollToLower ? 'onScrollToLower' : null,
-        onScroll: onScroll ? 'onScroll' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onScrollToUpper: onScrollToUpper ? 'onScrollToUpper' : '',
+        onScrollToLower: onScrollToLower ? 'onScrollToLower' : '',
+        onScroll: onScroll ? 'onScroll' : '',
         style: style,
         className: className,
         scrollX: scrollX,
@@ -5946,18 +5954,18 @@ function (_React$Component) {
           className = _this$props.className,
           itemId = _this$props.itemId;
       return _react["default"].createElement("swiper-item", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
         style: style,
         className: className,
         itemId: itemId
@@ -6211,20 +6219,20 @@ function (_React$Component) {
           skipHiddenItemLayou = _this$props.skipHiddenItemLayou,
           easingFunction = _this$props.easingFunction;
       return _react["default"].createElement("swiper", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
-        onChange: onChange ? 'onChange' : null,
-        onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onChange: onChange ? 'onChange' : '',
+        onAnimationFinish: onAnimationFinish ? 'onAnimationFinish' : '',
         style: style,
         className: className,
         indicatorDots: indicatorDots,
@@ -6395,6 +6403,423 @@ exports["default"] = RemixText;
   space: false,
   decode: false
 });
+
+/***/ }),
+
+/***/ "../remixjs/src/components/remix-element/remix-video/index.js":
+/*!********************************************************************!*\
+  !*** ../remixjs/src/components/remix-element/remix-video/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty4 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remixjs/src/react/index.js"));
+
+var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remixjs/src/react/PropTypes.js"));
+
+var _defineProperty2, _defineProperty3;
+
+var RemixVideo =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2["default"])(RemixVideo, _React$Component);
+
+  function RemixVideo() {
+    (0, _classCallCheck2["default"])(this, RemixVideo);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixVideo).apply(this, arguments));
+  }
+
+  (0, _createClass2["default"])(RemixVideo, [{
+    key: "onTouchStart",
+    value: function onTouchStart(e) {
+      var onTouchStart = this.props.onTouchStart;
+
+      if (typeof onTouchStart === 'function') {
+        onTouchStart(e);
+      }
+    }
+  }, {
+    key: "onTouchMove",
+    value: function onTouchMove(e) {
+      var onTouchMove = this.props.onTouchMove;
+
+      if (typeof onTouchMove === 'function') {
+        onTouchMove(e);
+      }
+    }
+  }, {
+    key: "onTouchCancel",
+    value: function onTouchCancel(e) {
+      var onTouchCancel = this.props.onTouchCancel;
+
+      if (typeof onTouchCancel === 'function') {
+        onTouchCancel(e);
+      }
+    }
+  }, {
+    key: "onTouchEnd",
+    value: function onTouchEnd(e) {
+      var onTouchEnd = this.props.onTouchEnd;
+
+      if (typeof onTouchEnd === 'function') {
+        onTouchEnd(e);
+      }
+    }
+  }, {
+    key: "onTap",
+    value: function onTap(e) {
+      var onTap = this.props.onTap;
+
+      if (typeof onTap === 'function') {
+        onTap(e);
+      }
+    }
+  }, {
+    key: "onLongPress",
+    value: function onLongPress(e) {
+      var onLongPress = this.props.onLongPress;
+
+      if (typeof onLongPress === 'function') {
+        onLongPress(e);
+      }
+    }
+  }, {
+    key: "onLongTap",
+    value: function onLongTap(e) {
+      var onLongTap = this.props.onLongTap;
+
+      if (typeof onLongTap === 'function') {
+        onLongTap(e);
+      }
+    }
+  }, {
+    key: "onTouchForceChange",
+    value: function onTouchForceChange(e) {
+      var onTouchForceChange = this.props.onTouchForceChange;
+
+      if (typeof onTouchForceChange === 'function') {
+        onTouchForceChange(e);
+      }
+    }
+  }, {
+    key: "onTransitionEnd",
+    value: function onTransitionEnd(e) {
+      var onTransitionEnd = this.props.onTransitionEnd;
+
+      if (typeof onTransitionEnd === 'function') {
+        onTransitionEnd(e);
+      }
+    }
+  }, {
+    key: "onAnimationStart",
+    value: function onAnimationStart(e) {
+      var onAnimationStart = this.props.onAnimationStart;
+
+      if (typeof onAnimationStart === 'function') {
+        onAnimationStart(e);
+      }
+    }
+  }, {
+    key: "onAnimationIteration",
+    value: function onAnimationIteration(e) {
+      var onAnimationIteration = this.props.onAnimationIteration;
+
+      if (typeof onAnimationIteration === 'function') {
+        onAnimationIteration(e);
+      }
+    }
+  }, {
+    key: "onAnimationEnd",
+    value: function onAnimationEnd(e) {
+      var onAnimationEnd = this.props.onAnimationEnd;
+
+      if (typeof onAnimationEnd === 'function') {
+        onAnimationEnd(e);
+      }
+    }
+  }, {
+    key: "onPlay",
+    value: function onPlay(e) {
+      var onPlay = this.props.onPlay;
+
+      if (typeof onPlay === 'function') {
+        onPlay(e);
+      }
+    }
+  }, {
+    key: "onPause",
+    value: function onPause(e) {
+      var onPause = this.props.onPause;
+
+      if (typeof onPause === 'function') {
+        onPause(e);
+      }
+    }
+  }, {
+    key: "onEnded",
+    value: function onEnded(e) {
+      var onEnded = this.props.onEnded;
+
+      if (typeof onEnded === 'function') {
+        onEnded(e);
+      }
+    }
+  }, {
+    key: "onTimeUpdate",
+    value: function onTimeUpdate(e) {
+      var onTimeUpdate = this.props.onTimeUpdate;
+
+      if (typeof onTimeUpdate === 'function') {
+        onTimeUpdate(e);
+      }
+    }
+  }, {
+    key: "onFullScreenChange",
+    value: function onFullScreenChange(e) {
+      var onFullScreenChange = this.props.onFullScreenChange;
+
+      if (typeof onFullScreenChange === 'function') {
+        onFullScreenChange(e);
+      }
+    }
+  }, {
+    key: "onWaiting",
+    value: function onWaiting(e) {
+      var onWaiting = this.props.onWaiting;
+
+      if (typeof onWaiting === 'function') {
+        onWaiting(e);
+      }
+    }
+  }, {
+    key: "onError",
+    value: function onError(e) {
+      var onError = this.props.onError;
+
+      if (typeof onError === 'function') {
+        onError(e);
+      }
+    }
+  }, {
+    key: "onProgress",
+    value: function onProgress(e) {
+      var onProgress = this.props.onProgress;
+
+      if (typeof onProgress === 'function') {
+        onProgress(e);
+      }
+    }
+  }, {
+    key: "onLoadedMetaData",
+    value: function onLoadedMetaData(e) {
+      var onLoadedMetaData = this.props.onLoadedMetaData;
+
+      if (typeof onLoadedMetaData === 'function') {
+        onLoadedMetaData(e);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _React$createElement;
+
+      var _this$props = this.props,
+          onTouchStart = _this$props.onTouchStart,
+          onTouchMove = _this$props.onTouchMove,
+          onTouchCancel = _this$props.onTouchCancel,
+          onTouchEnd = _this$props.onTouchEnd,
+          onTap = _this$props.onTap,
+          onLongPress = _this$props.onLongPress,
+          onLongTap = _this$props.onLongTap,
+          onTouchForceChange = _this$props.onTouchForceChange,
+          onTransitionEnd = _this$props.onTransitionEnd,
+          onAnimationStart = _this$props.onAnimationStart,
+          onAnimationIteration = _this$props.onAnimationIteration,
+          onAnimationEnd = _this$props.onAnimationEnd,
+          onPlay = _this$props.onPlay,
+          onPause = _this$props.onPause,
+          onEnded = _this$props.onEnded,
+          onTimeUpdate = _this$props.onTimeUpdate,
+          onFullScreenChange = _this$props.onFullScreenChange,
+          onWaiting = _this$props.onWaiting,
+          onError = _this$props.onError,
+          onProgress = _this$props.onProgress,
+          onLoadedMetaData = _this$props.onLoadedMetaData,
+          style = _this$props.style,
+          className = _this$props.className,
+          src = _this$props.src,
+          duration = _this$props.duration,
+          controls = _this$props.controls,
+          danmuList = _this$props.danmuList,
+          danmuButton = _this$props.danmuButton,
+          enableDanmu = _this$props.enableDanmu,
+          autoplay = _this$props.autoplay,
+          loop = _this$props.loop,
+          muted = _this$props.muted,
+          initialTime = _this$props.initialTime,
+          pageGesture = _this$props.pageGesture,
+          direction = _this$props.direction,
+          showProgress = _this$props.showProgress,
+          showFullscreenButton = _this$props.showFullscreenButton,
+          showPlayButton = _this$props.showPlayButton,
+          showCenterPlayButton = _this$props.showCenterPlayButton,
+          enableProgressGesture = _this$props.enableProgressGesture,
+          objectFit = _this$props.objectFit,
+          poster = _this$props.poster,
+          showMuteButton = _this$props.showMuteButton,
+          title = _this$props.title,
+          playButtonPosition = _this$props.playButtonPosition,
+          enablePlayGesture = _this$props.enablePlayGesture,
+          autoPauseIfNavigate = _this$props.autoPauseIfNavigate,
+          autoPauseIfOpenNative = _this$props.autoPauseIfOpenNative,
+          vslideGesture = _this$props.vslideGesture,
+          vslideGestureInFullscreen = _this$props.vslideGestureInFullscreen,
+          adUnitId = _this$props.adUnitId;
+      return _react["default"].createElement("video", (_React$createElement = {
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
+        onPlay: onPlay ? 'onPlay' : '',
+        onPause: onPause ? 'onPause' : '',
+        onEnded: onEnded ? 'onEnded' : '',
+        onTimeUpdate: onTimeUpdate ? 'onTimeUpdate' : '',
+        onFullScreenChange: onFullScreenChange ? 'onFullScreenChange' : '',
+        onWaiting: onWaiting ? 'onWaiting' : '',
+        onError: onError ? 'onError' : '',
+        onProgress: onProgress ? 'onProgress' : '',
+        onLoadedMetaData: onLoadedMetaData ? 'onLoadedMetaData' : '',
+        style: style,
+        className: className,
+        src: src,
+        duration: duration,
+        controls: controls,
+        danmuList: danmuList,
+        showPlayButton: showPlayButton,
+        enableDanmu: enableDanmu,
+        autoplay: autoplay,
+        loop: loop,
+        muted: muted,
+        initialTime: initialTime,
+        pageGesture: pageGesture,
+        direction: direction,
+        showProgress: showProgress,
+        showFullscreenButton: showFullscreenButton
+      }, (0, _defineProperty4["default"])(_React$createElement, "showPlayButton", showPlayButton), (0, _defineProperty4["default"])(_React$createElement, "showCenterPlayButton", showCenterPlayButton), (0, _defineProperty4["default"])(_React$createElement, "enableProgressGesture", enableProgressGesture), (0, _defineProperty4["default"])(_React$createElement, "objectFit", objectFit), (0, _defineProperty4["default"])(_React$createElement, "poster", poster), (0, _defineProperty4["default"])(_React$createElement, "showMuteButton", showMuteButton), (0, _defineProperty4["default"])(_React$createElement, "title", title), (0, _defineProperty4["default"])(_React$createElement, "playButtonPosition", playButtonPosition), (0, _defineProperty4["default"])(_React$createElement, "enablePlayGesture", enablePlayGesture), (0, _defineProperty4["default"])(_React$createElement, "autoPauseIfNavigate", autoPauseIfNavigate), (0, _defineProperty4["default"])(_React$createElement, "autoPauseIfOpenNative", autoPauseIfOpenNative), (0, _defineProperty4["default"])(_React$createElement, "vslideGesture", vslideGesture), (0, _defineProperty4["default"])(_React$createElement, "vslideGestureInFullscreen", vslideGestureInFullscreen), (0, _defineProperty4["default"])(_React$createElement, "adUnitId", adUnitId), _React$createElement));
+    }
+  }]);
+  return RemixVideo;
+}(_react["default"].Component);
+
+exports["default"] = RemixVideo;
+(0, _defineProperty4["default"])(RemixVideo, "propTypes", (_defineProperty2 = {
+  onTouchStart: _PropTypes["default"].string,
+  onTouchMove: _PropTypes["default"].string,
+  onTouchCancel: _PropTypes["default"].string,
+  onTouchEnd: _PropTypes["default"].string,
+  onTap: _PropTypes["default"].string,
+  onLongPress: _PropTypes["default"].string,
+  onLongTap: _PropTypes["default"].string,
+  onTouchForceChange: _PropTypes["default"].string,
+  onTransitionEnd: _PropTypes["default"].string,
+  onAnimationStart: _PropTypes["default"].string,
+  onAnimationIteration: _PropTypes["default"].string,
+  onAnimationEnd: _PropTypes["default"].string,
+  onPlay: _PropTypes["default"].string,
+  onPause: _PropTypes["default"].string,
+  onEnded: _PropTypes["default"].string,
+  onTimeUpdate: _PropTypes["default"].string,
+  onFullScreenChange: _PropTypes["default"].string,
+  onWaiting: _PropTypes["default"].string,
+  onError: _PropTypes["default"].string,
+  onProgress: _PropTypes["default"].string,
+  onLoadedMetaData: _PropTypes["default"].string,
+  style: _PropTypes["default"].string,
+  className: _PropTypes["default"].string,
+  src: _PropTypes["default"].string,
+  duration: _PropTypes["default"].number,
+  controls: _PropTypes["default"].bool,
+  danmuList: _PropTypes["default"].array,
+  showPlayButton: _PropTypes["default"].bool,
+  enableDanmu: _PropTypes["default"].bool,
+  autoplay: _PropTypes["default"].bool,
+  loop: _PropTypes["default"].bool,
+  muted: _PropTypes["default"].bool,
+  initialTime: _PropTypes["default"].number,
+  pageGesture: _PropTypes["default"].bool,
+  direction: _PropTypes["default"].number,
+  showProgress: _PropTypes["default"].bool,
+  showFullscreenButton: _PropTypes["default"].bool
+}, (0, _defineProperty4["default"])(_defineProperty2, "showPlayButton", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "showCenterPlayButton", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "enableProgressGesture", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "objectFit", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "poster", _PropTypes["default"].string), (0, _defineProperty4["default"])(_defineProperty2, "showMuteButton", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "title", _PropTypes["default"].string), (0, _defineProperty4["default"])(_defineProperty2, "playButtonPosition", _PropTypes["default"].string), (0, _defineProperty4["default"])(_defineProperty2, "enablePlayGesture", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "autoPauseIfNavigate", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "autoPauseIfOpenNative", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "vslideGesture", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "vslideGestureInFullscreen", _PropTypes["default"].bool), (0, _defineProperty4["default"])(_defineProperty2, "adUnitId", _PropTypes["default"].string), _defineProperty2));
+(0, _defineProperty4["default"])(RemixVideo, "defaultProps", (_defineProperty3 = {
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchCancel: null,
+  onTouchEnd: null,
+  onTap: null,
+  onLongPress: null,
+  onLongTap: null,
+  onTouchForceChange: null,
+  onTransitionEnd: null,
+  onAnimationStart: null,
+  onAnimationIteration: null,
+  onAnimationEnd: null,
+  onPlay: null,
+  onPause: null,
+  onEnded: null,
+  onTimeUpdate: null,
+  onFullScreenChange: null,
+  onWaiting: null,
+  onError: null,
+  onProgress: null,
+  onLoadedMetaData: null,
+  style: null,
+  className: null,
+  src: null,
+  duration: null,
+  controls: true,
+  danmuList: null,
+  showPlayButton: false,
+  enableDanmu: false,
+  autoplay: false,
+  loop: false,
+  muted: false,
+  initialTime: 0,
+  pageGesture: false,
+  direction: null,
+  showProgress: true,
+  showFullscreenButton: true
+}, (0, _defineProperty4["default"])(_defineProperty3, "showPlayButton", true), (0, _defineProperty4["default"])(_defineProperty3, "showCenterPlayButton", true), (0, _defineProperty4["default"])(_defineProperty3, "enableProgressGesture", true), (0, _defineProperty4["default"])(_defineProperty3, "objectFit", 0), (0, _defineProperty4["default"])(_defineProperty3, "poster", null), (0, _defineProperty4["default"])(_defineProperty3, "showMuteButton", false), (0, _defineProperty4["default"])(_defineProperty3, "title", null), (0, _defineProperty4["default"])(_defineProperty3, "playButtonPosition", 'bottom'), (0, _defineProperty4["default"])(_defineProperty3, "enablePlayGesture", false), (0, _defineProperty4["default"])(_defineProperty3, "autoPauseIfNavigate", true), (0, _defineProperty4["default"])(_defineProperty3, "autoPauseIfOpenNative", true), (0, _defineProperty4["default"])(_defineProperty3, "vslideGesture", true), (0, _defineProperty4["default"])(_defineProperty3, "vslideGestureInFullscreen", true), (0, _defineProperty4["default"])(_defineProperty3, "adUnitId", null), _defineProperty3));
 
 /***/ }),
 
@@ -6572,18 +6997,18 @@ function (_React$Component) {
           hoverStartTime = _this$props.hoverStartTime,
           hoverStayTime = _this$props.hoverStayTime;
       return _react["default"].createElement("view", {
-        onTouchStart: onTouchStart ? 'onTouchStart' : null,
-        onTouchMove: onTouchMove ? 'onTouchMove' : null,
-        onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
-        onTouchEnd: onTouchEnd ? 'onTouchEnd' : null,
-        onTap: onTap ? 'onTap' : null,
-        onLongPress: onLongPress ? 'onLongPress' : null,
-        onLongTap: onLongTap ? 'onLongTap' : null,
-        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : null,
-        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : null,
-        onAnimationStart: onAnimationStart ? 'onAnimationStart' : null,
-        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : null,
-        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : null,
+        onTouchStart: onTouchStart ? 'onTouchStart' : '',
+        onTouchMove: onTouchMove ? 'onTouchMove' : '',
+        onTouchCancel: onTouchCancel ? 'onTouchCancel' : '',
+        onTouchEnd: onTouchEnd ? 'onTouchEnd' : '',
+        onTap: onTap ? 'onTap' : '',
+        onLongPress: onLongPress ? 'onLongPress' : '',
+        onLongTap: onLongTap ? 'onLongTap' : '',
+        onTouchForceChange: onTouchForceChange ? 'onTouchForceChange' : '',
+        onTransitionEnd: onTransitionEnd ? 'onTransitionEnd' : '',
+        onAnimationStart: onAnimationStart ? 'onAnimationStart' : '',
+        onAnimationIteration: onAnimationIteration ? 'onAnimationIteration' : '',
+        onAnimationEnd: onAnimationEnd ? 'onAnimationEnd' : '',
         style: style,
         className: className,
         hoverClass: hoverClass,
@@ -7207,6 +7632,7 @@ function (_Element) {
     value: function serialize() {
       var defaultProps = this.constructor.defaultProps;
       var element = resolveDefaultProps(defaultProps, this);
+      element.style = String(element.style);
 
       if (!(0, _is.isNullOrUndefined)(this.child)) {
         element.child = this.child.serialize();
@@ -7633,7 +8059,7 @@ exports["default"] = HTMLTextElement;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
+exports.VIDEO = exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = void 0;
 var IMAGE = 'image';
 exports.IMAGE = IMAGE;
 var BUTTON = 'button';
@@ -7658,6 +8084,80 @@ var SWIPER_ITEM = 'swiper-item';
 exports.SWIPER_ITEM = SWIPER_ITEM;
 var SWIPER = 'swiper';
 exports.SWIPER = SWIPER;
+var VIDEO = 'video';
+exports.VIDEO = VIDEO;
+
+/***/ }),
+
+/***/ "../remixjs/src/document/HTMLVideoElement.js":
+/*!***************************************************!*\
+  !*** ../remixjs/src/document/HTMLVideoElement.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remixjs/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remixjs/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remixjs/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remixjs/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remixjs/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _is = __webpack_require__(/*! ../shared/is */ "../remixjs/src/shared/is.js");
+
+var _HTMLElement2 = _interopRequireDefault(__webpack_require__(/*! ./HTMLElement */ "../remixjs/src/document/HTMLElement.js"));
+
+var _StyleSheet = _interopRequireDefault(__webpack_require__(/*! ./StyleSheet */ "../remixjs/src/document/StyleSheet.js"));
+
+var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remixjs/src/shared/HTMLNodeType.js");
+
+var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remixjs/src/document/HTMLTypes.js");
+
+var _remixVideo = _interopRequireDefault(__webpack_require__(/*! ../components/remix-element/remix-video */ "../remixjs/src/components/remix-element/remix-video/index.js"));
+
+var RemixVideoElement =
+/*#__PURE__*/
+function (_HTMLElement) {
+  (0, _inherits2["default"])(RemixVideoElement, _HTMLElement);
+
+  function RemixVideoElement() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, RemixVideoElement);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(RemixVideoElement).call(this));
+    _this.tagName = _HTMLTypes.VIDEO;
+    _this.nodeType = _HTMLNodeType.ELEMENT_NODE;
+    _this.style = new _StyleSheet["default"]();
+    return _this;
+  }
+
+  (0, _createClass2["default"])(RemixVideoElement, [{
+    key: "appendChild",
+    value: function appendChild(child) {}
+  }, {
+    key: "removeChild",
+    value: function removeChild(child) {}
+  }]);
+  return RemixVideoElement;
+}(_HTMLElement2["default"]);
+
+exports["default"] = RemixVideoElement;
+(0, _defineProperty2["default"])(RemixVideoElement, "defaultProps", _remixVideo["default"].defaultProps);
 
 /***/ }),
 
@@ -7736,15 +8236,272 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = _default;
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remixjs/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var StyleSheet = function StyleSheet() {
-  (0, _classCallCheck2["default"])(this, StyleSheet);
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remixjs/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var properties = {
+  alignContent: 'align-content',
+  alignItems: 'align-items',
+  alignSelf: 'align-self',
+  all: 'all',
+  animation: 'animation',
+  animationDelay: 'animation-delay',
+  animationDirection: 'animation-direction',
+  animationDuration: 'animation-duration',
+  animationFillMode: 'animation-fill-mode',
+  animationIterationCount: 'animation-iteration-count',
+  animationName: 'animation-name',
+  animationPlayState: 'animation-play-state',
+  animationTimingFunction: 'animation-timing-function',
+  appearance: 'appearance',
+  backfaceVisibility: 'backface-visibility',
+  background: 'background',
+  backgroundAttachment: 'background-attachment',
+  backgroundBlendMode: 'background-blend-mode',
+  backgroundClip: 'background-clip',
+  backgroundColor: 'background-color',
+  backgroundImage: 'background-image',
+  backgroundOrigin: 'background-origin',
+  backgroundPosition: 'background-position',
+  backgroundRepeat: 'background-repeat',
+  backgroundSize: 'background-size',
+  border: 'border',
+  borderBottom: 'border-bottom',
+  borderBottomColor: 'border-bottom-color',
+  borderBottomLeftRadius: 'border-bottom-left-radius',
+  borderBottomRightRadius: 'border-bottom-right-radius',
+  borderBottomStyle: 'border-bottom-style',
+  borderBottomWidth: 'border-bottom-width',
+  borderCollapse: 'border-collapse',
+  borderColor: 'border-color',
+  borderImage: 'border-image',
+  borderImageOutset: 'border-image-outset',
+  borderImageRepeat: 'border-image-repeat',
+  borderImageSlice: 'border-image-slice',
+  borderImageSource: 'border-image-source',
+  borderImageWidth: 'border-image-width',
+  borderLeft: 'border-left',
+  borderLeftColor: 'border-left-color',
+  borderLeftStyle: 'border-left-style',
+  borderLeftWidth: 'border-left-width',
+  borderRadius: 'border-radius',
+  borderRight: 'border-right',
+  borderRightColor: 'border-right-color',
+  borderRightStyle: 'border-right-style',
+  borderRightWidth: 'border-right-width',
+  borderSpacing: 'border-spacing',
+  borderStyle: 'border-style',
+  borderTop: 'border-top',
+  borderTopColor: 'border-top-color',
+  borderTopLeftRadius: 'border-top-left-radius',
+  borderTopRightRadius: 'border-top-right-radius',
+  borderTopStyle: 'border-top-style',
+  borderTopWidth: 'border-top-width',
+  borderWidth: 'border-width',
+  bottom: 'bottom',
+  boxAlign: 'box-align',
+  boxDirection: 'box-direction',
+  boxFlex: 'box-flex',
+  boxFlexGroup: 'box-flex-group',
+  boxLines: 'box-lines',
+  boxOrdinalGroup: 'box-ordinal-group',
+  boxOrient: 'box-orient',
+  boxPack: 'box-pack',
+  boxShadow: 'box-shadow',
+  boxSizing: 'box-sizing',
+  captionSide: 'caption-side',
+  clear: 'clear',
+  clip: 'clip',
+  color: 'color',
+  columnCount: 'column-count',
+  columnFill: 'column-fill',
+  columnGap: 'column-gap',
+  columnRule: 'column-rule',
+  columnRuleColor: 'column-rule-color',
+  columnRuleStyle: 'column-rule-style',
+  columnRuleWidth: 'column-rule-width',
+  columnSpan: 'column-span',
+  columnWidth: 'column-width',
+  columns: 'columns',
+  content: 'content',
+  counterIncrement: 'counter-increment',
+  counterReset: 'counter-reset',
+  cursor: 'cursor',
+  direction: 'direction',
+  display: 'display',
+  emptyCells: 'empty-cells',
+  filter: 'filter',
+  flex: 'flex',
+  flexBasis: 'flex-basis',
+  flexDirection: 'flex-direction',
+  flexFlow: 'flex-flow',
+  flexGrow: 'flex-grow',
+  flexShrink: 'flex-shrink',
+  flexWrap: 'flex-wrap',
+  "float": 'float',
+  font: 'font',
+  fontFamily: 'font-family',
+  fontSize: 'font-size',
+  fontSizeAdjust: 'font-size-adjust',
+  fontStretch: 'font-stretch',
+  fontStyle: 'font-style',
+  fontVariant: 'font-variant',
+  fontWeight: 'font-weight',
+  gridColumns: 'grid-columns',
+  gridRows: 'grid-rows',
+  hangingPunctuation: 'hanging-punctuation',
+  height: 'height',
+  icon: 'icon',
+  justifyContent: 'justify-content',
+  left: 'left',
+  letterSpacing: 'letter-spacing',
+  lineHeight: 'line-height',
+  listStyle: 'list-style',
+  listStyleImage: 'list-style-image',
+  listStylePosition: 'list-style-position',
+  listStyleType: 'list-style-type',
+  margin: 'margin',
+  marginBottom: 'margin-bottom',
+  marginLeft: 'margin-left',
+  marginRight: 'margin-right',
+  marginTop: 'margin-top',
+  maxHeight: 'max-height',
+  maxWidth: 'max-width',
+  minHeight: 'min-height',
+  minWidth: 'min-width',
+  navDown: 'nav-down',
+  navIndex: 'nav-index',
+  navLeft: 'nav-left',
+  navRight: 'nav-right',
+  navUp: 'nav-up',
+  opacity: 'opacity',
+  order: 'order',
+  outline: 'outline',
+  outlineColor: 'outline-color',
+  outlineOffset: 'outline-offset',
+  outlineStyle: 'outline-style',
+  outlineWidth: 'outline-width',
+  overflow: 'overflow',
+  overflowX: 'overflow-x',
+  overflowY: 'overflow-y',
+  padding: 'padding',
+  paddingBottom: 'padding-bottom',
+  paddingLeft: 'padding-left',
+  paddingRight: 'padding-right',
+  paddingTop: 'padding-top',
+  pageBreakAfter: 'page-break-after',
+  pageBreakBefore: 'page-break-before',
+  pageBreakInside: 'page-break-inside',
+  perspective: 'perspective',
+  perspectiveOrigin: 'perspective-origin',
+  position: 'position',
+  punctuationTrim: 'punctuation-trim',
+  quotes: 'quotes',
+  resize: 'resize',
+  right: 'right',
+  rotation: 'rotation',
+  tabSize: 'tab-size',
+  tableLayout: 'table-layout',
+  target: 'target',
+  targetName: 'target-name',
+  targetNew: 'target-new',
+  targetPosition: 'target-position',
+  textAlign: 'text-align',
+  textAlignLast: 'text-align-last',
+  textDecoration: 'text-decoration',
+  textDecorationColor: 'text-decoration-color',
+  textDecorationLine: 'text-decoration-line',
+  textDecorationStyle: 'text-decoration-style',
+  textIndent: 'text-indent',
+  textJustify: 'text-justify',
+  textOutline: 'text-outline',
+  textOverflow: 'text-overflow',
+  textShadow: 'text-shadow',
+  textTransform: 'text-transform',
+  textWrap: 'text-wrap',
+  top: 'top',
+  transform: 'transform',
+  transformOrigin: 'transform-origin',
+  transformStyle: 'transform-style',
+  transition: 'transition',
+  transitionDelay: 'transition-delay',
+  transitionDuration: 'transition-duration',
+  transitionProperty: 'transition-property',
+  transitionTimingFunction: 'transition-timing-function',
+  unicodeBidi: 'unicode-bidi',
+  verticalAlign: 'vertical-align',
+  visibility: 'visibility',
+  whiteSpace: 'white-space',
+  width: 'width',
+  wordBreak: 'word-break',
+  wordSpacing: 'word-spacing',
+  wordWrap: 'word-wrap',
+  zIndex: 'z-index',
+  writingMode: 'writing-mode'
 };
 
-exports["default"] = StyleSheet;
+var StyleSheet =
+/*#__PURE__*/
+function () {
+  function StyleSheet() {
+    (0, _classCallCheck2["default"])(this, StyleSheet);
+    this.string = '';
+    this.sheet = {};
+    this.isChanged = false;
+  }
+
+  (0, _createClass2["default"])(StyleSheet, [{
+    key: "toString",
+    value: function toString() {
+      var _this = this;
+
+      if (this.isChanged) {
+        var names = getOwnPropertyNames(this.sheet);
+        this.string = names.map(function (name) {
+          var value = _this.sheet[name];
+          return value.join(':');
+        }).join(';');
+        this.isChanged = false;
+      }
+
+      return this.string;
+    }
+  }]);
+  return StyleSheet;
+}();
+
+function _default() {
+  var style = new StyleSheet();
+  return new Proxy(style, {
+    get: function get(target, key) {
+      return target[key];
+    },
+    set: function set(target, key, value) {
+      if (properties[key]) {
+        var data = style.sheet[key];
+
+        if (data) {
+          if (data[1] !== value) {
+            data[1] = value;
+          }
+
+          style.isChanged = true;
+        } else {
+          style.sheet[key] = [properties[key], value];
+          style.isChanged = true;
+        }
+      } else {
+        style[key] = value;
+      }
+
+      return true;
+    }
+  });
+}
 
 /***/ }),
 
@@ -7806,6 +8563,8 @@ var _HTMLSwiperElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLSw
 
 var _HTMLRootElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLRootElement */ "../remixjs/src/document/HTMLRootElement.js"));
 
+var _HTMLVideoElement = _interopRequireDefault(__webpack_require__(/*! ./HTMLVideoElement */ "../remixjs/src/document/HTMLVideoElement.js"));
+
 function createElement(tagName) {
   var element;
 
@@ -7848,6 +8607,11 @@ function createElement(tagName) {
     case _HTMLTypes.SWIPER:
       {
         return new _HTMLSwiperElement["default"]();
+      }
+
+    case _HTMLTypes.VIDEO:
+      {
+        return new _HTMLVideoElement["default"]();
       }
 
     default:
@@ -12309,19 +13073,15 @@ function setInitialDOMProperties(tag, element, rootContainerElement, nextProps) 
 
 function setInnerHTML() {}
 
-function setValueForStyles(element, nextProp) {
-  var styles = element.style;
+function setValueForStyles(element, styles) {
+  var style = element.style;
 
   for (var styleName in styles) {
-    if (styles.hasOwnProperty(styleName)) {
-      var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty);
-
-      if (styleName === _shared.STYLE_NAME_FLOAT) {
-        styleName = 'cssFloat';
-      }
+    if (styleName === _shared.STYLE_NAME_FLOAT) {
+      styleName = 'cssFloat';
     }
 
-    styles[styleName] = styleValue;
+    style[styleName] = styles[styleName];
   }
 }
 

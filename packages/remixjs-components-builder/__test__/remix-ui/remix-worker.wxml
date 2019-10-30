@@ -1,4 +1,5 @@
 <import src="./remix-picker/index.wxml" />
+<import src="./remix-video/index.wxml" />
 <import src="./remix-scroll-view/index.wxml" />
 <import src="./remix-swiper/index.wxml" />
 <import src="./remix-swiper-item/index.wxml" />
@@ -22,6 +23,9 @@
 	</block>
 	<block wx:elif="{{ element.tagName == 'picker' }}">
 		<template is="picker" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'video' }}">
+		<template is="video" data="{{ ...element }}" />
 	</block>
 	<block wx:elif="{{ element.tagName == 'scroll-view' }}">
 		<template is="scroll-view" data="{{ ...element }}" />

@@ -1,9 +1,10 @@
-<% if (name === 'view') { %>
+<% if (name === 'view' || name === 'text') { %>
 <import src="../remix-worker.wxml" /> 
+<import src="../inner-remix-worker.wxml" />
 
 <block wx:if="{{innerText}}">{{innerText}}</block><block wx:elif="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block>
 <% } else if (name === 'root') { %>
-  <remix-view child="{{element.child}}" />
+  <remix-view child="{{element.child}}" <%- props %>  />
 <% } else { %>
 <template name="<%= name %>">
 <<%=tagName %> 
@@ -11,7 +12,7 @@
 >
   <% if (openComponent) { %>
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><view child="{{child}}" /></block>
+  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
   <% } %>
 </<%=tagName %>>
 </template>  

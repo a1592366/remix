@@ -13,6 +13,7 @@ import Picker from './remix-element/remix-picker';
 import ScrollView from './remix-element/remix-scroll-view';
 import Swiper from './remix-element/remix-swiper';
 import SwiperItem from './remix-element/remix-swiper-item';
+import Video from './remix-element/remix-video';
 
 export {
   Application,
@@ -28,5 +29,6 @@ export {
   Picker,
   Swiper,
   SwiperItem,
-  ScrollView
+  ScrollView,
+  Video
 }

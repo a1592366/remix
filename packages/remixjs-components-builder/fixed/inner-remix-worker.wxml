@@ -1,0 +1,19 @@
+<%- imports %>
+
+<wxs src="./remix-slibings.wxs" module="getSlibings" />
+
+<template name="inner-selection">
+  <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
+  <%- components %>
+</template>
+
+<template name="inner-slibings">
+  <block wx:for="{{getSlibings(element)}}" wx:key="uuid" wx:for-item="slibing">
+    <template is="selection" data="{{ element: slibing }}" />
+  </block>
+</template>
+
+<template name="inner-remix-worker">  
+  <template is="inner-selection" data="{{ element }}" />
+  <template is="inner-slibings" data="{{ element }}" />
+</template>

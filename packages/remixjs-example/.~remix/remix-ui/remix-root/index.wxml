@@ -1,2 +1,22 @@
-<import src="../remix-worker.wxml" /> 
-<remix-view child="{{child}}" id="{{uuid}}" />
+
+  <remix-view child="{{element.child}}" bind:touchstart="{{onTouchStart}}"
+	bind:touchmove="{{onTouchMove}}"
+	bind:touchcancel="{{onTouchCancel}}"
+	bind:touchend="{{onTouchEnd}}"
+	bind:tap="{{onTap}}"
+	bind:longpress="{{onLongPress}}"
+	bind:longtap="{{onLongTap}}"
+	bind:touchforcechange="{{onTouchForceChange}}"
+	bind:transitionend="{{onTransitionEnd}}"
+	bind:animationstart="{{onAnimationStart}}"
+	bind:animationiteration="{{onAnimationIteration}}"
+	bind:animationend="{{onAnimationEnd}}"
+	child="{{child}}"
+	id="{{uuid}}"  />
+
+
+
+
+
+
+
