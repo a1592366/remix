@@ -1,2 +1,37 @@
+
+
+
+remix-scroll-view > scroll-view,
+remix-image > image,
+remix-map > map,
+.remix-view {
+  margin: 0!important;
+  padding: 0!important;
+  width: 100%;
+  height: 100%;
+}
+
+remix-scroll-view > scroll-view::before,
+remix-image > image::before,
+remix-map > map::before,
+remix-view > view::before {
+  display: none!important;
+}
+
+remix-scroll-view > scroll-view::after,
+remix-image > image::after,
+remix-map > map::after,
+remix-view > view::after {
+  display: none!important;
+}
+
+remix-image {
+  width: 320px;
+  height: 240px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
 @import "./static/wxss/runtime.ui.wxss";
 @import "./static/wxss/app.ui.wxss";

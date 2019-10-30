@@ -1,4 +1,4 @@
-/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -187,7 +187,7 @@ Component({
     child: Object,
     innerText: String,
     uuid: String,
-    styles: String,
+    style: String,
     className: String,
     hoverClass: String,
     hoverStopPropagation: Boolean,
@@ -210,7 +210,7 @@ Component({
     child: null,
     innerText: null,
     uuid: null,
-    styles: null,
+    style: null,
     className: null,
     hoverClass: 'none',
     hoverStopPropagation: false,

@@ -1,5 +1,6 @@
 import React, { Component, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { View } from 'remixjs/components';
 
 import './index.css';
@@ -10,48 +11,71 @@ export default class Menus extends Component {
   static Item = Item;
 
   state = {
-    current: this.props.current || this.getCurrentActiveKey()
+    activedKey: this.props.current
   }
 
-  getCurrentActiveKey = () => {
+  onMenuItemClick = (key) => {
+    const { onChange } = this.props;
 
-  }
-
-  onMenuItemClick = () => {
-
+    if (key !== this.state.activedKey) {
+      this.setState({
+        activedKey: key
+      }, () => {
+        onChange(key)
+      });
+    }
   }
 
   headerRender () {
+    const { activedKey } = this.state;
     const children = [];
     
     Children.forEach(this.props.children, (child) => {
       if (child) {
         if (child.type === Menus.Item) {
-          const { props, key } = child;
+          const { props } = child;
+          const key = props.key || child.key;
+
+          const classes = classnames({
+            'index__menu-item-tab': true,
+            'index__menu-item-tab_active': key === activedKey
+          });
 
           children.push(
-            <View className="index__menu-item-tab" key={key} onTap={(e) => this.onMenuItemClick(child, e)}>
+            <View className={classes} key={key} onTap={(e) => this.onMenuItemClick(key, e)}>
               {props.name}
             </View>
           );
         }
       }
     });
+
+    children.push(<View className="index__menus-tabs-line" key="line"></View>)
   
-    return <View className="index__menus-tabs">{children}</View>
+    return (
+      <View className="index__menus-tabs">
+        {children}
+      </View>
+    )
   }
 
   contentRender () {
+    const { activedKey } = this.state;
     const children = [];
     
     Children.forEach(this.props.children, (child) => {
       if (child) {
         if (child.type === Menus.Item) {
-          const { props, key } = child;
+          const { props } = child;
+          const key = props.key || child.key;
+          const classes = classnames({
+            'index__menu-item-content': true,
+            'index__menu-item-content_active': key === activedKey
+          });
 
           children.push(
-            <View className="index__menu-item-content" key={key} onTap={(e) => this.onMenuItemClick(child, e)}>
-              {props.name}
+            <View className={classes} key={key}>
+              {props.children}
             </View>
           );
         }

@@ -6,13 +6,58 @@
 .index__menus-tabs {
   height: 80rpx;
   display: flex;
-  padding: 0 30rpx;
+  padding: 0 70rpx;
   box-sizing: border-box;
+  position: relative;
+}
+
+.index__menus-tabs-line {
+  position: absolute;
+  height: 4rpx;
+  width: 15%;
+  background-color: rgb(238, 13, 40);
+  bottom: 0;
 }
 
 .index__menu-item-tab {
   flex: 1;
-  font-size: 24px;
+  font-size: 30rpx;
+  text-align: center;
+  color: rgb(212, 212, 212);
+  line-height: 80rpx;
+  position: relative;
+}
+
+.index__menu-item-tab:active {
+  opacity: 0.7;
+}
+
+.index__menu-item-tab::after {
+  content: "";
+  background-color: rgb(102, 103, 103);
+  position: absolute;
+  height: 30%;
+  top: 50%;
+  right: 0;
+  width: 2rpx;
+  transform: translate(0, -50%);
+}
+
+.index__menu-item-tab:last-child::after {
+  display: none;
+}
+
+.index__menu-item-tab_active {
+  color: rgb(238, 13, 40);
+  position: relative;
+}
+
+.index__menu-item-content {
+  display: none;
+}
+
+.index__menu-item-content_active {
+  display: block;
 }
 .index {
   background-color: rgb(32, 32, 32);
@@ -20,6 +65,20 @@
 
 .index__header {
   height: 400rpx;
+}
+
+.index__movies {
+  background-color: rgb(255, 255, 255);
+  padding: 70rpx;
+}
+
+.index__movies-card {
+}
+
+.index__movies-card-thumb {
+  border-radius: 32rpx;
+  height: 310rpx;
+  background: linear-gradient(90deg, rgb(228, 40, 116), rgb(229, 99, 39));
 }
 page {
   height: 100%;

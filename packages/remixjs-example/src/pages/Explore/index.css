@@ -5,3 +5,17 @@
 .index__header {
   height: 400rpx;
 }
+
+.index__movies {
+  background-color: rgb(255, 255, 255);
+  padding: 70rpx;
+}
+
+.index__movies-card {
+}
+
+.index__movies-card-thumb {
+  border-radius: 32rpx;
+  height: 310rpx;
+  background: linear-gradient(90deg, rgb(228, 40, 116), rgb(229, 99, 39));
+}

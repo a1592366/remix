@@ -12,12 +12,14 @@ export default class Index extends ViewController {
   }
   
   state = {
-    current: 'jx'
+    current: 'movies'
   }
 
 
-  onChange = () => {
-
+  onChange = (key) => {
+    this.setState({
+      current: key
+    })
   }
 
   headerRender () {
@@ -36,12 +38,25 @@ export default class Index extends ViewController {
       <View className="index__content">
         <Menus current={current} onChange={this.onChange}>
           <Menus.Item name="影片" key="movies">
+            <View className="index__movies">
+              <View className="index__movies-card">
+                <View className="index__movies-card-thumb">
+                  <Image onTouchStart={() => {}} className="index__movies-card-image" />
+                </View>
+
+                <View className="index__movies-card-title">
+                  构造设计引擎，释放设计能力
+                </View>
+              </View>
+            </View>
           </Menus.Item>
 
           <Menus.Item name="行程" key="schedule">
+            <View className="index__schedule"></View>
           </Menus.Item>
 
           <Menus.Item name="关于" key="about">
+            <View className="index__about"></View>
           </Menus.Item>
         </Menus>
       </View>

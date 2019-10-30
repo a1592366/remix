@@ -1,4 +1,4 @@
-/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remixjs-cli/node_modules/events/events.js":
 /*!****************************************************!*\
@@ -1325,9 +1325,9 @@ var inspectMessageTypes = {"REGISTER":0,"MESSAGE":1,"CLOSE":2};
 exports.inspectMessageTypes = inspectMessageTypes;
 var inspectTerminalTypes = {"VIEW":1,"LOGIC":2,"SERVICES":3};
 exports.inspectTerminalTypes = inspectTerminalTypes;
-var inspectTerminalUUID = "c1e920ff-0a83-4e95-913d-e98fcfef60f6";
+var inspectTerminalUUID = "1737b921-8a4d-439a-abc1-58e0bc904007";
 exports.inspectTerminalUUID = inspectTerminalUUID;
-var inspectLogicUUID = "16aaab5b-3021-43bc-ac28-c655f960c637";
+var inspectLogicUUID = "a524cc91-fab4-49d2-b359-501bd2012a74";
 exports.inspectLogicUUID = inspectLogicUUID;
 var _default = {
   isInspectMode: isInspectMode,
@@ -11383,8 +11383,8 @@ function ChildrenReconciler(shouldTrackSideEffects) {
           }
       }
 
-      if ((0, _is.isArray)(newChild) || getIteratorFn(newChild)) {
-        var _created3 = (0, _FiberNode.createFiberFromFragment)(newChild, key);
+      if ((0, _is.isArray)(newChild)) {
+        var _created3 = (0, _FiberNode.createFiberFromFragment)(newChild, null);
 
         _created3["return"] = returnFiber;
         return _created3;
@@ -11566,7 +11566,7 @@ function ChildrenReconciler(shouldTrackSideEffects) {
         nextOldFiber = oldFiber.sibling;
       }
 
-      var child = newChildren[i];
+      var child = newChildren[index];
       var newFiber = updateSlot(returnFiber, oldFiber, child);
 
       if ((0, _is.isNullOrUndefined)(newFiber)) {

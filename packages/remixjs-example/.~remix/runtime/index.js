@@ -1,4 +1,4 @@
-/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -643,6 +643,67 @@ module.exports = _typeof;
 
 /***/ }),
 
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/* global define */
+(function () {
+  'use strict';
+
+  var hasOwn = {}.hasOwnProperty;
+
+  function classNames() {
+    var classes = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+      if (!arg) continue;
+      var argType = typeof arg;
+
+      if (argType === 'string' || argType === 'number') {
+        classes.push(arg);
+      } else if (Array.isArray(arg) && arg.length) {
+        var inner = classNames.apply(null, arg);
+
+        if (inner) {
+          classes.push(inner);
+        }
+      } else if (argType === 'object') {
+        for (var key in arg) {
+          if (hasOwn.call(arg, key) && arg[key]) {
+            classes.push(key);
+          }
+        }
+      }
+    }
+
+    return classes.join(' ');
+  }
+
+  if ( true && module.exports) {
+    classNames.default = classNames;
+    module.exports = classNames;
+  } else if (true) {
+    // register as 'classnames', consistent with npm package name
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+      return classNames;
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})();
+
+/***/ }),
+
 /***/ "./src/index.css":
 /*!***********************!*\
   !*** ./src/index.css ***!
@@ -771,6 +832,8 @@ var _remixjs = _interopRequireWildcard(__webpack_require__(/*! remixjs */ "../re
 
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../remixjs/prop-types.js"));
 
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
 var _components = __webpack_require__(/*! remixjs/components */ "../remixjs/components.js");
 
 __webpack_require__(/*! ./index.css */ "./src/pages/Explore/components/Menus/index.css");
@@ -795,10 +858,19 @@ function (_Component) {
 
     _this = (0, _possibleConstructorReturn2["default"])(this, (_getPrototypeOf2 = (0, _getPrototypeOf3["default"])(Menus)).call.apply(_getPrototypeOf2, [this].concat(args)));
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
-      current: _this.props.current || _this.getCurrentActiveKey()
+      activedKey: _this.props.current
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "getCurrentActiveKey", function () {});
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMenuItemClick", function () {});
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onMenuItemClick", function (key) {
+      var onChange = _this.props.onChange;
+
+      if (key !== _this.state.activedKey) {
+        _this.setState({
+          activedKey: key
+        }, function () {
+          onChange(key);
+        });
+      }
+    });
     return _this;
   }
 
@@ -807,24 +879,33 @@ function (_Component) {
     value: function headerRender() {
       var _this2 = this;
 
+      var activedKey = this.state.activedKey;
       var children = [];
 
       _remixjs.Children.forEach(this.props.children, function (child) {
         if (child) {
           if (child.type === Menus.Item) {
-            var props = child.props,
-                key = child.key;
+            var props = child.props;
+            var key = props.key || child.key;
+            var classes = (0, _classnames["default"])({
+              'index__menu-item-tab': true,
+              'index__menu-item-tab_active': key === activedKey
+            });
             children.push(_remixjs["default"].createElement(_components.View, {
-              className: "index__menu-item-tab",
+              className: classes,
               key: key,
               onTap: function onTap(e) {
-                return _this2.onMenuItemClick(child, e);
+                return _this2.onMenuItemClick(key, e);
               }
             }, props.name));
           }
         }
       });
 
+      children.push(_remixjs["default"].createElement(_components.View, {
+        className: "index__menus-tabs-line",
+        key: "line"
+      }));
       return _remixjs["default"].createElement(_components.View, {
         className: "index__menus-tabs"
       }, children);
@@ -832,22 +913,22 @@ function (_Component) {
   }, {
     key: "contentRender",
     value: function contentRender() {
-      var _this3 = this;
-
+      var activedKey = this.state.activedKey;
       var children = [];
 
       _remixjs.Children.forEach(this.props.children, function (child) {
         if (child) {
           if (child.type === Menus.Item) {
-            var props = child.props,
-                key = child.key;
+            var props = child.props;
+            var key = props.key || child.key;
+            var classes = (0, _classnames["default"])({
+              'index__menu-item-content': true,
+              'index__menu-item-content_active': key === activedKey
+            });
             children.push(_remixjs["default"].createElement(_components.View, {
-              className: "index__menu-item-content",
-              key: key,
-              onTap: function onTap(e) {
-                return _this3.onMenuItemClick(child, e);
-              }
-            }, props.name));
+              className: classes,
+              key: key
+            }, props.children));
           }
         }
       });
@@ -945,9 +1026,13 @@ function (_ViewController) {
       navigationBarTitleText: '我的'
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
-      current: 'jx'
+      current: 'movies'
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChange", function () {});
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onChange", function (key) {
+      _this.setState({
+        current: key
+      });
+    });
     return _this;
   }
 
@@ -970,13 +1055,28 @@ function (_ViewController) {
       }, _remixjs["default"].createElement(_Menus["default"].Item, {
         name: "\u5F71\u7247",
         key: "movies"
-      }), _remixjs["default"].createElement(_Menus["default"].Item, {
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__movies"
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__movies-card"
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__movies-card-thumb"
+      }, _remixjs["default"].createElement(_components.Image, {
+        onTouchStart: function onTouchStart() {},
+        className: "index__movies-card-image"
+      })), _remixjs["default"].createElement(_components.View, {
+        className: "index__movies-card-title"
+      }, "\u6784\u9020\u8BBE\u8BA1\u5F15\u64CE\uFF0C\u91CA\u653E\u8BBE\u8BA1\u80FD\u529B")))), _remixjs["default"].createElement(_Menus["default"].Item, {
         name: "\u884C\u7A0B",
         key: "schedule"
-      }), _remixjs["default"].createElement(_Menus["default"].Item, {
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__schedule"
+      })), _remixjs["default"].createElement(_Menus["default"].Item, {
         name: "\u5173\u4E8E",
         key: "about"
-      })));
+      }, _remixjs["default"].createElement(_components.View, {
+        className: "index__about"
+      }))));
     }
   }, {
     key: "render",

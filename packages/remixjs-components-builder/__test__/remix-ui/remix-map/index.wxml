@@ -1,3 +1,61 @@
- 
-<map bind:touchstart="{{onTouchStart}}" bind:touchmove="{{onTouchMove}}" bind:touchcancel="{{onTouchCancel}}" bind:touchend="{{onTouchEnd}}" bind:tap="{{onTap}}" bind:longpress="{{onLongPress}}" bind:longtap="{{onLongTap}}" bind:touchforcechange="{{onTouchForceChange}}" bind:transitionend="{{onTransitionEnd}}" bind:animationstart="{{onAnimationStart}}" bind:animationiteration="{{onAnimationIteration}}" bind:animationend="{{onAnimationEnd}}" bindmarkertap="{{onMarkerTap}}" bindlabeltap="{{onLabelTap}}" bindcontroltap="{{onControlTap}}" bindcallouttap="{{onCalloutTap}}" bindupdated="{{onUpdated}}" bindregionchange="{{onRegionChange}}" bindpoitap="{{onPoiTap}}" id="{{uuid}}" style="{{styles}}" class="{{className}}" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" covers="{{covers}}" polyline="{{polyline}}" circles="{{circles}}" controls="{{controls}}" include-points="{{includePoints}}" show-location="{{showLocation}}" polygons="{{polygons}}" subkey="{{subkey}}" layer-style="{{layerStyle}}" rotate="{{rotate}}" skew="{{skew}}" enable-3D="{{enable3D}}" show-compass="{{showCompass}}" show-scale="{{showScale}}" enable-overlooking="{{enableOverlooking}}" enable-zoom="{{enableZoom}}" enable-scroll="{{enableScroll}}" enable-rotate="{{enableRotate}}" enable-satellite="{{enableSatellite}}" enable-traffic="{{enableTraffic}}" setting="{{setting}}">
+
+<template name="map">
+<map 
+  bind:touchstart="{{onTouchStart}}"
+	bind:touchmove="{{onTouchMove}}"
+	bind:touchcancel="{{onTouchCancel}}"
+	bind:touchend="{{onTouchEnd}}"
+	bind:tap="{{onTap}}"
+	bind:longpress="{{onLongPress}}"
+	bind:longtap="{{onLongTap}}"
+	bind:touchforcechange="{{onTouchForceChange}}"
+	bind:transitionend="{{onTransitionEnd}}"
+	bind:animationstart="{{onAnimationStart}}"
+	bind:animationiteration="{{onAnimationIteration}}"
+	bind:animationend="{{onAnimationEnd}}"
+	bindmarkertap="{{onMarkerTap}}"
+	bindlabeltap="{{onLabelTap}}"
+	bindcontroltap="{{onControlTap}}"
+	bindcallouttap="{{onCalloutTap}}"
+	bindupdated="{{onUpdated}}"
+	bindregionchange="{{onRegionChange}}"
+	bindpoitap="{{onPoiTap}}"
+	id="{{uuid}}"
+	style="{{style}}"
+	class="{{className}}"
+	longitude="{{longitude}}"
+	latitude="{{latitude}}"
+	scale="{{scale}}"
+	markers="{{markers}}"
+	covers="{{covers}}"
+	polyline="{{polyline}}"
+	circles="{{circles}}"
+	controls="{{controls}}"
+	include-points="{{includePoints}}"
+	show-location="{{showLocation}}"
+	polygons="{{polygons}}"
+	subkey="{{subkey}}"
+	layer-style="{{layerStyle}}"
+	rotate="{{rotate}}"
+	skew="{{skew}}"
+	enable-3D="{{enable3D}}"
+	show-compass="{{showCompass}}"
+	show-scale="{{showScale}}"
+	enable-overlooking="{{enableOverlooking}}"
+	enable-zoom="{{enableZoom}}"
+	enable-scroll="{{enableScroll}}"
+	enable-rotate="{{enableRotate}}"
+	enable-satellite="{{enableSatellite}}"
+	enable-traffic="{{enableTraffic}}"
+	setting="{{setting}}"
+>
+  
 </map>
+</template>  
+
+
+
+
+
+
+

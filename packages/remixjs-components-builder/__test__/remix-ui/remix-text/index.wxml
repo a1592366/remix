@@ -1,3 +1,25 @@
-<import src="../remix-worker.wxml" /> 
-<text child="{{child}}" innerText="{{innerText}}" id="{{uuid}}" style="{{styles}}" class="{{className}}" selectable="{{selectable}}" space="{{space}}" decode="{{decode}}"><block wx:if="{{innerText}}">{{innerText}}</block><block wx:elif="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block>
+
+<template name="text">
+<text 
+  child="{{child}}"
+	innerText="{{innerText}}"
+	id="{{uuid}}"
+	style="{{style}}"
+	class="{{className}}"
+	selectable="{{selectable}}"
+	space="{{space}}"
+	decode="{{decode}}"
+>
+  
+  <block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}"><view child="{{child}}" /></block>
+  
 </text>
+</template>  
+
+
+
+
+
+
+

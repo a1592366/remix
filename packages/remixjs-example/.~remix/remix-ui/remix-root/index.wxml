@@ -1,3 +1,2 @@
 <import src="../remix-worker.wxml" /> 
-<view bind:touchstart="{{onTouchStart}}" bind:touchmove="{{onTouchMove}}" bind:touchcancel="{{onTouchCancel}}" bind:touchend="{{onTouchEnd}}" bind:tap="{{onTap}}" bind:longpress="{{onLongPress}}" bind:longtap="{{onLongTap}}" bind:touchforcechange="{{onTouchForceChange}}" bind:transitionend="{{onTransitionEnd}}" bind:animationstart="{{onAnimationStart}}" bind:animationiteration="{{onAnimationIteration}}" bind:animationend="{{onAnimationEnd}}" child="{{child}}" id="{{uuid}}"><block wx:if="{{child}}"><template is="remix-worker" data="{{ element: child }}" /></block>
-</view>
+<remix-view child="{{child}}" id="{{uuid}}" />

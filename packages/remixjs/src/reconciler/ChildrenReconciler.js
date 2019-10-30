@@ -229,8 +229,8 @@ export default function ChildrenReconciler (
         }
       }
 
-      if (isArray(newChild) || getIteratorFn(newChild)) {
-        const created = createFiberFromFragment(newChild, key);
+      if (isArray(newChild)) {
+        const created = createFiberFromFragment(newChild, null);
         created.return = returnFiber;
         return created;
       }
@@ -446,7 +446,7 @@ export default function ChildrenReconciler (
         nextOldFiber = oldFiber.sibling;
       }
 
-      const child = newChildren[i];
+      const child = newChildren[index];
 
       let newFiber = updateSlot(returnFiber, oldFiber, child);
       if (isNullOrUndefined(newFiber)) {

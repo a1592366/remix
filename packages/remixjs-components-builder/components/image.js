@@ -10,7 +10,7 @@ module.exports = {
   ],
 
   events: [
-    { name: 'onLoad', type: 'String', defaultValue: 'null', alias: 'bindload' },
-    { name: 'onError', type: 'String', defaultValue: 'null', alias: 'binderror' },
+    { name: 'onLoad', type: 'String', defaultValue: 'null', alias: 'bind:load' },
+    { name: 'onError', type: 'String', defaultValue: 'null', alias: 'bind:error' },
   ]
 }

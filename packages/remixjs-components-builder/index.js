@@ -137,10 +137,7 @@ async function buildWXML (dist, components) {
       openComponent: data.open,
       name: data.name,
       tagName: data.name === 'root' ? 'view' : data.name,
-      props: properties.filter(props => {
-        return props.name !== 'className' ||
-          props.name !== 'style'
-      }).map(props => {
+      props: properties.map(props => {
         if (props.isEvent) {
           return `${props.alias}="{{${props.camel}}}"`
         }
@@ -159,7 +156,7 @@ async function buildWXML (dist, components) {
             return `${props.name}="{{${props.camel}}}"`
           }
         }
-      }).join(' '),
+      }).join('\n\t'),
       properties: properties.map(props => {
         return `${props.camel}: ${props.type},\n\t\t`;
       }).join(''),
@@ -252,31 +249,20 @@ async function buildWorkWXML (dist) {
   const names = keys(components);
 
   await builder.render(dist, {
+    imports: names.filter(name => {
+      return name !== 'view' &&
+        name !== 'root'
+    }).map((name) => {
+      const data = components[name];
+
+      return `<import src="./remix-${data.name}/index.wxml" />`
+    }).join('\n'),
     components: names.map((name, index) => {
       const data = components[name];
-      const properties = [].concat(
-        data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events),
-        data.properties
-      );
-      const symbol = 'elif';
+      
 
-      if (data.name === 'swiper-item') {
-        return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<swiper-item item-id="{{element.itemId}}"><remix-view child="{{element.child}}" innerText="{{element.innerText}}" uuid="{{element.uuid}}" style="{{element.style || ''}}" className="{{element.className}}" /></swiper-item>\n\t</block>`;
-      }
 
-      const props = properties.map((props, index) => {
-        if (props.name === 'style') {
-          return `${props.camel}="{{element.${props.camel} || ''}}"`
-        }
-
-        if (props.name === 'className') {
-          return `class="{{element.${props.camel} || ''}}"`
-        }
-
-        return `${props.camel}="{{element.${props.camel}}}"`
-      }).join(' ');
-
-      return `<block wx:${symbol}="{{ element.tagName == '${data.name}' }}">\n\t\t<remix-${data.name} data-remix-id="{{element.uuid}}" ${props} />\n\t</block>`
+      return `<block wx:elif="{{ element.tagName == '${data.name}' }}">\n\t\t<template is="${data.name}" data="{{ ...element }}" />\n\t</block>`
     }).join('\n\t')
   });
 }

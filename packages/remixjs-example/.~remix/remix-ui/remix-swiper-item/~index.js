@@ -20,7 +20,7 @@ Component({
 		child: Object,
 		innerText: String,
 		uuid: String,
-		styles: String,
+		style: String,
 		className: String,
 		itemId: String,
 		
@@ -42,7 +42,7 @@ Component({
 		child: null,
 		innerText: null,
 		uuid: null,
-		styles: null,
+		style: null,
 		className: null,
 		itemId: null,
 		

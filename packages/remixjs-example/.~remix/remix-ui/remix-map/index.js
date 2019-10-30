@@ -1,4 +1,4 @@
-/*** MARK_1572374539082 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1572376123385 WeChat globalWindow ***/ var window = Object.__globalWindow__ || (Object.__globalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -192,7 +192,7 @@ Component({
     onRegionChange: String,
     onPoiTap: String,
     uuid: String,
-    styles: String,
+    style: String,
     className: String,
     longitude: Number,
     latitude: Number,
@@ -241,7 +241,7 @@ Component({
     onRegionChange: null,
     onPoiTap: null,
     uuid: null,
-    styles: null,
+    style: null,
     className: null,
     longitude: null,
     latitude: null,
