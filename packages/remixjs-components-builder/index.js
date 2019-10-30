@@ -345,7 +345,7 @@ async function buildWorkWXML (dist) {
             }
 
             if (prop.name === 'uuid') {
-              return `id="{{element.${prop.camel}}}"`;
+              return `id="{{element.${prop.camel}}}" uuid="{{element.${prop.camel}}}"`;
             }
           }
 

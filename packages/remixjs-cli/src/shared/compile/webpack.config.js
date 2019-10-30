@@ -12,7 +12,7 @@ const env = require('../env');
 
 
 const defaultWebpackConfig = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   stats: {
     all: false,
     modules: true,

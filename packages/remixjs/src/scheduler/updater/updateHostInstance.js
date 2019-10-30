@@ -33,36 +33,6 @@ function prepareUpdate (
   return diffProperties(element, type, props, nextProps, rootContainerInstance);
 }
 
-function getInputHostProps (
-  elements,
-  props
-) {
-  const node = elements;
-  const checked = props.checked;
-
-  return {
-    ...props,
-    defaultChecked: undefined,
-    defaultValue: undefined,
-    value: undefined,
-    checked: isNullOrUndefined(checked) ? checked : node._wrapperState.initialChecked
-  };
-}
-
-function getTextAreaHostProps (
-  elements,
-  props
-) {
-  const node = elements;
-
-  return {
-    ...props,
-    value: undefined,
-    defaultValue: undefined,
-    children: String(node._wrapperState.initialValue)
-  };
-}
-
 function diffProperties(
   elements, 
   tag, 
@@ -71,33 +41,14 @@ function diffProperties(
   rootContainerInstance
 ) {
   let updatePayload = null;
-  let lastProps;
-  let nextProps;
-
-  switch (tag) {
-    case INPUT: 
-      lastProps = getInputHostProps(elements, lastRawProps);
-      nextProps = getInputHostProps(elements, nextRawProps);
-      updatePayload = [];
-      break;
-    case TEXTAREA:
-      lastProps = getTextAreaHostProps(elements, lastRawProps);
-      nextProps = getTextAreaHostProps(elements, nextRawProps);
-      updatePayload = [];
-      break;
-    default:
-      lastProps = lastRawProps;
-      nextProps = nextRawProps;
-      // if (typeof lastProps.onClick !== 'function' && typeof nextProps.onClick === 'function') {
-      //   // TODO: This cast may not be sound for SVG, MathML or custom elements.
-      //   trapClickOnNonInteractiveElement(domElement);
-      // }
-      break;
-  }
+  let lastProps = lastRawProps;
+  let nextProps = nextRawProps;
 
   let propKey;
   let styleName;
   let styleUpdates = null;
+
+  // 删除 props
   for (propKey in lastProps) {
     if (
       nextProps.hasOwnProperty(propKey) || 
@@ -119,15 +70,12 @@ function diffProperties(
           styleUpdates[styleName] = '';
         }
       }
-    } else if (registrationNameModules.hasOwnProperty(propKey)) {
-      if (!updatePayload) {
-        updatePayload = [];
-      }
     } else {
       (updatePayload = updatePayload || []).push(propKey, null);
     }
   }
 
+  // 对比 props
   for (propKey in nextProps) {
     const nextProp = nextProps[propKey];
     const lastProp = !isNullOrUndefined(lastProps) ? 
@@ -142,6 +90,7 @@ function diffProperties(
     ) {
       continue;
     }
+
     if (propKey === STYLE) {
       if (nextProp) {
         Object.freeze(nextProp);
@@ -180,35 +129,21 @@ function diffProperties(
         }
         styleUpdates = nextProp;
       }
-    } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
-      const nextHtml = nextProp ? nextProp[HTML] : undefined;
-      const lastHtml = lastProp ? lastProp[HTML] : undefined;
-
-      if (!isNullOrUndefined(nextHtml)) {
-        if (lastHtml !== nextHtml) {
-          (updatePayload = updatePayload || []).push(propKey, '' + nextHtml);
-        }
-      } 
     } else if (propKey === CHILDREN) {
       if (
         lastProp !== nextProp && 
         (isString(nextProp) || isNumber(nextProp))
       ) {
-        (updatePayload = updatePayload || []).push(propKey, '' + nextProp);
-      }
-    } else if (registrationNameModules.hasOwnProperty(propKey)) {
-      if (!isNullOrUndefined(nextProp)) {
-        ensureListeningTo(rootContainerInstance, propKey);
-      }
-      if (!updatePayload && lastProp !== nextProp) {
-        updatePayload = [];
+        (updatePayload = updatePayload || []).push(propKey, String(nextProp));
       }
     } else {
       (updatePayload = updatePayload || []).push(propKey, nextProp);
     }
   }
+  
   if (styleUpdates) {
     (updatePayload = updatePayload || []).push(STYLE, styleUpdates);
   }
+
   return updatePayload;
 }

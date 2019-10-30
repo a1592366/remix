@@ -17,10 +17,13 @@ export default class Menus extends Component {
   onMenuItemClick = (key) => {
     const { onChange } = this.props;
 
+    debugger;
+
     if (key !== this.state.activedKey) {
       this.setState({
         activedKey: key
       }, () => {
+        debugger;
         onChange(key)
       });
     }

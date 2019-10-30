@@ -10,6 +10,8 @@ export default class ViewControllerTransportNative  extends Tunnel {
   }
 
   dispatch (type, id, e) {
+    console.log(type, e)
+
     if (id) {
       this.post(VIEW.EVENT, [type, id, e]);
     }

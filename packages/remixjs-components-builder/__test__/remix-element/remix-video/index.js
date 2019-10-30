@@ -32,7 +32,7 @@ export default class RemixVideo extends React.Component {
 		duration: PropTypes.number,
 		controls: PropTypes.bool,
 		danmuList: PropTypes.array,
-		showPlayButton: PropTypes.bool,
+		danmuButton: PropTypes.bool,
 		enableDanmu: PropTypes.bool,
 		autoplay: PropTypes.bool,
 		loop: PropTypes.bool,
@@ -87,7 +87,7 @@ export default class RemixVideo extends React.Component {
 		duration: null,
 		controls: true,
 		danmuList: null,
-		showPlayButton: false,
+		danmuButton: false,
 		enableDanmu: false,
 		autoplay: false,
 		loop: false,
@@ -104,7 +104,7 @@ export default class RemixVideo extends React.Component {
 		poster: null,
 		showMuteButton: false,
 		title: null,
-		playButtonPosition: bottom,
+		playButtonPosition: 'bottom',
 		enablePlayGesture: false,
 		autoPauseIfNavigate: true,
 		autoPauseIfOpenNative: true,
@@ -220,9 +220,9 @@ export default class RemixVideo extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onPlay, onPause, onEnded, onTimeUpdate, onFullScreenChange, onWaiting, onError, onProgress, onLoadedMetaData, style, className, src, duration, controls, danmuList, showPlayButton, enableDanmu, autoplay, loop, muted, initialTime, pageGesture, direction, showProgress, showFullscreenButton, showPlayButton, showCenterPlayButton, enableProgressGesture, objectFit, poster, showMuteButton, title, playButtonPosition, enablePlayGesture, autoPauseIfNavigate, autoPauseIfOpenNative, vslideGesture, vslideGestureInFullscreen, adUnitId } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onPlay, onPause, onEnded, onTimeUpdate, onFullScreenChange, onWaiting, onError, onProgress, onLoadedMetaData, style, className, src, duration, controls, danmuList, danmuButton, enableDanmu, autoplay, loop, muted, initialTime, pageGesture, direction, showProgress, showFullscreenButton, showPlayButton, showCenterPlayButton, enableProgressGesture, objectFit, poster, showMuteButton, title, playButtonPosition, enablePlayGesture, autoPauseIfNavigate, autoPauseIfOpenNative, vslideGesture, vslideGestureInFullscreen, adUnitId } = this.props;
 
-    return <video onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onPlay={onPlay ? 'onPlay' : ''} onPause={onPause ? 'onPause' : ''} onEnded={onEnded ? 'onEnded' : ''} onTimeUpdate={onTimeUpdate ? 'onTimeUpdate' : ''} onFullScreenChange={onFullScreenChange ? 'onFullScreenChange' : ''} onWaiting={onWaiting ? 'onWaiting' : ''} onError={onError ? 'onError' : ''} onProgress={onProgress ? 'onProgress' : ''} onLoadedMetaData={onLoadedMetaData ? 'onLoadedMetaData' : ''} style={style} className={className} src={src} duration={duration} controls={controls} danmuList={danmuList} showPlayButton={showPlayButton} enableDanmu={enableDanmu} autoplay={autoplay} loop={loop} muted={muted} initialTime={initialTime} pageGesture={pageGesture} direction={direction} showProgress={showProgress} showFullscreenButton={showFullscreenButton} showPlayButton={showPlayButton} showCenterPlayButton={showCenterPlayButton} enableProgressGesture={enableProgressGesture} objectFit={objectFit} poster={poster} showMuteButton={showMuteButton} title={title} playButtonPosition={playButtonPosition} enablePlayGesture={enablePlayGesture} autoPauseIfNavigate={autoPauseIfNavigate} autoPauseIfOpenNative={autoPauseIfOpenNative} vslideGesture={vslideGesture} vslideGestureInFullscreen={vslideGestureInFullscreen} adUnitId={adUnitId}></video>;
+    return <video onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onPlay={onPlay ? 'onPlay' : ''} onPause={onPause ? 'onPause' : ''} onEnded={onEnded ? 'onEnded' : ''} onTimeUpdate={onTimeUpdate ? 'onTimeUpdate' : ''} onFullScreenChange={onFullScreenChange ? 'onFullScreenChange' : ''} onWaiting={onWaiting ? 'onWaiting' : ''} onError={onError ? 'onError' : ''} onProgress={onProgress ? 'onProgress' : ''} onLoadedMetaData={onLoadedMetaData ? 'onLoadedMetaData' : ''} style={style} className={className} src={src} duration={duration} controls={controls} danmuList={danmuList} danmuButton={danmuButton} enableDanmu={enableDanmu} autoplay={autoplay} loop={loop} muted={muted} initialTime={initialTime} pageGesture={pageGesture} direction={direction} showProgress={showProgress} showFullscreenButton={showFullscreenButton} showPlayButton={showPlayButton} showCenterPlayButton={showCenterPlayButton} enableProgressGesture={enableProgressGesture} objectFit={objectFit} poster={poster} showMuteButton={showMuteButton} title={title} playButtonPosition={playButtonPosition} enablePlayGesture={enablePlayGesture} autoPauseIfNavigate={autoPauseIfNavigate} autoPauseIfOpenNative={autoPauseIfOpenNative} vslideGesture={vslideGesture} vslideGestureInFullscreen={vslideGestureInFullscreen} adUnitId={adUnitId}></video>;
   }
 }
 

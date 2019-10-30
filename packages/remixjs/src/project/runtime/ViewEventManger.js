@@ -68,37 +68,38 @@ export default class ViewEventManager {
 
   onDispatch = (type, uuid, e) => {
     const { timeStamp, target } = e;
-    // const id = e.target.id || e.target.dataset.remixId;
-    const element = document.findElement(uuid);
+    const id = e.target.id;
+    const element = document.findElement(id);
 
     if (this.events[timeStamp]) {      
       if (element.tagName === ROOT) {
         delete this.events[timeStamp];
       }
     } else {
-      const event = this.events[timeStamp] = new EventObject(e);
-      const id = e.currentTarget.id || e.currentTarget.dataset.remixId;
-
-      event.target = element;
-      event.currentTarget = document.findElement(id);
-
-      let node = element;
-
-      if (event.bubbles) {
-        while (node && node.tagName !== ROOT) {
-          event.target = node;
-          this.callElementMethod(node, type, event);
-
-          if (event.cancelBubble) {
-            break;
+      if (element.tagName !== ROOT) {
+        const event = this.events[timeStamp] = new EventObject(e);
+        const id = e.currentTarget.id;
+  
+        event.target = element;
+        event.currentTarget = document.findElement(id);
+  
+        let node = element;
+  
+        if (event.bubbles) {
+          while (node && node.tagName !== ROOT) {
+            event.target = node;
+            this.callElementMethod(node, type, event);
+  
+            if (event.cancelBubble) {
+              break;
+            }
+  
+            node = node.return;
           }
-
-          node = node.return;
+        } else {
+          this.callElementMethod(node, type, event);
         }
-      } else {
-        this.callElementMethod(node, type, event);
       }
-      
     }
   }
 }

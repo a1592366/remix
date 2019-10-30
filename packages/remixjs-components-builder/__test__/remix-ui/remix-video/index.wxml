@@ -29,7 +29,7 @@
 	duration="{{duration}}"
 	controls="{{controls}}"
 	danmu-list="{{danmuList}}"
-	danmu-btn="{{showPlayButton}}"
+	danmu-btn="{{danmuButton}}"
 	enable-danmu="{{enableDanmu}}"
 	autoplay="{{autoplay}}"
 	loop="{{loop}}"

@@ -24,7 +24,9 @@ export default class ViewController {
     const elements = document.getContainerElements(this.container);
     console.log(elements);
 
-    elements.onTouchStart = 'onTouchStart'
+    // elements.onTouchStart = 'onTouchStart';
+    elements.onTap = 'onTap';
+
 
     callback(elements);
   }
