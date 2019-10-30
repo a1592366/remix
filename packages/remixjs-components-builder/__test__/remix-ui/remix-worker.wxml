@@ -1,4 +1,3 @@
-<import src="./remix-text/index.wxml" />
 <import src="./remix-picker/index.wxml" />
 <import src="./remix-scroll-view/index.wxml" />
 <import src="./remix-swiper/index.wxml" />
@@ -13,13 +12,13 @@
 <template name="selection">
   <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
   <block wx:elif="{{ element.tagName == 'root' }}">
-		<template is="root" data="{{ ...element }}" />
+		<remix-root child="{{element.child}}" innerText="{{element.innerText}}" uuid="{{element.uuid}}" style="{{element.style}}" className="{{element.className}}" onTouchStart="{{element.onTouchStart}}" onTouchMove="{{element.onTouchMove}}" onTouchCancel="{{element.onTouchCancel}}" onTouchEnd="{{element.onTouchEnd}}" onTap="{{element.onTap}}" onLongPress="{{element.onLongPress}}" onLongTap="{{element.onLongTap}}" onTouchForceChange="{{element.onTouchForceChange}}" onTransitionEnd="{{element.onTransitionEnd}}" onAnimationStart="{{element.onAnimationStart}}" onAnimationIteration="{{element.onAnimationIteration}}" onAnimationEnd="{{element.onAnimationEnd}}"  />
 	</block>
 	<block wx:elif="{{ element.tagName == 'view' }}">
-		<template is="view" data="{{ ...element }}" />
+		<view child="{{element.child}}" innerText="{{element.innerText}}" id="{{element.uuid}}" style="{{element.style}}" class="{{element.className}}" hover-class="{{element.hoverClass}}" hover-stop-propagation="{{element.hoverStopPropagation}}" hover-start-time="{{element.hoverStartTime}}" hover-stay-time="{{element.hoverStayTime}}" bind:touchstart="{{element.onTouchStart}}" bind:touchmove="{{element.onTouchMove}}" bind:touchcancel="{{element.onTouchCancel}}" bind:touchend="{{element.onTouchEnd}}" bind:tap="{{element.onTap}}" bind:longpress="{{element.onLongPress}}" bind:longtap="{{element.onLongTap}}" bind:touchforcechange="{{element.onTouchForceChange}}" bind:transitionend="{{element.onTransitionEnd}}" bind:animationstart="{{element.onAnimationStart}}" bind:animationiteration="{{element.onAnimationIteration}}" bind:animationend="{{element.onAnimationEnd}}"  />
 	</block>
 	<block wx:elif="{{ element.tagName == 'text' }}">
-		<template is="text" data="{{ ...element }}" />
+		<text child="{{element.child}}" innerText="{{element.innerText}}" id="{{element.uuid}}" style="{{element.style}}" class="{{element.className}}" selectable="{{element.selectable}}" space="{{element.space}}" decode="{{element.decode}}"  />
 	</block>
 	<block wx:elif="{{ element.tagName == 'picker' }}">
 		<template is="picker" data="{{ ...element }}" />

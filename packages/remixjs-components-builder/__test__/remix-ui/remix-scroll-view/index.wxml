@@ -35,7 +35,7 @@
 >
   
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><view child="{{child}}" /></block>
+  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
   
 </scroll-view>
 </template>  
