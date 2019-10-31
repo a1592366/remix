@@ -1,29 +1,16 @@
-import createContainer from '../reconciler/createContainer';
-import updateContainer from '../reconciler/updateContainer';
-
-import ReactCurrentRootInstance from '../react/ReactCurrentRootInstance';
-
-class ReactRoot {
-  constructor (container) {
-    this._internalRoot = createContainer(container);
-  }
-
-  render (element, callback) {
-    updateContainer(element, this._internalRoot, callback);
-  }
-}
+import scheduleWork from '../scheduler/scheduleWork';
 
 export default function renderIntoContainer (
-  parentComponent, 
   element,
   container,
   callback
 ) {
-  const root = container._reactRootContainer || (
-    container._reactRootContainer = new ReactRoot(container)
+
+  const { current } = container._reactRootContainer || (
+    container._reactRootContainer = {
+      internalRoot: createFiberRoot(container)
+    }
   );
 
-  ReactCurrentRootInstance.current = container;
-
-  return root.render(element, callback);
+  return scheduleWork(current, element, callback);
 }
