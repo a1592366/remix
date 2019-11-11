@@ -21,7 +21,7 @@ export const EMPTY_OBJECT = {};
 export const EMPTY_ARRAY = [];
 export const EMPTY_CONTEXT = {};
 export const EMPTY_REFS = {};
-export const EXPIRE_TIME = 1;
+export const EXPIRE_TIME = 0;
 
 
 export const NO_WORK = 0;

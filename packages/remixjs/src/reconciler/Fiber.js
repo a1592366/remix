@@ -1,8 +1,9 @@
 import { isNull } from '../shared/is';
-import { HOST_ROOT } from '../shared/workTags';
+import { HOST_ROOT, HOST_TEXT, INDETERMINATE_COMPONENT, CLASS_COMPONENT, HOST_COMPONENT } from '../shared/workTags';
+import { NO_EFFECT } from '../shared/effectTags';
 
 
-function createWorkInProgress () {
+export function createWorkInProgress (current, pendingProps) {
   let { alternate: workInProgress } = current;
 
   if (isNull(workInProgress)) {
@@ -44,6 +45,7 @@ function createWorkInProgress () {
   workInProgress.sibling = sibling;
   workInProgress.index = index;
   workInProgress.ref = ref;
+  workInProgress.updateQueue = updateQueue;
 
   return workInProgress;
 }
@@ -63,6 +65,51 @@ export function createFiberRoot (container) {
   return root;
 }
 
+export function createFiberFromText (content) {
+  const fiber = createFiber(HOST_TEXT, content, null);
+  return fiber;
+}
+
+export function createFiberFromElement(element) {
+  const owner = element._owner;
+  const type = element.type;
+  const key = element.key;
+  const pendingProps = element.props;
+  const fiber = createFiberFromTypeAndProps(type, key, pendingProps, owner);
+  
+  return fiber;
+}
+
+export function createFiberFromFragment(elements, key) {
+  var fiber = createFiber(Fragment, elements);
+  return fiber;
+}
+
+function createFiberFromTypeAndProps(
+  type, // React$ElementType
+  key, 
+  pendingProps,
+  owner
+) {
+  let fiber;
+  let fiberTag = INDETERMINATE_COMPONENT;
+  const resolvedType = type;
+  if (typeof type === 'function') {
+    const prototype = type.prototype;
+    if (prototype && prototype.isReactComponent) {
+      fiberTag = CLASS_COMPONENT;
+    } 
+  } else if (typeof type === 'string') {
+    fiberTag = HOST_COMPONENT;
+  }
+
+  fiber = createFiber(fiberTag, pendingProps, key);
+  fiber.elementType = type;
+  fiber.type = resolvedType;
+
+  return fiber;
+}
+
 function createFiberNode (tag, pendingProps, key) {
   return {
     tag,
@@ -80,6 +127,7 @@ function createFiberNode (tag, pendingProps, key) {
     pendingProps,
     memoizedProps: null,
     memoizedState: null,
+    updateQueue: null,
 
     effectTag: NO_EFFECT,
 
@@ -90,4 +138,5 @@ function createFiberNode (tag, pendingProps, key) {
 function createFiber (tag, pendingProps, key) {
   return createFiberNode(tag, pendingProps, key);
 }
+
 

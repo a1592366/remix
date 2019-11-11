@@ -4,22 +4,19 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  
+  devServer: {
+    port: 10000,
+    host: '0.0.0.0',
+    contentBase: path.resolve(__dirname, 'example'),
+  },
   entry: {
-    'dist/remix': path.resolve(__dirname, './index.js'),
-    // 'components': path.resolve(__dirname, './src/components/index.js'),
-    // 'runtime': path.resolve(__dirname, './src/runtime/index.js'),
-    // 'project': path.resolve(__dirname, './src/project/index.js'),
+    'bundle':  path.resolve(__dirname, './example/src/index.js')
   },
   
   output: {
-    path: __dirname,  
+    path: path.resolve(__dirname, 'example/dist'),  
     filename: '[name].js',
-    publicPath: '/dist/',
-    // library: '[name]',
-    globalObject: 'this',
-    libraryTarget: 'commonjs',
-    umdNamedDefine: true
+    publicPath: '/dist/'
   },
 
   resolve: {

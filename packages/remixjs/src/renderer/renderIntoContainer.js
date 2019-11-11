@@ -1,16 +1,16 @@
-import scheduleWork from '../scheduler/scheduleWork';
+import { createFiberRoot } from '../reconciler/Fiber';
+import { scheduleRootUpdate } from '../scheduler';
 
 export default function renderIntoContainer (
   element,
   container,
   callback
 ) {
-
-  const { current } = container._reactRootContainer || (
+  const { _internalRoot: { current } } = container._reactRootContainer || (
     container._reactRootContainer = {
-      internalRoot: createFiberRoot(container)
+      _internalRoot: createFiberRoot(container)
     }
   );
 
-  return scheduleWork(current, element, callback);
+  return scheduleRootUpdate(current, element, callback);
 }
