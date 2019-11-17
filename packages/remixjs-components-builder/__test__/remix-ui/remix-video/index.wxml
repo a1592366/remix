@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="video">
 <video 
   bind:touchstart="{{onTouchStart}}"
@@ -23,6 +28,7 @@
 	bind:progress="{{onProgress}}"
 	bind:loadedmetadata="{{onLoadedMetaData}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	src="{{src}}"

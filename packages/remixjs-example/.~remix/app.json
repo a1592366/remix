@@ -2,8 +2,53 @@
   "tabBar": {
     "color": "#000000",
     "backgroundColor": "#ffffff",
-    "list": []
+    "selectedColor": "#333333",
+    "children": [
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/Explore/index",
+          "icon": "./static/images/me.png",
+          "selectedIcon": "./static/images/me_selected.png",
+          "children": "发现"
+        },
+        "_owner": null
+      },
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/User/index",
+          "icon": "./static/images/explore.png",
+          "selectedIcon": "./static/images/explore_selected.png",
+          "children": "我"
+        },
+        "_owner": null
+      }
+    ],
+    "list": [
+      {
+        "text": "发现",
+        "pagePath": "pages/Explore/index",
+        "iconPath": "./static/images/me.png",
+        "selectedIconPath": "./static/images/me_selected.png"
+      },
+      {
+        "text": "我",
+        "pagePath": "pages/User/index",
+        "iconPath": "./static/images/explore.png",
+        "selectedIconPath": "./static/images/explore_selected.png"
+      }
+    ]
   },
-  "pages": [],
-  "window": {}
+  "pages": [
+    "pages/Explore/index",
+    "pages/User/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#000000",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap21.json"
 }

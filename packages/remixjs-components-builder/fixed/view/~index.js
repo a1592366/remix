@@ -8,6 +8,7 @@ Component({
   properties: {
     child: Object,
     uuid: String,
+    parent: String,
     className: String,
     style: String,
     onTouchStart: String,
@@ -44,26 +45,27 @@ Component({
   },
 
   lifetimes: {
-    created () { transports.view.dispatch('created', this.data.uuid); },
-    attached () { transports.view.dispatch('attached', this.data.uuid); },
-    detached () { transports.view.dispatch('detached', this.data.uuid); },
-    ready () { transports.view.dispatch('ready', this.data.uuid); },
-    moved () { transports.view.dispatch('moved', this.data.uuid); },
-    error (error) { transports.view.dispatch('detached', this.data.uuid, error); }
+    created () { transports.view.dispatch('created', this.data.uuid, this.data.parent, this); },
+    attached () { transports.view.dispatch('attached', this.data.uuid, this.data.parent, this); },
+    detached () { transports.view.dispatch('detached', this.data.uuid, this.data.parent, this); },
+    ready () { transports.view.dispatch('ready', this.data.uuid, this.data.parent, this); },
+    moved () { transports.view.dispatch('moved', this.data.uuid, this.data.parent, this); },
+    error (error) { transports.view.dispatch('detached', this.data.uuid, this.data.parent, error, this); }
   },
 
   methods: {
-    onTouchStart (e) { transports.view.dispatch('onTouchStart', e.target.id, e) },
-    onTouchMove (e) { transports.view.dispatch('onTouchStart', e.target.id, e) },
-    onTouchCancel (e) { transports.view.dispatch('onTouchStart', e.target.id, e) },
-    onTouchEnd (e) { transports.view.dispatch('onTouchStart', e.target.id, e) },
-    onTap (e) { transports.view.dispatch('onTap', e.target.id, e) },
-    onLongPress (e) { transports.view.dispatch('onLongPress', e.target.id, e) },
-    onLongTap (e) { transports.view.dispatch('onLongTap', e.target.id, e) },
-    onTransitionEnd (e) { transports.view.dispatch('onTransitionEnd', e.target.id, e) },
-    onAnimationStart (e) { transports.view.dispatch('onAnimationStart', e.target.id, e) },
-    onAnimationIteration (e) { transports.view.dispatch('onAnimationIteration', e.target.id, e) },
-    onAnimationEnd (e) { transports.view.dispatch('onAnimationEnd', e.target.id, e) },
-    onTouchForceChange (e) { transports.view.dispatch('onTouchForceChange', e.target.id, e) },
+    postMessage (data) { this.setData(data) },
+    onTouchStart (e) { transports.view.dispatch('onTouchStart', e.target.id, this.data.parent, e, this) },
+    onTouchMove (e) { transports.view.dispatch('onTouchStart', e.target.id, this.data.parent, e, this) },
+    onTouchCancel (e) { transports.view.dispatch('onTouchStart', e.target.id, this.data.parent, e, this) },
+    onTouchEnd (e) { transports.view.dispatch('onTouchStart', e.target.id, this.data.parent, e, this) },
+    onTap (e) { transports.view.dispatch('onTap', e.target.id, this.data.parent, e, this) },
+    onLongPress (e) { transports.view.dispatch('onLongPress', e.target.id, this.data.parent, e, this) },
+    onLongTap (e) { transports.view.dispatch('onLongTap', e.target.id, e, this) },
+    onTransitionEnd (e) { transports.view.dispatch('onTransitionEnd', e.target.id, this.data.parent, e, this) },
+    onAnimationStart (e) { transports.view.dispatch('onAnimationStart', e.target.id, this.data.parent, e, this) },
+    onAnimationIteration (e) { transports.view.dispatch('onAnimationIteration', e.target.id, this.data.parent, e, this) },
+    onAnimationEnd (e) { transports.view.dispatch('onAnimationEnd', e.target.id, this.data.parent, e, this) },
+    onTouchForceChange (e) { transports.view.dispatch('onTouchForceChange', e.target.id, this.data.parent, e, this) },
   }
 })

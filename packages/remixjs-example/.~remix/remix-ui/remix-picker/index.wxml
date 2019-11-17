@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="picker">
 <picker 
   bind:touchstart="{{onTouchStart}}"
@@ -20,6 +25,7 @@
 	child="{{child}}"
 	innerText="{{innerText}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	mode="{{mode}}"
@@ -34,7 +40,11 @@
 >
   
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
+  <block wx:elif="{{child}}">
+  
+  <template is="inner-remix-worker" data="{{ element: child }}" />
+  
+  </block>
   
 </picker>
 </template>  

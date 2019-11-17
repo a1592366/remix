@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    port: 10000,
+    port: 10001,
     host: '0.0.0.0',
     contentBase: path.resolve(__dirname, 'example'),
   },

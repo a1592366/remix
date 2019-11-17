@@ -1,4 +1,9 @@
 
+
+
+<import src="../deep-remix-worker.wxml" />
+
+
 <template name="swiper-item">
 <swiper-item 
   bind:touchstart="{{onTouchStart}}"
@@ -16,13 +21,18 @@
 	child="{{child}}"
 	innerText="{{innerText}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	item-id="{{itemId}}"
 >
   
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
+  <block wx:elif="{{child}}">
+  
+  <template is="deep-remix-worker" data="{{ element: child }}" />
+  
+  </block>
   
 </swiper-item>
 </template>  

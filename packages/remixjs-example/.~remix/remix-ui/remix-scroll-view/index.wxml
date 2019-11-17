@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="scroll-view">
 <scroll-view 
   bind:touchstart="{{onTouchStart}}"
@@ -19,6 +24,7 @@
 	child="{{child}}"
 	innerText="{{innerText}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	scroll-x="{{scrollX}}"
@@ -35,7 +41,11 @@
 >
   
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
+  <block wx:elif="{{child}}">
+  
+  <template is="inner-remix-worker" data="{{ element: child }}" />
+  
+  </block>
   
 </scroll-view>
 </template>  

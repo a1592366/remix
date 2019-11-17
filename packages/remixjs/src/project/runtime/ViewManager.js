@@ -4,13 +4,20 @@ import { document } from '../../document';
 import createElement from '../../react/createElement';
 import transports, { VIEW } from './transports';
 
+const lifecycleTypes = {
+  ATTACHED: 'attached',
+  DETACHED: 'detached'
+}
+
 export default class ViewManager {
   constructor (context) {
     this.context = context;
     this.viewControllers = {};
+    this.views = {};
 
     transports.view.onLoad(this.onLoad);
     transports.view.onReady(this.onReady);
+    transports.view.onLifecycle(this.onLifecycle);
   }
 
   get routes () {
@@ -26,6 +33,40 @@ export default class ViewManager {
     });
 
     return routes;
+  }
+
+  onLifecycle = (type, id, parentId, view) => {
+    switch (type) {
+      case lifecycleTypes.ATTACHED: {
+        this.views[id] = view;
+        const element = document.findElement(id);
+
+        if (element) {
+          element.binding = () => {
+            const uuid = element.return.uuid;
+            const child = element.return.serialize();
+            const view = this.views[uuid];
+
+            if (view) { view.postMessage(child);}
+          }
+        }
+
+        break;
+      } 
+
+      case lifecycleTypes.DETACHED: {
+        this.views[id] = null;
+        const element = document.findElement(id);
+
+        if (element) {
+          element.binding = null;
+        }
+
+        break;
+      }
+    }
+
+
   }
 
   onReady = () => {

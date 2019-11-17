@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from '../../shared/is';
 import { HOST_COMPONENT, HOST_TEXT, FundamentalComponent, HOST_PORTAL } from '../../shared/workTags';
 import appendInitialChild from './appendInitialChild';
 
@@ -8,7 +7,7 @@ export default function appendAllChildren (
 ) {
   let node = workInProgress.child;
 
-  while (!isNullOrUndefined(node)) {
+  while (node !== null) {
     if (node.tag === HOST_COMPONENT || node.tag === HOST_TEXT) {
       appendInitialChild(instance, node.stateNode);
     } else if (node.tag === FundamentalComponent) {
@@ -17,7 +16,7 @@ export default function appendAllChildren (
       // If we have a portal child, then we don't want to traverse
       // down its children. Instead, we'll get insertions from each child in
       // the portal directly.
-    } else if (!isNullOrUndefined(node.child)) {
+    } else if (node.child !== null) {
       node.child.return = node;
       node = node.child;
       continue;

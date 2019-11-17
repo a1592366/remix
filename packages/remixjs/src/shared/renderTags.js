@@ -1,0 +1,1 @@
+export const [ ASYNC, SYNC ] = [1, 2];

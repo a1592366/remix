@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="image">
 <image 
   bind:touchstart="{{onTouchStart}}"
@@ -16,6 +21,7 @@
 	bind:load="{{onLoad}}"
 	bind:error="{{onError}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	src="{{src}}"

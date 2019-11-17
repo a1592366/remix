@@ -1,6 +1,14 @@
-import { PERFORMED_WORK, PLACEMENT, UPDATE, DELETION, PLACEMENT_AND_UPDATE, CALLBACK, REF, PASSIVE } from '../shared/effectTags';
-import { CLASS_COMPONENT, HOST_ROOT, HOST_COMPONENT } from '../shared/workTags';
-import { resolveDefaultProps } from '../shared';
+import { PERFORMED_WORK, PLACEMENT, UPDATE, DELETION, PLACEMENT_AND_UPDATE, CALLBACK, REF, PASSIVE, CONTENT_RESET } from '../shared/effectTags';
+import { CLASS_COMPONENT, HOST_ROOT, HOST_TEXT, HOST_COMPONENT, HOST_PORTAL, FUNCTION_COMPONENT } from '../shared/workTags';
+import { resolveDefaultProps, INTERNAL_EVENT_HANDLERS_KEY } from '../shared';
+import { 
+  resetTextContext,
+  insertBefore,
+  insertInContainerBefore,
+  appendChild,
+  appendChildToContainer,
+  updateProperties
+} from '../renderer/config';
 
 let nextEffect;
 
@@ -8,7 +16,7 @@ export let isWorking = false;
 export let isCommiting = false;
 
 export function commitRoot (
-  root
+  root,
 ) {
   isWorking = true;
   isCommiting = true;
@@ -44,30 +52,45 @@ export function commitRoot (
       nextEffect = firstEffect;
 
       do {
-        commitMutationEffects(root, current, finishedWork);
+        commitMutationEffects(root, finishedWork);
 
-        nextEffect = nextEffect.nextEffect;
+        // nextEffect = nextEffect.nextEffect;
       } while (nextEffect !== null);
 
+      root.current = finishedWork;
       nextEffect = firstEffect;
 
       do {
         commitLayoutEffects(root);
 
-        nextEffect = nextEffect.nextEffect;
+        // nextEffect = nextEffect.nextEffect;
       } while (nextEffect !== null);
 
-      nextEffect = null;
+      nextEffect = firstEffect;
 
-      isCommitting = false;
+      while (nextEffect !== null) {
+        const nextNextEffect = nextEffect.nextEffect;
+        nextEffect.nextEffect = null;
+        nextEffect = nextNextEffect;
+      }
+
+      isCommiting = false;
       isWorking = false;
     }
   }
 }
 
-function commitMutationEffects (root, current, finishedWork) {
+function commitMutationEffects (root, finishedWork) {
   while (nextEffect !== null) {
     const effectTag = nextEffect.effectTag;
+
+    if (effectTag & CONTENT_RESET) {
+      
+    }
+
+    if (effectTag & REF) {
+
+    }
 
     // 插入 | 更新 | 删除
     let primaryEffectTag = effectTag & (PLACEMENT | UPDATE | DELETION);
@@ -76,7 +99,7 @@ function commitMutationEffects (root, current, finishedWork) {
         commitPlacement(nextEffect);
         
         // 重置 effectTag
-        nextEffect.effectTag &= ~Placement;
+        nextEffect.effectTag &= ~PLACEMENT;
         break;
       }
 
@@ -106,7 +129,7 @@ function commitMutationEffects (root, current, finishedWork) {
         break;
     }
 
-    nextEffect = nextEffect.next;
+    nextEffect = nextEffect.nextEffect;
   }
 }
 
@@ -132,7 +155,7 @@ function commitLayoutEffects(root) {
     //   rootWithPendingPassiveEffects = finishedRoot;
     // }
 
-    nextEffect = nextEffect.next;
+    nextEffect = nextEffect.nextEffect;
 
   }
 }
@@ -153,12 +176,15 @@ function commitLifeCycles(finishedRoot, current, finishedWork) {
           resolveDefaultProps(finishedWork.type, current.memoizedProps);
         
         const prevState = current.memoizedState;
-        instance.componentDidUpdate(prevProps, prevState, instance.__reactInternalSnapshotBeforeUpdate);
+
+        if (typeof instance.componentDidUpdate === 'function') {
+          instance.componentDidUpdate(prevProps, prevState, instance.__reactInternalSnapshotBeforeUpdate);
+        }
       }
 
       const updateQueue = finishedWork.updateQueue;
       if (updateQueue !== null) {
-        commitUpdateQueue(finishedWork, updateQueue, instance, committedExpirationTime); 
+        commitUpdateQueue(finishedWork, updateQueue, instance); 
       }
 
       break;
@@ -222,6 +248,92 @@ function commitUpdateEffects(effect, instance) {
   }
 }
 
+function commitPlacement (finishedWork) {
+  const parentFiber = getHostParentFiber(finishedWork);
+  const { tag, stateNode } = parentFiber;
+
+  let parent;
+  let isContainer;
+
+  switch (tag) {
+    case HOST_COMPONENT: {
+      parent = stateNode;
+      isContainer = false;
+      break;
+    }
+    case HOST_ROOT: {
+      parent = stateNode.containerInfo;
+      isContainer = true;
+      break;
+    }
+
+    case HOST_PORTAL: {
+      parent = stateNode.containerInfo;
+      isContainer = true;
+      break;
+    }
+    default:
+      console.log('Invalid host parent')
+  }
+
+  if (parentFiber.effectTag & CONTENT_RESET) {
+    resetTextContent(parent);
+    parentFiber.effectTag &= ~CONTENT_RESET;
+  }
+
+  const before = getHostSibling(finishedWork);
+  let node = finishedWork;
+  while (true) {
+    const isHost = node.tag === HOST_COMPONENT || node.tag === HOST_TEXT;
+
+    if (isHost) {
+      const stateNode = isHost ? 
+        node.stateNode : 
+        node.stateNode.instance;
+
+      if (before) {
+        if (isContainer) {
+          insertInContainerBefore(parent, stateNode, before);
+        } else {
+          insertBefore(parent, stateNode, before);
+        }
+      } else {
+        if (isContainer) {
+          appendChildToContainer(parent, stateNode);
+        } else {
+          appendChild(parent, stateNode);
+        }
+      }
+    } else if (node.tag === HOST_PORTAL) {
+
+    } else if (node.child !== null) {
+      node.child.return = node;
+      node = node.child;
+      continue;
+    }
+
+    if (node === finishedWork) {
+      return;
+    }
+
+    while (node.sibling === null) {
+      if (node.return === null || node.return === finishedWork) {
+        return;
+      }
+
+      node = node.return;
+    }
+
+    node.sibling.return = node.return;
+    node = node.sibling;
+  }
+}
+
+function commitUpdate (instance, updateQueue, type, props, nextProps, finishedWork) {
+  instance[INTERNAL_EVENT_HANDLERS_KEY] = nextProps;
+  updateProperties(instance, updateQueue, type, props, nextProps);
+}
+
 function commitMount(domElement, type, newProps, internalInstanceHandle) {
   // 处理焦点问题
   if (shouldAutoFocusHostComponent(type, newProps)) {
@@ -251,10 +363,49 @@ function commitAttachRef(finishedWork) {
   }
 }
 
-function commitPlacement (nextEffect) {
+function commitWork (current, finishedWork) {
+  const { tag } = finishedWork;
 
+  switch (tag) {
+    case FUNCTION_COMPONENT: {
+      break;
+    }
+
+    case HOST_COMPONENT: {
+      const instance = finishedWork.stateNode;
+      if (instance !== null) {
+        const nextProps = finishedWork.memoizedProps;
+        const props = current !== null ? current.memoizedProps : nextProps;
+        const type = finishedWork.type;
+
+        const updateQueue = finishedWork.updateQueue;
+
+        finishedWork.updateQueue = null;
+        if (updateQueue !== null) {
+          commitUpdate(instance, updateQueue, type, props, finishedWork, finishedWork);
+        }
+      }
+      break;
+    }
+
+    case HOST_TEXT: {
+      const instance = finishedWork.stateNode;
+      const nextText = finishedWork.memoizedProps;
+      const text = current === null ? current$$1.memoizedProps : nextText;
+      commitTextUpdate(instance, text, nextText);
+      return;
+    }
+  }
 }
 
+function commitTextUpdate(textInstance, oldText, newText) {
+  textInstance.nodeValue = newText;
+}
+
+
+function isHostParent(fiber) {
+  return fiber.tag === HOST_COMPONENT || fiber.tag === HOST_ROOT || fiber.tag === HOST_PORTAL;
+}
 
 function shouldAutoFocusHostComponent(type, props) {
   switch (type) {
@@ -266,6 +417,50 @@ function shouldAutoFocusHostComponent(type, props) {
   return false;
 }
 
+function getHostSibling(fiber) {
+  const node = fiber;
+  siblings: while (true) {
+    while (node.sibling === null) {
+      if (node.return === null || isHostParent(node.return)) {
+        return null;
+      }
+
+      node = node.return;
+    }
+
+    node.sibling.return = node.return;
+    node = node.sibling;
+
+    while (node.tag !== HOST_COMPONENT && node.tag !== HOST_TEXT) {
+      if (node.effectTag & PLACEMENT) {
+        continue siblings;
+      }
+      
+      if (node.child === null || node.tag === HOST_PORTAL) {
+        continue siblings;
+      } else {
+        node.child.return = node;
+        node = node.child;
+      }
+    }
+
+    if (!(node.effectTag & PLACEMENT)) {
+      return node.stateNode;
+    }
+  }
+}
+
 function getPublicInstance(instance) {
   return instance;
+}
+
+function getHostParentFiber(fiber) {
+  let parent = fiber.return;
+
+  while (parent !== null) {
+    if (isHostParent(parent)) {
+      return parent;
+    }
+    parent = parent.return;
+  }
 }

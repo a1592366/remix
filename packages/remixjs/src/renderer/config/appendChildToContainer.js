@@ -1,5 +1,4 @@
 import { COMMENT_NODE } from '../../shared/HTMLNodeType';
-import { isNullOrUndefined } from '../../shared/is';
 
 export default function appendChildToContainer (
   container,
@@ -16,7 +15,7 @@ export default function appendChildToContainer (
   
   const reactRootContainer = container._reactRootContainer;
 
-  if (isNullOrUndefined(reactRootContainer) && isNullOrUndefined(parentNode.onclick)) {
+  if (reactRootContainer === null && parentNode.onclick === null) {
     // trapClickOnNonInteractiveElement(parentNode);
   }
 }

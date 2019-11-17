@@ -8,6 +8,7 @@ Component({
     child: Object,
 		innerText: String,
 		uuid: String,
+		parent: String,
 		style: String,
 		className: String,
 		selectable: Boolean,
@@ -20,6 +21,7 @@ Component({
     child: null,
 		innerText: null,
 		uuid: null,
+		parent: null,
 		style: null,
 		className: null,
 		selectable: false,
@@ -29,15 +31,16 @@ Component({
   },
 
   methods: {
+    postMessage (data) { this.setData(data) },
     
   },
 
   lifetimes: {
-    created () { transports.view.callLifecycle('created', this.data.uuid); },
-    attached () { transports.view.callLifecycle('attached', this.data.uuid); },
-    detached () { transports.view.callLifecycle('detached', this.data.uuid); },
-    ready () { transports.view.callLifecycle('ready', this.data.uuid); },
-    moved () { transports.view.callLifecycle('moved', this.data.uuid); },
-    error (error) { transports.view.callLifecycle('detached', this.data.uuid, error); }
+    created () { transports.view.callLifecycle('created', this.data.uuid, this.data.parent, this); },
+    attached () { transports.view.callLifecycle('attached', this.data.uuid, this.data.parent, this); },
+    detached () { transports.view.callLifecycle('detached', this.data.uuid, this.data.parent, this); },
+    ready () { transports.view.callLifecycle('ready', this.data.uuid, this.data.parent, this); },
+    moved () { transports.view.callLifecycle('moved', this.data.uuid, this.data.parent, this); },
+    error (error) { transports.view.callLifecycle('detached', this.data.uuid, this.data.parent, error, this); }
   },
 });

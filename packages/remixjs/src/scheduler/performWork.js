@@ -2,10 +2,15 @@ import { request } from 'requestidlecallback';
 import { HOST_ROOT, HOST_COMPONENT, HOST_TEXT, FUNCTION_COMPONENT, CLASS_COMPONENT, INDETERMINATE_COMPONENT } from '../shared/workTags';
 import { EXPIRE_TIME, EMPTY_REFS, EMPTY_CONTEXT } from '../shared';
 import { PERFORMED, PLACEMENT, UPDATE, PERFORMED_WORK, REF, SNAPSHOT, INCOMPLETE, NO_EFFECT, CONTENT_RESET } from '../shared/effectTags';
+import { NO_WORK, WORKING } from '../shared/statusTags';
 import { resolveDefaultProps, shallowEqual } from '../shared';
 import { createWorkInProgress } from '../reconciler/Fiber';
-import { reconcileChildren, cloneChildFibers } from '../reconciler';
 import { completeUnitOfWork, completeRoot } from './completeWork';
+import { 
+  reconcileChildren, 
+  cloneChildFibers, 
+  reconcileChildFibers 
+} from '../reconciler';
 import { 
   createUpdate, 
   enqueueUpdate, 
@@ -15,6 +20,7 @@ import {
 } from './updateQueue';
 import classComponentUpdater from './classComponentUpdater';
 import ReactCurrentOwner from '../react/ReactCurrentOwner';
+import { SYNC } from '../shared/renderTags';
 
 
 
@@ -22,8 +28,41 @@ let nextUnitOfWork = null;
 let workInProgress = null;
 let disableLegacyContext = true;
 
-export function requestWork (root) {
-  request((deadline) => performWork(deadline, root));
+let currentlyRenderingFiber = null;
+let currentHook = null;
+let nextCurrentHook = null;
+let firstWorkInProgressHook = null;
+let workInProgressHook = null;
+let nextWorkInProgressHook = null;
+let componentUpdateQueue = null;
+let sideEffectTag = 0;
+let ReactCurrentDispatcher = {
+  current: null
+};
+let ContextOnlyDispatcher = null;
+
+export function requestWork (root, isSync) {
+  if (isSync) {
+    performWorkSync(root);
+  } else {
+    request((deadline) => performWork(deadline, root));
+  }
+}
+
+function performWorkSync (root) {
+  workLoopSync(root);
+
+  if (nextUnitOfWork) {
+    requestWork(root, SYNC);
+  }
+
+  if (nextUnitOfWork === null) {
+    const finishedWork = root.current.alternate; // workInProgress
+    root.finishedWork = finishedWork;
+    if (finishedWork) {
+      completeRoot(root, finishedWork)
+    }
+  }
 }
 
 function performWork (deadline, root) {
@@ -35,36 +74,48 @@ function performWork (deadline, root) {
 
   if (nextUnitOfWork === null) {
     const finishedWork = root.current.alternate; // workInProgress
+    root.finishedWork = finishedWork;
     if (finishedWork) {
       completeRoot(root, finishedWork)
     }
   }
 }
 
-function workLoop(deadline, root) {
+function workLoopSync(root) {
   if (nextUnitOfWork === null) {
-    nextUnitOfWork = createWorkInProgress(root, null);
+    nextUnitOfWork = createWorkInProgress(root.current, null);
   }
 
   // 如果还有工作，有空档时间
   while (
-    nextUnitOfWork !== null && 
+    nextUnitOfWork !== null
+  ) {
+    nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
+  }
+}
+
+function workLoop(deadline, root) {
+  if (nextUnitOfWork === null) {
+    nextUnitOfWork = createWorkInProgress(root.current, null);
+  }
+
+  // 如果还有工作，有空档时间
+  while (
+    nextUnitOfWork !== null &&  
     deadline.timeRemaining() > EXPIRE_TIME
   ) {
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
   }
 }
 
-function performUnitOfWork (unitOfWork) {
-  const current = unitOfWork.alternate;
-  let next = beginWork(current, unitOfWork);
+function performUnitOfWork (nextUnitOfWork) {
+  const current = nextUnitOfWork.alternate;
+  let next = beginWork(current, nextUnitOfWork);
 
-  console.log(next);
-
-  unitOfWork.memoizedProps = unitOfWork.pendingProps;
+  nextUnitOfWork.memoizedProps = nextUnitOfWork.pendingProps;
   
   if (next === null) {
-    next = completeUnitOfWork(unitOfWork);
+    next = completeUnitOfWork(nextUnitOfWork);
   }
 
   return next;
@@ -80,14 +131,14 @@ function beginWork (current, workInProgress) {
 
     // 如果 props 是同一个引用，则无须再次调用构造，直接更新子元素即可
     if (props === nextProps) {
-      if (workInProgress.status) {
+      if (workInProgress.statusTag === NO_WORK) {
         cloneChildFibers(current, workInProgress);
         return workInProgress.child;
       }
     }
-
   }
   
+  workInProgress.statusTag = NO_WORK;
 
   switch (workInProgress.tag) {
     case INDETERMINATE_COMPONENT: {
@@ -145,7 +196,7 @@ function updateHostComponent (current, workInProgress) {
 
 function updateFunctionComponent(current, workInProgress, status) {
   const Component = workInProgress.type;
-  const unresolvedProps = workInProgress.props;
+  const unresolvedProps = workInProgress.pendingProps;
   const nextProps = resolveDefaultProps(Component, unresolvedProps);
   // 更新状态
   if (current !== null) {
@@ -191,7 +242,7 @@ function updateClassComponent (current, workInProgress) {
   } else if (current === null) {
     shouldUpdate = resumeMountClassInstance(workInProgress, Component, nextProps);
   } else {
-    shouldUpdate = updateClassInstance(current$$1, workInProgress, Component, nextProps);
+    shouldUpdate = updateClassInstance(current, workInProgress, Component, nextProps);
   }
 
   return finishClassComponent(current, workInProgress, Component, shouldUpdate, hasContext);
@@ -248,7 +299,7 @@ function mountClassInstance(workInProgress, Component, newProps, renderExpiratio
     instance.context = getMaskedContext(workInProgress, unmaskedContext);
   }
 
-  const updateQueue = workInProgress.updateQueue;
+  let updateQueue = workInProgress.updateQueue;
 
   if (updateQueue !== null) {
     processUpdateQueue(workInProgress, updateQueue, newProps, instance);
@@ -291,13 +342,13 @@ function updateClassInstance(current, workInProgress, Component, newProps) {
     oldProps : resolveDefaultProps(workInProgress.type, oldProps);
 
   const oldContext = instance.context;
-  const contextType = ctor.contextType;
+  const contextType = Component.contextType;
   let nextContext = EMPTY_CONTEXT;
 
   if (typeof contextType === 'object' && contextType !== null) {
     nextContext = readContext(contextType);
   } else if (!disableLegacyContext) {
-    var nextUnmaskedContext = getUnmaskedContext(workInProgress, ctor, true);
+    var nextUnmaskedContext = getUnmaskedContext(workInProgress, Component, true);
     nextContext = getMaskedContext(workInProgress, nextUnmaskedContext);
   }
 
@@ -377,6 +428,8 @@ function updateClassInstance(current, workInProgress, Component, newProps) {
   instance.props = newProps;
   instance.state = newState;
   instance.context = nextContext;
+
+  instance._reactInternalFiber = workInProgress;
 
   return shouldUpdate;
 }
@@ -471,11 +524,10 @@ function finishClassComponent(current, workInProgress, Component, shouldUpdate, 
       invalidateContextProvider(workInProgress, Component, false);
     }
 
-    return bailoutOnAlreadyFinishedWork(current$$1, workInProgress);
+    return bailoutOnAlreadyFinishedWork(current, workInProgress);
   }
 
   const instance = workInProgress.stateNode;
-
   ReactCurrentOwner.current = workInProgress;
   
   const nextChildren = instance.render();
@@ -483,8 +535,7 @@ function finishClassComponent(current, workInProgress, Component, shouldUpdate, 
   workInProgress.effectTag |= PERFORMED_WORK;
 
   if (current !== null) {
-    workInProgress.child = reconcileChildFibers(workInProgress, current.child, null);
-    workInProgress.child = reconcileChildFibers(workInProgress, null, nextChildren);
+    workInProgress.child = reconcileChildFibers(workInProgress, current.child, nextChildren);
   } else {
     reconcileChildren(current, workInProgress, nextChildren);
   }
@@ -558,11 +609,66 @@ function checkShouldComponentUpdate(workInProgress, Component, oldProps, newProp
   return true;
 }
 
-function mountIndeterminateComponent(
-  current, 
-  workInProgress,
-) {
-  debugger;
+function resetHooks () {
+  ReactCurrentDispatcher.current = ContextOnlyDispatcher;
+  currentlyRenderingFiber = null;
+
+  currentHook = null;
+  nextCurrentHook = null;
+  firstWorkInProgressHook = null;
+  workInProgressHook = null;
+  nextWorkInProgressHook = null;
+
+
+  remainingExpirationTime = NoWork;
+  componentUpdateQueue = null;
+  sideEffectTag = 0;
+
+  didScheduleRenderPhaseUpdate = false;
+  renderPhaseUpdates = null;
+  numberOfReRenders = 0;
+}
+
+function renderWithHooks (current, workInProgress, Component, props, refOrContext) {
+  currentlyRenderingFiber = workInProgress;
+  nextCurrentHook = current !== null ? current.memoizedState : null;
+
+  const children = Component(props, refOrContext);
+
+  ReactCurrentDispatcher.current = ContextOnlyDispatcher;
+
+  const renderedWork = currentlyRenderingFiber;
+
+  renderedWork.memoizedState = firstWorkInProgressHook;
+  renderedWork.updateQueue = componentUpdateQueue;
+  renderedWork.effectTag |= sideEffectTag;
+  renderedWork.statusTag = WORKING;
+
+  const didRenderTooFewHooks = currentHook !== null && currentHook.next !== null;
+  currentlyRenderingFiber = null;
+
+  currentHook = null;
+  nextCurrentHook = null;
+  firstWorkInProgressHook = null;
+  workInProgressHook = null;
+  nextWorkInProgressHook = null;
+
+  componentUpdateQueue = null;
+  sideEffectTag = 0;
+
+  return children;
+}
+
+function isContextProvider(type) {
+  if (disableLegacyContext) {
+    return false;
+  } else {
+    const childContextTypes = type.childContextTypes;
+    return childContextTypes !== null && childContextTypes !== undefined;
+  }
+}
+
+function mountIndeterminateComponent(current,  workInProgress) {
   const Component = workInProgress.type;
   if (current !== null) {
     current.alternate = null;
@@ -577,50 +683,25 @@ function mountIndeterminateComponent(
     context = getMaskedContext(workInProgress, unmaskedContext);
   }
 
-  debugger;
-
   // prepareToReadContext(workInProgress);
   let value;
+  
+  ReactCurrentOwner.current = workInProgress;
+  value = renderWithHooks(null, workInProgress, Component, props, context);
 
-  {
-    if (Component.prototype && typeof Component.prototype.render === 'function') {
-      var componentName = getComponentName(Component) || 'Unknown';
+  workInProgress.effectTag |= PERFORMED_WORK;
 
-      if (!didWarnAboutBadClass[componentName]) {
-        warningWithoutStack$1(false, "The <%s /> component appears to have a render method, but doesn't extend React.Component. " + 'This is likely to cause errors. Change %s to extend React.Component instead.', componentName, componentName);
-        didWarnAboutBadClass[componentName] = true;
-      }
-    }
+  if (
+    typeof value === 'object' && 
+    value !== null && 
+    typeof value.render === 'function' && 
+    value.$$typeof === undefined
+  ) {
+    workInProgress.tag = CLASS_COMPONENT;
 
-    if (workInProgress.mode & StrictMode) {
-      ReactStrictModeWarnings.recordLegacyContextWarning(workInProgress, null);
-    }
-
-    ReactCurrentOwner$3.current = workInProgress;
-    value = renderWithHooks(null, workInProgress, Component, props, context, renderExpirationTime);
-  }
-  // React DevTools reads this flag.
-  workInProgress.effectTag |= PerformedWork;
-
-  if (typeof value === 'object' && value !== null && typeof value.render === 'function' && value.$$typeof === undefined) {
-    {
-      var _componentName = getComponentName(Component) || 'Unknown';
-      if (!didWarnAboutModulePatternComponent[_componentName]) {
-        warningWithoutStack$1(false, 'The <%s /> component appears to be a function component that returns a class instance. ' + 'Change %s to a class that extends React.Component instead. ' + "If you can't use a class try assigning the prototype on the function as a workaround. " + "`%s.prototype = React.Component.prototype`. Don't use an arrow function since it " + 'cannot be called with `new` by React.', _componentName, _componentName, _componentName);
-        didWarnAboutModulePatternComponent[_componentName] = true;
-      }
-    }
-
-    // Proceed under the assumption that this is a class instance
-    workInProgress.tag = ClassComponent;
-
-    // Throw out any hooks that were used.
     resetHooks();
 
-    // Push context providers early to prevent context stack mismatches.
-    // During mounting we don't know the child context yet as the instance doesn't exist.
-    // We will invalidate the child context in finishClassComponent() right after rendering.
-    var hasContext = false;
+    let hasContext = false;
     if (isContextProvider(Component)) {
       hasContext = true;
       pushContextProvider(workInProgress);
@@ -630,33 +711,19 @@ function mountIndeterminateComponent(
 
     workInProgress.memoizedState = value.state !== null && value.state !== undefined ? value.state : null;
 
-    var getDerivedStateFromProps = Component.getDerivedStateFromProps;
+    const getDerivedStateFromProps = Component.getDerivedStateFromProps;
     if (typeof getDerivedStateFromProps === 'function') {
       applyDerivedStateFromProps(workInProgress, Component, getDerivedStateFromProps, props);
     }
 
     adoptClassInstance(workInProgress, value);
-    mountClassInstance(workInProgress, Component, props, renderExpirationTime);
+    mountClassInstance(workInProgress, Component, props);
     return finishClassComponent(null, workInProgress, Component, true, false);
   } else {
-    // Proceed under the assumption that this is a function component
-    workInProgress.tag = FunctionComponent;
-    {
-      if (disableLegacyContext && Component.contextTypes) {
-        warningWithoutStack$1(false, '%s uses the legacy contextTypes API which is no longer supported. ' + 'Use React.createContext() with React.useContext() instead.', getComponentName(Component) || 'Unknown');
-      }
+    workInProgress.tag = FUNCTION_COMPONENT;
+   
+    reconcileChildren(null, workInProgress, value);
 
-      if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
-        // Only double-render components with Hooks
-        if (workInProgress.memoizedState !== null) {
-          value = renderWithHooks(null, workInProgress, Component, props, context, renderExpirationTime);
-        }
-      }
-    }
-    reconcileChildren(null, workInProgress, value, renderExpirationTime);
-    {
-      validateFunctionComponentInDev(workInProgress, Component);
-    }
     return workInProgress.child;
   }
 }
@@ -664,24 +731,27 @@ function mountIndeterminateComponent(
 function updateHostRoot (current, workInProgress) {
   // todo
   // pushHostRootContext(workInProgress);
-
-  const rootRender = workInProgress.rootRender;
-
   const updateQueue = workInProgress.updateQueue;
-  const nextProps = workInProgress.pendingProps;
+
+  const pendingProps = workInProgress.pendingProps;
+  const memoizedState = workInProgress.memoizedState;
+  const children = memoizedState !== null ? memoizedState.element : null;
   
-  processUpdateQueue(workInProgress, updateQueue, nextProps, null);
-  
-  const state = workInProgress.memoizedState;
+  processUpdateQueue(
+    workInProgress,
+    updateQueue,
+    pendingProps,
+    null,
+  );
+
   const nextState = workInProgress.memoizedState;
-  const children = state === null ?  state.element : null;
   const nextChildren = nextState.element;
 
   if (children === nextChildren) {
-    cloneChildFibers(current, workInProgress);
-  } else {
-    reconcileChildren(current, workInProgress, nextChildren);
+    return bailoutOnAlreadyFinishedWork(current, workInProgress);
   }
+
+  reconcileChildren(current, workInProgress, nextChildren);
 
   return workInProgress.child;
 }

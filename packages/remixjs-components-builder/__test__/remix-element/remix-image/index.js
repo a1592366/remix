@@ -19,6 +19,7 @@ export default class RemixImage extends React.Component {
 		onAnimationEnd: PropTypes.string,
 		onLoad: PropTypes.string,
 		onError: PropTypes.string,
+		parent: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		src: PropTypes.string,
@@ -44,6 +45,7 @@ export default class RemixImage extends React.Component {
 		onAnimationEnd: null,
 		onLoad: null,
 		onError: null,
+		parent: null,
 		style: null,
 		className: null,
 		src: null,
@@ -125,9 +127,9 @@ export default class RemixImage extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onLoad, onError, style, className, src, mode, webp, lazyLoad, showMenuByLongpress } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onLoad, onError, parent, style, className, src, mode, webp, lazyLoad, showMenuByLongpress } = this.props;
 
-    return <image onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onLoad={onLoad ? 'onLoad' : ''} onError={onError ? 'onError' : ''} style={style} className={className} src={src} mode={mode} webp={webp} lazyLoad={lazyLoad} showMenuByLongpress={showMenuByLongpress}></image>;
+    return <image onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onLoad={onLoad ? 'onLoad' : ''} onError={onError ? 'onError' : ''} parent={parent} style={style} className={className} src={src} mode={mode} webp={webp} lazyLoad={lazyLoad} showMenuByLongpress={showMenuByLongpress}></image>;
   }
 }
 

@@ -66,7 +66,7 @@ export default class ViewEventManager {
     }
   }
 
-  onDispatch = (type, uuid, e) => {
+  onDispatch = (type, uuid, parentId, e) => {
     const { timeStamp, target } = e;
     const id = e.target.id;
     const element = document.findElement(id);

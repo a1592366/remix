@@ -20,29 +20,17 @@ export default function setInitialDOMProperties (
         }
 
         setValueForStyles(element, nextProp);
-      } else if (propName === DANGEROUSLY_SET_INNER_HTML) {
-        const nextHtml = nextProp ? 
-          nextProp[HTML] : 
-          undefined;
-
-        if (!isNullOrUndefined(nextHtml)) {
-          setInnerHTML(element, nextHtml);
-        }
       } else if (propName === CHILDREN) {
-        if (isString(nextProp)) {
+        if (typeof nextProp === 'string') {
           const canSetTextContent = tag !== 'textarea' || nextProp !== '';
   
           if (canSetTextContent) {
             setTextContent(element, nextProp);
           }
-        } else if (isNumber(nextProp)) {
+        } else if (typeof nextProp === 'number') {
           setTextContent(element, String(nextProp));
         }
-      } else if (registrationNameModules.hasOwnProperty(propName)) {
-        if (isNullOrUndefined(nextProp)) {
-          ensureListeningTo(rootContainerElement, propName);
-        }
-      } else if (!isNullOrUndefined(nextProp)) {
+      } else if (nextProp !== null) {
         setValueForProperty(element, propName, nextProp);
       }
     }

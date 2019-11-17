@@ -67,7 +67,26 @@ export default class Index extends ViewController {
           </Menus.Item>
 
           <Menus.Item name="行程" key="schedule">
-            <View className="index__schedule"></View>
+            <View className="index__schedule">
+              <ScrollView>
+                <View className="test">
+                  <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />
+                  
+                  <Picker mode="date">
+                    OH
+                  </Picker>
+                  
+                  <Swiper duration={1000} interval={1000} indicatorDots>
+                    <Swiper.SwiperItem>
+                      <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />    
+                    </Swiper.SwiperItem>
+                    <Swiper.SwiperItem>
+                      <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />    
+                    </Swiper.SwiperItem>
+                  </Swiper>
+                </View>
+              </ScrollView>
+            </View>
           </Menus.Item>
 
           <Menus.Item name="关于" key="about">

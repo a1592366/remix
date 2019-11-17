@@ -1,5 +1,4 @@
 import { DOCUMENT_NODE } from '../../shared/HTMLNodeType';
-import { isString } from '../../shared/is';
 
 function getOwnerDocumentFromRootContainer (
   rootContainerElement
@@ -17,7 +16,7 @@ export default function createElement (
   const ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
   let element;
 
-  if (isString(props.is)) {
+  if (typeof props.is === 'string') {
     element = ownerDocument.createElemeent(type, { is: props.is });
   } else {
     element = ownerDocument.createElemeent(type);

@@ -50,7 +50,8 @@ export const VIEW = defineNotificationTypes('view', {
   READY: 'ready',
   SHOW: 'show',
   HIDE: 'hide',
-  EVENT: 'event'
+  EVENT: 'event',
+  LIFECYCLE: 'lifecycle'
 });
 
 export const API = defineNotificationTypes('api', {

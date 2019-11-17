@@ -1,6 +1,13 @@
 import { REPLACE_STATE, FORCE_UPDATE, UPDATE_STATE } from '../shared/updateTags';
 import { PLACEMENT } from '../shared/effectTags';
 import { HOST_ROOT } from '../shared/workTags';
+import { 
+  createUpdate, 
+  enqueueUpdate 
+} from './updateQueue';
+import { scheduleWork } from './index';
+import { WORKING } from '../shared/statusTags';
+import { SYNC } from '../shared/renderTags';
 
 export const [ MOUNTING, MOUNTED, UNMOUNTED ] = [1, 2, 3];
 
@@ -34,6 +41,7 @@ export default {
   
     return false;
   },
+
   enqueueSetState (inst, payload, callback) {
     const fiber = inst._reactInternalFiber;
     
@@ -44,9 +52,12 @@ export default {
       update.callback = callback;
     }
 
+    fiber.statusTag = WORKING;
+
     enqueueUpdate(fiber, update);
     scheduleWork(fiber);
   },
+
   enqueueReplaceState (inst, payload, callback) {
     const fiber = inst._reactInternalFiber;
     const update = createUpdate();
@@ -62,8 +73,10 @@ export default {
     //   flushPassiveEffects();
     // }
 
+    fiber.statusTag = WORKING;
+
     enqueueUpdate(fiber, update);
-    scheduleWork(fiber);
+    scheduleWork(fiber, SYNC);
   },
 
   enqueueForceUpdate (inst, callback) {
@@ -75,6 +88,8 @@ export default {
     if (callback !== undefined && callback !== null) {
       update.callback = callback;
     }
+
+    fiber.statusTag = WORKING;
 
     enqueueUpdate(fiber, update);
     scheduleWork(fiber);

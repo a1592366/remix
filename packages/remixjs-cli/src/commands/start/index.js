@@ -18,7 +18,6 @@ async function watch () {
     await inspect.start();
   }
 
-
   watcher.on('change', async (file) => {
     if (file === env.PROJ_ENTRY) {
       const { result: context } = await rpc.getContext();

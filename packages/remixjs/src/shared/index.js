@@ -24,12 +24,10 @@ export const EMPTY_REFS = {};
 export const EXPIRE_TIME = 0;
 
 
-export const NO_WORK = 0;
-export const WORKING = 1;
-
 export function noop () {}
 export const assign = Object.assign;
 export const keys = Object.keys;
+export const is = Object.is;
 
 export function shouldSetTextContent (type, props) {
   // todo

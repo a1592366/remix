@@ -203,54 +203,46 @@ const properties = {
 
 
 class StyleSheet {
-  constructor () {
-    this.string = '';
+  constructor (host) {
     this.sheet = {};
     this.isChanged = false;
+    this.host = host;
+  }
+
+  update (propName, key, value) {
+    const { sheet } = this;
+    const data = sheet[key] || (
+      sheet[key] = [
+        properties[key], 
+        value 
+      ]
+    );
+
+    if (data[1] !== value) {
+      data[1] = value;
+      this.host.binding()
+    }
   }
 
   toString () {
-    if (this.isChanged) {
-      const names = getOwnPropertyNames(this.sheet);
-      this.string = names.map(name => {
-        const value = this.sheet[name];
+    const names = getOwnPropertyNames(this.sheet);
+    return names.map(name => {
+      const value = this.sheet[name];
 
-        return value.join(':')
-      }).join(';');
-
-      this.isChanged = false;
-    }
-
-    return this.string;
+      return value.join(':')
+    }).join(';');
   }
 }
 
-export default function () {
-  const style = new StyleSheet();
+export default function (host) {
+  const style = new StyleSheet(host);
 
   return new Proxy(style, {
-    get (target, key) {
-      return target[key];
-    },
+    get (target, key) { return target[key] },
     
     set (target, key, value) {
       if (properties[key]) {
-        const data = style.sheet[key];
-        if (data) {
-          if (data[1] !== value) {
-            data[1] = value;
-          }
-
-          style.isChanged = true;
-        } else {
-          style.sheet[key] = [
-            properties[key], value 
-          ];
-          
-          style.isChanged = true;
-        }
-      } else {
-        style[key] = value;
+        style.update(properties[key], key, value);
       }
 
       return true;

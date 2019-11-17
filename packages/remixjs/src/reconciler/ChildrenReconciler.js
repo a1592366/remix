@@ -37,7 +37,9 @@ function deleteRemainingChildren (returnFiber, currentFirstChild, shouldTrackSid
     }
 
     return null;
-  }
+  } 
+
+  return null;
 }
 
 function placeChild (newFiber, lastPlacedIndex, newIndex, shouldTrackSideEffects) {
@@ -332,7 +334,6 @@ export default function ChildrenReconciler (shouldTrackSideEffects) {
       return placeSingleChild(reconcileSingleTextNode(returnFiber, currentFirstChild, '' + newChild), shouldTrackSideEffects);
     // 如果是数组
     } else if (isArray(newChild)) {
-      debugger;
       return reconcileChildrenArray(returnFiber, currentFirstChild, newChild);
     }
 

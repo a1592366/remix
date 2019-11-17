@@ -6,13 +6,26 @@
 <% } else if (name === 'root') { %>
   <remix-view child="{{element.child}}" <%- props %>  />
 <% } else { %>
+
+<% if (tagName === 'swiper-item' || tagName === 'picker-view-column') { %>
+<import src="../deep-remix-worker.wxml" />
+<% } else { %>
+<import src="../inner-remix-worker.wxml" />
+<% } %>
+
 <template name="<%= name %>">
 <<%=tagName %> 
   <%- props %>
 >
   <% if (openComponent) { %>
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
+  <block wx:elif="{{child}}">
+  <% if (tagName === 'swiper-item' || tagName === 'picker-view-column') { %>
+  <template is="deep-remix-worker" data="{{ element: child }}" />
+  <% } else { %>
+  <template is="inner-remix-worker" data="{{ element: child }}" />
+  <% } %>
+  </block>
   <% } %>
 </<%=tagName %>>
 </template>  

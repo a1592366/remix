@@ -9,7 +9,7 @@ export function cloneChildFibers (current, workInProgress) {
     // 首选先之间对 child workInProgress 创新新的对象，然后在对 slibing 创建
     // 为 workInProgress 创建新的child workInProgress
     let child = workInProgress.child;
-    let newChild = createWorkInProgress(child, child.penddingProps);
+    let newChild = createWorkInProgress(child, child.pendingProps);
 
     // 设置 workInProgress 之间关系
     workInProgress.child = newChild;
@@ -19,7 +19,7 @@ export function cloneChildFibers (current, workInProgress) {
       child = child.sibling;
       newChild = newChild.sibling = createWorkInProgress(
         child,
-        child.penddingProps
+        child.pendingProps
       );
 
       newChild.return = workInProgress;

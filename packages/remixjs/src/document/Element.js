@@ -3,10 +3,12 @@ import globalElements from './globalElements';
 import document from './document';
 
 
+import Updater from './Updater';
 
-
-export default class Element {
+export default class Element extends Updater {
   constructor () {
+    super();
+
     this.uuid = uuid();
     this.tagName = null;
     this.nodeType = null;

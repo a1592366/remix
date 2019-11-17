@@ -5,7 +5,8 @@ import PropTypes from '../../../react/PropTypes';
 export default class RemixText extends React.Component {
   
   static propTypes = {
-    style: PropTypes.string,
+    parent: PropTypes.string,
+		style: PropTypes.string,
 		className: PropTypes.string,
 		selectable: PropTypes.bool,
 		space: PropTypes.bool,
@@ -14,7 +15,8 @@ export default class RemixText extends React.Component {
   };
 
   static defaultProps = {
-    style: null,
+    parent: null,
+		style: null,
 		className: null,
 		selectable: false,
 		space: false,
@@ -25,9 +27,9 @@ export default class RemixText extends React.Component {
   
 
   render () {
-    const { style, className, selectable, space, decode } = this.props;
+    const { parent, style, className, selectable, space, decode } = this.props;
 
-    return <text style={style} className={className} selectable={selectable} space={space} decode={decode}>{this.props.children}</text>;
+    return <text parent={parent} style={style} className={className} selectable={selectable} space={space} decode={decode}>{this.props.children}</text>;
   }
 }
 

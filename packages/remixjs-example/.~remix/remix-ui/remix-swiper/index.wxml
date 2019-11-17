@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="swiper">
 <swiper 
   bind:touchstart="{{onTouchStart}}"
@@ -18,6 +23,7 @@
 	child="{{child}}"
 	innerText="{{innerText}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	indicator-dots="{{indicatorDots}}"
@@ -37,7 +43,11 @@
 >
   
   <block wx:if="{{innerText}}">{{innerText}}</block>
-  <block wx:elif="{{child}}"><template is="inner-remix-worker" data="{{ ...child }}" /></block>
+  <block wx:elif="{{child}}">
+  
+  <template is="inner-remix-worker" data="{{ element: child }}" />
+  
+  </block>
   
 </swiper>
 </template>  

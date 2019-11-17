@@ -10,6 +10,17 @@ const Item = function () {}
 export default class Menus extends Component {
   static Item = Item;
 
+  static getDerivedStateFromProps (nextProps, state) {
+
+    if (nextProps.current !== state.activedKey) {
+      return {
+        activedKey: nextProps.current
+      }
+    }
+    
+    return null;
+  }
+
   state = {
     activedKey: this.props.current
   }
@@ -17,13 +28,10 @@ export default class Menus extends Component {
   onMenuItemClick = (key) => {
     const { onChange } = this.props;
 
-    debugger;
-
     if (key !== this.state.activedKey) {
       this.setState({
         activedKey: key
       }, () => {
-        debugger;
         onChange(key)
       });
     }
@@ -59,8 +67,7 @@ export default class Menus extends Component {
       }
     });
 
-
-    const left = (activedIndex + 1) * (100 / (children.length * 2)) + '%';
+    const left = (activedIndex * 2 + 1) * (100 / (children.length * 2)) + '%';
   
     return (
       <View className="index__menus-tabs">
@@ -99,6 +106,7 @@ export default class Menus extends Component {
   }
 
   render () {
+
     return (
       <View className="index__menus">
         {this.headerRender()}

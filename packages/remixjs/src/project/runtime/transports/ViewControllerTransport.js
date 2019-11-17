@@ -10,8 +10,20 @@ export default class ViewControllerTransport  extends Tunnel {
     this.on(VIEW, this.onMessage);
   }
 
-  dispatch () {
-    debugger;
+  dispatch (type, id, parentId, e) {
+    if (id) {
+      this.post(VIEW.EVENT, [type, id, parentId, e]);
+    }
+  }
+
+  callLifecycle (type, id, parentId, view) {
+    if (id) {
+      this.post(VIEW.LIFECYCLE, [type, id, parentId, {
+        __wxExparserNodeId__: view.__wxExparserNodeId__,
+        __wxWebviewId__: view.__wxWebviewId__,
+        data: view.data,
+      }]);
+    }
   }
 
   post = (type, argv, callback) => {
@@ -48,5 +60,13 @@ export default class ViewControllerTransport  extends Tunnel {
 
   onReady (callback) {
     this.on(VIEW.READY, callback);
+  }
+
+  onDispatch (callback) {
+    this.on(VIEW.EVENT, callback);
+  }
+
+  onLifecycle (callback) {
+    this.on(VIEW.LIFECYCLE, callback);
   }
 }

@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="map">
 <map 
   bind:touchstart="{{onTouchStart}}"
@@ -21,6 +26,7 @@
 	bindregionchange="{{onRegionChange}}"
 	bindpoitap="{{onPoiTap}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	longitude="{{longitude}}"

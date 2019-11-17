@@ -1,27 +1,31 @@
+
+
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 
 class App extends React.Component {
   state = {
-    className: 'a'
+    active: false
   }
 
   onClick = () => {
-    debugger;
     this.setState({
-      className: 'b'
+      active: !this.state.active
     })
   }
 
   render () {
+    const { active } = this.state;
+
     return (
       <div>
-        <div onClick={this.onClick} className={this.state.className}>a</div>
-        <div>b</div>
+        <div className={active ? 'classA active' : 'classA'} onClick={this.onClick}>classA</div>
+        <div className={active ? 'claassB ': 'classB active'}>classB</div>
       </div>
-    )
+    );
   }
 }
 
-render(<App />, document.body)
+
+ReactDOM.render(<App />, document.body)

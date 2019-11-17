@@ -41,6 +41,7 @@ keys(components).forEach(key => {
 
   component.properties = [
     { name: 'uuid', type: 'String', defaultValue: 'null' },
+    { name: 'parent', type: 'String', defaultValue: 'null' },
     { name: 'style', type: 'String', defaultValue: 'null' },
     { name: 'className', type: 'String', defaultValue: 'null' }
   ].concat(component.properties).map(prop => {
@@ -117,7 +118,7 @@ async function buildWXML (dist, components) {
   await Promise.all(names.map(name => {
     const data = components[name];
     const events = (data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events)).map(event => {
-      return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
+      return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, this.data.parent, e); }`
     }).join(',\n\t\t');
 
     const properties = data.name === 'root' ? 
@@ -197,7 +198,7 @@ async function buildViewAndText (dist, components) {
   await Promise.all(names.map(name => {
     const data = components[name];
     const events = (data.name === 'root' ? baseEvents : (data.name === 'text' ? [] : baseEvents).concat(data.events)).map(event => {
-      return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, e); }`
+      return `${event.name} (e) { transports.view.dispatch('${event.name}', this.data.uuid, this.data.parent, e); }`
     }).join(',\n\t\t');
 
     const properties = data.name === 'root' ? 
@@ -316,7 +317,7 @@ async function buildJS(dist, components) {
 async function buildWorkWXML (dist) {
   const builder = new Builder(
     path.resolve(__dirname, 'fixed'),
-    ['inner-remix-worker.wxml', 'remix-worker.wxml', 'remix-slibings.wxs'],
+    ['inner-remix-worker.wxml', 'remix-worker.wxml', 'deep-remix-worker.wxml', 'remix-slibings.wxs'],
   );
 
   const names = keys(components);

@@ -15,11 +15,10 @@ export default function diffProperties(
 
   // 删去 props 更新
   for (propKey in lastProps) {
-    if (
-      !nextProps.hasOwnProperty(propKey) ||
-      lastProps.hasOwnProperty(propKey) ||
-      lastProps[propKey] === null
-    ) {
+    if (!(nextProps.hasOwnProperty(propKey) ||
+      !lastProps.hasOwnProperty(propKey) ||
+      lastProps[propKey] === null  
+    )) {
 
       if (propKey === STYLE) {
         const lastStyle = lastProps[propKey];
@@ -43,14 +42,14 @@ export default function diffProperties(
     const nextProp = nextProps[propKey];
     const lastProp = lastProps !== null ? lastProps[propKey] : undefined;
 
-    if (
-      nextProps.hasOwnProperty(propKey) ||
-      nextProp !== lastProp ||
-      (nextProp !== null && lastProp !== null)
-    ) {
+    if (!(
+      !nextProps.hasOwnProperty(propKey) ||
+      nextProp === lastProp ||
+      (nextProp === null && lastProp === null)
+    )) {
       if (propKey === STYLE) {
         if (lastProp) {
-          for (styleName in lastProp) {
+          for (let styleName in lastProp) {
             if (lastProp.hasOwnProperty(styleName) && (!nextProp || !nextProp.hasOwnProperty(styleName))) {
               if (!styleUpdates) {
                 styleUpdates = {};
@@ -59,7 +58,7 @@ export default function diffProperties(
             }
           }
 
-          for (styleName in nextProp) {
+          for (let styleName in nextProp) {
             if (nextProp.hasOwnProperty(styleName) && lastProp[styleName] !== nextProp[styleName]) {
               if (!styleUpdates) {
                 styleUpdates = {};
@@ -97,6 +96,10 @@ export default function diffProperties(
         (updatePayload = updatePayload || []).push(propKey, nextProp);
       }
     }
+  }
+
+  if (styleUpdates) {
+    (updatePayload = updatePayload || []).push(STYLE, styleUpdates);
   }
 
   return updatePayload;

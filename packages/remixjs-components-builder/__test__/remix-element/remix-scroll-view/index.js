@@ -20,6 +20,7 @@ export default class RemixScrollView extends React.Component {
 		onScrollToUpper: PropTypes.string,
 		onScrollToLower: PropTypes.string,
 		onScroll: PropTypes.string,
+		parent: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		scrollX: PropTypes.bool,
@@ -52,6 +53,7 @@ export default class RemixScrollView extends React.Component {
 		onScrollToUpper: null,
 		onScrollToLower: null,
 		onScroll: null,
+		parent: null,
 		style: null,
 		className: null,
 		scrollX: false,
@@ -144,9 +146,9 @@ export default class RemixScrollView extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onScrollToUpper, onScrollToLower, onScroll, style, className, scrollX, scrollY, upperThreshold, lowerThreshold, scrollTop, scrollLeft, scrollIntoView, scrollWithAnimation, enableBackToTop, enableFlex, scrollAnchoring } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onScrollToUpper, onScrollToLower, onScroll, parent, style, className, scrollX, scrollY, upperThreshold, lowerThreshold, scrollTop, scrollLeft, scrollIntoView, scrollWithAnimation, enableBackToTop, enableFlex, scrollAnchoring } = this.props;
 
-    return <scroll-view onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onScrollToUpper={onScrollToUpper ? 'onScrollToUpper' : ''} onScrollToLower={onScrollToLower ? 'onScrollToLower' : ''} onScroll={onScroll ? 'onScroll' : ''} style={style} className={className} scrollX={scrollX} scrollY={scrollY} upperThreshold={upperThreshold} lowerThreshold={lowerThreshold} scrollTop={scrollTop} scrollLeft={scrollLeft} scrollIntoView={scrollIntoView} scrollWithAnimation={scrollWithAnimation} enableBackToTop={enableBackToTop} enableFlex={enableFlex} scrollAnchoring={scrollAnchoring}>{this.props.children}</scroll-view>;
+    return <scroll-view onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onScrollToUpper={onScrollToUpper ? 'onScrollToUpper' : ''} onScrollToLower={onScrollToLower ? 'onScrollToLower' : ''} onScroll={onScroll ? 'onScroll' : ''} parent={parent} style={style} className={className} scrollX={scrollX} scrollY={scrollY} upperThreshold={upperThreshold} lowerThreshold={lowerThreshold} scrollTop={scrollTop} scrollLeft={scrollLeft} scrollIntoView={scrollIntoView} scrollWithAnimation={scrollWithAnimation} enableBackToTop={enableBackToTop} enableFlex={enableFlex} scrollAnchoring={scrollAnchoring}>{this.props.children}</scroll-view>;
   }
 }
 

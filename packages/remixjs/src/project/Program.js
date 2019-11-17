@@ -37,7 +37,6 @@ export default class Program {
     
         const rootContainer = container._reactRootContainer;
         const currentFiber = rootContainer._internalRoot.current;
-
         let node = currentFiber;
 
         while (true) {

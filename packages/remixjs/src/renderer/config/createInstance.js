@@ -6,12 +6,11 @@ export default function createInstance (
   type,
   props,
   rootContainerInstance,
-  context,
   workInProgress
 ) {
   const { children } = props;
   const document = rootContainerInstance.ownerDocument;
-  const element = document.createElement(type, props, rootContainerInstance);
+  const element = document.createElement(type);
 
   element[INTERNAL_INSTANCE_KEY] = workInProgress;
   element[INTERNAL_EVENT_HANDLERS_KEY] = props;

@@ -10,7 +10,7 @@ function resolveDefaultProps (
     const props = {};
     
     for (let propName in defaultProps) {
-      if (isUndefined(unresolvedProps[propName])) {
+      if (unresolvedProps[propName] === undefined) {
         props[propName] = defaultProps[propName];
       } else {
         props[propName] = unresolvedProps[propName];
@@ -28,7 +28,7 @@ export default class HTMLElement extends Element {
     super();
 
     this.tagName = tagName;
-    this.style = new StyleSheet();
+    this.style = new StyleSheet(this);
   }
 
   set innerHTML (innerHTML) {
@@ -36,25 +36,52 @@ export default class HTMLElement extends Element {
   }
 
   appendChild (child) {
-    if (isNullOrUndefined(this.child)) {
+    if (this.child === null) {
       this.child = this.lastChild = child;
     } else {
       this.lastChild.slibing = child;
       this.lastChild = child;
     }    
 
+    child.parent = this.uuid;
     child.return = this;
   }
 
   removeChild (child) {
+    let node = this.child;
+    let prevNode = null;
 
+    while (node) {
+      if (child === node) {
+         if (node === this.child) {
+          this.child = node.slibing;
+         } else {
+          prevNode.slibing = node.slibing;
+         }
+      }
+
+      prevNode = node;
+      node = node.slibing;
+    }
+  }
+
+  insertBefore (child, beforeChild) {
+    child.return = this;
+    child.slibing = beforeChild;
+
+    child.parent = this.uuid;
+
+    if (beforeChild === this.child) {
+      this.child = child;
+    }
   }
 
   getAttribute (name) {
     return this[name];
   }
+
   setAttribute (name, value) {
-    this[name] = value;
+    this.proxy[name] = value;
   }
 
   removeAttribute (name) {
@@ -92,6 +119,7 @@ export default class HTMLElement extends Element {
     element.tagName = this.tagName;
     element.uuid = this.uuid;
     element.nodeType = this.nodeType;
+    element.parent = this.parent;
 
     return element;
   }

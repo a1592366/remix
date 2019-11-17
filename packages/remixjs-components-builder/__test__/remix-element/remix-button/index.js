@@ -23,6 +23,7 @@ export default class RemixButton extends React.Component {
 		onOpenSetting: PropTypes.string,
 		onLaunchApp: PropTypes.string,
 		onError: PropTypes.string,
+		parent: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		size: PropTypes.string,
@@ -65,6 +66,7 @@ export default class RemixButton extends React.Component {
 		onOpenSetting: null,
 		onLaunchApp: null,
 		onError: null,
+		parent: null,
 		style: null,
 		className: null,
 		size: 'default',
@@ -179,9 +181,9 @@ export default class RemixButton extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onGetUserInfo, onContact, onGetPhoneNumber, onOpenSetting, onLaunchApp, onError, style, className, size, type, plain, disabled, loading, formType, openType, hoverClass, hoverStopPropagation, hoverStartTime, hoverStayTime, lang, sessionFrom, sendMessageTitle, sendMessagePath, sendMessageImg, appParameter, showMessageCard } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onGetUserInfo, onContact, onGetPhoneNumber, onOpenSetting, onLaunchApp, onError, parent, style, className, size, type, plain, disabled, loading, formType, openType, hoverClass, hoverStopPropagation, hoverStartTime, hoverStayTime, lang, sessionFrom, sendMessageTitle, sendMessagePath, sendMessageImg, appParameter, showMessageCard } = this.props;
 
-    return <button onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onGetUserInfo={onGetUserInfo ? 'onGetUserInfo' : ''} onContact={onContact ? 'onContact' : ''} onGetPhoneNumber={onGetPhoneNumber ? 'onGetPhoneNumber' : ''} onOpenSetting={onOpenSetting ? 'onOpenSetting' : ''} onLaunchApp={onLaunchApp ? 'onLaunchApp' : ''} onError={onError ? 'onError' : ''} style={style} className={className} size={size} type={type} plain={plain} disabled={disabled} loading={loading} formType={formType} openType={openType} hoverClass={hoverClass} hoverStopPropagation={hoverStopPropagation} hoverStartTime={hoverStartTime} hoverStayTime={hoverStayTime} lang={lang} sessionFrom={sessionFrom} sendMessageTitle={sendMessageTitle} sendMessagePath={sendMessagePath} sendMessageImg={sendMessageImg} appParameter={appParameter} showMessageCard={showMessageCard}>{this.props.children}</button>;
+    return <button onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onGetUserInfo={onGetUserInfo ? 'onGetUserInfo' : ''} onContact={onContact ? 'onContact' : ''} onGetPhoneNumber={onGetPhoneNumber ? 'onGetPhoneNumber' : ''} onOpenSetting={onOpenSetting ? 'onOpenSetting' : ''} onLaunchApp={onLaunchApp ? 'onLaunchApp' : ''} onError={onError ? 'onError' : ''} parent={parent} style={style} className={className} size={size} type={type} plain={plain} disabled={disabled} loading={loading} formType={formType} openType={openType} hoverClass={hoverClass} hoverStopPropagation={hoverStopPropagation} hoverStartTime={hoverStartTime} hoverStayTime={hoverStayTime} lang={lang} sessionFrom={sessionFrom} sendMessageTitle={sendMessageTitle} sendMessagePath={sendMessagePath} sendMessageImg={sendMessageImg} appParameter={appParameter} showMessageCard={showMessageCard}>{this.props.children}</button>;
   }
 }
 

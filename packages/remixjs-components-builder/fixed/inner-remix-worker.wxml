@@ -9,7 +9,7 @@
 
 <template name="inner-slibings">
   <block wx:for="{{getSlibings(element)}}" wx:key="uuid" wx:for-item="slibing">
-    <template is="selection" data="{{ element: slibing }}" />
+    <template is="inner-selection" data="{{ element: slibing }}" />
   </block>
 </template>
 

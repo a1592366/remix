@@ -1,4 +1,9 @@
 
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
 <template name="input">
 <input 
   bind:touchstart="{{onTouchStart}}"
@@ -19,6 +24,7 @@
 	bindconfirm="{{onConfirm}}"
 	bindkeyboardheightchange="{{onKeyboardHeightChange}}"
 	id="{{uuid}}"
+	parent="{{parent}}"
 	style="{{style}}"
 	class="{{className}}"
 	value="{{value}}"

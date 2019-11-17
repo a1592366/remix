@@ -14,6 +14,13 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "调试REMIXJS命令",
+      "cwd": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime",
+      "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js",
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "调试START命令",
       "cwd": "${workspaceFolder}/packages/remixjs-example",
       "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"

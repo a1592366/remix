@@ -21,7 +21,7 @@ export default function updateDOMProperties (
     } else if (propKey === CHILDREN) {
       setTextContent(element, propValue);
     } else {
-      setValueForProperty(element, propKey, propValue, isCustomComponentTag);
+      setValueForProperty(element, propKey, propValue);
     }
   }
 }

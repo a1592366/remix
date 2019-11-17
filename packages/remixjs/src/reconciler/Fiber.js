@@ -6,11 +6,10 @@ import { NO_EFFECT } from '../shared/effectTags';
 export function createWorkInProgress (current, pendingProps) {
   let { alternate: workInProgress } = current;
 
-  if (isNull(workInProgress)) {
+  if (workInProgress === null) {
     const { 
       tag,
       key,
-
       type,
       elementType,
       stateNode
@@ -25,6 +24,9 @@ export function createWorkInProgress (current, pendingProps) {
   } else {
     workInProgress.pendingProps = pendingProps;
     workInProgress.effectTag = NO_EFFECT;
+    workInProgress.nextEffect = null;
+    workInProgress.firstEffect = null;
+    workInProgress.lastEffect = null;
   }
 
   const { 
@@ -32,13 +34,13 @@ export function createWorkInProgress (current, pendingProps) {
     memoizedProps, 
     memoizedState, 
     updateQueue, 
+    statusTag,
     sibling,
-    status,
     index,
     ref,
   } = current;
 
-  workInProgress.status = status;
+  workInProgress.statusTag = statusTag;
   workInProgress.child = child;
   workInProgress.memoizedProps = memoizedProps;
   workInProgress.memoizedState = memoizedState;
@@ -124,12 +126,16 @@ function createFiberNode (tag, pendingProps, key) {
     index: 0,
     
     ref: null,
-    pendingProps,
+    pendingProps: pendingProps || null,
     memoizedProps: null,
     memoizedState: null,
     updateQueue: null,
 
     effectTag: NO_EFFECT,
+
+    firstEffect: null,
+    lastEffect: null,
+    nextEffect: null,
 
     alternate: null
   }
