@@ -1,0 +1,28 @@
+
+.component__text-input {
+  border: 2rpx solid rgb(192, 151, 99);
+  border-radius: 92rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  color: rgb(255, 255, 255);
+  font-size: 30rpx;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.component__text-input-label {
+  color: rgb(129, 129, 129);
+  font-size: 24px;
+}
+
+.component__text-input-area {
+  flex: 1;
+  padding: 0 46rpx;
+}
+
+.component__text-input_disabled {
+  border: 2rpx solid rgb(129, 129, 129);
+}

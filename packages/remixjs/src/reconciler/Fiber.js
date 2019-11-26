@@ -19,6 +19,7 @@ export function createWorkInProgress (current, pendingProps) {
     workInProgress.elementType = elementType;
     workInProgress.type = type;
     workInProgress.stateNode = stateNode;
+    
     workInProgress.alternate = current;
     current.alternate = workInProgress;
   } else {

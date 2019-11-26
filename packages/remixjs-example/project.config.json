@@ -15,8 +15,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.0",
-	"appid": "wx3ce645f632f26623",
-	"projectname": "remixjs-example",
+	"appid": "wxb4d25c38beb1938e",
+	"projectname": "macau-film-festival",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -38,7 +38,9 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				"wxdcd3d073e47d1742"
+			]
 		}
 	}
 }

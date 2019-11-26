@@ -1,0 +1,58 @@
+
+
+
+<import src="../inner-remix-worker.wxml" />
+
+
+<template name="scroll-view">
+<scroll-view 
+  bind:touchstart="{{onTouchStart}}"
+	bind:touchmove="{{onTouchMove}}"
+	bind:touchcancel="{{onTouchCancel}}"
+	bind:touchend="{{onTouchEnd}}"
+	bind:tap="{{onTap}}"
+	bind:longpress="{{onLongPress}}"
+	bind:longtap="{{onLongTap}}"
+	bind:touchforcechange="{{onTouchForceChange}}"
+	bind:transitionend="{{onTransitionEnd}}"
+	bind:animationstart="{{onAnimationStart}}"
+	bind:animationiteration="{{onAnimationIteration}}"
+	bind:animationend="{{onAnimationEnd}}"
+	bindscrolltoupper="{{onScrollToUpper}}"
+	bindscrolltolower="{{onScrollToLower}}"
+	bindscroll="{{onScroll}}"
+	child="{{child}}"
+	innerText="{{innerText}}"
+	id="{{uuid}}"
+	parent="{{parent}}"
+	style="{{style}}"
+	class="{{className}}"
+	scroll-x="{{scrollX}}"
+	scroll-y="{{scrollY}}"
+	upper-threshold="{{upperThreshold}}"
+	lower-threshold="{{lowerThreshold}}"
+	scroll-top="{{scrollTop}}"
+	scroll-left="{{scrollLeft}}"
+	scroll-into-view="{{scrollIntoView}}"
+	scroll-with-animation="{{scrollWithAnimation}}"
+	enable-back-to-top="{{enableBackToTop}}"
+	enable-flex="{{enableFlex}}"
+	scroll-anchoring="{{scrollAnchoring}}"
+>
+  
+  <block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+  
+  <template is="inner-remix-worker" data="{{ element: child }}" />
+  
+  </block>
+  
+</scroll-view>
+</template>  
+
+
+
+
+
+
+

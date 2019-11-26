@@ -1,6 +1,7 @@
 import render from '../../renderer';
 import { document } from '../../document';
-import { createElement } from '../../react';
+import React, { createElement } from '../../react';
+import { View } from '../../components';
 
 export default class ViewController {
   constructor (id, route) {
@@ -14,10 +15,15 @@ export default class ViewController {
   onLoad (query, callback) {
     const { component, render: r } = this.route;
 
+    // const rendered = render(
+    //   createElement(() => 
+    //     <View className="root">{createElement(component || r)}</View>
+    //   ),
+    //   this.container
+    // );
+
     const rendered = render(
-      createElement(
-        component || r
-      ),
+      createElement(component || r),
       this.container
     );
 

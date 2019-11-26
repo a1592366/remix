@@ -354,8 +354,6 @@ async function buildWorkWXML (dist) {
         });
 
         if (data.name !== 'text') {
-          
-
           props = props.concat(baseEvents.map((event) => {
             const key = data.name === 'root' ? event.camel : event.alias;
 

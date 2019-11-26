@@ -1,0 +1,71 @@
+.sign-in {
+  background: url(//m.muwu.info/mini-program/images/sign-in_background.png?x-oss-process=image/resize,m_lfit,w_750/quality,q_90) center top no-repeat rgb(223, 184, 184);
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  color: rgb(186, 151, 105);
+}
+
+.sign-in__header {
+  background: url(//m.muwu.info/mini-program/images/sign-in_header.png?x-oss-process=image/resize,m_lfit,w_750/quality,q_90) center top no-repeat;
+  background-size: contain;
+  height: 580rpx;
+  width: 700rpx;
+  margin: 180rpx 0 0 auto;
+}
+
+.sign-in__loading {
+  text-align: center;
+  font-size: 26rpx;
+  margin-top: 50rpx;
+}
+
+.sign-in__tips {
+  position: absolute;
+  bottom: 100rpx;
+  width: 100%;
+  font-size: 26rpx;
+  text-align: center;
+  display: none;
+}
+
+.sign-in__tips_visible {
+  display: block;
+}
+
+.sign-in_button {
+  margin: 50rpx;
+}
+
+.sign-in__form {
+  margin: 0 70rpx;
+}
+
+.sign-in__row {
+  margin-bottom: 40rpx;
+}
+
+.sign-in__protocol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: rgb(127, 127, 127);
+}
+
+.sign-in__protocol-checkbox {
+  border: 1rpx solid rgb(186, 151, 105);
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+}
+
+.sign-in__protocol-checkbox_checked {
+  background: rgb(186, 151, 105);
+}
+
+.sign-in__protocol-link {
+  text-decoration: underline;
+  color: rgb(186, 151, 105);
+}

@@ -1,105 +1,4 @@
 
-.index__menus {
-
-}
-
-.index__menus-tabs {
-  height: 80rpx;
-  margin: 0 40rpx;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.index__menus-tabs-inner {
-  display: flex;
-}
-
-.index__menus-tabs-line {
-  position: absolute;
-  height: 4rpx;
-  width: 15%;
-  background-color: rgb(189, 169, 80);
-  bottom: 0;
-  transform: translateX(-50%);
-  transition: left .5s;
-}
-
-.index__menu-item-tab {
-  flex: 1;
-  font-size: 30rpx;
-  text-align: center;
-  color: rgb(212, 212, 212);
-  line-height: 80rpx;
-  position: relative;
-}
-
-
-
-.index__menu-item-tab:active {
-  opacity: 0.7;
-}
-
-.index__menu-item-tab::after {
-  content: "";
-  background-color: rgb(102, 103, 103);
-  position: absolute;
-  height: 30%;
-  top: 50%;
-  right: 0;
-  width: 2rpx;
-  transform: translate(0, -50%);
-}
-
-.index__menu-item-tab:last-child::after {
-  display: none;
-}
-
-.index__menu-item-tab_active {
-  color: rgb(189, 169, 80);
-  position: relative;
-}
-
-.index__menu-item-content {
-  display: none;
-}
-
-.index__menu-item-content_active {
-  display: block;
-}
-.index__movies-card {
-  margin-bottom: 30rpx;
-}
-
-.index__movies-card:active {
-  opacity: .7;
-}
-
-.index__movies-card-cover {
-  border-radius: 32rpx;
-  height: 310rpx;
-  background: rgb(23, 23, 18);
-  box-shadow: 0 10rpx 50rpx rgba(0, 0, 0, .3);
-  overflow: hidden;
-}
-
-
-.index__movies-card-cover-image {
-  height: 100%;
-  width: 100%;
-}
-
-
-.index__movies-card-meta {
-  margin-top: 30rpx;
-  font-size: 24rpx;
-  color: rgb(180, 180, 180);
-}
-
-.index__movies-card-name {
-  font-size: 30rpx;
-  font-weight: 500;
-  color: rgb(0, 0, 0);
-}
 .index {
   background-color: rgb(13, 10, 9);
 }
@@ -117,8 +16,155 @@
   height: 100%;
   width: 100%;
 }
-page {
+
+.component__button {
+  background: rgb(192, 151, 99);
+  border: 2rpx solid rgb(192, 151, 99);
+  border-radius: 92rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  color: rgb(255, 255, 255);
+  font-size: 30rpx;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.component__button::after {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
 }
 
+.component__button:active::after {
+  background: rgba(0, 0, 0, .05);
+  display: block;
+}
 
+.component__button_transparent {
+  background: transparent;  
+  color: rgb(192, 151, 99);
+}
+
+.component__text-input {
+  border: 2rpx solid rgb(192, 151, 99);
+  border-radius: 92rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  color: rgb(255, 255, 255);
+  font-size: 30rpx;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.component__text-input-label {
+  color: rgb(129, 129, 129);
+  font-size: 24px;
+}
+
+.component__text-input-area {
+  flex: 1;
+  padding: 0 46rpx;
+}
+
+.component__text-input_disabled {
+  border: 2rpx solid rgb(129, 129, 129);
+}
+.sign-in {
+  background: url(//m.muwu.info/mini-program/images/sign-in_background.png?x-oss-process=image/resize,m_lfit,w_750/quality,q_90) center top no-repeat rgb(223, 184, 184);
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  color: rgb(186, 151, 105);
+}
+
+.sign-in__header {
+  background: url(//m.muwu.info/mini-program/images/sign-in_header.png?x-oss-process=image/resize,m_lfit,w_750/quality,q_90) center top no-repeat;
+  background-size: contain;
+  height: 580rpx;
+  width: 700rpx;
+  margin: 180rpx 0 0 auto;
+}
+
+.sign-in__loading {
+  text-align: center;
+  font-size: 26rpx;
+  margin-top: 50rpx;
+}
+
+.sign-in__tips {
+  position: absolute;
+  bottom: 100rpx;
+  width: 100%;
+  font-size: 26rpx;
+  text-align: center;
+  display: none;
+}
+
+.sign-in__tips_visible {
+  display: block;
+}
+
+.sign-in_button {
+  margin: 50rpx;
+}
+
+.sign-in__form {
+  margin: 0 70rpx;
+}
+
+.sign-in__row {
+  margin-bottom: 40rpx;
+}
+
+.sign-in__protocol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: rgb(127, 127, 127);
+}
+
+.sign-in__protocol-checkbox {
+  border: 1rpx solid rgb(186, 151, 105);
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+}
+
+.sign-in__protocol-checkbox_checked {
+  background: rgb(186, 151, 105);
+}
+
+.sign-in__protocol-link {
+  text-decoration: underline;
+  color: rgb(186, 151, 105);
+}
+page,
+remix-root,
+remix-view,
+.root {
+  height: 100%;
+  display: block;
+}
+
+
+button {
+  background: transparent!important;
+  padding: 0!important;
+}
+
+button[type=default],
+button[type=plain],
+button::before,
+button::after {
+  border: none!important;
+  border-radius:  0;
+}

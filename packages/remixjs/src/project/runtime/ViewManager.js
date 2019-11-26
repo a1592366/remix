@@ -1,13 +1,14 @@
 import ViewController from './ViewController';
 import { render } from '../../renderer';
 import { document } from '../../document';
+import { UPDATE_FREQUENCY } from '../../shared';
 import createElement from '../../react/createElement';
 import transports, { VIEW } from './transports';
 
 const lifecycleTypes = {
   ATTACHED: 'attached',
   DETACHED: 'detached'
-}
+};
 
 export default class ViewManager {
   constructor (context) {
@@ -41,7 +42,9 @@ export default class ViewManager {
         this.views[id] = view;
         const element = document.findElement(id);
 
+        console.log(element.classNaame, id);
         if (element) {
+          console.log(element, id);
           element.binding = () => {
             const uuid = element.return.uuid;
             const child = element.return.serialize();

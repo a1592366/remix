@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { ScrollView, View, Image, Text, Button, Map, Picker, Swiper, Video } from 'remixjs/components';
 import { ViewController } from 'remixjs/components';
 
-import Menus from './components/Menus';
-import Card from './components/Card';
+import graphql from '../../common/graphql';
 
 import './index.css';
+
+const setUser = graphql(`
+  mutation setUser($user: InputOfUser!) {
+    setUser(user: $user) {
+      nickname
+      avatar
+    }
+  }
+`);
 
 export default class Index extends ViewController {
   config = {
@@ -23,23 +31,35 @@ export default class Index extends ViewController {
     })
   }
 
-  headerRender () {
-    return (
-      <View className="index__header">
-        <Video 
-          loop
-          autoplay
-          objectFit
-          controls={false}
-          showPlayButton={false}
-          showCenterPlayButton={false}
-          showProgress={false}
-          showMuteButton={false}
-          className="index__video" 
-          src="http://f.video.weibocdn.com/001Npztxlx07y7EjSeUg01041200g3Xe0E010.mp4?label=mp4_hd&template=852x480.25.0&trans_finger=62b30a3f061b162e421008955c73f536&Expires=1572458748&ssig=KGBVxAVrS0&KID=unistore,video" />
-      </View>
-    );
+  onGetUserInfo = (res) => {
+    const { detail } = res;
+    const { 
+      encryptedData: encrypted,
+      rawData: raw, 
+      userInfo: userinfo, 
+      signature, 
+      errMsg,
+      iv, 
+    } = detail;
+
+    if (errMsg === 'getUserInfo:ok') {
+      setUser({
+        user: {
+          iv,
+          raw,
+          encrypted,
+          signature
+        }
+      }).then(res => {
+
+      }).catch(err => {
+
+      })
+    } else {
+
+    }
   }
+
 
 
   contentRender () {
@@ -47,52 +67,7 @@ export default class Index extends ViewController {
 
     return (
       <View className="index__content">
-        <Menus current={current} onChange={this.onChange}>
-          <Menus.Item name="影片" key="movies">
-            <View className="index__movies">
-              <Card 
-                name="少年的你"
-                cover={'https://p1.meituan.net/movie/7b437e3a0d08d10e374ddc34f71b88fe3379132.jpg'} 
-                tags={['爱情', '青春', '剧情']} 
-                like={`10万`}
-              />
 
-              <Card 
-                name="终结者：黑暗命运"
-                cover={'http://p1.meituan.net/movie/b932f7f678a3e28763b3b281b3e120ef13622509.jpg'} 
-                tags={['动作', '科幻', '冒险']} 
-                like={`50万`}
-              />
-            </View>
-          </Menus.Item>
-
-          <Menus.Item name="行程" key="schedule">
-            <View className="index__schedule">
-              <ScrollView>
-                <View className="test">
-                  <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />
-                  
-                  <Picker mode="date">
-                    OH
-                  </Picker>
-                  
-                  <Swiper duration={1000} interval={1000} indicatorDots>
-                    <Swiper.SwiperItem>
-                      <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />    
-                    </Swiper.SwiperItem>
-                    <Swiper.SwiperItem>
-                      <Image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572124226102&di=883185b2cb48a83c536e7f550913eba0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F19%2F20180119072554_fpope.jpg" />    
-                    </Swiper.SwiperItem>
-                  </Swiper>
-                </View>
-              </ScrollView>
-            </View>
-          </Menus.Item>
-
-          <Menus.Item name="关于" key="about">
-            <View className="index__about"></View>
-          </Menus.Item>
-        </Menus>
       </View>
     );
   }
@@ -100,7 +75,6 @@ export default class Index extends ViewController {
   render () {
     return (
       <View className="index">
-        {this.headerRender()}
         {this.contentRender()}
       </View>
     );

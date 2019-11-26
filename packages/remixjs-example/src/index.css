@@ -1,4 +1,21 @@
-page {
+page,
+remix-root,
+remix-view,
+.root {
   height: 100%;
+  display: block;
 }
 
+
+button {
+  background: transparent!important;
+  padding: 0!important;
+}
+
+button[type=default],
+button[type=plain],
+button::before,
+button::after {
+  border: none!important;
+  border-radius:  0;
+}

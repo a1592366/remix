@@ -3,7 +3,7 @@ import Tunnel from '../tunnel';
 import { APPLICATION } from './types';
 import { isFunction } from '../../../shared/is';
 
-export default class ApplicationTransport extends Tunnel {
+export default class ApplicationTransportNative extends Tunnel {
   constructor () {
     super();
   }

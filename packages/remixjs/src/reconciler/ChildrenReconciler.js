@@ -292,14 +292,14 @@ function reconcileSingleTextNode(returnFiber, currentFirstChild, textContent) {
   return created;
 }
 
-function reconcileSingleElement(returnFiber, currentFirstChild, element) {
+function reconcileSingleElement(returnFiber, currentFirstChild, element, shouldTrackSideEffects) {
   let key = element.key;
   let child = currentFirstChild;
   while (child !== null) {
     if (child.key === key) {
-      if (child.type === element.type) {
+      if (child.elementType === element.type) {
         // if we had a child we use exactly it
-        deleteRemainingChildren(returnFiber, child.sibling);
+        deleteRemainingChildren(returnFiber, child.sibling, shouldTrackSideEffects);
         let existing = useFiber(child, element.props);
         existing.return = returnFiber;
         return existing
@@ -325,7 +325,7 @@ export default function ChildrenReconciler (shouldTrackSideEffects) {
     // 如果是 react element
     if (isObject) {
       if (newChild.$$typeof) {
-        return placeSingleChild(reconcileSingleElement(returnFiber, currentFirstChild, newChild), shouldTrackSideEffects);
+        return placeSingleChild(reconcileSingleElement(returnFiber, currentFirstChild, newChild, shouldTrackSideEffects), shouldTrackSideEffects);
       }
     // 如果是文本
     }

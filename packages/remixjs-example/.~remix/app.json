@@ -1,17 +1,16 @@
 {
   "tabBar": {
-    "color": "#000000",
-    "backgroundColor": "#ffffff",
-    "selectedColor": "#333333",
+    "color": "#5d4e36",
+    "backgroundColor": "#000000",
+    "selectedColor": "#bb976c",
+    "borderStyle": "white",
     "children": [
       {
         "key": null,
         "ref": null,
         "props": {
-          "path": "pages/Explore/index",
-          "icon": "./static/images/me.png",
-          "selectedIcon": "./static/images/me_selected.png",
-          "children": "发现"
+          "path": "pages/User/SignIn/index",
+          "children": "日程"
         },
         "_owner": null
       },
@@ -19,36 +18,57 @@
         "key": null,
         "ref": null,
         "props": {
-          "path": "pages/User/index",
-          "icon": "./static/images/explore.png",
-          "selectedIcon": "./static/images/explore_selected.png",
-          "children": "我"
+          "path": "pages/Explore/index",
+          "children": "媒体发布"
+        },
+        "_owner": null
+      },
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/Explore/index",
+          "children": "媒体资料"
+        },
+        "_owner": null
+      },
+      {
+        "key": null,
+        "ref": null,
+        "props": {
+          "path": "pages/Explore/index",
+          "children": "关于"
         },
         "_owner": null
       }
     ],
     "list": [
       {
-        "text": "发现",
-        "pagePath": "pages/Explore/index",
-        "iconPath": "./static/images/me.png",
-        "selectedIconPath": "./static/images/me_selected.png"
+        "text": "日程",
+        "pagePath": "pages/User/SignIn/index"
       },
       {
-        "text": "我",
-        "pagePath": "pages/User/index",
-        "iconPath": "./static/images/explore.png",
-        "selectedIconPath": "./static/images/explore_selected.png"
+        "text": "媒体发布",
+        "pagePath": "pages/Explore/index"
+      },
+      {
+        "text": "媒体资料",
+        "pagePath": "pages/Explore/index"
+      },
+      {
+        "text": "关于",
+        "pagePath": "pages/Explore/index"
       }
     ]
   },
   "pages": [
+    "pages/User/SignIn/index",
     "pages/Explore/index",
     "pages/User/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#000000",
     "navigationStyle": "custom"
-  },
-  "sitemapLocation": "sitemap21.json"
+  }
 }

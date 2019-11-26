@@ -1,5 +1,5 @@
 import { request } from 'requestidlecallback';
-import { HOST_ROOT, HOST_COMPONENT, HOST_TEXT, FUNCTION_COMPONENT, CLASS_COMPONENT, INDETERMINATE_COMPONENT } from '../shared/workTags';
+import { HOST_ROOT, HOST_COMPONENT, HOST_TEXT, FUNCTION_COMPONENT, CLASS_COMPONENT, INDETERMINATE_COMPONENT, CONTEXT_CONSUMER, CONTEXT_PROVIDER } from '../shared/workTags';
 import { EXPIRE_TIME, EMPTY_REFS, EMPTY_CONTEXT } from '../shared';
 import { PERFORMED, PLACEMENT, UPDATE, PERFORMED_WORK, REF, SNAPSHOT, INCOMPLETE, NO_EFFECT, CONTENT_RESET } from '../shared/effectTags';
 import { NO_WORK, WORKING } from '../shared/statusTags';
@@ -164,7 +164,64 @@ function beginWork (current, workInProgress) {
     case FUNCTION_COMPONENT: {
       return updateFunctionComponent(current, workInProgress);
     }
+
+    case CONTEXT_CONSUMER: {
+      return updateContextConsumer(current, workInProgress);
+    }
+
+    case CONTEXT_PROVIDER: {
+      return updateContextProvider(current, workInProgress);
+    }
   }
+}
+
+function updateContextConsumer (current, workInProgress) {
+  const context = workInProgress.type;
+  const newProps = workInProgress.pendingProps;
+  const render = newProps.children;
+
+  const newValue = readContext(context, newProps.unstable_observedBits);
+  let newChildren;
+  
+  ReactCurrentOwner.current = workInProgress;
+  newChildren = render(newValue);
+
+  workInProgress.effectTag |= PERFORMED_WORK;
+  reconcileChildren(current, workInProgress, newChildren);
+  
+  return workInProgress.child;
+}
+
+function updateContextProvider (current, workInProgress) {
+  const providerType = workInProgress.type;
+  const context = providerType._context;
+
+  const newProps = workInProgress.pendingProps;
+  const oldProps = workInProgress.memoizedProps;
+
+  const newValue = newProps.value;
+  context._currentValue = newValue;
+  
+  pushProvider(workInProgress, newValue);
+
+  if (oldProps !== null) {
+    var oldValue = oldProps.value;
+    var changedBits = calculateChangedBits(context, newValue, oldValue);
+    if (changedBits === 0) {
+      // No change. Bailout early if children are the same.
+      if (oldProps.children === newProps.children && !hasContextChanged()) {
+        return bailoutOnAlreadyFinishedWork(current$$1, workInProgress, renderExpirationTime);
+      }
+    } else {
+      // The context value changed. Search for matching consumers and schedule
+      // them to update.
+      propagateContextChange(workInProgress, context, changedBits, renderExpirationTime);
+    }
+  }
+
+  var newChildren = newProps.children;
+  reconcileChildren(current$$1, workInProgress, newChildren, renderExpirationTime);
+  return workInProgress.child;
 }
 
 function updateHostComponent (current, workInProgress) {

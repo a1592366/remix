@@ -1,0 +1,32 @@
+
+.component__button {
+  background: rgb(192, 151, 99);
+  border: 2rpx solid rgb(192, 151, 99);
+  border-radius: 92rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  color: rgb(255, 255, 255);
+  font-size: 30rpx;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.component__button::after {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.component__button:active::after {
+  background: rgba(0, 0, 0, .05);
+  display: block;
+}
+
+.component__button_transparent {
+  background: transparent;  
+  color: rgb(192, 151, 99);
+}

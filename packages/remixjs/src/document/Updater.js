@@ -31,6 +31,7 @@ export default class Updater {
   }
 
   onDefaultChange = (propName, value) => {
+    console.log(this, this.className)
     if (this.binding) {
       this.binding()
     }

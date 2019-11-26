@@ -2,55 +2,53 @@
 
 import React from 'react';
 
-import { Application } from 'remixjs/components';
+import { Application, TabBar } from 'remixjs/components';
 import { Router, Route } from 'remixjs/router';
-import { TabBar } from 'remixjs/components';
+import { transports } from 'remixjs/project';
+
 
 import User from './pages/User';
 import Explore from './pages/Explore';
+import SignIn from './pages/User/SignIn';
 
-import me from './static/images/me.png';
-import meSelected from './static/images/me_selected.png';
-import explore from './static/images/explore.png';
-import exploreSelected from './static/images/explore_selected.png';
 
 import './index.css';
 
 const { TabBarItem } = TabBar;
 
+
 export default () => {
+  const onLaunch = () => {
+    // transports.api.hideTabBar({
+    //   animation: true
+    // });
+  }
 
   return <Application
     config={{
       navigationBarBackgroundColor: '#000000',
+      backgroundColor: '#000000',
       navigationStyle: 'custom'
     }}
 
-    onLaunch={(options) => {
-    }}
+    onLaunch={onLaunch}
   >
     <Router>
+      <Route path="pages/User/SignIn/index" component={SignIn} />
       <Route path="pages/Explore/index" component={Explore} />
       <Route path="pages/User/index" component={User} />
     </Router>
 
     <TabBar
-      selectedColor={'#333333'}
+      color="#5d4e36"
+      selectedColor="#bb976c"
+      backgroundColor="#000000"
+      borderStyle="white"
     >
-      <TabBarItem 
-        path="pages/Explore/index"
-        icon={me}
-        selectedIcon={meSelected}
-      >
-        发现
-      </TabBarItem>
-      <TabBarItem 
-        path="pages/User/index"
-        icon={explore}
-        selectedIcon={exploreSelected}
-      >
-        我
-      </TabBarItem>
+      <TabBarItem path="pages/User/SignIn/index">日程</TabBarItem>
+      <TabBarItem path="pages/Explore/index">媒体发布</TabBarItem>
+      <TabBarItem path="pages/Explore/index">媒体资料</TabBarItem>
+      <TabBarItem path="pages/Explore/index">关于</TabBarItem>
     </TabBar>
   </Application>
 }

@@ -26,7 +26,7 @@ class EventObject {
   constructor (event) {
     this.__original_event__ = event;
 
-    const { type, touches, timeStamp, changedTouches } = event;
+    const { type, detail, touches, timeStamp, changedTouches } = event;
 
     this.type = type;
     this.touches = touches;
@@ -34,6 +34,7 @@ class EventObject {
     this.changedTouches = changedTouches;
     this.bubbles = bubbleEvent.includes(this.type);
     this.cancelBubble = false;
+    this.detail = detail;
   }
 
   stopPropagation () {

@@ -1,0 +1,1 @@
+<import src="../../../remix-ui/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>

@@ -55,12 +55,30 @@ export const VIEW = defineNotificationTypes('view', {
 });
 
 export const API = defineNotificationTypes('api', {
+  LOGIN: 'login',
   REQUEST: 'request',
   NAVIGATE_TO: 'navigateTo',
   NAVIGATE_BACK: 'navigateBack',
+  // storage
+  GET_STORAGE: 'getStorage',
+  GET_STORAGE_SYNC: 'getStorageSync',
+  SET_STORAGE: 'setStorage',
+  SET_STORAGE_SYNC: 'setStorageSync',
+  GET_STORAGE_INFO: 'getStorageInfo',
+  GET_STORAGE_INFO_SYNC: 'getStorageInfoSync',
+  REMOVE_STORAGE: 'removeStorage',
+  REMOVE_STORAGE_SYNC: 'removeStorageSync',
+  CLEAR_STORAGE: 'clearStorage',
+  CLEAR_STORAGE_SYNC: 'clearStorageSync',
+
+  // socket
   CONNECT_SOCKET: 'connectSocket',
   SOCKET_OPEN: 'socketOpen',
-  SOCKET_MESSAGE: 'socketMessage'
+  SOCKET_MESSAGE: 'socketMessage',
+
+  // ui
+  SHOW_TABBAR: 'showTabBar',
+  HIDE_TABBAR: 'hideTabBar'
 });
 
 export const COMMON = defineNotificationTypes('common', {

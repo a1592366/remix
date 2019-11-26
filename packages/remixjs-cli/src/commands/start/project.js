@@ -69,10 +69,11 @@ class Project {
   }
 
   async updateApplicationJSON () {
+    const tabBar = this.tabBar;
     await fs.writeFile(
       path.resolve(env.REMIX_SOURCE, 'app.json'),
       JSON.stringify({
-        tabBar: this.tabBar,
+        tabBar: tabBar.list.length === 0 ? undefined : tabBar,
         pages: this.pages,
         window: this.context.config,
       }, null, 2)
@@ -92,13 +93,11 @@ class Project {
         const json = path.resolve(dist, `${parsed.base}.json`);
 
         await fs.mkdirp(dist);
-
-        
         await fs.writeFile(filename, `
 import { View } from 'remixjs/project';
 new View('${page}');`
         );
-        await fs.writeFile(xml, `<import src="../../${env.REMIX_UI_NAME}/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
+        await fs.writeFile(xml, `<import src="${path.relative(dist, env.REMIX_SOURCE)}/${env.REMIX_UI_NAME}/remix-worker.wxml" /><block wx:if="{{element}}"><template is="remix-worker" data="{{element}}" /></block>`);
         await fs.writeFile(json, JSON.stringify({
           usingComponents: {
             'remix-root': `../../${env.REMIX_UI_NAME}/remix-root/index`,

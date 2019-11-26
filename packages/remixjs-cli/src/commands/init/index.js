@@ -54,7 +54,7 @@ async function installDependencies (answers) {
       });
     });
 
-    console.green(`项目创建完成， enjoy remixjs!`); 
+    logger.green(`项目创建完成， enjoy remixjs!`); 
   }
 }
 
@@ -90,10 +90,10 @@ async function getContext () {
     await template.render({
       ...answers,
       name: path.parse(env.PROJ).name,
-      compile: ''
+      compile: env.REMIX_SOURCE
     });
 
-    await XMLBuilder.build(env.PROJ_XML);
+    // await XMLBuilder.build(env.PROJ_XML);
 
     await installDependencies(answers);
   } else {

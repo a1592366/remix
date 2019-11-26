@@ -23,6 +23,8 @@ export const EMPTY_CONTEXT = {};
 export const EMPTY_REFS = {};
 export const EXPIRE_TIME = 0;
 
+export const UPDATE_FREQUENCY = 10;
+
 
 export function noop () {}
 export const assign = Object.assign;
@@ -53,13 +55,13 @@ export function shallowEqual (
     return false;
   }
 
-  const length = objectA.length;
+  const length = keysA.length;
 
   for (let i = 0; i < length; i++) {
     const key = keysA[i];
 
     if (
-      !objectA.hasOwnProperty(key) || 
+      !objectB.hasOwnProperty(key) || 
       !is(objectA[key], objectB[key])
     ) {
       return false;

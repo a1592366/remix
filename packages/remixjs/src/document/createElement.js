@@ -10,6 +10,7 @@ import HTMLSwiperItemElement from './HTMLSwiperItemElement';
 import HTMLSwiperElement from './HTMLSwiperElement';
 import HTMLRootElement from './HTMLRootElement';
 import HTMLVideoElement from './HTMLVideoElement';
+import HTMLInputElement from './HTMLInputElement';
 
 export default function createElement (tagName) {
   let element;
@@ -17,6 +18,10 @@ export default function createElement (tagName) {
   switch (tagName) {
     case ROOT: {
       return new HTMLRootElement();
+    }
+
+    case INPUT: {
+      return new HTMLInputElement();
     }
 
     case IMAGE: {
