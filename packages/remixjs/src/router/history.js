@@ -3,19 +3,8 @@ import { getWindow } from '../react/util';
 export var modeObject = {};
 //伪造一个Location对象
 function getLocation(source) {
-    const location = {
-        getPath() {
-            return modeObject.value === 'hash' ? this.hash.slice(1) : this.pathname;
-        },
-        state: source.history.state,
-        key: (source.history.state && source.history.state.key) || 'initial'
-    };
-    for (const key in source.location) {
-        if (Object.prototype.hasOwnProperty.call(source.location, key)) {
-            location[key] = source.location[key];
-        }
-    }
-    return location;
+    
+    return {}
 }
 
 //伪造一个History对象

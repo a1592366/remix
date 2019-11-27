@@ -1,6 +1,5 @@
-import render from '../../renderer';
 import { document } from '../../document';
-import React, { createElement } from '../../react';
+import React, { createElement, render } from '../../renderer';
 import { View } from '../../components';
 
 export default class ViewController {

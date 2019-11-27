@@ -1,6 +1,6 @@
 import { returnFalse, isMounted, extend, gDSFP, gSBU } from '../react/util';
-import { Component } from '../react/Component';
 import { Renderer } from '../react/createRenderer';
+import Component from '../react/Component';
 
 export function UpdateQueue() {
     return {
