@@ -124,12 +124,21 @@ export default class Index extends ViewController {
   getUserInfomation = () => {
     getUser().then(res => {
       const { getUser } = res.data;
+
+      debugger;
+
       this.setState({
         user: getUser,
         isDataLoaded: true
       });
     }).catch(err => {
       // debugger;
+    })
+  }
+
+  onAgree = () => {
+    this.setState({
+      agreed: !this.state.agreed
     })
   }
 
@@ -207,12 +216,15 @@ export default class Index extends ViewController {
   render () {
     const { isDataLoaded } = this.state;
 
+    debugger;
+
     return (
       <View className="sign-in">
         <View className="sign-in__header"></View>
         <View className="sign-in__body">
+
           {
-            !isDataLoaded ? 
+            isDataLoaded ? 
               this.contentRender() : <Loading />
           }
 
