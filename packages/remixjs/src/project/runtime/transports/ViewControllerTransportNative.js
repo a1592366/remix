@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
 import { VIEW } from './types';
-import { isFunction } from '../../../shared/is';
 import { document } from '../../../document'
 
 export default class ViewControllerTransportNative  extends Tunnel {

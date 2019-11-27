@@ -1,4 +1,4 @@
-import React from '../../../react';
+import React from '../../../renderer';
 import PropTypes from '../../../react/PropTypes';
 
 
@@ -22,6 +22,7 @@ export default class RemixInput extends React.Component {
 		onBlur: PropTypes.string,
 		onConfirm: PropTypes.string,
 		onKeyboardHeightChange: PropTypes.string,
+		parent: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		value: PropTypes.string,
@@ -63,6 +64,7 @@ export default class RemixInput extends React.Component {
 		onBlur: null,
 		onConfirm: null,
 		onKeyboardHeightChange: null,
+		parent: null,
 		style: null,
 		className: null,
 		value: null,
@@ -172,9 +174,9 @@ export default class RemixInput extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onInput, onFocus, onBlur, onConfirm, onKeyboardHeightChange, style, className, value, type, password, placeholder, placeholderStyle, placeholderClass, disabled, maxlength, cursorSpacing, autoFocus, focus, confirmType, confirmHold, cursor, selectionStart, selectionEnd, adjustPosition, holdKeyboard } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onInput, onFocus, onBlur, onConfirm, onKeyboardHeightChange, parent, style, className, value, type, password, placeholder, placeholderStyle, placeholderClass, disabled, maxlength, cursorSpacing, autoFocus, focus, confirmType, confirmHold, cursor, selectionStart, selectionEnd, adjustPosition, holdKeyboard } = this.props;
 
-    return <input onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onInput={onInput ? 'onInput' : ''} onFocus={onFocus ? 'onFocus' : ''} onBlur={onBlur ? 'onBlur' : ''} onConfirm={onConfirm ? 'onConfirm' : ''} onKeyboardHeightChange={onKeyboardHeightChange ? 'onKeyboardHeightChange' : ''} style={style} className={className} value={value} type={type} password={password} placeholder={placeholder} placeholderStyle={placeholderStyle} placeholderClass={placeholderClass} disabled={disabled} maxlength={maxlength} cursorSpacing={cursorSpacing} autoFocus={autoFocus} focus={focus} confirmType={confirmType} confirmHold={confirmHold} cursor={cursor} selectionStart={selectionStart} selectionEnd={selectionEnd} adjustPosition={adjustPosition} holdKeyboard={holdKeyboard}></input>;
+    return <input onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onInput={onInput ? 'onInput' : ''} onFocus={onFocus ? 'onFocus' : ''} onBlur={onBlur ? 'onBlur' : ''} onConfirm={onConfirm ? 'onConfirm' : ''} onKeyboardHeightChange={onKeyboardHeightChange ? 'onKeyboardHeightChange' : ''} parent={parent} style={style} className={className} value={value} type={type} password={password} placeholder={placeholder} placeholderStyle={placeholderStyle} placeholderClass={placeholderClass} disabled={disabled} maxlength={maxlength} cursorSpacing={cursorSpacing} autoFocus={autoFocus} focus={focus} confirmType={confirmType} confirmHold={confirmHold} cursor={cursor} selectionStart={selectionStart} selectionEnd={selectionEnd} adjustPosition={adjustPosition} holdKeyboard={holdKeyboard}></input>;
   }
 }
 

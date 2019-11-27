@@ -1,28 +1,22 @@
-const shim = () => shim;
-
-shim.isRequired = shim;
+const seed = function () { return seed; };
+seed.isRequired = seed;
 
 const PropTypes = {
-  array: shim,
-  bool: shim,
-  func: shim,
-  number: shim,
-  object: shim,
-  string: shim,
-  any: shim,
-  arrayOf: shim,
-  element: shim,
-  instanceOf: shim,
-  node: shim,
-  objectOf: shim,
-  oneOf: shim,
-  oneOfType: shim,
-  shape: shim,
-  exact: shim,
-  PropTypes: {},
-  checkPropTypes: shim
+  array: seed,
+  bool: seed,
+  func: seed,
+  number: seed,
+  object: seed,
+  string: seed,
+  any: seed,
+  arrayOf: seed,
+  element: seed,
+  instanceOf: seed,
+  node: seed,
+  objectOf: seed,
+  oneOf: seed,
+  oneOfType: seed,
+  shape: seed
 };
-PropTypes.PropTypes = PropTypes;
 
-export { PropTypes };
 export default PropTypes;

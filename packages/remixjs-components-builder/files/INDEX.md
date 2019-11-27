@@ -1,4 +1,4 @@
-import React from '../../../react';
+import React from '../../../renderer';
 import PropTypes from '../../../react/PropTypes';
 <% if (name === 'swiper') {%>import SwiperItem from '../remix-swiper-item/index';<% } %>
 

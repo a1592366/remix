@@ -1,4 +1,4 @@
-import React from '../../../react';
+import React from '../../../renderer';
 import PropTypes from '../../../react/PropTypes';
 
 
@@ -21,6 +21,7 @@ export default class RemixPicker extends React.Component {
 		onError: PropTypes.string,
 		onChange: PropTypes.string,
 		onColumnChange: PropTypes.string,
+		parent: PropTypes.string,
 		style: PropTypes.string,
 		className: PropTypes.string,
 		mode: PropTypes.string,
@@ -52,6 +53,7 @@ export default class RemixPicker extends React.Component {
 		onError: null,
 		onChange: null,
 		onColumnChange: null,
+		parent: null,
 		style: null,
 		className: null,
 		mode: 'selector',
@@ -147,9 +149,9 @@ export default class RemixPicker extends React.Component {
 	}
 
   render () {
-    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onCancel, onError, onChange, onColumnChange, style, className, mode, disabled, range, rangeKey, value, start, end, fields, customItem } = this.props;
+    const { onTouchStart, onTouchMove, onTouchCancel, onTouchEnd, onTap, onLongPress, onLongTap, onTouchForceChange, onTransitionEnd, onAnimationStart, onAnimationIteration, onAnimationEnd, onCancel, onError, onChange, onColumnChange, parent, style, className, mode, disabled, range, rangeKey, value, start, end, fields, customItem } = this.props;
 
-    return <picker onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onCancel={onCancel ? 'onCancel' : ''} onError={onError ? 'onError' : ''} onChange={onChange ? 'onChange' : ''} onColumnChange={onColumnChange ? 'onColumnChange' : ''} style={style} className={className} mode={mode} disabled={disabled} range={range} rangeKey={rangeKey} value={value} start={start} end={end} fields={fields} customItem={customItem}>{this.props.children}</picker>;
+    return <picker onTouchStart={onTouchStart ? 'onTouchStart' : ''} onTouchMove={onTouchMove ? 'onTouchMove' : ''} onTouchCancel={onTouchCancel ? 'onTouchCancel' : ''} onTouchEnd={onTouchEnd ? 'onTouchEnd' : ''} onTap={onTap ? 'onTap' : ''} onLongPress={onLongPress ? 'onLongPress' : ''} onLongTap={onLongTap ? 'onLongTap' : ''} onTouchForceChange={onTouchForceChange ? 'onTouchForceChange' : ''} onTransitionEnd={onTransitionEnd ? 'onTransitionEnd' : ''} onAnimationStart={onAnimationStart ? 'onAnimationStart' : ''} onAnimationIteration={onAnimationIteration ? 'onAnimationIteration' : ''} onAnimationEnd={onAnimationEnd ? 'onAnimationEnd' : ''} onCancel={onCancel ? 'onCancel' : ''} onError={onError ? 'onError' : ''} onChange={onChange ? 'onChange' : ''} onColumnChange={onColumnChange ? 'onColumnChange' : ''} parent={parent} style={style} className={className} mode={mode} disabled={disabled} range={range} rangeKey={rangeKey} value={value} start={start} end={end} fields={fields} customItem={customItem}>{this.props.children}</picker>;
   }
 }
 

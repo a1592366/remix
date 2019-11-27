@@ -1,4 +1,3 @@
-import { isUndefined, isNullOrUndefined } from '../shared/is';
 import Element from './Element';
 import StyleSheet from './StyleSheet';
 
@@ -104,15 +103,15 @@ export default class HTMLElement extends Element {
 
     element.style = String(element.style);
 
-    if (!isNullOrUndefined(this.child)) {
+    if (this.child !== null) {
       element.child = this.child.serialize();
     }
 
-    if (!isNullOrUndefined(this.slibing)) {
+    if (this.slibing !== null) {
       element.slibing = this.slibing.serialize();
     }
 
-    if (!isNullOrUndefined(this.innerText)) {
+    if (this.innerText !== null) {
       element.innerText = this.innerText;
     }
 

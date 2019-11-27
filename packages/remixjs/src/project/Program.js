@@ -1,6 +1,4 @@
-import { isNullOrUndefined } from '../shared/is';
-import { createElement } from '../react';
-import { render } from '../renderer';
+ import { render, createElement } from '../renderer';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
 import terminal from './runtime/terminal';
@@ -75,13 +73,13 @@ export default class Program {
             }
           }
       
-          if (!isNullOrUndefined(node.child)) {
+          if (node.child !== null) {
             node = node.child;
             continue;
           }
       
-          while (isNullOrUndefined(node.sibling)) {
-            if (isNullOrUndefined(node.return)) {
+          while (node.sibling === null) {
+            if (node.return === null) {
               return context;
             }
       

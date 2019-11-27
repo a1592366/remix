@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
 import { API } from './types';
-import { isFunction } from '../../../shared/is';
 import createLogicSocket from './Classes/LogicSocket';
 
 const isSuccess = (data) => {
@@ -18,7 +17,7 @@ export default class APITransport extends Tunnel {
   }
 
   post = (type, argv, callback) => {
-    const callbackId = isFunction(callback) ? uuid.v4() : null
+    const callbackId = typeof callback === 'function' ? uuid.v4() : null
 
     if (callbackId) {
       this.once(callbackId, callback);

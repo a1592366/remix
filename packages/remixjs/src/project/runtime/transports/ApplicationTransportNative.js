@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 import Tunnel from '../tunnel';
 import { APPLICATION } from './types';
-import { isFunction } from '../../../shared/is';
 
 export default class ApplicationTransportNative extends Tunnel {
   constructor () {

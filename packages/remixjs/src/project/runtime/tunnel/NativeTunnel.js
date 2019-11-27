@@ -1,12 +1,11 @@
 import EventEmitter from 'events';
 import uuid from 'uuid';
-import { isFunction } from '../../../shared/is';
 
 
 export default class extends EventEmitter {
   onMessage = ({ type, argv, callback }) => {
     if (type) {
-      if (isFunction(callback)) {
+      if (typeof callback === 'function') {
         argv.push(callback);
       }
   

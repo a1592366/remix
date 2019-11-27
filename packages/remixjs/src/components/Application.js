@@ -1,7 +1,5 @@
-import { isNullOrUndefined } from '../shared/is';
-import { noop } from '../shared';
-import React from '../react';
-import cloneElement from '../react/cloneElement';
+import React from '../renderer';
+import { cloneElement } from '../react/createElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { forEach } from '../react/Children';
@@ -15,7 +13,7 @@ export default class Application extends Component {
   };
 
   static defaultProps = {
-    onLaunch: noop
+    onLaunch: () => {}
   };
 
   componentWillMount () {
@@ -43,7 +41,7 @@ export default class Application extends Component {
     const children = [];
     
     forEach(this.props.children, (child) => {
-      if (!isNullOrUndefined(child)) {
+      if (child !== null) {
         const { type } = child;
         if (type === Router || type === TabBar) {
           children.push(child);

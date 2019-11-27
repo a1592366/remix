@@ -1,36 +1,50 @@
-import {
-  isFunction, 
-} from '../shared/is';
-import {   
-  extend, 
-  clone, 
-  noop,
-  EMPTY_OBJECT 
-} from '../shared';
+import { toWarnDev, returnFalse,returnTrue, get } from './util';
+import { Renderer } from './createRenderer';
 
-export default class Component {
-  constructor (props, context, updater) {
-    if (!this.state) {
-      this.state = {};
-    }
-    this.props = props || {};
-    this.context = context || EMPTY_OBJECT;
-    this.refs = {};
-    this.updater = updater;
-  }
 
-  setState (state, callback = noop) {
-    this.updater.enqueueSetState(this, state, callback);
-  }
+export const fakeObject = {
+  enqueueSetState: returnFalse,
+  isMounted: returnFalse
+};
+/**
+ *组件的基类
+ *
+ * @param {any} props
+ * @param {any} context
+ */
+export default function Component(props, context) {
+    //防止用户在构造器生成JSX
+    
+  Renderer.currentOwner = this;
 
-  forceUpdate (callback) {
-    this.updater.enqueueForceUpdate(this, callback)
-  }
-
-  render () {
-    throw new Error(`React Component render must be implatate`);
-  }
+  this.context = context;
+  this.props = props;
+  this.refs = {};
+  this.updater = fakeObject;
+  this.state = null;
 }
 
 
-Component.prototype.isReactComponent = EMPTY_OBJECT;
+Component.prototype = {
+  constructor: Component, //必须重写constructor,防止别人在子类中使用Object.getPrototypeOf时找不到正确的基类
+  replaceState() {
+    toWarnDev('replaceState', true);
+  },
+  isReactComponent:returnTrue,
+  isMounted() {
+    toWarnDev('isMounted', true);
+    return this.updater.isMounted(this);
+  },
+  setState(state, cb) {
+    this.updater.enqueueSetState(get(this), state, cb);
+  },
+
+  forceUpdate(cb) {
+    this.updater.enqueueSetState(get(this), true, cb);
+  },
+
+  render() {
+    throw 'must implement render';
+  }
+};
+

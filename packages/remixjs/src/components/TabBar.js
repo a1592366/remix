@@ -1,4 +1,4 @@
-import React from '../react';
+import React from '../renderer';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 

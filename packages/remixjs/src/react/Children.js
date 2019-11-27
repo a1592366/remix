@@ -1,75 +1,85 @@
-import { isArray, isNullOrUndefined, isInvalid } from '../shared/is';
-import { EMPTY_ARRAY, flatten } from '../shared';
+import { traverseAllChildren, isValidElement } from './createElement';
+import { extend, noop } from './util';
 
-export function map (
-  children, 
-  iterate, 
-  context
-) {
-  if (isNullOrUndefined(children)) {
-    return children;
-  }
 
-  children = toArray(children);
-  if (context && context !== children) {
-    iterate = iterate.bind(context);
-  }
 
-  return children.map(iterate);
-}
-
-export function forEach (
-  children, 
-  iterate, 
-  context
-) {
-  if (!isNullOrUndefined(children)) {
-    children = toArray(children);
-    const length = children.length;
-
-    if (length > 0) {
-      if (context && context !== children) {
-        iterate = iterate.bind(context);
-      }
-  
-      for (let i = 0; i < length; i++) {
-        const child = isInvalid(children[i]) ? null : children[i];
-  
-        iterate(child, i, children);
-      }
+const Children = {
+    only(children) {
+        //only方法接受的参数只能是一个对象，不能是多个对象（数组）。
+        if (isValidElement(children)) {
+            return children;
+        }
+        throw new Error('expect only one child');
+    },
+    count(children) {
+        if (children == null) {
+            return 0;
+        }
+        return traverseAllChildren(children, '', noop);
+    },
+    map(children, func, context) {
+        return proxyIt(children, func, [], context);
+    },
+    forEach(children, func, context) {
+        return proxyIt(children, func, null, context);
+    },
+    toArray: function(children) {
+        return proxyIt(children, K, []);
     }
-  }
+};
+
+function proxyIt(children, func, result, context) {
+    if (children == null) {
+        return [];
+    }
+    mapChildren(children, null, func, result, context);
+    return result;
 }
 
-export function count (
-  children
-) {
-  children = toArray(children);
-  return children.length;
+function K(el) {
+    return el;
 }
 
-export function only (
-  children
-) {
-  children = toArray(children);
-
-  if (children.length !== 1) {
-    throw new Error('Children.only() expects only one child.');
-  }
-
-  return children[0];
+function mapChildren(children, prefix, func, result, context) {
+    let keyPrefix = '';
+    if (prefix != null) {
+        keyPrefix = escapeUserProvidedKey(prefix) + '/';
+    }
+    traverseAllChildren(children, '', traverseCallback, {
+        context,
+        keyPrefix,
+        func,
+        result,
+        count: 0
+    });
+}
+const userProvidedKeyEscapeRegex = /\/+/g;
+function escapeUserProvidedKey(text) {
+    return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
 }
 
-export function toArray (
-  children
-) {
-  if (isNullOrUndefined(children)) {
-    return EMPTY_ARRAY;
-  }
+function traverseCallback(bookKeeping, child, childKey) {
+    const { result, keyPrefix, func, context } = bookKeeping;
 
-  if (isArray(children)) {
-    return flatten(children);
-  }
-
-  return EMPTY_ARRAY.concat(children);
+    let mappedChild = func.call(context, child, bookKeeping.count++);
+    if (!result) {
+        return;
+    }
+    if (Array.isArray(mappedChild)) {
+        mapChildren(mappedChild, childKey, K, result);
+    } else if (mappedChild != null) {
+        if (isValidElement(mappedChild)) {
+            mappedChild = extend({}, mappedChild);
+            mappedChild.key =
+                keyPrefix +
+                (mappedChild.key && (!child || child.key !== mappedChild.key)
+                    ? escapeUserProvidedKey(mappedChild.key) + '/'
+                    : '') +
+                childKey;
+        }
+        result.push(mappedChild);
+    }
 }
+
+
+export default Children;

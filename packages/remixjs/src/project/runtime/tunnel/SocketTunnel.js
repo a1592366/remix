@@ -3,7 +3,6 @@ import uuid from 'uuid';
 import { Type } from 'remixjs-message-protocol';
 import Socket from './Socket';
 import env from '../../../../env';
-import { isFunction } from '../../../shared/is';
 
 
 class MessageEmitter extends EventEmitter {

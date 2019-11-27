@@ -12,7 +12,7 @@
 	bind:animationiteration="{{onAnimationIteration}}"
 	bind:animationend="{{onAnimationEnd}}"
 	child="{{child}}"
-	id="{{uuid}}" style="height: 100%;display: block;" />
+	id="{{uuid}}"  />
 
 
 
