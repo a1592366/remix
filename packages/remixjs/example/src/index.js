@@ -7,30 +7,19 @@ const context = React.createContext();
 
 const Consum = () => {
 
-  return (
-    <context.Consumer>
-      {
-        (context) => {
-          debugger;
-          return (
-            <div>{context.authorized}</div>
-          );
-        }
-      }
-    </context.Consumer>
-  );
+  return <div>C</div>
 }
 
 class App extends React.Component {
   state = {
-    active: false,
+    active: true,
     authorized: false
   }
 
   onClick = () => {
     debugger;
     this.setState({
-      authorized: true
+      active: !this.state.active
     })
   }
 
@@ -38,13 +27,15 @@ class App extends React.Component {
     const { active } = this.state;
 
     return (
-      <context.Provider value={this.state}>
         <div>
           <div className={active ? 'classA active' : 'classA'} onClick={this.onClick}>classA</div>
-          <div className={active ? 'claassB ': 'classB active'}>classB</div>
-          <Consum></Consum>
+
+          {
+            active ? <div className={'classB active'}>classB</div> : <Consum />
+          }
+
+
         </div>
-      </context.Provider>
     );
   }
 }

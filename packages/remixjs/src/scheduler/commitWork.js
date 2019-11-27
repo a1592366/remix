@@ -363,6 +363,138 @@ function commitAttachRef(finishedWork) {
   }
 }
 
+function commitUnmount(current) {
+
+  switch (current.tag) {
+    case FUNCTION_COMPONENT: {
+        const updateQueue = current.updateQueue;
+        if (updateQueue !== null) {
+          const lastEffect = updateQueue.lastEffect;
+          if (lastEffect !== null) {
+            const firstEffect = lastEffect.next;
+
+            runWithPriority(priorityLevel, function () {
+              var effect = firstEffect;
+              do {
+                var destroy = effect.destroy;
+                if (destroy !== undefined) {
+                  safelyCallDestroy(current, destroy);
+                }
+                effect = effect.next;
+              } while (effect !== firstEffect);
+            });
+          }
+        }
+        break;
+      }
+    case ClassComponent:
+      {
+        safelyDetachRef(current);
+        var instance = current.stateNode;
+        if (typeof instance.componentWillUnmount === 'function') {
+          safelyCallComponentWillUnmount(current, instance);
+        }
+        return;
+      }
+    case HostComponent:
+      {
+        if (enableFlareAPI) {
+          var dependencies = current.dependencies;
+
+          if (dependencies !== null) {
+            var respondersMap = dependencies.responders;
+            if (respondersMap !== null) {
+              var responderInstances = Array.from(respondersMap.values());
+              for (var i = 0, length = responderInstances.length; i < length; i++) {
+                var responderInstance = responderInstances[i];
+                unmountResponderInstance(responderInstance);
+              }
+              dependencies.responders = null;
+            }
+          }
+        }
+        safelyDetachRef(current);
+        return;
+      }
+    case HostPortal:
+      {
+        // TODO: this is recursive.
+        // We are also not using this parent because
+        // the portal will get pushed immediately.
+        if (supportsMutation) {
+          unmountHostComponents(current, renderPriorityLevel);
+        } else if (supportsPersistence) {
+          emptyPortalContainer(current);
+        }
+        return;
+      }
+    case FundamentalComponent:
+      {
+        if (enableFundamentalAPI) {
+          var fundamentalInstance = current.stateNode;
+          if (fundamentalInstance !== null) {
+            unmountFundamentalComponent(fundamentalInstance);
+            current.stateNode = null;
+          }
+        }
+      }
+  }
+}
+
+function commitNestedUnmounts(root) { 
+  let node = root;
+  while (true) {
+    commitUnmount(node);
+    if (node.child !== null && (
+    !supportsMutation || node.tag !== HostPortal)) {
+      node.child.return = node;
+      node = node.child;
+      continue;
+    }
+    if (node === root) {
+      return;
+    }
+    while (node.sibling === null) {
+      if (node.return === null || node.return === root) {
+        return;
+      }
+      node = node.return;
+    }
+    node.sibling.return = node.return;
+    node = node.sibling;
+  }
+}
+
+function commitDeletion (current) {
+  // if (supportsMutation) {
+  //   unmountHostComponents(current, renderPriorityLevel);
+  // } else {
+  //   // Detach refs and call componentWillUnmount() on the whole subtree.
+  //   commitNestedUnmounts(current, renderPriorityLevel);
+  // }
+
+  commitNestedUnmounts(current);
+
+  detachFiber(current);
+}
+
+function detachFiber(current) {
+  current.return = null;
+  current.child = null;
+  current.memoizedState = null;
+  current.updateQueue = null;
+  current.dependencies = null;
+
+  const alternate = current.alternate;
+  
+  if (alternate !== null) {
+    alternate.return = null;
+    alternate.child = null;
+    alternate.memoizedState = null;
+    alternate.updateQueue = null;
+  }
+}
+
 function commitWork (current, finishedWork) {
   const { tag } = finishedWork;
 
@@ -391,7 +523,7 @@ function commitWork (current, finishedWork) {
     case HOST_TEXT: {
       const instance = finishedWork.stateNode;
       const nextText = finishedWork.memoizedProps;
-      const text = current === null ? current$$1.memoizedProps : nextText;
+      const text = current === null ? current.memoizedProps : nextText;
       commitTextUpdate(instance, text, nextText);
       return;
     }

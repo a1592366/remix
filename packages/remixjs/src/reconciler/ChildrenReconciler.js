@@ -14,7 +14,7 @@ function deleteChild (returnFiber, childToDelete, shouldTrackSideEffects) {
     const lastEffect = returnFiber.lastEffect;
 
     // 根据 lastEffect 判断是否存在 effect，否则新增
-    if (last !== null) {
+    if (lastEffect !== null) {
       lastEffect.next = childToDelete;
       returnFiber.lastEffect = childToDelete;
     } else {
@@ -219,15 +219,18 @@ function reconcileChildrenArray(
     }
     const newFiber = updateSlot(returnFiber, oldFiber, newChildren[newIdx]);
     if (newFiber === null) {
-      // TODO: This breaks on empty slots like null children. That's
-      // unfortunate because it triggers the slow path all the time. We need
-      // a better way to communicate whether this was a miss or null,
-      // boolean, undefined, etc.
       if (oldFiber === null) {
         oldFiber = nextOldFiber;
       }
       break;
     }
+
+    if (shouldTrackSideEffects) {
+      if (oldFiber && newFiber.alternate === null) {
+        deleteChild(returnFiber, oldFiber, shouldTrackSideEffects);
+      }
+    }
+
     lastPlacedIndex = placeChild(newFiber, lastPlacedIndex, newIdx, shouldTrackSideEffects);
 
     if (previousnewFiber === null) {
@@ -334,7 +337,7 @@ export default function ChildrenReconciler (shouldTrackSideEffects) {
       return placeSingleChild(reconcileSingleTextNode(returnFiber, currentFirstChild, '' + newChild), shouldTrackSideEffects);
     // 如果是数组
     } else if (isArray(newChild)) {
-      return reconcileChildrenArray(returnFiber, currentFirstChild, newChild);
+      return reconcileChildrenArray(returnFiber, currentFirstChild, newChild, shouldTrackSideEffects);
     }
 
     return deleteRemainingChildren(returnFiber, currentFirstChild, shouldTrackSideEffects);
