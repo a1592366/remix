@@ -44,6 +44,8 @@ export default class HTMLElement extends Element {
 
     child.parent = this.uuid;
     child.return = this;
+
+    this.onChildChange();
   }
 
   removeChild (child) {
@@ -62,6 +64,8 @@ export default class HTMLElement extends Element {
       prevNode = node;
       node = node.slibing;
     }
+
+    this.onChildChange();
   }
 
   insertBefore (child, beforeChild) {
@@ -73,6 +77,8 @@ export default class HTMLElement extends Element {
     if (beforeChild === this.child) {
       this.child = child;
     }
+
+    this.onChildChange();
   }
 
   getAttribute (name) {
@@ -103,15 +109,15 @@ export default class HTMLElement extends Element {
 
     element.style = String(element.style);
 
-    if (this.child !== null) {
+    if (this.child) {
       element.child = this.child.serialize();
     }
 
-    if (this.slibing !== null) {
+    if (this.slibing) {
       element.slibing = this.slibing.serialize();
     }
 
-    if (this.innerText !== null) {
+    if (this.innerText) {
       element.innerText = this.innerText;
     }
 

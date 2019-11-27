@@ -47,10 +47,12 @@ function registerBabelRuntime () {
 
   const { program } = require('./boot');
 
-  
+
+  console.log(JSON.stringify(program.context))
+
   process.send(program.context);
 
-  // console.log(context)
+  
 
   // process.send(context || {
   //   tabbar: [],

@@ -1,8 +1,9 @@
-import React from '../../../renderer';
+import React from '../../../react';
+import Component from '../../../react/Component';
 import PropTypes from '../../../react/PropTypes';
 
 
-export default class RemixText extends React.Component {
+export default class RemixText extends Component {
   
   static propTypes = {
     parent: PropTypes.string,

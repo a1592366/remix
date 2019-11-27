@@ -37,6 +37,7 @@ export default class Updater {
   }
 
   onChildChange = (propName, value) => {
+    console.log(this.binding);
     if (this.binding) {
       this.binding();
     }

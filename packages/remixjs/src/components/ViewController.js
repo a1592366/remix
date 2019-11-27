@@ -1,4 +1,4 @@
-import React from '../renderer';
+import React from '../react';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
 import { cloneElement } from '../react/createElement';

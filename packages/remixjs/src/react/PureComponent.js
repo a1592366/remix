@@ -1,19 +1,16 @@
-import { miniCreateClass } from './util';
-import { shallowEqual } from './shallowEqual';
-import Component from './Component';
+import shallowEqual from './shallowEqual'
+import Component from './Component'
 
-const PureComponent = miniCreateClass(
-    function PureComponent() {
-        this.isPureComponent = true;
-    },
-    Component,
-    {
-        shouldComponentUpdate(nextProps, nextState) {
-            let a = shallowEqual(this.props, nextProps);
-            let b = shallowEqual(this.state, nextState);
-            return !a || !b;
-        }
-    }
-);
+export default function PureComponent(props, context) {
+	Component.call(this, props, context)
+}
 
-export default PureComponent
+PureComponent.prototype = Object.create(Component.prototype)
+PureComponent.prototype.constructor = PureComponent
+PureComponent.prototype.isPureReactComponent = true
+PureComponent.prototype.shouldComponentUpdate = shallowCompare
+
+function shallowCompare(nextProps, nextState) {
+	return !shallowEqual(this.props, nextProps) ||
+            !shallowEqual(this.state, nextState)
+}

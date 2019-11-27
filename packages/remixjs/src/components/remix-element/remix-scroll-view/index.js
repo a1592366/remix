@@ -1,8 +1,9 @@
-import React from '../../../renderer';
+import React from '../../../react';
+import Component from '../../../react/Component';
 import PropTypes from '../../../react/PropTypes';
 
 
-export default class RemixScrollView extends React.Component {
+export default class RemixScrollView extends Component {
   
   static propTypes = {
     onTouchStart: PropTypes.string,

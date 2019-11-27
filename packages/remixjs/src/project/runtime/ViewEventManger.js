@@ -1,5 +1,5 @@
 import ViewController from './ViewController';
-import { render } from '../../renderer';
+import { render } from '../../react';
 import { document } from '../../document';
 import createElement from '../../react/createElement';
 import { ROOT } from '../../document/HTMLTypes';

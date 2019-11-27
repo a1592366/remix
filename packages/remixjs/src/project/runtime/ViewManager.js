@@ -1,5 +1,5 @@
 import ViewController from './ViewController';
-import { render } from '../../renderer';
+import { render } from '../../react';
 import { document } from '../../document';
 import { UPDATE_FREQUENCY } from '../../shared';
 import createElement from '../../react/createElement';

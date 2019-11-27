@@ -1,8 +1,8 @@
-import React from '../renderer';
+import React from '../react';
 import { cloneElement } from '../react/createElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
-import { forEach } from '../react/Children';
+import * as Children from '../react/Children';
 // import { transports, APPLICATION } from '../project';
 import { Router } from '../router';
 import TabBar from './TabBar';
@@ -40,7 +40,7 @@ export default class Application extends Component {
   cloneApplicationChildren () {
     const children = [];
     
-    forEach(this.props.children, (child) => {
+    Children.forEach(this.props.children, (child) => {
       if (child !== null) {
         const { type } = child;
         if (type === Router || type === TabBar) {

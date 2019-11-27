@@ -19,13 +19,6 @@ const fakeDocument = {
   },
   getElementsByTagName () {},  
   querySelector () {},
-  addEventListener (type, callback, capture) {
-    debugger;
-  },
-  removeEventListener () {
-    debugger;
-  },
-
   dispatchEvent () {},
   createElement,
   createTextNode

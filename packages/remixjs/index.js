@@ -1,4 +1,4 @@
-import React from './src/renderer';
+import React from './src/react';
 
 export default React;
-export * from './src/renderer';
+export * from './src/react';

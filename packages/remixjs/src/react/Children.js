@@ -1,85 +1,103 @@
-import { traverseAllChildren, isValidElement } from './createElement';
-import { extend, noop } from './util';
+import * as _ from './util'
+import { cloneElement, isValidElement } from './createElement'
 
-
-
-const Children = {
-    only(children) {
-        //only方法接受的参数只能是一个对象，不能是多个对象（数组）。
-        if (isValidElement(children)) {
-            return children;
-        }
-        throw new Error('expect only one child');
-    },
-    count(children) {
-        if (children == null) {
-            return 0;
-        }
-        return traverseAllChildren(children, '', noop);
-    },
-    map(children, func, context) {
-        return proxyIt(children, func, [], context);
-    },
-    forEach(children, func, context) {
-        return proxyIt(children, func, null, context);
-    },
-    toArray: function(children) {
-        return proxyIt(children, K, []);
-    }
-};
-
-function proxyIt(children, func, result, context) {
-    if (children == null) {
-        return [];
-    }
-    mapChildren(children, null, func, result, context);
-    return result;
+export function only(children) {
+	if (isValidElement(children)) {
+		return children
+	}
+	throw new Error('expect only one child')
 }
 
-function K(el) {
-    return el;
+export function forEach(children, iteratee, context) {
+	if (children == null) {
+		return children
+	}
+	let index = 0
+	if (_.isArr(children)) {
+		_.flatEach(children, child => {
+			// from traverseAllChildrenImpl in react
+			var type = typeof child
+			if (type === 'undefined' || type === 'boolean') {
+				// All of the above are perceived as null.
+				child = null
+			}
+
+			iteratee.call(context, child, index++)
+		})
+	} else {
+		// from traverseAllChildrenImpl in react
+		var type = typeof children
+		if (type === 'undefined' || type === 'boolean') {
+			// All of the above are perceived as null.
+			children = null
+		}
+		iteratee.call(context, children, index)
+	}
 }
 
-function mapChildren(children, prefix, func, result, context) {
-    let keyPrefix = '';
-    if (prefix != null) {
-        keyPrefix = escapeUserProvidedKey(prefix) + '/';
-    }
-    traverseAllChildren(children, '', traverseCallback, {
-        context,
-        keyPrefix,
-        func,
-        result,
-        count: 0
-    });
+export function map(children, iteratee, context) {
+	if (children == null) {
+		return children
+	}
+	let store = []
+	let keyMap = {}
+	forEach(children, (child, index) => {
+		let data = {}
+		data.child = iteratee.call(context, child, index) || child
+		data.isEqual = data.child === child
+		let key = data.key = getKey(child, index)
+		if (keyMap.hasOwnProperty(key)) {
+			keyMap[key] += 1
+		} else {
+			keyMap[key] = 0
+		}
+		data.index = keyMap[key]
+		_.addItem(store, data)
+	})
+	let result = []
+	store.forEach(({ child, key, index, isEqual }) => {
+		if (child == null || typeof child === 'boolean') {
+			return
+		}
+		if (!isValidElement(child) || key == null) {
+			_.addItem(result, child)
+			return
+		}
+		if (keyMap[key] !== 0) {
+			key += ':' + index
+		}
+		if (!isEqual) {
+			key = escapeUserProvidedKey(child.key || '') + '/' + key
+		}
+		child = cloneElement(child, { key })
+		_.addItem(result, child)
+	})
+	return result
 }
-const userProvidedKeyEscapeRegex = /\/+/g;
+
+export function count(children) {
+	let count = 0
+	forEach(children, () => {
+		count++
+	})
+	return count
+}
+
+export function toArray(children) {
+	return map(children, _.identity) || []
+}
+
+function getKey(child, index) {
+	let key
+	if (isValidElement(child) && typeof child.key === 'string') {
+		key = '.$' + child.key
+	} else {
+		key = '.' + index.toString(36)
+	}
+	return key
+}
+
+let userProvidedKeyEscapeRegex = /\/(?!\/)/g;
 function escapeUserProvidedKey(text) {
-    return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
+	return ('' + text).replace(userProvidedKeyEscapeRegex, '//')
 }
-
-function traverseCallback(bookKeeping, child, childKey) {
-    const { result, keyPrefix, func, context } = bookKeeping;
-
-    let mappedChild = func.call(context, child, bookKeeping.count++);
-    if (!result) {
-        return;
-    }
-    if (Array.isArray(mappedChild)) {
-        mapChildren(mappedChild, childKey, K, result);
-    } else if (mappedChild != null) {
-        if (isValidElement(mappedChild)) {
-            mappedChild = extend({}, mappedChild);
-            mappedChild.key =
-                keyPrefix +
-                (mappedChild.key && (!child || child.key !== mappedChild.key)
-                    ? escapeUserProvidedKey(mappedChild.key) + '/'
-                    : '') +
-                childKey;
-        }
-        result.push(mappedChild);
-    }
-}
-
-
-export default Children;

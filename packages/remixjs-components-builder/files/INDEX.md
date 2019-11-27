@@ -1,8 +1,9 @@
-import React from '../../../renderer';
+import React from '../../../react';
+import Component from '../../../react/Component';
 import PropTypes from '../../../react/PropTypes';
 <% if (name === 'swiper') {%>import SwiperItem from '../remix-swiper-item/index';<% } %>
 
-export default class <%= className %> extends React.Component {
+export default class <%= className %> extends Component {
   <% if (name === 'swiper') {%>static SwiperItem = SwiperItem; <% } %>
   static propTypes = {
     <%= propTypes %>

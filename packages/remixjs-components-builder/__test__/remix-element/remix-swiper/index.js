@@ -1,8 +1,9 @@
-import React from '../../../renderer';
+import React from '../../../react';
+import Component from '../../../react/Component';
 import PropTypes from '../../../react/PropTypes';
 import SwiperItem from '../remix-swiper-item/index';
 
-export default class RemixSwiper extends React.Component {
+export default class RemixSwiper extends Component {
   static SwiperItem = SwiperItem; 
   static propTypes = {
     onTouchStart: PropTypes.string,

@@ -1,4 +1,5 @@
- import { render, createElement } from '../renderer';
+import React from '../react';
+import ReactDOM from '../react';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
 import terminal from './runtime/terminal';
@@ -6,6 +7,7 @@ import logic from './runtime/logic';
 import env from '../../env';
 
 const { TabBarItem } = TabBar;
+const { getOwnPropertyNames } = Object;
 
 export const getApplication = () => {
   return Program.context;
@@ -22,64 +24,52 @@ export default class Program {
         }
 
         const context = this.__context__ = {
-          tabBar: {
-            items: []
-          },
-          router: {
-            routes: []
-          },
+          tabBar: { items: [] },
+          router: { routes: [] },
           config: {}
         };
 
-        render(createElement(App), container);
-    
-        const rootContainer = container._reactRootContainer;
-        const currentFiber = rootContainer._internalRoot.current;
-        let node = currentFiber;
+        const vnode = ReactDOM.render(React.createElement(App), container);
+        let node = vnode;
 
         while (true) {
-          switch (node.elementType) {
-            
-            case Application: {
-              context.config = node.memoizedProps.config;
-              this.instance = node.stateNode;
-              break;
-            }
-        
-            case Route: {
+          const cache = node.cache;
+          const keys = getOwnPropertyNames(cache);
+
+          keys.forEach(key => {
+            const inst = cache[key];
+
+            if (inst instanceof Application) {
+              context.config = inst.props.config;
+              this.instance = inst; 
+            } else if (inst instanceof Route) {
               context.router.routes.push({
-                path: node.memoizedProps.path,
-                component: node.memoizedProps.component 
-              });
-              break;
-            }
-        
-            case TabBar: {
+                path: inst.props.path,
+                component: inst.props.component 
+              }); 
+            } else if (inst instanceof TabBar) {
               context.tabBar = {
-                ...node.memoizedProps,
+                ...node.props,
                 ...context.tabBar
               }
-              break;
-            }
-        
-            case TabBarItem: {
+            } else if (inst instanceof TabBarItem) {
+              debugger;
               context.tabBar.items.push({
-                icon: node.memoizedProps.icon,
-                selectedIcon: node.memoizedProps.selectedIcon,
-                path: node.memoizedProps.path,
-                text: node.memoizedProps.children
+                icon: inst.props.icon,
+                selectedIcon: inst.props.selectedIcon,
+                path: inst.props.path,
+                text: inst.props.children
               });
-              break;
             }
-          }
-      
-          if (node.child !== null) {
+          });
+
+          if (node.child) {
             node = node.child;
             continue;
           }
       
-          while (node.sibling === null) {
-            if (node.return === null) {
+          while (!node.sibling) {
+            if (!node.return) {
               return context;
             }
       

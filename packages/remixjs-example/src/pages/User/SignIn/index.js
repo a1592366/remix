@@ -125,8 +125,6 @@ export default class Index extends ViewController {
     getUser().then(res => {
       const { getUser } = res.data;
 
-      debugger;
-
       this.setState({
         user: getUser,
         isDataLoaded: true

@@ -1,151 +1,99 @@
-import {
-    extend,
-    isFn,
-    getWindow,
-    miniCreateClass,
-    toWarnDev,
-    __type
-} from './util';
+import * as _ from './util'
+import Component from './Component'
 
-/**
- * 为了兼容0.13之前的版本
- */
-const NOBIND = {
-    render: 1,
-    shouldComponentUpdate: 1,
-    componentWillReceiveProps: 1,
-    componentWillUpdate: 1,
-    componentDidUpdate: 1,
-    componentWillMount: 1,
-    componentDidMount: 1,
-    componentWillUnmount: 1,
-    componentDidUnmount: 1
-};
-
-function collectMixins(mixins) {
-    let keyed = {};
-
-    for (let i = 0; i < mixins.length; i++) {
-        let mixin = mixins[i];
-        if (mixin.mixins) {
-            applyMixins(mixin, collectMixins(mixin.mixins));
-        }
-
-        for (let key in mixin) {
-            if (mixin.hasOwnProperty(key) && key !== 'mixins') {
-                (keyed[key] || (keyed[key] = [])).push(mixin[key]);
-            }
-        }
-    }
-
-    return keyed;
-}
-const MANY_MERGED = {
-    getInitialState: 1,
-    getDefaultProps: 1,
-    getChildContext: 1
-};
-
-function flattenHooks(key, hooks) {
-    let hookType = __type.call(hooks[0]).slice(8, -1);
-    if (hookType === 'Object') {
-        // Merge objects
-        let ret = {};
-        for (let i = 0; i < hooks.length; i++) {
-            extend(ret, hooks[i]);
-        }
-        return ret;
-    } else if (hookType === 'Function' && hooks.length > 1) {
-        return function() {
-            let ret = {},
-                r,
-                hasReturn = MANY_MERGED[key];
-            for (let i = 0; i < hooks.length; i++) {
-                r = hooks[i].apply(this, arguments);
-                if (hasReturn && r) {
-                    extend(ret, r);
-                }
-            }
-            if (hasReturn) {
-                return ret;
-            }
-            return r;
-        };
-    } else {
-        return hooks[0];
-    }
+function eachMixin(mixins, iteratee) {
+	mixins.forEach(mixin => {
+		if (mixin) {
+			if (_.isArr(mixin.mixins)) {
+				eachMixin(mixin.mixins, iteratee)
+			}
+			iteratee(mixin)
+		}
+	})
 }
 
-function applyMixins(proto, mixins) {
-    for (let key in mixins) {
-        if (mixins.hasOwnProperty(key)) {
-            proto[key] = flattenHooks(key, mixins[key].concat(proto[key] || []));
-        }
-    }
+function combineMixinToProto(proto, mixin) {
+	for (let key in mixin) {
+		if (!mixin.hasOwnProperty(key)) {
+			continue
+		}
+		let value = mixin[key]
+		if (key === 'getInitialState') {
+			_.addItem(proto.$getInitialStates, value)
+			continue
+		}
+		let curValue = proto[key]
+		if (_.isFn(curValue) && _.isFn(value)) {
+			proto[key] = _.pipe(curValue, value)
+		} else {
+			proto[key] = value
+		}
+	}
 }
 
-
-var win = getWindow();
-if (!win.React || !win.React.Component) {
-    throw 'Please load the React first.';
+function combineMixinToClass(Component, mixin) {
+	if (mixin.propTypes) {
+		Component.propTypes = Component.propTypes || {}
+		_.extend(Component.propTypes, mixin.propTypes)
+	}
+	if (mixin.contextTypes) {
+		Component.contextTypes = Component.contextTypes || {}
+		_.extend(Component.contextTypes, mixin.contextTypes)
+	}
+	_.extend(Component, mixin.statics)
+	if (_.isFn(mixin.getDefaultProps)) {
+		Component.defaultProps = Component.defaultProps || {}
+		_.extend(Component.defaultProps, mixin.getDefaultProps())
+	}
 }
 
-win.React.createClass = createClass;
-var Component = win.React.Component;
+function bindContext(obj, source) {
+	for (let key in source) {
+		if (source.hasOwnProperty(key)) {
+			if (_.isFn(source[key])) {
+				obj[key] = source[key].bind(obj)
+			}
+		}
+	}
+}
+
+let Facade = function() {}
+Facade.prototype = Component.prototype
+
+function getInitialState() {
+	let state = {}
+	let setState = this.setState
+	this.setState = Facade
+	this.$getInitialStates.forEach(getInitialState => {
+		if (_.isFn(getInitialState)) {
+			_.extend(state, getInitialState.call(this))
+		}
+	})
+	this.setState = setState
+	return state
+}
 
 export default function createClass(spec) {
-    if (!isFn(spec.render)) {
-        throw 'createClass(...): Class specification must implement a `render` method.';
-    }
-    //创建一个构造器,有四个参数
-    let statics = spec.statics;
-    let Constructor = miniCreateClass(function Ctor() {
-        if (!(this instanceof Component)) {
-            throw 'must new Component(...)';
-        }
-        for (let methodName in this) {
-            let method = this[methodName];
-            if (typeof method === 'function' && !NOBIND[methodName]) {
-                this[methodName] = method.bind(this);
-            }
-        }
-
-        if (spec.getInitialState) {
-            let test = this.state = spec.getInitialState.call(this);
-            if (!(test === null || ({}).toString.call(test) == '[object Object]')) {
-                throw 'Component.getInitialState(): must return an object or null';
-            }
-        }
-    }, Component, spec, statics);
-    //如果mixins里面非常复杂，可能mixin还包含其他mixin
-    if (spec.mixins) {
-        applyMixins(spec, collectMixins(spec.mixins));
-        extend(Constructor.prototype, spec);
-    }
-
-    if (statics && statics.getDefaultProps) {
-        throw 'getDefaultProps is not statics';
-    }
-
-    'propTypes,contextTypes,childContextTypes,displayName'.replace(
-        /\w+/g,
-        function(name) {
-            if (spec[name]) {
-                let props = (Constructor[name] = spec[name]);
-                if (name !== 'displayName') {
-                    for (let i in props) {
-                        if (!isFn(props[i])) {
-                            toWarnDev(`${i} in ${name} must be a function`); // eslint-disable-line
-                        }
-                    }
-                }
-            }
-        }
-    );
-
-    if (isFn(spec.getDefaultProps)) {
-        Constructor.defaultProps = spec.getDefaultProps();
-    }
-
-    return Constructor;
+	if (!_.isFn(spec.render)) {
+		throw new Error('createClass: spec.render is not function')
+	}
+	let specMixins = spec.mixins || []
+	let mixins = specMixins.concat(spec)
+	spec.mixins = null
+	function Klass(props, context) {
+		Component.call(this, props, context)
+		this.constructor = Klass
+		spec.autobind !== false && bindContext(this, Klass.prototype)
+		this.state = this.getInitialState() || this.state
+	}
+	Klass.displayName = spec.displayName
+	let proto = Klass.prototype = new Facade()
+	proto.$getInitialStates = []
+	eachMixin(mixins, mixin => {
+		combineMixinToProto(proto, mixin)
+		combineMixinToClass(Klass, mixin)
+	})
+	proto.getInitialState = getInitialState
+	spec.mixins = specMixins
+	return Klass
 }

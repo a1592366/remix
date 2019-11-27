@@ -1,190 +1,158 @@
-export const arrayPush = Array.prototype.push;
-export const innerHTML = 'dangerouslySetInnerHTML';
-export const hasOwnProperty = Object.prototype.hasOwnProperty;
-export const gSBU = 'getSnapshotBeforeUpdate';
-export const gDSFP = 'getDerivedStateFromProps';
-export const hasSymbol = typeof Symbol === 'function' && Symbol['for'];
-export const effects = [];
-export const topFibers = [];
-export const topNodes = [];
-export const emptyArray = [];
-export const emptyObject = {};
-
-export const REACT_ELEMENT_TYPE = hasSymbol
-    ? Symbol['for']('react.element')
-    : 0xeac7;
-
-export function noop() {}
-
-export function Fragment(props) {
-    return props.children;
-}
-
-export function returnFalse() {
-    return false;
-}
-
-export function returnTrue() {
-    return true;
-}
-
-export function resetStack(info) {
-    keepLast(info.containerStack);
-    keepLast(info.contextStack);
-}
-
-function keepLast(list) {
-    var n = list.length;
-    list.splice(0, n - 1);
-}
-
-export function get(key) {
-    return key._reactInternalFiber;
-}
-
-export let __type = Object.prototype.toString;
-
-var fakeWindow = {};
-export function getWindow() {
-    try {
-        if (window){
-            return window;
-        }
-    /* istanbul ignore next  */
-    } catch (e) {/*kill*/}
-    try {
-        if (global){
-            return global;
-        }
-    /* istanbul ignore next  */
-    } catch (e) {/*kill*/}
-    return fakeWindow;
-}
-export function isMounted(instance) {
-    var fiber = get(instance);
-    return !!(fiber && fiber.hasMounted);
-}
-
-export function toWarnDev(msg, deprecated) {
-    msg = deprecated ? msg + ' is deprecated' : msg;
-    let process = getWindow().process;
-    if (process && process.env.NODE_ENV === 'development') {
-        throw msg;
-    }
-}
-
-export function extend(obj, props) {
-    for (let i in props) {
-        if (hasOwnProperty.call(props, i)) {
-            obj[i] = props[i];
-        }
-    }
-    return obj;
-}
-
-export function inherit(SubClass, SupClass) {
-    function Bridge() {}
-    let orig = SubClass.prototype;
-    Bridge.prototype = SupClass.prototype;
-    let fn = (SubClass.prototype = new Bridge());
-    // 避免原型链拉长导致方法查找的性能开销
-    extend(fn, orig);
-    fn.constructor = SubClass;
-    return fn;
-}
-try {
-    //微信小程序不支持Function
-    var supportEval = Function('a', 'return a + 1')(2) == 3;
-    /* istanbul ignore next  */
-} catch (e) {}
-let rname = /function\s+(\w+)/;
-export function miniCreateClass(ctor, superClass, methods, statics) {
-    let className = ctor.name || (ctor.toString().match(rname) ||['','Anonymous'])[1];
-    let Ctor = supportEval ? Function('superClass', 'ctor', 'return function ' + className + ' (props, context) {\n            superClass.apply(this, arguments); \n            ctor.apply(this, arguments);\n      }')(superClass, ctor) : 
-        function ReactInstance() {
-            superClass.apply(this, arguments);
-            ctor.apply(this, arguments);
-        };
-    Ctor.displayName = className;
-    let proto = inherit(Ctor, superClass);
-    extend(proto, methods);
-    extend(Ctor, superClass);//继承父类的静态成员
-    if (statics) {//添加自己的静态成员
-        extend(Ctor, statics);
-    }
-    return Ctor;
-}
-
-let lowerCache = {};
-export function toLowerCase(s) {
-    return lowerCache[s] || (lowerCache[s] = s.toLowerCase());
-}
+// util
+import {
+    setStyle,
+    removeStyle,
+    patchStyle
+} from './CSSPropertyOperations.js'
+import {
+    setPropValue,
+    removePropValue,
+    updateSelectOptions
+} from './DOMPropertyOperations'
+import { HTML_KEY } from './constant'
 
 export function isFn(obj) {
-    return __type.call(obj) === '[object Function]';
+    return typeof obj === 'function'
 }
 
-let rword = /[^, ]+/g;
+export let isArr = Array.isArray
 
-export function oneObject(array, val) {
-    if (array + '' === array) {
-        //利用字符串的特征进行优化，字符串加上一个空字符串等于自身
-        array = array.match(rword) || [];
+export function noop() {}
+export function identity(obj) {
+    return obj
+}
+export function pipe(fn1, fn2) {
+    return function() {
+        fn1.apply(this, arguments)
+        return fn2.apply(this, arguments)
     }
-    let result = {},
-        //eslint-disable-next-line
-        value = val !== void 666 ? val : 1;
-    for (let i = 0, n = array.length; i < n; i++) {
-        result[array[i]] = value;
-    }
-    return result;
 }
 
-let rcamelize = /[-_][^-_]/g;
-export function camelize(target) {
-    //提前判断，提高getStyle等的效率
-    if (!target || (target.indexOf('-') < 0 && target.indexOf('_') < 0)) {
-        return target;
-    }
-    //转换为驼峰风格
-    let str = target.replace(rcamelize, function(match) {
-        return match.charAt(1).toUpperCase();
-    });
-    return firstLetterLower(str);
+export function addItem(list, item) {
+    list[list.length] = item
 }
 
-export function firstLetterLower(str) {
-    return str.charAt(0).toLowerCase() + str.slice(1);
-}
+export function flatEach(list, iteratee, a) {
+    let len = list.length
+    let i = -1
 
-let numberMap = {
-    //null undefined IE6-8这里会返回[object Object]
-    '[object Boolean]': 2,
-    '[object Number]': 3,
-    '[object String]': 4,
-    '[object Function]': 5,
-    '[object Symbol]': 6,
-    '[object Array]': 7
-};
-// undefined: 0, null: 1, boolean:2, number: 3, string: 4, function: 5, symbol:6, array: 7, object:8
-export function typeNumber(data) {
-    if (data === null) {
-        return 1;
-    }
-    if (data === void 666) {
-        return 0;
-    }
-    let a = numberMap[__type.call(data)];
-    return a || 8;
-}
-
-
-export let toArray =
-    Array.from ||
-    function(a) {
-        let ret = [];
-        for (let i = 0, n = a.length; i < n; i++) {
-            ret[i] = a[i];
+    while (len--) {
+        let item = list[++i]
+        if (isArr(item)) {
+            flatEach(item, iteratee, a)
+        } else {
+            iteratee(item, a)
         }
-        return ret;
-    };
+    }
+}
+
+export function extend(to, from) {
+    if (!from) {
+        return to
+    }
+    var keys = Object.keys(from)
+    var i = keys.length
+    while (i--) {
+        to[keys[i]] = from[keys[i]]
+    }
+    return to
+}
+
+
+let uid = 0
+export function getUid() {
+    return ++uid
+}
+
+export let EVENT_KEYS = /^on/i
+
+function setProp(elem, key, value, isCustomComponent) {
+    if (key === 'style') {
+        setStyle(elem.style, value)
+    } else if (key === HTML_KEY) {
+        if (value && value.__html != null) {
+            elem.innerHTML = value.__html
+        }
+    } else if (isCustomComponent) {
+        if (value == null) {
+            elem.removeAttribute(key)
+        } else {
+            elem.setAttribute(key, '' + value)
+        }
+    } else {
+        setPropValue(elem, key, value)
+    }
+}
+
+function removeProp(elem, key, oldValue, isCustomComponent) {
+    if (key === 'style') {
+        removeStyle(elem.style, oldValue)
+    } else if (key === HTML_KEY) {
+        elem.innerHTML = ''
+    } else if (isCustomComponent) {
+        elem.removeAttribute(key)
+    } else {
+        removePropValue(elem, key)
+    }
+}
+
+function patchProp(elem, key, value, oldValue, isCustomComponent) {
+    if (key === 'value' || key === 'checked') {
+        oldValue = elem[key]
+    }
+    if (value === oldValue) {
+        return
+    }
+    if (value === undefined) {
+        removeProp(elem, key, oldValue, isCustomComponent)
+        return
+    }
+    if (key === 'style') {
+        patchStyle(elem.style, oldValue, value)
+    } else {
+        setProp(elem, key, value, isCustomComponent)
+    }
+}
+
+export function setProps(elem, props, isCustomComponent) {
+    var isSelect = elem.nodeName === 'SELECT'
+    for (let key in props) {
+        if (key !== 'children') {
+            if (isSelect && (key === 'value' || key === 'defaultValue')) {
+                updateSelectOptions(elem, props.multiple, props[key])
+            } else {
+                setProp(elem, key, props[key], isCustomComponent)
+            }
+        }
+    }
+}
+
+export function patchProps(elem, props, newProps, isCustomComponent) {
+    var isSelect = elem.nodeName === 'SELECT'
+    for (let key in props) {
+        if (key !== 'children') {
+            if (newProps.hasOwnProperty(key)) {
+                if (isSelect && (key === 'value' || key === 'defaultValue')) {
+                    updateSelectOptions(elem, newProps.multiple, newProps[key])
+                } else {
+                    patchProp(elem, key, newProps[key], props[key], isCustomComponent)
+                }
+            } else {
+                removeProp(elem, key, props[key], isCustomComponent)
+            }
+        }
+    }
+    for (let key in newProps) {
+        if (key !== 'children' && !props.hasOwnProperty(key)) {
+            if (isSelect && (key === 'value' || key === 'defaultValue')) {
+                updateSelectOptions(elem, newProps.multiple, newProps[key])
+            } else {
+                setProp(elem, key, newProps[key], isCustomComponent)
+            }
+        }
+    }
+}
+
+if (!Object.freeze) {
+    Object.freeze = identity
+}

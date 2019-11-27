@@ -1,22 +1,21 @@
-const seed = function () { return seed; };
-seed.isRequired = seed;
+let check = () => check
+check.isRequired = check
+let PropTypes = {
+    "array": check,
+    "bool": check,
+    "func": check,
+    "number": check,
+    "object": check,
+    "string": check,
+    "any": check,
+    "arrayOf": check,
+    "element": check,
+    "instanceOf": check,
+    "node": check,
+    "objectOf": check,
+    "oneOf": check,
+    "oneOfType": check,
+    "shape": check
+}
 
-const PropTypes = {
-  array: seed,
-  bool: seed,
-  func: seed,
-  number: seed,
-  object: seed,
-  string: seed,
-  any: seed,
-  arrayOf: seed,
-  element: seed,
-  instanceOf: seed,
-  node: seed,
-  objectOf: seed,
-  oneOf: seed,
-  oneOfType: seed,
-  shape: seed
-};
-
-export default PropTypes;
+export default PropTypes

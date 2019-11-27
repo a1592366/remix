@@ -1,5 +1,5 @@
 import { document } from '../../document';
-import React, { createElement, render } from '../../renderer';
+import React, { createElement, render } from '../../react';
 import { View } from '../../components';
 
 export default class ViewController {
@@ -21,6 +21,7 @@ export default class ViewController {
     //   this.container
     // );
 
+    
     const rendered = render(
       createElement(component || r),
       this.container
