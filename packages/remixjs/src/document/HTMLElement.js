@@ -51,6 +51,8 @@ export default class HTMLElement extends Element {
     let node = this.child;
     let prevNode = null;
 
+    debugger;
+
     while (node) {
       if (child === node) {
          if (node === this.child) {

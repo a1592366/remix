@@ -387,16 +387,16 @@ function commitUnmount(current) {
         }
         break;
       }
-    case ClassComponent:
+    case CLASS_COMPONENT:
       {
-        safelyDetachRef(current);
+        // safelyDetachRef(current);
         var instance = current.stateNode;
         if (typeof instance.componentWillUnmount === 'function') {
           safelyCallComponentWillUnmount(current, instance);
         }
         return;
       }
-    case HostComponent:
+    case HOST_COMPONENT:
       {
         if (enableFlareAPI) {
           var dependencies = current.dependencies;
@@ -416,7 +416,7 @@ function commitUnmount(current) {
         safelyDetachRef(current);
         return;
       }
-    case HostPortal:
+    case HOST_PORTAL:
       {
         // TODO: this is recursive.
         // We are also not using this parent because
@@ -428,7 +428,7 @@ function commitUnmount(current) {
         }
         return;
       }
-    case FundamentalComponent:
+    case FUNCTION_COMPONENT:
       {
         if (enableFundamentalAPI) {
           var fundamentalInstance = current.stateNode;
@@ -446,7 +446,7 @@ function commitNestedUnmounts(root) {
   while (true) {
     commitUnmount(node);
     if (node.child !== null && (
-    !supportsMutation || node.tag !== HostPortal)) {
+    !supportsMutation || node.tag !== HOST_PORTAL)) {
       node.child.return = node;
       node = node.child;
       continue;
