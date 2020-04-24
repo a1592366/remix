@@ -9,6 +9,7 @@
   "author": "aniwei",
   "license": "ISC",
   "dependencies": {
+    "remixjs-message-protocol": "^0.0.1",
     "remixjs-xml": "^0.0.1"
   }
 }

@@ -1,0 +1,20 @@
+<template name="_<% tagName %>">
+  <<% tagName %> <% &props %>>
+    <% #openning %>
+    <block wx:if="{{children.length > 0}}">
+      <picker-view-column
+        wx:for="{{children}}" 
+        wx:for-index="index" 
+        wx:for-item="node"
+        wx:key="{{node.key}}"
+      >
+        <section data-type="picker" node-id="{{node.dataId}}" children="{{node.children}}" />
+      </picker-view-column>
+    </block>
+    <% /openning %>
+  </<%tagName%>>
+</template>
+
+<template name="<% tagName %>">
+  <template is="_<% tagName %>" data="{{ ...props, children: children, dataId: dataId, type: type }}" />
+</template>

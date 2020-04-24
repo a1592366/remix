@@ -1,0 +1,36 @@
+{
+	"name": "remix",
+	"version": "0.0.1",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "NODE_ENV=production webpack --progress --color",
+		"start": "NODE_ENV=development webpack --watch --color --progress"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.4",
+		"@babel/plugin-proposal-class-properties": "^7.4.4",
+		"@babel/plugin-transform-runtime": "^7.4.4",
+		"@babel/plugin-transform-modules-commonjs": "^7.6.0",
+		"@babel/preset-env": "^7.4.4",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/runtime": "^7.4.4",
+		"babel-loader": "^8.0.6",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"webpack": "^4.31.0",
+		"webpack-cli": "^3.3.2",
+		"webpack-dev-server": "^3.4.1"
+	},
+	"dependencies": {
+		"events": "^3.0.0",
+		"prop-types": "^15.7.2",
+		"qs": "^6.9.0",
+		"remixjs-message-protocol": "^0.0.1",
+		"remixjs-xml": "^0.0.1",
+		"requestidlecallback": "^0.3.0",
+		"uuid": "^3.3.2"
+	},
+	"author": "aniwei",
+	"license": "ISC"
+}

@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
-    "remixjs": "^0.0.1"
+    "remixjs": "^0.0.1",
+    "remixjs-message-protocol": "^0.0.1"
   }
 }
