@@ -1,0 +1,56 @@
+<import src="./remix-worker.wxml" /> 
+
+
+<template name="swiper">
+  <swiper 
+  	child="{{child}}"
+		innerText="{{innerText}}"
+		uuid="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		indicator-dots="{{indicatorDots}}"
+		indicator-color="{{indicatorColor}}"
+		indicator-active-color="{{indicatorActiveColor}}"
+		autoplay="{{autoplay}}"
+		current="{{current}}"
+		interval="{{interval}}"
+		duration="{{duration}}"
+		circular="{{circular}}"
+		vertical="{{vertical}}"
+		previous-margin="{{previousMargin}}"
+		next-margin="{{nextMargin}}"
+		display-multiple-items="{{displayMultipleItems}}"
+		skip-hidden-item-layou="{{skipHiddenItemLayou}}"
+		easing-function="{{easingFunction}}"
+		onTouchStart="{{onTouchStart}}"
+		onTouchMove="{{onTouchMove}}"
+		onTouchCancel="{{onTouchCancel}}"
+		onTouchEnd="{{onTouchEnd}}"
+		onTap="{{onTap}}"
+		onLongPress="{{onLongPress}}"
+		onLongTap="{{onLongTap}}"
+		onTouchForceChange="{{onTouchForceChange}}"
+		onTransitionEnd="{{onTransitionEnd}}"
+		onAnimationStart="{{onAnimationStart}}"
+		onAnimationIteration="{{onAnimationIteration}}"
+		onAnimationEnd="{{onAnimationEnd}}"
+		onChange="{{onChange}}"
+		onAnimationFinish="{{onAnimationFinish}}"
+  >
+  <block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+    <template is="remix-worker" data="{{ element: child }}" />
+  </block>
+  </swiper>
+</template>  
+
+
+
+
+
+
+
+
+
+

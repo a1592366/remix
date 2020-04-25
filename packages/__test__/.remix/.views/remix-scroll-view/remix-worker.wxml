@@ -1,0 +1,71 @@
+<import src="../remix-picker/index.wxml" />
+<import src="../remix-video/index.wxml" />
+<import src="../remix-scroll-view/index.wxml" />
+<import src="../remix-swiper/index.wxml" />
+<import src="../remix-swiper-item/index.wxml" />
+<import src="../remix-map/index.wxml" />
+<import src="../remix-image/index.wxml" />
+<import src="../remix-button/index.wxml" />
+<import src="../remix-input/index.wxml" />
+
+<wxs module="slibings">
+  module.exports = function (element) {
+    var slibings = [];
+    var slibing = element.slibing;
+
+    while (slibing) {
+      slibings.push(slibing);
+      slibing = slibing.slibing;
+    }
+
+    return slibings;
+  }
+</wxs>
+
+<template name="switcher">
+  <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
+  <block wx:elif="{{ element.tagName == 'view' }}">
+		<view child="{{element.child}}" innerText="{{element.innerText}}" id="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" hover-class="{{element.hoverClass}}" hover-stop-propagation="{{element.hoverStopPropagation}}" hover-start-time="{{element.hoverStartTime}}" hover-stay-time="{{element.hoverStayTime}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'text' }}">
+		<text child="{{element.child}}" innerText="{{element.innerText}}" id="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" selectable="{{element.selectable}}" space="{{element.space}}" decode="{{element.decode}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'picker' }}">
+		<template is="picker" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'video' }}">
+		<template is="video" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'scroll-view' }}">
+		<template is="scroll-view" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'swiper' }}">
+		<template is="swiper" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'swiper-item' }}">
+		<template is="swiper-item" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'map' }}">
+		<template is="map" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'image' }}">
+		<template is="image" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'button' }}">
+		<template is="button" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'input' }}">
+		<template is="input" data="{{ ...element }}" />
+	</block>
+</template>
+
+<template name="slibings">
+  <block wx:for="{{slibings(element)}}" wx:key="uuid" wx:for-item="slibing">
+    <template is="switcher" data="{{ element: slibing }}" />
+  </block>
+</template>
+
+<template name="remix-worker">  
+  <template is="switcher" data="{{ element }}" />
+  <template is="slibings" data="{{ element }}" />
+</template>

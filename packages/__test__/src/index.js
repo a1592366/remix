@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Application from 'remixjs/components';
+import Application from '@remix/core/components';
 
 export default () => {
   return <Application 

@@ -1,6 +1,6 @@
-import { Program } from 'remixjs/project';
-import { document } from 'remixjs/document';
-import env from 'remixjs/env';
+import { Program } from 'remix/project';
+import { document } from 'remix/document';
+import env from 'remix/env';
 import Application from '../../src';
 
 env.isLogicRuntime = true;
