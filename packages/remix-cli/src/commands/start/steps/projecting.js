@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const { resolve, parse } = require('path');
 const notify = require('../../../shared/notify');
-const compile = require('../../../shared/compile');
+const compile = require('../compile');
 
 async function updateJSON (tabBar, pages, config) {
   await fs.writeFile(

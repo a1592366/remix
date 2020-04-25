@@ -1,0 +1,31 @@
+<%- imports %>
+
+<wxs module="slibings">
+  module.exports = function (element) {
+    var slibings = [];
+    var slibing = element.slibing;
+
+    while (slibing) {
+      slibings.push(slibing);
+      slibing = slibing.slibing;
+    }
+
+    return slibings;
+  }
+</wxs>
+
+<template name="switcher">
+  <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
+  <%- components %>
+</template>
+
+<template name="slibings">
+  <block wx:for="{{slibings(element)}}" wx:key="uuid" wx:for-item="slibing">
+    <template is="switcher" data="{{ element: slibing }}" />
+  </block>
+</template>
+
+<template name="remix-worker">  
+  <template is="switcher" data="{{ element }}" />
+  <template is="slibings" data="{{ element }}" />
+</template>

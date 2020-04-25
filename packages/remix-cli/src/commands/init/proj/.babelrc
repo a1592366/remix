@@ -9,7 +9,7 @@
       {
         "root": ["./"],
         "alias": {
-          "react": "remix"
+          "react": "@remix/core"
         }
       }
     ]

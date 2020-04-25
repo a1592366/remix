@@ -1,6 +1,6 @@
-const create = require('../views');
+const createRemixViews = require('../ui');
 const proj = require('../../../config/proj');
 
 module.exports = async function () {
-  await create(proj.REMIX_VIEWS);
+  await createRemixViews(proj.REMIX_VIEWS);
 };

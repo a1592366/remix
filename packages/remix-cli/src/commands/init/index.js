@@ -7,6 +7,6 @@ const createViews = require('./steps/views');
 module.exports = async function () {
   const answers = await init();
   
-  await install(answers);
   await createViews();
+  await install(answers);
 }

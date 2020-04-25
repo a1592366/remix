@@ -1,0 +1,28 @@
+<% if (worker) { %><import src="./remix-worker.wxml" /> <% } %>
+
+<% if (replace) {%>
+<% if (open) { %><block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+    <template is="remix-worker" data="{{ element: child }}" />
+  </block><% } %>
+<% } else { %>
+<template name="<%= name %>">
+  <<%=tagName %> 
+  <%- props %>
+  >
+  <% if (open) { %><block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+    <template is="remix-worker" data="{{ element: child }}" />
+  </block><% } %>
+  </<%=tagName %>>
+</template>  
+<% } %>
+
+
+
+
+
+
+
+
+

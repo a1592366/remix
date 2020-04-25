@@ -1,5 +1,5 @@
-import { MiniProgram } from 'remix/project';
-import { document } from 'remix/document';
+import { MiniProgram } from '@remix/core/project';
+import { document } from '@remix/core/document';
 import Application from '../../src';
 
 const container = document.createElement('div');

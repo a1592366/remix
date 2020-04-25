@@ -5,7 +5,8 @@ const uuid = require('uuid');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const env = require('../env');
+const env = require('../../../config/env');
+const proj = require('../../../config/proj');
 
 class RemixGlobalWebpackPlugin {
   constructor () {
@@ -70,9 +71,9 @@ module.exports = {
 
   resolve: {
     alias: {
-      'react': 'remixjs',
-      'react-dom': 'remixjs',
-      'prop-types': 'remixjs/prop-types',
+      'react': '@remix/core',
+      'react-dom': '@remix/core',
+      'prop-types': '@remix/core/prop-types',
     },
     extensions: ['.js', '.jsx']
   },
@@ -101,7 +102,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             exclude: /node_modules/,
-            ...fs.readJSONSync(path.resolve(env.PROJ, '.babelrc')),
+            ...fs.readJSONSync(path.resolve(proj.PROJ_DIR, '.babelrc')),
             
           }
         },  
