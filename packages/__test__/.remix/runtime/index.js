@@ -1,4 +1,4 @@
-/*** MARK_1587871641742 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1587931800797 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -159,7 +159,7 @@
 /*!******************************!*\
   !*** ../remix/components.js ***!
   \******************************/
-/*! exports provided: Application, ViewController, TabBar, Root, View, Text, Image, Button, Map, Input, Picker, Swiper, SwiperItem, ScrollView, Video */
+/*! exports provided: Application, ViewController, Router, TabBar, Root, View, Text, Image, Button, Map, Input, Picker, Swiper, SwiperItem, ScrollView, Video */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,6 +168,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Application", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Application"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ViewController", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["ViewController"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Router"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabBar", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["TabBar"]; });
 
@@ -259,24 +261,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../remix/router.js":
-/*!**************************!*\
-  !*** ../remix/router.js ***!
-  \**************************/
-/*! exports provided: Router, Route */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/router */ "../remix/src/router/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return _src_router__WEBPACK_IMPORTED_MODULE_0__["Router"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return _src_router__WEBPACK_IMPORTED_MODULE_0__["Route"]; });
-
-
-
-/***/ }),
-
 /***/ "./.remix/runtime/boot.js":
 /*!********************************!*\
   !*** ./.remix/runtime/boot.js ***!
@@ -312,7 +296,6 @@ var program = new _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_s
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _boot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./boot */ "./.remix/runtime/boot.js");
 
-debugger;
 _boot__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
 /***/ }),
@@ -328,31 +311,27 @@ _boot__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
 /* harmony import */ var _remix_core_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @remix/core/components */ "../remix/components.js");
-/* harmony import */ var _remix_core_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @remix/core/router */ "../remix/router.js");
-/* harmony import */ var _pages_Index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Index */ "./src/pages/Index/index.js");
+/* harmony import */ var _pages_Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Index */ "./src/pages/Index/index.js");
+/* harmony import */ var _pages_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/User */ "./src/pages/User/index.js");
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Application"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_router__WEBPACK_IMPORTED_MODULE_2__["Router"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_router__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Application"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"].Route, {
     path: "pages/Index/index",
-    component: _pages_Index__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_router__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "pages/Explore/index",
-    component: _pages_Index__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_router__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "pages/Home/index",
-    component: _pages_Index__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _pages_Index__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"].Route, {
+    path: "pages/User/index",
+    component: _pages_User__WEBPACK_IMPORTED_MODULE_3__["default"]
   })), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
-    icon: "",
     path: "pages/Index/index",
-    component: _pages_Index__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }, "\u6D4B\u8BD5"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
-    icon: "",
-    path: "pages/Index/index",
-    component: _pages_Index__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }, "\u6D4B\u8BD5")));
+    icon: ""
+  }, "\u9996\u9875"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
+    path: "pages/User/index",
+    icon: ""
+  }, "\u6211\u7684")));
 });
 
 /***/ }),
@@ -369,7 +348,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  debugger;
+  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("view", null, "pages/Index/index");
+});
+
+/***/ }),
+
+/***/ "./src/pages/User/index.js":
+/*!*********************************!*\
+  !*** ./src/pages/User/index.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("view", {
+    onGetUserInfo: "onGetUserInfo"
+  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("button", {
+    onGetUserInfo: function onGetUserInfo() {
+      debugger;
+    }
+  }, "GetUserInfomation"));
 });
 
 /***/ })

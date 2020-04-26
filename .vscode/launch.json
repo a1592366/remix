@@ -4,15 +4,25 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
       "type": "node",
       "request": "launch",
-      "name": "test",
+      "name": "Test Context",
       "program": "${workspaceFolder}/packages/__test__/.remix/runtime/node.js",
       "cwd": "${workspaceFolder}/packages/__test__",
       "skipFiles": [
         "<node_internals>/**"
       ]
+    },
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Test Start",
+      "cwd": "${workspaceFolder}/packages/__test__",
+      "program": "${workspaceFolder}/packages/remix-cli/bin/remix",
+      "args": ["start"]
     },
   
     {

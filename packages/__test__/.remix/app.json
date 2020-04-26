@@ -4,14 +4,20 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/Index/index"
-      }, {
-        "pagePath": "pages/Index/index"
+        "text": "首页",
+        "pagePath": "pages/Index/index",
+        "iconPath": ""
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/User/index",
+        "iconPath": ""
       }
     ]
   },
   "pages": [
-    "pages/Index/index"
+    "pages/Index/index",
+    "pages/User/index"
   ],
   "window": {}
 }

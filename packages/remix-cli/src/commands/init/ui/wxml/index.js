@@ -18,7 +18,7 @@ async function toJSONFile (dist, view) {
 
 async function toJavaScriptFile (dist, view) {
   const methods = events.concat(view.events).map(({ name }) => {
-    return `${name} (e) { const { uuid, parent } = this.data; transport.view.dispatch('${name}', uuid, parent, e); }`;
+    return `${name} (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('${name}', uuid, parent, e); }`;
   });
 
   const combined = view.properties.concat(events, view.events);
@@ -50,17 +50,20 @@ async function toJavaScriptFile (dist, view) {
 
 async function toWXMLFile (dist, view) {
   const properties = view.properties.concat(events, view.events);
-    
-  let props = properties.map((props, index) => {
-    const { alias, camel, name } = props;
-    const line = [alias, `"{{${camel}}}"`];
+  
+  let props = properties.map((prop, index) => {
+    const { alias, camel, name } = prop;
+    const line = [
+      alias, 
+      `"{{${camel}}}"`
+    ];
 
     if (name === 'className') {
       line[0] = 'class';
     } else if (name === 'style') {
       line[0] = 'style';
     } else {
-      line[0] = name;
+      line[0] = alias;
     }
 
     return line.join('=');
@@ -102,4 +105,4 @@ module.exports = async function (dist) {
   }));
 }
 
-// module.exports(resolve(__dirname, '__test__'));
+module.exports(resolve(__dirname, '__test__'));

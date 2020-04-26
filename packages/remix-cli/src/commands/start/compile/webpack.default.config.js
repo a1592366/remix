@@ -1,7 +1,6 @@
-const path = require('path');
+const { resolve } = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const uuid = require('uuid');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -62,6 +61,8 @@ module.exports = {
 
   entry: {
     'runtime/index': proj.REMIX_CLIENT_RUNTIME,
+    'views/remix-view/index': resolve(proj.REMIX_VIEWS, `remix-view/${proj.REMIX_VIEW_SYMBOL}index.js`),
+    'views/remix-text/index': resolve(proj.REMIX_VIEWS, `remix-text/${proj.REMIX_VIEW_SYMBOL}index.js`)
   },
 
   output: {
@@ -85,7 +86,7 @@ module.exports = {
       filename: 'static/wxss/app.ui.wxss',
     }),
     new webpack.DefinePlugin({
-      'process.env.INSPECTOR': `${JSON.stringify(env.INSPECTOR)}`
+      'process.env.INSPECTOR': `"${JSON.stringify(env.INSPECTOR)}"`
     })
   ],
 
@@ -96,7 +97,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             exclude: /node_modules/,
-            ...fs.readJSONSync(path.resolve(proj.PROJ_DIR, '.babelrc')),
+            ...fs.readJSONSync(resolve(proj.PROJ_DIR, '.babelrc')),
             
           }
         },  

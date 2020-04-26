@@ -1,0 +1,53 @@
+<import src="./remix-worker.wxml" /> 
+
+
+<template name="picker">
+  <picker 
+  	child="{{child}}"
+		innerText="{{innerText}}"
+		uuid="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		mode="{{mode}}"
+		disabled="{{disabled}}"
+		range="{{range}}"
+		range-key="{{rangeKey}}"
+		value="{{value}}"
+		start="{{start}}"
+		end="{{end}}"
+		fields="{{fields}}"
+		custom-item="{{customItem}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bindcancel="{{onCancel}}"
+		binderror="{{onError}}"
+		bindchange="{{onChange}}"
+		bindcolumnchange="{{onColumnChange}}"
+  >
+  <block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+    <template is="remix-worker" data="{{ element: child }}" />
+  </block>
+  </picker>
+</template>  
+
+
+
+
+
+
+
+
+
+

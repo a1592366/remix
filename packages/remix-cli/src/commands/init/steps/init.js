@@ -68,7 +68,7 @@ module.exports = async function () {
     await copy(source, proj.PROJ_DIR, files)({
       ...answers,
       name: parse(proj.PROJ_DIR).name,
-      compile: ''
+      compile: proj.REMIX_NAME
     });
   }
 

@@ -26,12 +26,14 @@ async function updatePages (pages) {
       
       const dist = resolve(REMIX_SOURCE, dir);
       const js = resolve(dist,`${REMIX_VIEW_SYMBOL}${base}.js`);
-      const xml = resolve(dist, `${base}.wxml`)
+      const xml = resolve(dist, `${base}.wxml`);
+      const json = resolve(dist, `${base}.json`);
       
       await fs.mkdirp(dist);      
       await Promise.all([
+        fs.writeFile(json, JSON.stringify({ usingComponents: { view: '../../views/remix-view/index' }}, null, 2)),
         fs.writeFile(js, viewString),
-        fs.writeFile(xml, ``)
+        fs.writeFile(xml, `<view child="{{element}}" />`)
       ]);
 
       accept();
@@ -55,7 +57,7 @@ module.exports = async function projecting (context) {
       const tabBar = context.tabBar;
 
       if (tabBar) {
-        const { items, ...others } = tabBar;
+        const { items, children, ...others } = tabBar;
         const keys = [
           { key: 'text', alias: 'text' },
           { key: 'path', alias: 'pagePath' },
@@ -72,13 +74,13 @@ module.exports = async function projecting (context) {
 
             keys
               .filter(k => it[k.keys])
-              .forEach(k => json[k.alias] = item[k.key]);
+              .forEach(k => json[k.alias] = it[k.key]);
 
             return {
-              text: item.text,
-              pagePath: item.path,
-              iconPath: item.icon,
-              selectedIconPath: item.selectedIcon
+              text: it.text,
+              pagePath: it.path,
+              iconPath: it.icon,
+              selectedIconPath: it.selectedIcon
             };
           })
         };

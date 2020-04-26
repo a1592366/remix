@@ -16,7 +16,7 @@
 
 <template name="switcher">
   <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
-  <%- components %>
+  <%- switcher %>
 </template>
 
 <template name="slibings">

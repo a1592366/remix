@@ -1,4 +1,5 @@
 const views = require('../views');
+const events = require('../events');
 const copy = require('../../../../shared/copy');
 const keys = Object.keys(views);
 
@@ -16,15 +17,6 @@ module.exports = async function (dist) {
   }).join('\n');
 
   const switcher = keys.map(key => {
-    const view = views[key]
-    if (1) {
-
-    } else {
-      return `<block wx:elif="{{ element.tagName == '${view.name}' }}">\n\t\t<template is="${view.name}" data="{{ ...element }}" />\n\t</block>`;
-    }
-  }).join('');
-
-  const components = keys.map(key => {
     const view = views[key];
     const { name } = view;
 
@@ -32,9 +24,12 @@ module.exports = async function (dist) {
       name === 'view' ||
       name === 'text'
     ) {
-      const props = view.properties.map(props => {
-        const { name, camel } = props;
-        const line = [name, `"{{element.${camel}}}"`];
+      const props = view.properties.concat(events, view.events).map(props => {
+        const { name, camel, alias, isEvent } = props;
+        const line = [
+          alias,
+          `"{{element.${camel}}}"`
+        ];
         
         if (name === 'uuid') {
           line[0] = 'id';
@@ -58,6 +53,5 @@ module.exports = async function (dist) {
   )({
     imports,
     switcher,
-    components
   });
 }

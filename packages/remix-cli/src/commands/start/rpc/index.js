@@ -2,51 +2,58 @@ const { resolve } = require('path');
 const rpc = require('jayson');
 const spawn = require('cross-spawn');
 
+const notify = require('../../../shared/notify');
 const proj = require('../../../config/proj');
 const env = require('../../../config/env');
 
 const command = ['node', [resolve(__dirname, 'server.js')]];
 
-const r = module.exports = {
+module.exports = {
   process: null,
   exit () { this.process.exit(); },
-  context () {
-    r.process = r.process || spawn(...command, {
-        stdio: 'inherit',
-        cwd: proj.PROJ_DIR
-      });
-    
-    r.client = r.client || rpc.client.http({
-      port: env.RPC_PORT
-    }); 
-  
-    r.clientRequest = r.clientRequest || r.client.request ;
-          
-    r.client.request = function (method, ...argv) {
-      return new Promise((resolve, reject) => {
-        const request = () => {
-          r.clientRequest.call(
-            r.client,
-             method, 
-             argv, 
-             (err, res) => {
-              if (err) {
-                if (err.code === 'ECONNREFUSED') {
-                  process.nextTick(request)  
+
+  start () {
+    return new Promise((resolve, reject) => {
+      if (!exports.process) {
+        const ps = spawn(...command, { stdio: 'inherit', cwd: proj.PROJ_DIR });
+        exports.process = ps;
+
+        ps.on('close', () => {
+          notify.red(`[${env.RPC_PORT}] 端口已经被占用`);
+
+          exports.hasExceptions = true;
+        });
+
+        exports.client = rpc.client.http({ port: env.RPC_PORT }); 
+        exports.clientRequest = exports.client.request;
+
+        exports.client.request = function (method, ...argv) {
+          return new Promise((resolve, reject) => {
+            const request = () => {
+              exports.clientRequest.call(exports.client, method, argv, (error, res) => {
+                if (error) {
+                  if (error.code === 'ECONNREFUSED') {
+                    process.nextTick(request)  ;
+                  } else {
+                    reject(error)
+                  }
                 } else {
-                  reject(err)
+                  resolve(res);
                 }
-              } else {
-                resolve(res);
-              }
+              });
             }
-          )
+        
+            request();
+          });
         }
-    
-        request();
-      });
-    }
-  
-    return r.client.request('context');
+
+        resolve();
+      }
+    });
+  },
+
+  async context () {
+    await this.start();
+    return exports.client.request('context');
   }
 }

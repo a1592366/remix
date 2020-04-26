@@ -17,4 +17,6 @@ const server = rpc.server({
   }
 });
 
-server.http().listen(env.RPC_PORT);
+const http = server.http()
+http.listen(env.RPC_PORT);
+http.on('error', () => {});
