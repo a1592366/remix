@@ -3,7 +3,7 @@ import createElement from './createElement';
 import createTextNode from './createTextNode';
 import createContainer from './createContainer';
 import globalElements from './globalElements';
-import env from '../../env';
+import env from '../../config';
 
 
 const fakeDocument = {

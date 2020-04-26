@@ -1,4 +1,4 @@
-import env from '../../../../env';
+
 
 function Socket (options) {
   if (env.mode === 'devtool') {

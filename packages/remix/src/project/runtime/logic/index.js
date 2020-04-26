@@ -1,10 +1,10 @@
 import uuid from 'uuid';
 import qs from 'qs';
-import transports from '../transports';
+import transports from '../Support';
 import ViewManager from '../ViewManager';
 import { isFunction } from '../../../shared/is';
 
-import env from '../../../../env';
+import env from '../../../../config';
 
 
 class LogicRuntime {

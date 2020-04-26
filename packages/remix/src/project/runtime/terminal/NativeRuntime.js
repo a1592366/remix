@@ -1,10 +1,11 @@
 import uuid from 'uuid';
-import transports, { API } from '../transports';
-import env from '../../../../env';
+import transports, { API } from '../Support';
+import env from '../../../../config';
 import createNativeSocket from './NativeSocket';
 
 export default class NativeRuntime {
   constructor () {
+    debugger;
     transports.api.on(API.LOGIN, this.onLogin);
     transports.api.on(API.REQUEST, this.onRequest);
     transports.api.on(API.NAVIGATE_TO, this.onNavigateTo);

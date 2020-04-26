@@ -1,6 +1,7 @@
 import Application from './Application';
 import ViewController from './ViewController'
 import TabBar from './TabBar';
+import Router from '../router';
 
 import Root from './remix-element/remix-root';
 import View from './remix-element/remix-view';
@@ -18,6 +19,7 @@ import Video from './remix-element/remix-video';
 export {
   Application,
   ViewController,
+  Router,
   TabBar,
   Root,
   View,

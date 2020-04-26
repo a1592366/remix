@@ -1,9 +1,5 @@
 import ViewController from './ViewController';
-import { render } from '../../react';
 import { document } from '../../document';
-import { UPDATE_FREQUENCY } from '../../shared';
-import createElement from '../../react/createElement';
-import transports, { VIEW } from './transports';
 
 const lifecycleTypes = {
   ATTACHED: 'attached',

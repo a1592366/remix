@@ -24,6 +24,7 @@ function createFiberNode (tag, pendingProps, key) {
 
     return: null,
     child: null,
+    sibling: null,
 
     status: NO_WORK,
   }

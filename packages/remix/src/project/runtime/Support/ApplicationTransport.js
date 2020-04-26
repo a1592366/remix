@@ -1,14 +1,8 @@
-import uuid from 'uuid';
+import shortid from 'shortid';
 import Tunnel from '../tunnel';
-import { APPLICATION } from './types';
+import App from './types/App';
 
 export default class ApplicationTransport extends Tunnel {
-  constructor () {
-    super();
-
-    this.on(APPLICATION, this.onMessage);
-  }
-
   onDisconnect (callback) {
     this.on('disconnect', callback);
   }
@@ -17,21 +11,17 @@ export default class ApplicationTransport extends Tunnel {
     this.on(APPLICATION.LAUNCH, callback);
   }
 
-  post = (type, argv, callback) => {
-    const callbackId = typeof callback === 'function' ? uuid.v4() : null
+  publish = (type, argv, callback) => {
+    const callbackId = typeof callback === 'function' ? 
+      shortid.generate() : null;
 
     if (callbackId) {
       this.once(callbackId, callback);
     }
 
-    super.post({
-      type: String(APPLICATION),
-      body: {
-        type,
-        argv,
-        callbackId
-      }
-    });
+    const payload = { type, argv, callbackId };
+
+    super.publish({ type, payload });
   }
 
   reply (body) {
@@ -50,7 +40,8 @@ export default class ApplicationTransport extends Tunnel {
   }
 
   launch (options) {
-    this.post(APPLICATION.LAUNCH, [options]);
+    debugger;
+    this.publish(App.LAUNCH, [options]);
   }
 
   show () {

@@ -23,12 +23,16 @@
 		"webpack-dev-server": "^3.4.1"
 	},
 	"dependencies": {
+		"event-lite": "^0.1.2",
 		"events": "^3.0.0",
+		"events-lite": "^0.1.0",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.0",
 		"remixjs-message-protocol": "^0.0.1",
 		"remixjs-xml": "^0.0.1",
 		"requestidlecallback": "^0.3.0",
+		"shortid": "^2.2.15",
+		"tiny-emitter": "^2.1.0",
 		"uuid": "^3.3.2"
 	},
 	"author": "aniwei",

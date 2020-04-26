@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import { API } from '../transports';
+import { API } from '../Support';
 
 class NativeSocket {
   constructor (transport) {

@@ -34,17 +34,9 @@ export function updateDOMProperties (
           setTextContent(element, nextProp);
         }
       }
-    } else if (isEventProperty) {
-      propName = propName.slice(2).toLowerCase();
-
-      if (typeof prop === 'function') {
-        element.removeEventListener(propName, prop, false);
-      }
-
-      if (typeof nextProp === 'function') {
-        element.addEventListener(propName, nextProp, false);
-      }
-
+    } 
+    else if (isEventProperty) {
+      setValueForProperty(element, propName, propName);
     } else if (nextProp !== null) {
       setValueForProperty(element, propName, nextProp);
     }

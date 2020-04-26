@@ -3,7 +3,7 @@ import { render } from '../../react';
 import { document } from '../../document';
 import createElement from '../../react/createElement';
 import { ROOT } from '../../document/HTMLTypes';
-import transports, { VIEW } from './transports';
+import transports, { VIEW } from './Support';
 import { isFunction } from '../../shared/is';
 import { INTERNAL_INSTANCE_KEY } from '../../shared';
 

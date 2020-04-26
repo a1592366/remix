@@ -1,45 +1,58 @@
 import { document } from '../../document';
-import React, { createElement, render } from '../../react';
-import { View } from '../../components';
+import React, { createElement } from '../../react';
+import ReactDOM from '../../renderer';
+import * as ViewNativeSupport from './Support/ViewNativeSupport';
+import { shallowEqual } from '../../shared';
+
+export function ViewControllersManager (context, instance) {
+  const viewControllers = [];
+  const views = {};
+
+  context.router.routes.forEach(route => {
+    views[route.path] = route;
+  });
+
+  ViewNativeSupport.Subscriber.onLoad = ({ id, query, route }, callback) => {
+    let controller = viewControllers[id];
+    
+    if (!controller) {
+      const view = views[route];
+
+      if (view) {
+        controller = new ViewController(id);
+        controller.Class = view.component;
+        viewControllers[id] = controller;  
+      } else {
+        throw new Error(`未发现路由为 ${route} ViewController`);
+      }
+    } 
+
+    controller.onLoad(query);
+
+    if (controller.shouldUpdate(query)) {
+      controller.query = query;
+      callback(controller.render());
+    }
+  }
+}
 
 export default class ViewController {
-  constructor (id, route) {
-    this.id = id;
-    this.route = route;
-    this.container = document.createElement('root');
+  view = document.createElement('view');
 
-    document.body.appendChild(this.container);
+  onLoad (query) {
+
   }
 
-  onLoad (query, callback) {
-    const { component, render: r } = this.route;
+  shouldUpdate (query) {
+    return shallowEqual(query, this.query);
+  }
 
-    // const rendered = render(
-    //   createElement(() => 
-    //     <View className="root">{createElement(component || r)}</View>
-    //   ),
-    //   this.container
-    // );
-
-    
-    const rendered = render(
-      createElement(component || r),
-      this.container
+  render () {
+    ReactDOM.render(
+      React.createElement(this.Class), 
+      this.view
     );
 
-    const elements = document.getContainerElements(this.container);
-    console.log(elements);
-
-    // elements.onTouchStart = 'onTouchStart';
-    elements.onTap = 'onTap';
-
-
-    callback(elements);
+    return this.view.serialize();
   }
-
-  onReady () {
-
-  }
-
- 
 }

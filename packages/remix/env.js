@@ -6,9 +6,6 @@ export const inspectTerminalTypes = process.env.INSPECT_TERMINAL_TYPES;
 export const inspectTerminalUUID = process.env.INSPECT_TERMINAL_UUID;
 export const inspectLogicUUID = process.env.INSPECT_LOGIC_UUID;
 
-console.log(process.env);
-debugger;
-
 export default {
   isInspectMode,
   inspectWSURL,

@@ -1,24 +1,30 @@
-import EventEmitter from 'events';
+import Emitter from 'tiny-emitter';
 import uuid from 'uuid';
-import Socket from './Socket';
-import env from '../../../../env';
+import Socket from './shared/Socket';
+import env from '../../../../config';
 
 
-class MessageEmitter extends EventEmitter {
+class Message extends Emitter {
   constructor () {
     super();
 
-    const { isDevToolRuntime } = env;
+    const { mode, inspector } = env;
+    const isDevToolMode = mode === 'devtool';
 
-    this.id = isDevToolRuntime ? env.inspectLogicUUID : env.inspectTerminalUUID;
+    this.id = isDevToolMode ? 
+      inspector.LOGIC_UUID : 
+      inspector.TERMINAL_UUID;
+
     this.connected = false;
     this.queue = [];
 
     this.socket = new Socket({
-      url: env.inspectWSURL,
+      url: env.inspector.WS_URL,
       protocols: [
         this.id, 
-        env.inspectTerminalTypes[env.isDevToolRuntime ? 'LOGIC' : 'VIEW']
+        inspector.types[
+          isDevToolMode ? 'LOGIC' : 'VIEW'
+        ]
       ]
     });
 
@@ -83,12 +89,12 @@ class MessageEmitter extends EventEmitter {
 }
 
 
-export default class SocketTunnel extends EventEmitter {
+export default class Net extends Emitter {
   constructor () {
     super();
 
     this.id = uuid.v4();
-    this.emitter = SocketTunnel.emitter || (SocketTunnel.emitter = new MessageEmitter());
+    this.emitter = Net.emitter || (Net.emitter = new Message());
 
     this.emitter.on('message', ({ post }) => {
       const { type, body } = post;

@@ -1,9 +1,8 @@
-import uuid from 'uuid';
-import transports from '../transports';
+import transports from '../Support';
 import ViewManager from '../ViewManager';
 import ViewEventManager from '../ViewEventManger';
 import NativeRuntime from './NativeRuntime';
-import env from '../../../../env';
+import env from '../../../../config';
 import { isFunction } from '../../../shared/is';
 
 
@@ -94,10 +93,6 @@ class TerminalRuntime extends NativeRuntime {
   }
 };
 
-export {
-  transports
-}
-export * from 'remixjs-message-protocol';
 export default function (context, instance) {
   const runtime =  new TerminalRuntime(context, instance);
   const viewManager = new ViewManager(context);
