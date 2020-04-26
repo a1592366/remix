@@ -1,4 +1,5 @@
-const path = require('path');
+const { resolve, join, parse } = require('path');
+const CopyPulgin = require('copy-webpack-plugin');
 
 const defaultWebpackConfig = require('./webpack.default.config');
 
@@ -14,8 +15,8 @@ module.exports = {
     }
 
     routes.forEach(route => {
-      const parsed = path.parse(route.path);
-      const source = path.join(
+      const parsed = parse(route.path);
+      const source = join(
         proj.REMIX_SOURCE, 
         parsed.dir, 
         `${proj.REMIX_VIEW_SYMBOL}${parsed.base}.js` 
@@ -48,8 +49,8 @@ module.exports = {
       config.plugins.push(
         new CopyPulgin(source.map(src => {
           return {
-            from: path.resolve(env.PROJ_SOURCE, src),
-            to: path.resolve(env.REMIX_SOURCE, src)
+            from: resolve(proj.PROJ_SOURCE, src),
+            to: resolve(proj.REMIX_SOURCE, src)
           }
         }))
       );

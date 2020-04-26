@@ -1,8 +1,7 @@
-import { isNullOrUndefined } from '../shared/is';
 import React from '../react';
-import cloneElement from '../react/cloneElement';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
+import { cloneElement } from '../react/createElement';
 import notification, { APPLICATION, VIEW } from '../project/notification';
 
 const { defineProperty } = Object;

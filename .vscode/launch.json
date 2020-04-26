@@ -7,6 +7,17 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "test",
+      "program": "${workspaceFolder}/packages/__test__/.remix/runtime/node.js",
+      "cwd": "${workspaceFolder}/packages/__test__",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+  
+    {
+      "type": "node",
+      "request": "launch",
       "name": "调试START命令",
       "cwd": "${workspaceFolder}/packages/remixjs-example",
       "program": "${workspaceFolder}/packages/remixjs-example/.~remix/runtime/node.runtime.js"

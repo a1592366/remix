@@ -1,17 +1,29 @@
 import uuid from 'uuid';
-import { terminalTransports } from '../transports';
+import transports from '../transports';
 import ViewManager from '../ViewManager';
+import ViewEventManager from '../ViewEventManger';
 import NativeRuntime from './NativeRuntime';
 import env from '../../../../env';
+import { isFunction } from '../../../shared/is';
 
-const transports = terminalTransports;
 
 class TerminalRuntime extends NativeRuntime {
-  constructor (context) {
+  constructor (context, instance) {
     super();
 
+    this.instance = instance;
     this.context = context;
     this.options = null;
+
+    transports.app.onLaunch(this.onApplicationLaunch);
+  }
+
+  onApplicationLaunch = (options) => {
+    const { props } = this.instance;
+    
+    if (isFunction(props.onLaunch)) {
+      props.onLaunch(options);
+    }
   }
 
   inspect (callback) {
@@ -86,9 +98,10 @@ export {
   transports
 }
 export * from 'remixjs-message-protocol';
-export default function (context) {
-  const runtime =  new TerminalRuntime(context);
+export default function (context, instance) {
+  const runtime =  new TerminalRuntime(context, instance);
   const viewManager = new ViewManager(context);
+  const viewEventManager = new ViewEventManager(context);
 
   runtime.run();
 };

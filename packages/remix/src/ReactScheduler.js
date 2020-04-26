@@ -1,11 +1,13 @@
 import performance from './shared/performance';
 import nextTick from './shared/nextTick';
-import { enqueueUpdateQueue } from './ReactUpdater';
 import { commitAllWork } from './ReactCommit';
+import { enqueueUpdateQueue, dequeueUpdateQueue } from './ReactUpdater';
 import { updateHostRoot, updateFunctionComponent, updateHostComponent, updateClassComponent } from './ReactReconciler';
 import { SCHEDULE_TIMEOUT, SCHEDULE_FPS, SCHEDULE_KEY } from './shared';
 import { HOST_ROOT, FUNCTION_COMPONENT, CLASS_COMPONENT, HOST_COMPONENT } from './shared/workTags';
+import { NO_WORK } from './shared';
 
+let isRendering = false;
 let ReactCurrentScheduler;
 let scheduleDeadline = 0;
 
@@ -25,7 +27,7 @@ function siftup (node , leaf) {
     const parent = ReactCurrentSchedulerHeap[index];
 
     // 与父节点比较
-    if ((parent[SCHEDULE_KEY] - node[SCHEDULE_KEY]) > 0) {
+    if ((parent[SCHEDULE_KEY] - node[SCHEDULE_KEY]) >= 0) {
       // 交换位置
       ReactCurrentSchedulerHeap[index] = node;
       ReactCurrentSchedulerHeap[leaf] = parent;
@@ -92,13 +94,17 @@ function flush (now) {
   let nextUnitOfWork = peek();
 
   while (nextUnitOfWork) {
-    const isExpired = nextUnitOfWork.due > now;
+    const isExpired = isRendering ? 
+      false : nextUnitOfWork.due > now;
+
     if (isExpired && shouldYeild()) {
       break;
     }
 
     const schedule = nextUnitOfWork.schedule;
     schedule.schedule = null;
+
+    schedule(isExpired);
 
     isExpired && workInProgress ?
       nextUnitOfWork.schedule = workLoop : pop()
@@ -111,7 +117,7 @@ function flush (now) {
 function flushWork () {
   ReactCurrentScheduler = flush;
 
-  nextTick(() => {
+  const next = () => {
     if (ReactCurrentScheduler) {
       const now = performance.now();
       scheduleDeadline = now + 1000 / SCHEDULE_FPS;
@@ -122,7 +128,10 @@ function flushWork () {
         flushWork() : 
         ReactCurrentScheduler = null;
     }
-  });
+  }
+
+  isRendering ? 
+    next() : nextTick(next);
 }
 
 function scheduleWork () {
@@ -136,7 +145,7 @@ function scheduleWork () {
 }
   
 function shouldYeild () {
-  return performance.now() >= scheduleDeadline;
+  return isRendering ? false : performance.now() >= scheduleDeadline;
 }
 
 function workLoop (isExpired) {
@@ -209,4 +218,10 @@ export function scheduleUpdate (fiber) {
   enqueueUpdateQueue(fiber);
   
   scheduleWork();
+}
+
+export function scheduleRootUpdate (fiber) {
+  isRendering = true;
+
+  scheduleUpdate(fiber);
 }

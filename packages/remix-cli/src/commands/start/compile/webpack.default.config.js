@@ -14,7 +14,7 @@ class RemixGlobalWebpackPlugin {
   }
 
   polyfill (source) {
-    return `/*** ${this.mark} WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ ${source.replace('var installedModules = {}', 'var installedModules = window.installedModules || (window.installedModules = {})')}`;
+    return () => `/*** ${this.mark} WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ ${source.replace('var installedModules = {}', 'var installedModules = window.installedModules || (window.installedModules = {})')}`;
   }
 
   replace (assets) {
@@ -25,9 +25,9 @@ class RemixGlobalWebpackPlugin {
 
       if (
         /(\.js|\/.jsx)$/g.test(name) && 
-        source.indexOf(mark) === -1
+        source.indexOf(this.mark) === -1
       ) {
-        asset.source = polyfill(source);
+        asset.source = this.polyfill(source);
       }
     });
 
@@ -61,12 +61,12 @@ module.exports = {
   },
 
   entry: {
-    'runtime/index': env.REMIX_CLIENT_RUNTIME,
+    'runtime/index': proj.REMIX_CLIENT_RUNTIME,
   },
 
   output: {
     filename: '[name].js',
-    path: env.REMIX_SOURCE,    
+    path: proj.REMIX_SOURCE,    
   },
 
   resolve: {
@@ -85,13 +85,7 @@ module.exports = {
       filename: 'static/wxss/app.ui.wxss',
     }),
     new webpack.DefinePlugin({
-      'process.env.IS_INSPECT_MODE': `${env.IS_INSPECT_MODE}`,
-      'process.env.INSPECT_UI_URL': `"${env.INSPECT_UI_URL}"`,
-      'process.env.INSPECT_WS_URL': `"${env.INSPECT_WS_URL}"`,
-      'process.env.INSEPCT_MESSAGE_TYPES': `${JSON.stringify(env.INSEPCT_MESSAGE_TYPES, 2, null)}`,
-      'process.env.INSPECT_TERMINAL_TYPES': `${JSON.stringify(env.INSPECT_TERMINAL_TYPES, 2, null)}`,
-      'process.env.INSPECT_TERMINAL_UUID': `"${uuid.v4()}"`,
-      'process.env.INSPECT_LOGIC_UUID': `"${uuid.v4()}"`,
+      'process.env.INSPECTOR': `${JSON.stringify(env.INSPECTOR)}`
     })
   ],
 

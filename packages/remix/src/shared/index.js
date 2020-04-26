@@ -27,6 +27,7 @@ export const UPDATE_FREQUENCY = 10;
 
 export const SCHEDULE_TIMEOUT = 3000;
 export const SCHEDULE_FPS = 60;
+export const SCHEDULE_KEY = 'due';
 
 export const UPDATE_STATE = 0;
 export const REPLACE_STATE = 1;

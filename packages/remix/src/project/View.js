@@ -1,11 +1,9 @@
 import uuid from 'uuid';
 import { isFunction } from '../shared/is';
-import { terminalTransports } from './runtime/transports';
+import transports from './runtime/transports';
 import env from '../../env';
 
-const transports = terminalTransports;
-
-export default class View {
+export default class ViewController {
   constructor (route) {
     this.route = route;
     this.id = uuid.v4();
@@ -24,7 +22,9 @@ export default class View {
         onHide () {},
         onUnload () {},
         onPullDownRefresh () {},
-        onShareAppMessage () {}
+        onShareAppMessage (options) {
+          return transports.view.shareMessage(options);
+        },
       })
     }
   }
@@ -43,15 +43,13 @@ export default class View {
   }
 
   onLaunch = ({ path }) => {
-    if (path === this.route) {
-      transports.view.load({
-        id: this.id,
-        query: this.query,
-        route: this.route
-      }, (element) => {
-        this.instance.setData({ element });
-      });
-    }
+    transports.view.load({
+      id: this.id,
+      query: this.query,
+      route: this.route
+    }, (element) => {
+      this.instance.setData({ element });
+    });
   }
 }
 

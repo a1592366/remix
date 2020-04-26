@@ -1,0 +1,17 @@
+{
+  "tabBar": {
+    "color": "#000000",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/Index/index"
+      }, {
+        "pagePath": "pages/Index/index"
+      }
+    ]
+  },
+  "pages": [
+    "pages/Index/index"
+  ],
+  "window": {}
+}

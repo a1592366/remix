@@ -1,7 +1,8 @@
 const fs = require('fs-extra');
 const { resolve, parse } = require('path');
-const notify = require('../../../shared/notify');
 const compile = require('../compile');
+const notify = require('../../../shared/notify');
+const proj = require('../../../config/proj');
 
 async function updateJSON (tabBar, pages, config) {
   await fs.writeFile(
@@ -11,29 +12,29 @@ async function updateJSON (tabBar, pages, config) {
 }
 
 async function updatePages (pages) {
-  const viewString = `
-    import { View } from 'remix/project';
-    new View('${page}');
-  `;
+  
 
   await Promise.all(pages.map(page => {
     const { base, dir } = parse(page);
+    const viewString = `
+      import { View } from '@remix/core/project';
+      new View('${page}');
+    `;
 
-    return new Promise(async (resolve) => {
+    return new Promise(async (accept) => {
       const { REMIX_SOURCE, REMIX_VIEW_SYMBOL } = proj;
       
       const dist = resolve(REMIX_SOURCE, dir);
       const js = resolve(dist,`${REMIX_VIEW_SYMBOL}${base}.js`);
       const xml = resolve(dist, `${base}.wxml`)
       
-      await fs.mkdirp(dist);
-      
+      await fs.mkdirp(dist);      
       await Promise.all([
         fs.writeFile(js, viewString),
         fs.writeFile(xml, ``)
       ]);
 
-      resolve();
+      accept();
     });
   }));
 }
@@ -86,9 +87,9 @@ module.exports = async function projecting (context) {
     }
   }
 
-
   notify.green(`正在编译 Remix 项目，请稍后...`);
   await updateJSON(application.tabbar, application.pages, {});
   await updatePages(application.pages);
-  await compiler.start();
+
+  await compiler.start(context);
 }

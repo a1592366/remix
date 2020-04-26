@@ -1,6 +1,17 @@
-import Element from './Element';
-import { TEXT_NODE } from '../shared/HTMLNodeType';
+import HTMLElement from './HTMLElement';
+import { ELEMENT_NODE } from '../shared/HTMLNodeType';
+import { TEXT } from './HTMLTypes';
 
-export default class HTMLTextElement extends Element {
-  nodeType = TEXT_NODE;
+import RemixText from '../components/remix-element/remix-text';
+
+
+export default class HTMLTextElement extends HTMLElement {
+  static defaultProps = RemixText.defaultProps;
+
+  constructor (textContent) {
+    super();
+
+    this.nodeType = ELEMENT_NODE;
+    this.tagName = TEXT;
+  }
 }

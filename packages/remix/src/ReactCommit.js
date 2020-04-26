@@ -3,6 +3,7 @@ import { HOST_COMPONENT, HOST_TEXT, HOST_ROOT, HOST_PORTAL } from './shared/work
 import { INTERNAL_EVENT_HANDLERS_KEY } from './shared';
 import { updateDOMProperties } from './renderer/config/DOMProperties';
 import appendChildToContainer from './renderer/config/appendChildToContainer';
+import appendChild from './renderer/config/appendChild';
 
 const ReactCommitQueue = [];
 

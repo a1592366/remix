@@ -1,10 +1,9 @@
-import { isNullOrUndefined } from '../shared/is';
-import { createElement } from '../react';
-import { render } from '../renderer';
+import React from '../react';
+import ReactDOM from '../renderer';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
 import terminal from './runtime/terminal';
-import devtool from './runtime/devtool';
+import logic from './runtime/logic';
 import env from '../../env';
 
 const { TabBarItem } = TabBar;
@@ -33,10 +32,10 @@ export default class Program {
           config: {}
         };
 
-        render(createElement(App), container);
+        ReactDOM.render(React.createElement(App), container);
     
         const rootContainer = container._reactRootContainer;
-        const currentFiber = rootContainer._internalRoot.current;
+        const currentFiber = rootContainer.internalRoot.workInProgress;
 
         let node = currentFiber;
 
@@ -76,13 +75,13 @@ export default class Program {
             }
           }
       
-          if (!isNullOrUndefined(node.child)) {
+          if (node.child) {
             node = node.child;
             continue;
           }
       
-          while (isNullOrUndefined(node.sibling)) {
-            if (isNullOrUndefined(node.return)) {
+          while (!node.sibling) {
+            if (node.return) {
               return context;
             }
       

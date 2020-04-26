@@ -1,7 +1,7 @@
 const path = require('path');
 const mem = require('mem-fs');
 const memEditor = require('mem-fs-editor');
-const logger = require('../../shared/print');
+const logger = require('../../shared/notify');
 
 module.exports = async function copy (src, dist, files) {
   const store = mem.create();

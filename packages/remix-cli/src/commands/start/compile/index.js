@@ -3,10 +3,11 @@ const development = require('./webpack.config').development;
 
 const notify = require('../../../shared/notify');
 
-module.exports = function compile () {
+module.exports = function compile (context) {
   let config = null;
   let compiler = null;
-  
+
+  config = development(context);
   return {
     start () {
       compiler = webpack(config);

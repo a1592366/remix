@@ -1,12 +1,11 @@
 import uuid from 'uuid';
 import qs from 'qs';
-import { logicTransports } from '../transports';
+import transports from '../transports';
 import ViewManager from '../ViewManager';
 import { isFunction } from '../../../shared/is';
 
 import env from '../../../../env';
 
-const transports = logicTransports;
 
 class DevToolRuntime {
   constructor (context, instance) {
