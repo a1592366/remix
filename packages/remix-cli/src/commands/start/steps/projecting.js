@@ -42,56 +42,67 @@ async function updatePages (pages) {
 }
 
 module.exports = async function projecting (context) {
-  const compiler = compile(context);
+  let compiler = compile(context);
   
-  const application = {
-    get pages () {
-      const router = context.router;
-      
-      if (router) {
-        return router.routes.map(route => route.path);
-      }
-    },
-
-    get tabbar () {
-      const tabBar = context.tabBar;
-
-      if (tabBar) {
-        const { items, children, ...others } = tabBar;
-        const keys = [
-          { key: 'text', alias: 'text' },
-          { key: 'path', alias: 'pagePath' },
-          { key: 'iconPath', alias: 'icon' },
-          { key: 'selectedIconPath', alias: 'selectedIcon' }
-        ];
-
-        return {
-          color: '#000000',
-          backgroundColor: '#ffffff',
-          ...others,
-          list: items.map(it => {
-            const json = { pagePath: it.path };
-
-            keys
-              .filter(k => it[k.keys])
-              .forEach(k => json[k.alias] = it[k.key]);
-
-            return {
-              text: it.text,
-              pagePath: it.path,
-              iconPath: it.icon,
-              selectedIconPath: it.selectedIcon
-            };
-          })
-        };
-      } 
-      
+  const restart = async (context) => {
+    if (compiler) {
+      await compiler.stop();
+      compiler = compile(context);
     }
+
+    const application = {
+      get pages () {
+        const router = context.router;
+        
+        if (router) {
+          return router.routes.map(route => route.path);
+        }
+      },
+  
+      get tabbar () {
+        const tabBar = context.tabBar;
+  
+        if (tabBar) {
+          const { items, children, ...others } = tabBar;
+          const keys = [
+            { key: 'text', alias: 'text' },
+            { key: 'path', alias: 'pagePath' },
+            { key: 'iconPath', alias: 'icon' },
+            { key: 'selectedIconPath', alias: 'selectedIcon' }
+          ];
+  
+          return {
+            color: '#000000',
+            backgroundColor: '#ffffff',
+            ...others,
+            list: items.map(it => {
+              const json = { pagePath: it.path };
+  
+              keys
+                .filter(k => it[k.keys])
+                .forEach(k => json[k.alias] = it[k.key]);
+  
+              return {
+                text: it.text,
+                pagePath: it.path,
+                iconPath: it.icon,
+                selectedIconPath: it.selectedIcon
+              };
+            })
+          };
+        } 
+        
+      }
+    }
+  
+    notify.green(`正在编译 Remix 项目，请稍后...`);
+    await updateJSON(application.tabbar, application.pages, context.config);
+    await updatePages(application.pages);
+  
+    await compiler.start(context);
   }
 
-  notify.green(`正在编译 Remix 项目，请稍后...`);
-  await updateJSON(application.tabbar, application.pages, {});
-  await updatePages(application.pages);
+  await restart(context);
 
-  await compiler.start(context);
+  return restart;
 }

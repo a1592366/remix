@@ -1,6 +1,4 @@
 
-import createElement from './createElement';
-import { isString } from '../../shared/is';
 import { INTERNAL_INSTANCE_KEY, INTERNAL_EVENT_HANDLERS_KEY } from '../../shared';
 
 let ownerDocument = null;

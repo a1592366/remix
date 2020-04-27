@@ -3,7 +3,7 @@
 
 <template name="input">
   <input 
-  	uuid="{{uuid}}"
+  	id="{{uuid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

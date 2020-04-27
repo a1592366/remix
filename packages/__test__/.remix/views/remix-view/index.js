@@ -1,4 +1,4 @@
-/*** MARK_1587931800797 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1588014434129 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -224,7 +224,6 @@ Component({
     },
     // others component event
     onGetUserInfo: function onGetUserInfo(e) {
-      debugger;
       _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["ViewNativeSupport"].Publisher.Event('onGetUserInfo', e.target.id, this.data.parent, e, this);
     },
     onContact: function onContact(e) {

@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import * as ViewNativeSupport from './runtime/Support/ViewNativeSupport';
+import { INTERNAL_RELATIVE_KEY } from '../shared';
 
 export default function (route) {
   const view = {
@@ -8,12 +9,34 @@ export default function (route) {
   }
 
   if (typeof Page === 'function') {
+    let onData = null;
+
     Page({
       data: { element: null },
       onLoad (query) {
-        ViewNativeSupport.Publisher.Load({ ...view, query }, (element) => {
-          this.setData({ element });
-        });
+        onData = (element) => {
+          const id = element[INTERNAL_RELATIVE_KEY];
+          console.log(id, view.id);
+
+          if (id === view.id) {
+            console.log(element);
+            this.setData({ element });
+          }
+        }
+
+        console.log('onLoad')
+
+        ViewNativeSupport.Subscriber.onData(onData);
+        ViewNativeSupport.Publisher.Load({ ...view, query });
+      },
+      onShow () {
+        ViewNativeSupport.Publisher.Show(view);
+      },
+      onUnload () {
+        ViewNativeSupport.Subscriber.unsubscribe(
+          ViewNativeSupport.Data, 
+          onData
+        )
       }
     })
   } else {

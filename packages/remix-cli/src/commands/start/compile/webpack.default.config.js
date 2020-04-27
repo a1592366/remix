@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { relative, resolve, join } = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -47,6 +47,7 @@ class RemixGlobalWebpackPlugin {
 
 
 module.exports = {
+  context: proj.PROJ_DIR,
   devtool: 'cheap-module-source-map',
   stats: {
     all: false,
@@ -62,7 +63,8 @@ module.exports = {
   entry: {
     'runtime/index': proj.REMIX_CLIENT_RUNTIME,
     'views/remix-view/index': resolve(proj.REMIX_VIEWS, `remix-view/${proj.REMIX_VIEW_SYMBOL}index.js`),
-    'views/remix-text/index': resolve(proj.REMIX_VIEWS, `remix-text/${proj.REMIX_VIEW_SYMBOL}index.js`)
+    'views/remix-text/index': resolve(proj.REMIX_VIEWS, `remix-text/${proj.REMIX_VIEW_SYMBOL}index.js`),
+    'views/remix-textarea/index': resolve(proj.REMIX_VIEWS, `remix-textarea/${proj.REMIX_VIEW_SYMBOL}index.js`)
   },
 
   output: {
@@ -98,38 +100,43 @@ module.exports = {
           options: {
             exclude: /node_modules/,
             ...fs.readJSONSync(resolve(proj.PROJ_DIR, '.babelrc')),
-            
           }
         },  
         test:/\.(js|jsx)$/ 
       },
       { 
         use: [
-          { loader: MiniCssExtractPlugin.loader }, 
+          { 
+            loader: MiniCssExtractPlugin.loader 
+          }, 
           'css-loader', 
           'less-loader'
         ],  
         test:/\.less$/ 
       },
       { 
-        use: [ MiniCssExtractPlugin.loader, 'css-loader' ],  
+        use: [ 
+          { 
+            loader: 
+            MiniCssExtractPlugin.loader 
+          }, 
+          'css-loader' 
+        ],  
         test:/\.css$/ 
+      }, 
+      { 
+        use: [ 
+          { 
+            loader:'file-loader', 
+            options: {
+              context: proj.PROJ_SOURCE,
+              useRelativePath: true,
+              name: '/[path][name].[ext]'
+            }
+          }
+        ],  
+        test:/\.(png|jpg|jpeg|.gif)$/ 
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-        },
-      },
-      // { 
-      //   use: [
-      //     { 
-      //       loader: 'remixjs-file-loader'
-      //     }
-      //   ],  
-      //   test:/\.(png|jpg|gif|svg|ico)$/ 
-      // },
     ]
   },
 

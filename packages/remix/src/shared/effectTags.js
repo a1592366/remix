@@ -11,3 +11,4 @@ export const REF = 128;
 export const SNAPSHOT = 256;
 export const PASSIVE = 512
 export const INCOMPLETE = 1024;
+

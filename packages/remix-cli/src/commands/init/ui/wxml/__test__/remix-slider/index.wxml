@@ -1,0 +1,49 @@
+
+
+
+<template name="slider">
+  <slider 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		min="{{min}}"
+		max="{{max}}"
+		step="{{step}}"
+		disabled="{{disabled}}"
+		value="{{value}}"
+		color="{{color}}"
+		selected-color="{{selectedColor}}"
+		backgroundColor="{{backgroundColor}}"
+		activeColor="{{activeColor}}"
+		block-size="{{blockSize}}"
+		block-color="{{blockColor}}"
+		show-value="{{showValue}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bindchange="{{onChange}}"
+		bindchanging="{{onChanging}}"
+  >
+  
+  </slider>
+</template>  
+
+
+
+
+
+
+
+
+
+

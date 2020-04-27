@@ -29,9 +29,7 @@ module.exports = {
       config.entry['runtime/devtool'] = proj.REMIX_DEVTOOL_RUNTIME;
     }
 
-    const source = [
-      './static/wxss/runtime.ui.wxss'
-    ];
+    const source = [];
 
     tabBar.items.filter(tab => {
       return tab.icon || tab.selectedIcon

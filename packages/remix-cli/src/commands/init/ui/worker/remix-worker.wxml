@@ -1,16 +1,16 @@
 <%- imports %>
 
-<wxs module="slibings">
+<wxs module="siblings">
   module.exports = function (element) {
-    var slibings = [];
-    var slibing = element.slibing;
+    var siblings = [];
+    var sibling = element.sibling;
 
-    while (slibing) {
-      slibings.push(slibing);
-      slibing = slibing.slibing;
+    while (sibling) {
+      siblings.push(sibling);
+      sibling = sibling.sibling;
     }
 
-    return slibings;
+    return siblings;
   }
 </wxs>
 
@@ -19,13 +19,13 @@
   <%- switcher %>
 </template>
 
-<template name="slibings">
-  <block wx:for="{{slibings(element)}}" wx:key="uuid" wx:for-item="slibing">
-    <template is="switcher" data="{{ element: slibing }}" />
+<template name="siblings">
+  <block wx:for="{{siblings(element)}}" wx:key="uuid" wx:for-item="sibling">
+    <template is="switcher" data="{{ element: sibling }}" />
   </block>
 </template>
 
 <template name="remix-worker">  
   <template is="switcher" data="{{ element }}" />
-  <template is="slibings" data="{{ element }}" />
+  <template is="siblings" data="{{ element }}" />
 </template>

@@ -9,6 +9,11 @@ const scrollView = require('./scroll-view');
 const swiper = require('./swiper');
 const swiperItem  = require('./swiper-item');
 const video = require('./video');
+const textarea = require('./textarea');
+const editor = require('./editor');
+const slider = require('./slider');
+const audio = require('./audio');
+const canvas = require('./canvas');
 
 module.exports = {
   view,
@@ -22,4 +27,9 @@ module.exports = {
   image,
   button,
   input,
+  textarea,
+  editor,
+  slider,
+  audio,
+  canvas
 }

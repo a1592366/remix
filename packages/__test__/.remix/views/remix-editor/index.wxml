@@ -1,0 +1,45 @@
+
+
+
+<template name="editor">
+  <editor 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		read-only="{{readOnly}}"
+		placeholder="{{placeholder}}"
+		show-img-size="{{showImgSize}}"
+		show-img-toolbar="{{showImgToolbar}}"
+		show-img-resize="{{showImgResize}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bindfocus="{{onFocus}}"
+		bindblur="{{onBlur}}"
+		bindinput="{{onInput}}"
+		bindready="{{onReady}}"
+		bindstatuschange="{{onStatusChange}}"
+  >
+  
+  </editor>
+</template>  
+
+
+
+
+
+
+
+
+
+

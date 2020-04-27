@@ -5,7 +5,7 @@
   <swiper 
   	child="{{child}}"
 		innerText="{{innerText}}"
-		uuid="{{uuid}}"
+		id="{{uuid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

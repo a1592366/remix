@@ -1,6 +1,4 @@
 import transports from '../Support';
-import ViewManager from '../ViewManager';
-import ViewEventManager from '../ViewEventManger';
 import NativeRuntime from './NativeRuntime';
 import env from '../../../../config';
 import { isFunction } from '../../../shared/is';

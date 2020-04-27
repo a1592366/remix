@@ -1,5 +1,7 @@
 import Element from './Element';
 import StyleSheet from './StyleSheet';
+import { enqueueUpdate } from '../ReactDOMUpdator';
+import { INTERNAL_RELATIVE_KEY } from '../shared';
 
 function resolveDefaultProps (
   defaultProps,
@@ -34,18 +36,47 @@ export default class HTMLElement extends Element {
     throw new Error('Sorry, innerHTML is not be supportted');
   }
 
+  getElementById (id) {
+    if (this.uuid === id) {
+      return this;
+    }
+
+    let node = this.child;
+
+    while (node) {
+      if (node.uuid === id) {
+        return node;
+      }
+
+      if (node.child) {
+        node = node.child;
+      } else {
+        while (node.sibling === null) {
+          if (node.return === null) { 
+            return null; 
+          }
+      
+          node = node.return;
+        }
+      
+        node = node.sibling;
+      }
+    }
+  }
+
   appendChild (child) {
     if (this.child === null) {
       this.child = this.lastChild = child;
     } else {
-      this.lastChild.slibing = child;
+      this.lastChild.sibling = child;
       this.lastChild = child;
     }    
 
     child.parent = this.uuid;
     child.return = this;
+    child.parentNode = this;
 
-    this.onChildChange();
+    enqueueUpdate(this);
   }
 
   removeChild (child) {
@@ -55,30 +86,28 @@ export default class HTMLElement extends Element {
     while (node) {
       if (child === node) {
          if (node === this.child) {
-          this.child = node.slibing;
+          this.child = node.sibling;
          } else {
-          prevNode.slibing = node.slibing;
+          prevNode.sibling = node.sibling;
          }
       }
 
       prevNode = node;
-      node = node.slibing;
+      node = node.sibling;
     }
 
-    this.onChildChange();
+    enqueueUpdate(this);
   }
 
   insertBefore (child, beforeChild) {
     child.return = this;
-    child.slibing = beforeChild;
+    child.sibling = beforeChild;
 
     child.parent = this.uuid;
 
     if (beforeChild === this.child) {
       this.child = child;
     }
-
-    this.onChildChange();
   }
 
   getAttribute (name) {
@@ -86,18 +115,19 @@ export default class HTMLElement extends Element {
   }
 
   setAttribute (name, value) {
-    this.proxy[name] = value;
+    this[name] = value;
+
+    enqueueUpdate(this);
   }
 
   removeAttribute (name) {
     this[name] = null;
+
+    enqueueUpdate(this);
   }
 
   addEventListener () {}
   removeEventListener () {}
-  dispatchEvent (type, id, e) {
-    console.log()
-  }
 
   toString () {
     return `[object HTML${this.tagName}Element]`;
@@ -113,8 +143,8 @@ export default class HTMLElement extends Element {
       element.child = this.child.serialize();
     }
 
-    if (this.slibing) {
-      element.slibing = this.slibing.serialize();
+    if (this.sibling) {
+      element.sibling = this.sibling.serialize();
     }
 
     if (this.innerText) {
@@ -125,6 +155,7 @@ export default class HTMLElement extends Element {
     element.uuid = this.uuid;
     element.nodeType = this.nodeType;
     element.parent = this.parent;
+    element[INTERNAL_RELATIVE_KEY] = this[INTERNAL_RELATIVE_KEY];
 
     return element;
   }

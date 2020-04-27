@@ -1,4 +1,4 @@
-import { IMAGE, INPUT, MAP, BUTTON, VIEW, TEXT, PICKER, SWIPER_ITEM, SWIPER, ROOT, VIDEO } from './HTMLTypes';
+import { IMAGE, INPUT, MAP, BUTTON, VIEW, TEXT, PICKER, SWIPER_ITEM, SWIPER, ROOT, VIDEO, TEXTAREA } from './HTMLTypes';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import HTMLElement from './HTMLElement';
 import HTMLImageElement from './HTMLImageElement';
@@ -11,11 +11,16 @@ import HTMLSwiperElement from './HTMLSwiperElement';
 import HTMLRootElement from './HTMLRootElement';
 import HTMLVideoElement from './HTMLVideoElement';
 import HTMLInputElement from './HTMLInputElement';
+import HTMLTextAreaElement from './HTMLTextAreaElement';
 
 export default function createElement (tagName) {
   let element;
 
   switch (tagName) {
+    case TEXTAREA: {
+      return new HTMLTextAreaElement();
+    }
+
     case ROOT: {
       return new HTMLRootElement();
     }

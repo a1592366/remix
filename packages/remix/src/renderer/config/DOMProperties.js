@@ -49,6 +49,7 @@ export function setDOMProperties (
   rootContainerElement, 
   nextProps,
 ) {
+  debugger;
   for (let propName in nextProps) {
     if (nextProps.hasOwnProperty(propName)) {
       const nextProp = nextProps[propName];

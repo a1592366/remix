@@ -7,18 +7,23 @@
 <import src="../remix-image/index.wxml" />
 <import src="../remix-button/index.wxml" />
 <import src="../remix-input/index.wxml" />
+<import src="../remix-textarea/index.wxml" />
+<import src="../remix-editor/index.wxml" />
+<import src="../remix-slider/index.wxml" />
+<import src="../remix-audio/index.wxml" />
+<import src="../remix-canvas/index.wxml" />
 
-<wxs module="slibings">
+<wxs module="siblings">
   module.exports = function (element) {
-    var slibings = [];
-    var slibing = element.slibing;
+    var siblings = [];
+    var sibling = element.sibling;
 
-    while (slibing) {
-      slibings.push(slibing);
-      slibing = slibing.slibing;
+    while (sibling) {
+      siblings.push(sibling);
+      sibling = sibling.sibling;
     }
 
-    return slibings;
+    return siblings;
   }
 </wxs>
 
@@ -29,6 +34,9 @@
 	</block>
 	<block wx:elif="{{ element.tagName == 'text' }}">
 		<text child="{{element.child}}" innerText="{{element.innerText}}" id="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" selectable="{{element.selectable}}" space="{{element.space}}" decode="{{element.decode}}" bind:touchstart="{{element.onTouchStart}}" bind:touchmove="{{element.onTouchMove}}" bind:touchcancel="{{element.onTouchCancel}}" bind:touchend="{{element.onTouchEnd}}" bind:tap="{{element.onTap}}" bind:longpress="{{element.onLongPress}}" bind:longtap="{{element.onLongTap}}" bind:touchforcechange="{{element.onTouchForceChange}}" bind:transitionend="{{element.onTransitionEnd}}" bind:animationstart="{{element.onAnimationStart}}" bind:animationiteration="{{element.onAnimationIteration}}" bind:animationend="{{element.onAnimationEnd}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'textarea' }}">
+		<textarea child="{{element.child}}" value="{{element.value}}" uuid="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" selectable="{{element.selectable}}" space="{{element.space}}" decode="{{element.decode}}" bind:touchstart="{{element.onTouchStart}}" bind:touchmove="{{element.onTouchMove}}" bind:touchcancel="{{element.onTouchCancel}}" bind:touchend="{{element.onTouchEnd}}" bind:tap="{{element.onTap}}" bind:longpress="{{element.onLongPress}}" bind:longtap="{{element.onLongTap}}" bind:touchforcechange="{{element.onTouchForceChange}}" bind:transitionend="{{element.onTransitionEnd}}" bind:animationstart="{{element.onAnimationStart}}" bind:animationiteration="{{element.onAnimationIteration}}" bind:animationend="{{element.onAnimationEnd}}" bindinput="{{element.onInput}}" />
 	</block>
 	<block wx:elif="{{ element.tagName == 'picker' }}">
 		<template is="picker" data="{{ ...element }}" />
@@ -57,15 +65,27 @@
 	<block wx:elif="{{ element.tagName == 'input' }}">
 		<template is="input" data="{{ ...element }}" />
 	</block>
+	<block wx:elif="{{ element.tagName == 'editor' }}">
+		<template is="editor" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'slider' }}">
+		<template is="slider" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'audio' }}">
+		<template is="audio" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'canvas' }}">
+		<template is="canvas" data="{{ ...element }}" />
+	</block>
 </template>
 
-<template name="slibings">
-  <block wx:for="{{slibings(element)}}" wx:key="uuid" wx:for-item="slibing">
-    <template is="switcher" data="{{ element: slibing }}" />
+<template name="siblings">
+  <block wx:for="{{siblings(element)}}" wx:key="uuid" wx:for-item="sibling">
+    <template is="switcher" data="{{ element: sibling }}" />
   </block>
 </template>
 
 <template name="remix-worker">  
   <template is="switcher" data="{{ element }}" />
-  <template is="slibings" data="{{ element }}" />
+  <template is="siblings" data="{{ element }}" />
 </template>

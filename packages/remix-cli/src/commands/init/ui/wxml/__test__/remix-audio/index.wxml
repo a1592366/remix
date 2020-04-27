@@ -1,0 +1,47 @@
+
+
+
+<template name="audio">
+  <audio 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		id="{{id}}"
+		src="{{src}}"
+		loop="{{loop}}"
+		controls="{{controls}}"
+		poster="{{poster}}"
+		name="{{name}}"
+		author="{{author}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bind:error="{{onError}}"
+		bind:play="{{onPlay}}"
+		bind:pause="{{onPause}}"
+		bind:timeupdate="{{onTimeUpdate}}"
+		bind:ended="{{onEnded}}"
+  >
+  
+  </audio>
+</template>  
+
+
+
+
+
+
+
+
+
+

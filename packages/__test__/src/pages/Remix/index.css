@@ -1,0 +1,22 @@
+.remix {
+
+}
+
+.remix__logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 220rpx;
+}
+
+.remix__logo-image {
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.remix__logo-text {
+  margin-top: 40rpx;
+  font-size: 34rpx;
+  letter-spacing: 3rpx;
+}

@@ -407,7 +407,6 @@ function reconcileChildren (workInProgress, children) {
       prevChild = newFiber;
     }
 
-
     workInProgress.memoizedReactFibers = pendingReactFibers;
     workInProgress.memoizedReactElements = workInProgress.pendingReactElements;
 

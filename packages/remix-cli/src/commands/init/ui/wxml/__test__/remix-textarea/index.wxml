@@ -1,0 +1,59 @@
+
+
+
+<template name="textarea">
+  <textarea 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		value="{{value}}"
+		placeholder="{{placeholder}}"
+		placeholder-style="{{placeholderStyle}}"
+		placeholder-class="{{placeholderClass}}"
+		disabled="{{disabled}}"
+		maxlength="{{maxlength}}"
+		auto-focus="{{autoFocus}}"
+		focus="{{focus}}"
+		auto-height="{{autoHeight}}"
+		fixed="{{fixed}}"
+		cursor-spacing="{{cursorSpacing}}"
+		cursor="{{cursor}}"
+		show-confirm-bar="{{showConfirmBar}}"
+		selection-start="{{selectionStart}}"
+		selection-end="{{selectionEnd}}"
+		adjust-position="{{adjustPosition}}"
+		hold-keyboard="{{holdKeyboard}}"
+		disable-default-padding="{{disableDefaultPadding}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bindfocus="{{onFocus}}"
+		bindblur="{{onBlur}}"
+		bindlinechange="{{onLineChange}}"
+		bindinput="{{onInput}}"
+		bindconfirm="{{onConfirm}}"
+		bindkeyboardheightchange="{{onKeyboardHeightChange}}"
+  >
+  
+  </textarea>
+</template>  
+
+
+
+
+
+
+
+
+
+

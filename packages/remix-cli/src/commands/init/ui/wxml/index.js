@@ -62,6 +62,8 @@ async function toWXMLFile (dist, view) {
       line[0] = 'class';
     } else if (name === 'style') {
       line[0] = 'style';
+    } else if (name === 'uuid') {
+      line[0] = 'id';
     } else {
       line[0] = alias;
     }

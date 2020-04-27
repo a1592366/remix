@@ -11,3 +11,4 @@ export const PICKER = 'picker';
 export const SWIPER_ITEM = 'swiper-item';
 export const SWIPER = 'swiper';
 export const VIDEO = 'video';
+export const TEXTAREA = 'textarea';

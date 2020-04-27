@@ -1,7 +1,16 @@
 import uuid from 'uuid';
 import Emitter from 'tiny-emitter';
-import View, { Load } from './types/View';
+import View, { Load, Show, Ready, Unload, Hide, Event, Data } from './types/View';
 
+export {
+  Load,
+  Show,
+  Ready,
+  Unload,
+  Hide,
+  Event,
+  Data
+}
 
 export const Publisher = new class extends Emitter {
   Load (view, callback) {
@@ -16,11 +25,28 @@ export const Publisher = new class extends Emitter {
       type: Load,
       argv: [view],
       callbackId
+    });
+  }
+
+  Show (view) {
+    Subscriber.emit(View, {
+      type: Show,
+      argv: [view]
     })
   }
 
-  Event (type, ) {
-    debugger;
+  Data (data) {
+    Subscriber.emit(View, {
+      type: Data,
+      argv: [data]
+    })
+  }
+
+  Event (...argv) {
+    Subscriber.emit(View, {
+      type: Event,
+      argv,
+    })
   }
 
   Lifecycle (type, uuid) {
@@ -39,11 +65,35 @@ export const Subscriber = new class extends Emitter {
         });
       }
 
-      this[type](...argv);
+      this.emit(type, ...argv);
     });
   }
 
-  onLoad () {}
-  onReady () {}
-  onUnload () {}
+  onData (onData) {
+    this.on(Data, onData);
+  }
+
+  onEvent (onEvent) {
+    this.on(Event, onEvent);
+  }
+
+  onLoad (onLoad) {
+    this.on(Load, onLoad);
+  }
+
+  onShow (onShow) {
+    this.on(Show, onShow);
+  }
+
+  onHide (onHide) {
+    this.on(Hide, onHide);
+  }
+
+  onReady (onReady) {
+    this.on(Ready, onReady);
+  }
+
+  onUnload (onUnload) {
+    this.on(Unload, onUnload);
+  }
 }

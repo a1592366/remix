@@ -6,6 +6,7 @@ const notify = require('../../../shared/notify');
 module.exports = function compile (context) {
   let config = null;
   let compiler = null;
+  let watching = null;
 
   config = development(context);
   return {
@@ -13,11 +14,11 @@ module.exports = function compile (context) {
       compiler = webpack(config);
 
       return new Promise((resolve, reject) => {
-        compiler.watch({}, (err, stats) => {
+        watching = compiler.watch({}, (err, stats) => {
           if (err) {
             notify.red(err);
           } else {
-            // console.log(stats.toString({ color: true }));
+            notify.green(stats.toString({ color: true }));
           }
   
           resolve();
@@ -27,7 +28,7 @@ module.exports = function compile (context) {
 
     stop () {
       if (compiler) {
-        compiler.close();
+        watching.close(() => {});
         compiler = null;
       }
     },

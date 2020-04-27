@@ -5,6 +5,7 @@ const resolve = (...argv) => path.resolve(...argv);
 const PROJ_DIR = process.cwd();
 
 const PROJ_SOURCE = resolve(PROJ_DIR, 'src');
+const PROJ_ENTRY_FILE = resolve(PROJ_SOURCE, 'index.js');
 
 const REMIX_NAME = '.remix';
 const REMIX_VIEW_SYMBOL = '~';
@@ -17,6 +18,7 @@ const REMIX_CLIENT_RUNTIME = path.resolve(REMIX_SOURCE, 'runtime/client.js');
 module.exports = {
   PROJ_DIR,
   PROJ_SOURCE,
+  PROJ_ENTRY_FILE,
 
   REMIX_VIEWS,
   REMIX_NAME,
