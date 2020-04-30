@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="canvas">
+
   <canvas 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -26,7 +29,11 @@
   >
   
   </canvas>
+
+
 </template>  
+
+
 
 
 

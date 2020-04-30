@@ -165,24 +165,41 @@
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
 var _project = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
+
+var _methods;
 
 Component({
   options: {
     addGlobalClass: true
   },
   properties: {
-    child: Object,
-    innerText: String,
     uuid: String,
     parent: String,
     style: String,
     className: String,
-    hoverClass: String,
-    hoverStopPropagation: Boolean,
-    hoverStartTime: Number,
-    hoverStayTime: Number,
-    onInput: String,
+    value: String,
+    placeholder: String,
+    placeholderStyle: String,
+    placeholderClass: String,
+    disabled: Boolean,
+    maxlength: Number,
+    autoFocus: Boolean,
+    focus: Boolean,
+    autoHeight: Boolean,
+    fixed: Boolean,
+    cursorSpacing: Number,
+    cursor: Number,
+    showConfirmBar: Boolean,
+    selectionStart: Number,
+    selectionEnd: Number,
+    adjustPosition: Boolean,
+    holdKeyboard: Boolean,
+    disableDefaultPadding: Boolean,
     onTouchStart: String,
     onTouchMove: String,
     onTouchCancel: String,
@@ -194,34 +211,57 @@ Component({
     onTransitionEnd: String,
     onAnimationStart: String,
     onAnimationIteration: String,
-    onAnimationEnd: String
+    onAnimationEnd: String,
+    onFocus: String,
+    onBlur: String,
+    onLineChange: String,
+    onInput: String,
+    onConfirm: String,
+    onKeyboardHeightChange: String
   },
   data: {
-    child: null,
-    innerText: null,
     uuid: null,
     parent: null,
     style: null,
     className: null,
-    hoverClass: 'none',
-    hoverStopPropagation: false,
-    hoverStartTime: 50,
-    hoverStayTime: 400,
+    value: null,
+    placeholder: null,
+    placeholderStyle: null,
+    placeholderClass: 'input-placeholder',
+    disabled: false,
+    maxlength: 140,
+    autoFocus: false,
+    focus: false,
+    autoHeight: false,
+    fixed: false,
+    cursorSpacing: 0,
+    cursor: 0,
+    showConfirmBar: false,
+    selectionStart: -1,
+    selectionEnd: -1,
+    adjustPosition: true,
+    holdKeyboard: false,
+    disableDefaultPadding: false,
     onTouchStart: null,
     onTouchMove: null,
     onTouchCancel: null,
     onTouchEnd: null,
     onTap: null,
-    onInput: null,
     onLongPress: null,
     onLongTap: null,
     onTouchForceChange: null,
     onTransitionEnd: null,
     onAnimationStart: null,
     onAnimationIteration: null,
-    onAnimationEnd: null
+    onAnimationEnd: null,
+    onFocus: null,
+    onBlur: null,
+    onLineChange: null,
+    onInput: null,
+    onConfirm: null,
+    onKeyboardHeightChange: null
   },
-  methods: {
+  methods: (_methods = {
     update: function update(data) {
       this.setData(data);
     },
@@ -406,7 +446,43 @@ Component({
 
       _project.ViewNativeSupport.Publisher.Event('onAnimationEnd', uuid, parent, e);
     }
-  },
+  }, (0, _defineProperty2["default"])(_methods, "onFocus", function onFocus(e) {
+    var _this$data13 = this.data,
+        uuid = _this$data13.uuid,
+        parent = _this$data13.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onFocus', uuid, parent, e);
+  }), (0, _defineProperty2["default"])(_methods, "onBlur", function onBlur(e) {
+    var _this$data14 = this.data,
+        uuid = _this$data14.uuid,
+        parent = _this$data14.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onBlur', uuid, parent, e);
+  }), (0, _defineProperty2["default"])(_methods, "onLineChange", function onLineChange(e) {
+    var _this$data15 = this.data,
+        uuid = _this$data15.uuid,
+        parent = _this$data15.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onLineChange', uuid, parent, e);
+  }), (0, _defineProperty2["default"])(_methods, "onInput", function onInput(e) {
+    var _this$data16 = this.data,
+        uuid = _this$data16.uuid,
+        parent = _this$data16.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onInput', uuid, parent, e);
+  }), (0, _defineProperty2["default"])(_methods, "onConfirm", function onConfirm(e) {
+    var _this$data17 = this.data,
+        uuid = _this$data17.uuid,
+        parent = _this$data17.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onConfirm', uuid, parent, e);
+  }), (0, _defineProperty2["default"])(_methods, "onKeyboardHeightChange", function onKeyboardHeightChange(e) {
+    var _this$data18 = this.data,
+        uuid = _this$data18.uuid,
+        parent = _this$data18.parent;
+
+    _project.ViewNativeSupport.Publisher.Event('onKeyboardHeightChange', uuid, parent, e);
+  }), _methods),
   lifetimes: {
     created: function created() {
       _project.ViewNativeSupport.Publisher.Lifecycle('created', this.data.uuid, this.data.parent, this);

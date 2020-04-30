@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="map">
+
   <map 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -54,7 +57,11 @@
   >
   
   </map>
+
+
 </template>  
+
+
 
 
 

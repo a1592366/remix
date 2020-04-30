@@ -159,14 +159,15 @@
 /*!**************************************!*\
   !*** ./.remix/pages/Remix/~index.js ***!
   \**************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _remix_core_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
 
-new _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["View"]('pages/Remix/index');
+
+var _project = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
+
+new _project.View('pages/Remix/index');
 
 /***/ })
 

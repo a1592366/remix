@@ -1,5 +1,10 @@
 
 
+
+
+
+<template name="textarea">
+
   <textarea 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -38,12 +43,17 @@
 		bindfocus="{{onFocus}}"
 		bindblur="{{onBlur}}"
 		bindlinechange="{{onLineChange}}"
-		bindinput="onInput"
+		bindinput="{{onInput}}"
 		bindconfirm="{{onConfirm}}"
 		bindkeyboardheightchange="{{onKeyboardHeightChange}}"
   >
   
   </textarea>
+
+
+</template>  
+
+
 
 
 

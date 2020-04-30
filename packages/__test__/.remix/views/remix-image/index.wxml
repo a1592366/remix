@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="image">
+
   <image 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -29,7 +32,11 @@
   >
   
   </image>
+
+
 </template>  
+
+
 
 
 

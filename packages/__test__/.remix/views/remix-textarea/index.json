@@ -1,3 +1,9 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "text": "../remix-text/index",
+    "view": "../remix-view/index",
+    "remix-textarea": "../remix-textarea/index",
+    "remix-input": "../remix-input/index"
+  }
 }
