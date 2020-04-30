@@ -1,4 +1,4 @@
-/*** MARK_1588014434129 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1588231179898 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -159,45 +159,27 @@
 /*!******************************!*\
   !*** ../remix/components.js ***!
   \******************************/
-/*! exports provided: Application, ViewController, Router, TabBar, Root, View, Text, Image, Button, Map, Input, Picker, Swiper, SwiperItem, ScrollView, Video */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/components */ "../remix/src/components/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Application", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Application"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ViewController", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["ViewController"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Router"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TabBar", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["TabBar"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Root", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Root"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "View", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["View"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Text", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Text"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Image", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Image"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Button"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Map", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Map"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Input", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Input"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Picker", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Picker"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Swiper", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Swiper"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SwiperItem", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["SwiperItem"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ScrollView", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["ScrollView"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Video", function() { return _src_components__WEBPACK_IMPORTED_MODULE_0__["Video"]; });
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _components = __webpack_require__(/*! ./src/components */ "../remix/src/components/index.js");
+
+Object.keys(_components).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _components[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -205,15 +187,27 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************!*\
   !*** ../remix/document.js ***!
   \****************************/
-/*! exports provided: document */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_document__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/document */ "../remix/src/document/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "document", function() { return _src_document__WEBPACK_IMPORTED_MODULE_0__["document"]; });
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _document = __webpack_require__(/*! ./src/document */ "../remix/src/document/index.js");
+
+Object.keys(_document).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _document[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -221,43 +215,34 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************!*\
   !*** ../remix/index.js ***!
   \*************************/
-/*! exports provided: default, resetReactCurrentHookCursor, useMemo, useCallback, useEffect, useContext, createContext, useState, useReducer, Children, Component, PureComponent, createElement, cloneElement, PropTypes */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/react */ "../remix/src/react/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "resetReactCurrentHookCursor", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["resetReactCurrentHookCursor"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useMemo", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useMemo"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useCallback", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useCallback"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useEffect", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useEffect"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useContext", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createContext", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["createContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useState", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useState"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useReducer", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["useReducer"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Children", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["Children"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["Component"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PureComponent", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["createElement"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cloneElement", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["cloneElement"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PropTypes", function() { return _src_react__WEBPACK_IMPORTED_MODULE_0__["PropTypes"]; });
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_src_react__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {};
+exports["default"] = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! ./src/react */ "../remix/src/react/index.js"));
+
+Object.keys(_react).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _react[key];
+    }
+  });
+});
+var _default = _react["default"];
+exports["default"] = _default;
 
 /***/ }),
 
@@ -265,23 +250,33 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************!*\
   !*** ./.remix/runtime/boot.js ***!
   \********************************/
-/*! exports provided: program, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "program", function() { return program; });
-/* harmony import */ var _remix_core_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
-/* harmony import */ var _remix_core_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @remix/core/document */ "../remix/document.js");
-/* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../src */ "./src/index.js");
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
-var container = _remix_core_document__WEBPACK_IMPORTED_MODULE_1__["document"].createElement('div');
-_remix_core_document__WEBPACK_IMPORTED_MODULE_1__["document"].body.appendChild(container);
-var program = new _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_src__WEBPACK_IMPORTED_MODULE_2__["default"], container);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = exports.program = void 0;
 
-/* harmony default export */ __webpack_exports__["default"] = (program);
+var _project = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
+
+var _document = __webpack_require__(/*! @remix/core/document */ "../remix/document.js");
+
+var _src = _interopRequireDefault(__webpack_require__(/*! ../../src */ "./src/index.js"));
+
+var container = _document.document.createElement('div');
+
+_document.document.body.appendChild(container);
+
+var program = new _project.Program(_src["default"], container);
+exports.program = program;
+var _default = program;
+exports["default"] = _default;
 
 /***/ }),
 
@@ -289,14 +284,17 @@ var program = new _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["Program"](_s
 /*!**********************************!*\
   !*** ./.remix/runtime/client.js ***!
   \**********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _boot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./boot */ "./.remix/runtime/boot.js");
 
-_boot__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _boot = _interopRequireDefault(__webpack_require__(/*! ./boot */ "./.remix/runtime/boot.js"));
+
+_boot["default"].start();
 
 /***/ }),
 
@@ -333,6 +331,88 @@ function _arrayWithHoles(arr) {
 }
 
 module.exports = _arrayWithHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
 
 /***/ }),
 
@@ -412,6 +492,33 @@ module.exports = _slicedToArray;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
@@ -449,58 +556,67 @@ module.exports = _unsupportedIterableToArray;
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
-/* harmony import */ var _remix_core_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @remix/core/components */ "../remix/components.js");
-/* harmony import */ var _pages_Remix__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Remix */ "./src/pages/Remix/index.js");
-/* harmony import */ var _pages_Playground__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Playground */ "./src/pages/Playground/index.js");
-/* harmony import */ var _pages_Docs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Docs */ "./src/pages/Docs/index.js");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
+var _core = _interopRequireDefault(__webpack_require__(/*! @remix/core */ "../remix/index.js"));
 
+var _components = __webpack_require__(/*! @remix/core/components */ "../remix/components.js");
 
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ./pages/Remix */ "./src/pages/Remix/index.js"));
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Application"], {
+var _Playground = _interopRequireDefault(__webpack_require__(/*! ./pages/Playground */ "./src/pages/Playground/index.js"));
+
+var _Docs = _interopRequireDefault(__webpack_require__(/*! ./pages/Docs */ "./src/pages/Docs/index.js"));
+
+__webpack_require__(/*! ./index.css */ "./src/index.css");
+
+var _default = function _default() {
+  return /*#__PURE__*/_core["default"].createElement(_components.Application, {
     config: {
       navigationStyle: 'custom'
     }
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"], null, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"].Route, {
+  }, /*#__PURE__*/_core["default"].createElement(_components.Router, null, /*#__PURE__*/_core["default"].createElement(_components.Router.Route, {
     path: "pages/Remix/index",
-    component: _pages_Remix__WEBPACK_IMPORTED_MODULE_2__["default"],
+    component: _Remix["default"],
     config: {}
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"].Route, {
+  }), /*#__PURE__*/_core["default"].createElement(_components.Router.Route, {
     path: "pages/Playground/index",
-    component: _pages_Playground__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["Router"].Route, {
+    component: _Playground["default"]
+  }), /*#__PURE__*/_core["default"].createElement(_components.Router.Route, {
     path: "pages/Docs/index",
-    component: _pages_Docs__WEBPACK_IMPORTED_MODULE_4__["default"]
-  })), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"], {
+    component: _Docs["default"]
+  })), /*#__PURE__*/_core["default"].createElement(_components.TabBar, {
     borderStyle: "white",
     color: "#bfbfbf",
     selectedColor: "#33aa9e"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
+  }, /*#__PURE__*/_core["default"].createElement(_components.TabBar.TabBarItem, {
     path: "pages/Remix/index",
     icon: "./static/icons/remix.png",
     selectedIcon: "./static/icons/remix_selected.png"
-  }, "Remix"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
+  }, "Remix"), /*#__PURE__*/_core["default"].createElement(_components.TabBar.TabBarItem, {
     path: "pages/Playground/index",
     icon: "./static/icons/playground.png",
     selectedIcon: "./static/icons/playground_selected.png"
-  }, "Playground"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(_remix_core_components__WEBPACK_IMPORTED_MODULE_1__["TabBar"].TabBarItem, {
+  }, "Playground"), /*#__PURE__*/_core["default"].createElement(_components.TabBar.TabBarItem, {
     path: "pages/Docs/index",
     icon: "./static/icons/docs.png",
     selectedIcon: "./static/icons/docs_selected.png"
   }, "Docs")));
-});
+};
+
+exports["default"] = _default;
+module.exports = exports.default;
 
 /***/ }),
 
@@ -519,26 +635,34 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************!*\
   !*** ./src/pages/Docs/index.js ***!
   \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/pages/Docs/index.css");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
 
 
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var _useState = Object(_remix_core__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js"));
+
+var _core = _interopRequireWildcard(__webpack_require__(/*! @remix/core */ "../remix/index.js"));
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Docs/index.css");
+
+function _default() {
+  var _useState = (0, _core.useState)(null),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       userInformation = _useState2[0],
       setUserInformation = _useState2[1];
 
-  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  return /*#__PURE__*/_core["default"].createElement("view", {
     className: "user",
     style: {
       display: 'flex',
@@ -546,21 +670,23 @@ __webpack_require__.r(__webpack_exports__);
       justifyContent: 'center',
       alignItems: 'center'
     }
-  }, userInformation && /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("image", {
+  }, userInformation && /*#__PURE__*/_core["default"].createElement("image", {
     className: "user__avatar",
     style: {
       width: '200rpx',
       height: '200rpx'
     },
     src: userInformation.avatarUrl
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("button", {
+  }), /*#__PURE__*/_core["default"].createElement("button", {
     className: "user__nickname",
     openType: "getUserInfo",
     onGetUserInfo: function onGetUserInfo(event) {
       setUserInformation(event.detail.userInfo);
     }
   }, userInformation ? userInformation.nickName : '获取我的个人信息'));
-});
+}
+
+module.exports = exports.default;
 
 /***/ }),
 
@@ -579,24 +705,32 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./src/pages/Playground/index.js ***!
   \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/pages/Playground/index.css");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
 
 
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js"));
+
+var _core = _interopRequireWildcard(__webpack_require__(/*! @remix/core */ "../remix/index.js"));
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Playground/index.css");
+
+function _default() {
   var interpreter = null;
 
-  var _useState = Object(_remix_core__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+  var _useState = (0, _core.useState)(''),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       value = _useState2[0],
       setTextArea = _useState2[1];
 
@@ -620,33 +754,35 @@ __webpack_require__.r(__webpack_exports__);
     });
   };
 
-  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  return /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__header"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__editor"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__editor-line"
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }), /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__editor-textarea"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("textarea", {
+  }, /*#__PURE__*/_core["default"].createElement("textarea", {
     value: value,
     onInput: onInput,
     onLineChange: onLineChange
-  }))), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }))), /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__controller"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__parse",
     onTap: onParse
-  }, "Parse"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, "Parse"), /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__step"
-  }, "Step"), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, "Step"), /*#__PURE__*/_core["default"].createElement("view", {
     className: "playground__run"
-  }, "Run")), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", {
+  }, "Run")), /*#__PURE__*/_core["default"].createElement("view", {
     className: "test"
-  }, !value ? '没有' : value), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_1__["default"].createElement("view", null, "\u6D4B\u8BD5")));
-});
+  }, !value ? '没有' : value), /*#__PURE__*/_core["default"].createElement("view", null, "\u6D4B\u8BD5")));
+}
+
+module.exports = exports.default;
 
 /***/ }),
 
@@ -665,30 +801,39 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************!*\
   !*** ./src/pages/Remix/index.js ***!
   \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _remix_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core */ "../remix/index.js");
-/* harmony import */ var _static_images_logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../static/images/logo.png */ "./src/static/images/logo.png");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/pages/Remix/index.css");
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  return /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("view", {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _core = _interopRequireDefault(__webpack_require__(/*! @remix/core */ "../remix/index.js"));
+
+var _logo = _interopRequireDefault(__webpack_require__(/*! ../../static/images/logo.png */ "./src/static/images/logo.png"));
+
+__webpack_require__(/*! ./index.css */ "./src/pages/Remix/index.css");
+
+function _default() {
+  return /*#__PURE__*/_core["default"].createElement("view", {
     className: "remix"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("view", {
+  }, /*#__PURE__*/_core["default"].createElement("view", {
     className: "remix__logo"
-  }, /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("image", {
+  }, /*#__PURE__*/_core["default"].createElement("image", {
     className: "remix__logo-image",
-    src: _static_images_logo_png__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }), /*#__PURE__*/_remix_core__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("text", {
+    src: _logo["default"]
+  }), /*#__PURE__*/_core["default"].createElement("text", {
     className: "remix__logo-text"
   }, "REMIX")));
-});
+}
+
+module.exports = exports.default;
 
 /***/ }),
 
