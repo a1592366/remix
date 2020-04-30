@@ -1,4 +1,4 @@
-/*** MARK_1588014434129 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1588231179898 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -159,14 +159,15 @@
 /*!*******************************************!*\
   !*** ./.remix/pages/Playground/~index.js ***!
   \*******************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _remix_core_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
 
-new _remix_core_project__WEBPACK_IMPORTED_MODULE_0__["View"]('pages/Playground/index');
+
+var _project = __webpack_require__(/*! @remix/core/project */ "../remix/project.js");
+
+new _project.View('pages/Playground/index');
 
 /***/ })
 

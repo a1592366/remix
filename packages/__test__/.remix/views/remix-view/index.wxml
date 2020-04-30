@@ -1,6 +1,5 @@
 <import src="./remix-worker.wxml" /> 
 
-
 <block wx:if="{{innerText}}">{{innerText}}</block>
   <block wx:elif="{{child}}">
     <template is="remix-worker" data="{{ element: child }}" />

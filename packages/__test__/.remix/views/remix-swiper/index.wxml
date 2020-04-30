@@ -1,9 +1,13 @@
 <import src="./remix-worker.wxml" /> 
 
 
+
+
 <template name="swiper">
+
   <swiper 
   	child="{{child}}"
+		silbing="{{silbing}}"
 		innerText="{{innerText}}"
 		id="{{uuid}}"
 		parent="{{parent}}"
@@ -43,7 +47,11 @@
     <template is="remix-worker" data="{{ element: child }}" />
   </block>
   </swiper>
+
+
 </template>  
+
+
 
 
 

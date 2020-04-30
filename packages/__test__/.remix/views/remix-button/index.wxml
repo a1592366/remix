@@ -1,9 +1,13 @@
 <import src="./remix-worker.wxml" /> 
 
 
+
+
 <template name="button">
+
   <button 
   	child="{{child}}"
+		silbing="{{silbing}}"
 		innerText="{{innerText}}"
 		id="{{uuid}}"
 		parent="{{parent}}"
@@ -51,7 +55,11 @@
     <template is="remix-worker" data="{{ element: child }}" />
   </block>
   </button>
+
+
 </template>  
+
+
 
 
 

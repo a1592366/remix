@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="audio">
+
   <audio 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -34,7 +37,11 @@
   >
   
   </audio>
+
+
 </template>  
+
+
 
 
 

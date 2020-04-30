@@ -3,6 +3,7 @@
   "usingComponents": {
     "text": "../remix-text/index",
     "view": "../remix-view/index",
-    "textarea": "../remix-textarea/index"
+    "remix-textarea": "../remix-textarea/index",
+    "remix-input": "../remix-input/index"
   }
 }

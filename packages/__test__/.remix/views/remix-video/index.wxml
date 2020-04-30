@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="video">
+
   <video 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -59,7 +62,11 @@
   >
   
   </video>
+
+
 </template>  
+
+
 
 
 

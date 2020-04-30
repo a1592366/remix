@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@remix/core": "^0.0.1",
+    "acorn": "^7.1.1",
+    "classnames": "^2.2.6",
     "step-interpreter": "^2.0.1"
   }
 }

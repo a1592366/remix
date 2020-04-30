@@ -1,7 +1,10 @@
 
 
 
+
+
 <template name="input">
+
   <input 
   	id="{{uuid}}"
 		parent="{{parent}}"
@@ -45,7 +48,11 @@
   >
   
   </input>
+
+
 </template>  
+
+
 
 
 
