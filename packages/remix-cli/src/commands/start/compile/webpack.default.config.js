@@ -64,7 +64,8 @@ module.exports = {
     'runtime/index': proj.REMIX_CLIENT_RUNTIME,
     'views/remix-view/index': resolve(proj.REMIX_VIEWS, `remix-view/${proj.REMIX_VIEW_SYMBOL}index.js`),
     'views/remix-text/index': resolve(proj.REMIX_VIEWS, `remix-text/${proj.REMIX_VIEW_SYMBOL}index.js`),
-    'views/remix-textarea/index': resolve(proj.REMIX_VIEWS, `remix-textarea/${proj.REMIX_VIEW_SYMBOL}index.js`)
+    'views/remix-textarea/index': resolve(proj.REMIX_VIEWS, `remix-textarea/${proj.REMIX_VIEW_SYMBOL}index.js`),
+    'views/remix-input/index': resolve(proj.REMIX_VIEWS, `remix-input/${proj.REMIX_VIEW_SYMBOL}index.js`)
   },
 
   output: {
@@ -76,7 +77,7 @@ module.exports = {
     alias: {
       'react': '@remix/core',
       'react-dom': '@remix/core',
-      'prop-types': '@remix/core/prop-types',
+      'prop-types': '@remix/core/prop-types'
     },
     extensions: ['.js', '.jsx']
   },

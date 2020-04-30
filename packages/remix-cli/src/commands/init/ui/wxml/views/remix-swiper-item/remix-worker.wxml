@@ -1,0 +1,79 @@
+<import src="../remix-picker/index.wxml" />
+<import src="../remix-video/index.wxml" />
+<import src="../remix-scroll-view/index.wxml" />
+<import src="../remix-swiper/index.wxml" />
+<import src="../remix-swiper-item/index.wxml" />
+<import src="../remix-map/index.wxml" />
+<import src="../remix-image/index.wxml" />
+<import src="../remix-button/index.wxml" />
+<import src="../remix-input/index.wxml" />
+<import src="../remix-textarea/index.wxml" />
+<import src="../remix-editor/index.wxml" />
+<import src="../remix-slider/index.wxml" />
+<import src="../remix-audio/index.wxml" />
+<import src="../remix-canvas/index.wxml" />
+
+<template name="switcher">
+  <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
+  <block wx:elif="{{ element.tagName == 'view' }}">
+		<view child="{{element.child}}" silbing="{{element.silbing}}" innerText="{{element.innerText}}" id="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" bind:touchstart="{{element.onTouchStart}}" bind:touchmove="{{element.onTouchMove}}" bind:touchcancel="{{element.onTouchCancel}}" bind:touchend="{{element.onTouchEnd}}" bind:tap="{{element.onTap}}" bind:longpress="{{element.onLongPress}}" bind:longtap="{{element.onLongTap}}" bind:touchforcechange="{{element.onTouchForceChange}}" bind:transitionend="{{element.onTransitionEnd}}" bind:animationstart="{{element.onAnimationStart}}" bind:animationiteration="{{element.onAnimationIteration}}" bind:animationend="{{element.onAnimationEnd}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'text' }}">
+		<text child="{{element.child}}" silbing="{{element.silbing}}" innerText="{{element.innerText}}" id="{{element.uuid}}" parent="{{element.parent}}" style="{{element.style}}" class="{{element.className}}" selectable="{{element.selectable}}" space="{{element.space}}" decode="{{element.decode}}" bind:touchstart="{{element.onTouchStart}}" bind:touchmove="{{element.onTouchMove}}" bind:touchcancel="{{element.onTouchCancel}}" bind:touchend="{{element.onTouchEnd}}" bind:tap="{{element.onTap}}" bind:longpress="{{element.onLongPress}}" bind:longtap="{{element.onLongTap}}" bind:touchforcechange="{{element.onTouchForceChange}}" bind:transitionend="{{element.onTransitionEnd}}" bind:animationstart="{{element.onAnimationStart}}" bind:animationiteration="{{element.onAnimationIteration}}" bind:animationend="{{element.onAnimationEnd}}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'picker' }}">
+		<template is="picker" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'video' }}">
+		<template is="video" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'scroll-view' }}">
+		<template is="scroll-view" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'swiper' }}">
+		<template is="swiper" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'swiper-item' }}">
+		<template is="swiper-item" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'map' }}">
+		<template is="map" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'image' }}">
+		<template is="image" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'button' }}">
+		<template is="button" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'input' }}">
+		<template is="input" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'textarea' }}">
+		<template is="textarea" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'editor' }}">
+		<template is="editor" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'slider' }}">
+		<template is="slider" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'audio' }}">
+		<template is="audio" data="{{ ...element }}" />
+	</block>
+	<block wx:elif="{{ element.tagName == 'canvas' }}">
+		<template is="canvas" data="{{ ...element }}" />
+	</block>
+</template>
+
+<template name="siblings">
+  <block wx:if="{{siblings.length > 0}}">
+    <block wx:for="{{(siblings)}}" wx:key="uuid" wx:for-item="sibling">
+      <template is="switcher" data="{{ element: sibling }}" />
+    </block>
+  </block>
+</template>
+
+<template name="remix-worker">  
+  <template is="switcher" data="{{ element }}" />
+  <template is="siblings" data="{{ siblings: element.siblings }}" />
+</template>

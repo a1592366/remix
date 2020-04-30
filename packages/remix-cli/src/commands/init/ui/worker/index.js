@@ -3,9 +3,15 @@ const events = require('../events');
 const copy = require('../../../../shared/copy');
 const keys = Object.keys(views);
 
+// const replace = `view text input textarea`.split(' ');
+// const wrapper = `input textarea`.split(' ');
+
+const replace = ['view', 'text'];
+const wrapper = [];
+
 module.exports = async function (dist) {
   const imports = keys.filter(key => {
-    if (key === 'view' || key === 'text') {
+    if (replace.includes(key)) {
       return false;
     } else {
       return true;
@@ -20,16 +26,16 @@ module.exports = async function (dist) {
     const view = views[key];
     const { name } = view;
 
-    if (
-      name === 'view' ||
-      name === 'text'
-    ) {
-      const props = view.properties.concat(events, view.events).map(props => {
+    if (replace.includes(name)) {
+      let properties = view.properties.concat(events, view.events);
+
+      let props = properties.map(props => {
         const { name, camel, alias, isEvent } = props;
         const line = [
-          alias,
+          wrapper.includes(view.name) ? camel : alias,
           `"{{element.${camel}}}"`
         ];
+
         
         if (name === 'uuid') {
           line[0] = 'id';
@@ -38,9 +44,17 @@ module.exports = async function (dist) {
         }
 
         return line.join('=')
-      }).join(' ');
+      })
 
-      return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<${name} ${props} />\n\t</block>`;
+      if (wrapper.includes(name)) {
+        props.push(`uuid="{{element.uuid}}"`);
+      }
+
+      props = props.join(' ');
+
+      const tagName = wrapper.includes(name) ? `remix-${name}` : name;
+
+      return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<${tagName} ${props} />\n\t</block>`;
     } else {
       return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<template is="${name}" data="{{ ...element }}" />\n\t</block>`
     }

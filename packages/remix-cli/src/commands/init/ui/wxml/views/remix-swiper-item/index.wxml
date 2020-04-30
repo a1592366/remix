@@ -1,0 +1,49 @@
+<import src="./remix-worker.wxml" /> 
+
+
+
+
+<template name="swiper-item">
+
+  <swiper-item 
+  	child="{{child}}"
+		silbing="{{silbing}}"
+		innerText="{{innerText}}"
+		id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		item-id="{{itemId}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+  >
+  <block wx:if="{{innerText}}">{{innerText}}</block>
+  <block wx:elif="{{child}}">
+    <template is="remix-worker" data="{{ element: child }}" />
+  </block>
+  </swiper-item>
+
+
+</template>  
+
+
+
+
+
+
+
+
+
+
+
+

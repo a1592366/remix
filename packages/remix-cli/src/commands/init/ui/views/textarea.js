@@ -4,6 +4,7 @@ module.exports = wrap({
   name: 'textarea',
   open: false,
   worker: false,
+  wrapper: false,
   properties: [
     { name: 'value', type: 'String', defaultValue: 'null' },
     { name: 'placeholder', type: 'String', defaultValue: 'null' },

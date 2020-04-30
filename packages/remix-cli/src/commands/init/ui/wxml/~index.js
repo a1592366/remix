@@ -13,7 +13,7 @@ Component({
   },
 
   methods: {
-    update (data) { this.setData(data) },
+    sync (data) { this.setData(data) },
     // others component event
     onGetUserInfo(e) { ViewNativeSupport.Publisher.Event('onGetUserInfo', e.target.id, this.data.parent, e, this) },
     onContact(e) { ViewNativeSupport.Publisher.Event('onContact', e.target.id, this.data.parent, e, this) },

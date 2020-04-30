@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "text": "../remix-text/index",
-    "view": "../remix-view/index"
-  }
-}

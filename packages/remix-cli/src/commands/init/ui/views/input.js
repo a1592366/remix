@@ -3,6 +3,7 @@ const wrap = require('../wrap');
 module.exports = wrap({
   name: 'input',
   open: false,
+  wrapper: false,
   properties: [
     { name: 'value', type: 'String', defaultValue: 'null' },
     { name: 'type', type: 'String', defaultValue: '\'text\'' },

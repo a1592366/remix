@@ -1,5 +1,5 @@
-const fs = require('fs-extra');
 const { resolve, parse } = require('path');
+const fs = require('fs-extra');
 const compile = require('../compile');
 const notify = require('../../../shared/notify');
 const proj = require('../../../config/proj');
@@ -7,19 +7,20 @@ const proj = require('../../../config/proj');
 async function updateJSON (tabBar, pages, config) {
   await fs.writeFile(
     resolve(proj.REMIX_SOURCE, 'app.json'),
-    JSON.stringify({ tabBar, pages, window: config, }, null, 2)
+    JSON.stringify({ tabBar, pages: pages.map(p => p.path), window: config, }, null, 2)
   );
 }
 
 async function updatePages (pages) {
-  
-
-  await Promise.all(pages.map(page => {
-    const { base, dir } = parse(page);
+  await fs.remove(proj.REMIX_PAGES);
+  await Promise.all(pages.map((page) => {
+    const { base, dir } = parse(page.path);
     const viewString = `
       import { View } from '@remix/core/project';
-      new View('${page}');
+      new View('${page.path}');
     `;
+
+    const config = page.config || {};
 
     return new Promise(async (accept) => {
       const { REMIX_SOURCE, REMIX_VIEW_SYMBOL } = proj;
@@ -31,7 +32,7 @@ async function updatePages (pages) {
       
       await fs.mkdirp(dist);      
       await Promise.all([
-        fs.writeFile(json, JSON.stringify({ usingComponents: { view: '../../views/remix-view/index' }}, null, 2)),
+        fs.writeFile(json, JSON.stringify({ ...config, usingComponents: { view: '../../views/remix-view/index' }}, null, 2)),
         fs.writeFile(js, viewString),
         fs.writeFile(xml, `<view child="{{element}}" />`)
       ]);
@@ -55,7 +56,12 @@ module.exports = async function projecting (context) {
         const router = context.router;
         
         if (router) {
-          return router.routes.map(route => route.path);
+          return router.routes.map(route => {
+            return {
+              config: route.config,
+              path: route.path
+            }
+          });
         }
       },
   
@@ -95,13 +101,14 @@ module.exports = async function projecting (context) {
       }
     }
   
-    notify.green(`正在编译 Remix 项目，请稍后...`);
+    
     await updateJSON(application.tabbar, application.pages, context.config);
     await updatePages(application.pages);
   
     await compiler.start(context);
   }
 
+  notify.green(`正在编译 Remix 项目，请稍后...`);
   await restart(context);
 
   return restart;

@@ -1,0 +1,49 @@
+
+
+
+
+
+<template name="image">
+
+  <image 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		src="{{src}}"
+		mode="{{mode}}"
+		webp="{{webp}}"
+		lazy-load="{{lazyLoad}}"
+		show-menu-by-longpress="{{showMenuByLongpress}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bind:load="{{onLoad}}"
+		bind:error="{{onError}}"
+  >
+  
+  </image>
+
+
+</template>  
+
+
+
+
+
+
+
+
+
+
+
+

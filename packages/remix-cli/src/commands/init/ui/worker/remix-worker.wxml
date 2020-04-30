@@ -1,31 +1,19 @@
 <%- imports %>
 
-<wxs module="siblings">
-  module.exports = function (element) {
-    var siblings = [];
-    var sibling = element.sibling;
-
-    while (sibling) {
-      siblings.push(sibling);
-      sibling = sibling.sibling;
-    }
-
-    return siblings;
-  }
-</wxs>
-
 <template name="switcher">
   <block wx:if="{{ element.tagName == '#text' }}">{{element.text}}</block>
   <%- switcher %>
 </template>
 
 <template name="siblings">
-  <block wx:for="{{siblings(element)}}" wx:key="uuid" wx:for-item="sibling">
-    <template is="switcher" data="{{ element: sibling }}" />
+  <block wx:if="{{siblings.length > 0}}">
+    <block wx:for="{{(siblings)}}" wx:key="uuid" wx:for-item="sibling">
+      <template is="switcher" data="{{ element: sibling }}" />
+    </block>
   </block>
 </template>
 
 <template name="remix-worker">  
   <template is="switcher" data="{{ element }}" />
-  <template is="siblings" data="{{ element }}" />
+  <template is="siblings" data="{{ siblings: element.siblings }}" />
 </template>

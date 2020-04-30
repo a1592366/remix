@@ -1,0 +1,79 @@
+
+
+
+
+
+<template name="video">
+
+  <video 
+  	id="{{uuid}}"
+		parent="{{parent}}"
+		style="{{style}}"
+		class="{{className}}"
+		src="{{src}}"
+		duration="{{duration}}"
+		controls="{{controls}}"
+		danmu-list="{{danmuList}}"
+		danmu-btn="{{danmuButton}}"
+		enable-danmu="{{enableDanmu}}"
+		autoplay="{{autoplay}}"
+		loop="{{loop}}"
+		muted="{{muted}}"
+		initial-time="{{initialTime}}"
+		page-gesture="{{pageGesture}}"
+		direction="{{direction}}"
+		show-progress="{{showProgress}}"
+		show-fullscreen-btn="{{showFullscreenButton}}"
+		show-play-btn="{{showPlayButton}}"
+		show-center-play-btn="{{showCenterPlayButton}}"
+		enable-progress-gesture="{{enableProgressGesture}}"
+		object-fit="{{objectFit}}"
+		poster="{{poster}}"
+		show-mute-btn="{{showMuteButton}}"
+		title="{{title}}"
+		play-button-position="{{playButtonPosition}}"
+		enable-play-gesture="{{enablePlayGesture}}"
+		auto-pause-if-navigate="{{autoPauseIfNavigate}}"
+		auto-pause-if-open-native="{{autoPauseIfOpenNative}}"
+		vslide-gesture="{{vslideGesture}}"
+		vslide-gesture-in-fullscreen="{{vslideGestureInFullscreen}}"
+		ad-unit-id="{{adUnitId}}"
+		bind:touchstart="{{onTouchStart}}"
+		bind:touchmove="{{onTouchMove}}"
+		bind:touchcancel="{{onTouchCancel}}"
+		bind:touchend="{{onTouchEnd}}"
+		bind:tap="{{onTap}}"
+		bind:longpress="{{onLongPress}}"
+		bind:longtap="{{onLongTap}}"
+		bind:touchforcechange="{{onTouchForceChange}}"
+		bind:transitionend="{{onTransitionEnd}}"
+		bind:animationstart="{{onAnimationStart}}"
+		bind:animationiteration="{{onAnimationIteration}}"
+		bind:animationend="{{onAnimationEnd}}"
+		bind:play="{{onPlay}}"
+		bind:pause="{{onPause}}"
+		bind:ended="{{onEnded}}"
+		bind:timeupdate="{{onTimeUpdate}}"
+		bind:fullscreenchange="{{onFullScreenChange}}"
+		bind:waiting="{{onWaiting}}"
+		bind:error="{{onError}}"
+		bind:progress="{{onProgress}}"
+		bind:loadedmetadata="{{onLoadedMetaData}}"
+  >
+  
+  </video>
+
+
+</template>  
+
+
+
+
+
+
+
+
+
+
+
+

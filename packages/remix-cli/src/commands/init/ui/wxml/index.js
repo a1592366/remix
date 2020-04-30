@@ -8,6 +8,12 @@ const copy = require('../../../../shared/copy');
 const viewKeys = Object.keys(views);
 const indent = `\n\t\t`;
 
+// const wrapper = `input textarea`.split(' ');
+// const replace = `input textarea view text`.split(' ');
+
+const replace = ['view text'];
+const wrapper = [];
+
 async function toJSONFile (dist, view) {
   await copy(
     __dirname,
@@ -18,7 +24,7 @@ async function toJSONFile (dist, view) {
 
 async function toJavaScriptFile (dist, view) {
   const methods = events.concat(view.events).map(({ name }) => {
-    return `${name} (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('${name}', uuid, parent, e); }`;
+    return `${name} (e) { ViewNativeSupport.Publisher.Event('${name}', e); }`;
   });
 
   const combined = view.properties.concat(events, view.events);
@@ -49,7 +55,17 @@ async function toJavaScriptFile (dist, view) {
 }
 
 async function toWXMLFile (dist, view) {
-  const properties = view.properties.concat(events, view.events);
+  let properties = view.properties.concat(events, view.events);
+
+  if (wrapper.includes(view.name)) {
+    properties = properties.filter(prop => {
+      if (prop.name === 'style' || prop.name === 'className') {
+        return false;
+      }
+
+      return true;
+    })
+  }
   
   let props = properties.map((prop, index) => {
     const { alias, camel, name } = prop;
@@ -85,6 +101,7 @@ async function toWXMLFile (dist, view) {
     tagName: view.name,
     worker: view.worker,
     replace: view.replace,
+    wrapper: view.wrapper,
     props: `\t${props}`
   })
 }
@@ -96,7 +113,7 @@ module.exports = async function (dist) {
 
     let promises = [toWXMLFile(path, view)];
 
-    if (key === 'text' || key === 'view') {
+    if (replace.includes(key)) {
       promises = promises.concat([
         toJSONFile(path, view),
         toJavaScriptFile(path, view)
@@ -107,4 +124,4 @@ module.exports = async function (dist) {
   }));
 }
 
-module.exports(resolve(__dirname, '__test__'));
+module.exports(resolve(__dirname, 'views'));

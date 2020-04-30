@@ -6,7 +6,10 @@
     <template is="remix-worker" data="{{ element: child }}" />
   </block><% } %>
 <% } else { %>
+
+<% if (!wrapper) { %>
 <template name="<%= name %>">
+<% } %>
   <<%=tagName %> 
   <%- props %>
   >
@@ -15,7 +18,11 @@
     <template is="remix-worker" data="{{ element: child }}" />
   </block><% } %>
   </<%=tagName %>>
+
+<% if (!wrapper) { %>
 </template>  
+<% } %>
+
 <% } %>
 
 
