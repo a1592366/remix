@@ -1,19 +1,56 @@
 
+import { document } from './document';
 import { ViewNativeSupport } from './project';
+import { INTERNAL_RELATIVE_KEY } from './shared';
 
-export function enqueueUpdate (element) {
-  while (element) {
-    if (!element.return) {
-      break;
+const flattern = function (element) {
+  const { child } = element;
+
+  if (child) {
+    const siblings = [];
+    let sibling = child.sibling;
+
+    if (child.child) {
+      flattern(child);
     }
 
-    element = element.return;
+    while (sibling) {
+      if (sibling.child) {
+        flattern(sibling);
+      }
+
+      const { sibling: s, ...rest } = sibling;
+
+      siblings.push(rest);
+      sibling = sibling.sibling;
+    } 
+
+    if (siblings.length > 0) {
+      child.siblings = siblings;
+    }
+
+    delete child.sibling;
   }
-
-  ViewNativeSupport.Publisher.Data(element.serialize());
 }
 
-export function dequeueUpdate () {
-  
+
+export function DOMUpdateQueue (workInProgress) {
+  const { stateNode } = workInProgress;
+
+  if (stateNode) {
+    const { containerInfo } = stateNode;
+
+    if (containerInfo.tagName === 'view-controller') {
+      const element = containerInfo.serialize();
+
+      flattern(element)
+
+      ViewNativeSupport.Publisher.Data(
+        containerInfo[INTERNAL_RELATIVE_KEY], 
+        element.child
+      );
+    }
+  }
 }
+
 

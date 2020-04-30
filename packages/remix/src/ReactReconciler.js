@@ -1,14 +1,21 @@
 import { DELETION, PLACEMENT, UPDATE, REF, PERFORMED_WORK } from './shared/effectTags';
 import { isArray, isString } from './shared/is';
-import { createFiberFromElement, cloneFiber } from './Fiber'
+import { createFiberFromElement, createFiberFromFragment, createFiberFromText, cloneFiber } from './Fiber'
 import { ReactCurrentRoot } from './renderer';
 import { updateDOMProperties } from './renderer/config/DOMProperties';
 import { shallowEqual, NO_WORK, EMPTY_REFS } from './shared';
 import { push } from './ReactCommit';
-import ReactHook, { resetReactCurrentHookCursor, useState } from './ReactHook';
+import { INTERNAL_ROOTFIBER_KEY } from './shared';
+import ReactHook, { resetReactCurrentHookCursor } from './ReactHook';
 import createInstance from './renderer/config/createInstance';
 import classComponentUpdater from './classComponentUpdater';
 
+
+export function updateFragment (workInProgress) {
+  const nextChildren = workInProgress.pendingProps;
+  reconcileChildren(workInProgress, nextChildren);
+  return workInProgress.child;
+}
 
 export function updateHostComponent (workInProgress) {
   const nextProps = workInProgress.pendingProps;
@@ -77,7 +84,7 @@ export function updateFunctionComponent (workInProgress) {
     children = createText(children)
   }
 
-  workInProgress.stateNode = workInProgress;
+  workInProgress.stateNode = workInProgress.stateNode || workInProgress;
   
   reconcileChildren(workInProgress, children);
 
@@ -114,175 +121,6 @@ export function updateHostRoot (workInProgress) {
   return workInProgress.child;
 }
 
-export function updateClassComponent (workInProgress) {
-  let nextProps = workInProgress.pendingProps;
-  const Component = workInProgress.type;
-  const instance = workInProgress.stateNode;
-
-  let shouldUpdate = false;
-
-  ReactHook.ReactCurrentHookFiber = workInProgress;
-  resetReactCurrentHookCursor();
-
-  if (instance === null) {
-    workInProgress.effectTag |= PLACEMENT;
-
-    // constructe 
-    const instance = new Component(nextProps);
-
-    workInProgress.memoizedState = (
-        instance.state !== null && 
-        instance.state !== undefined
-      ) ? instance.state : null;
-
-    instance.updater = classComponentUpdater;
-    workInProgress.stateNode = instance;
-    instance._reactInternalFiber = workInProgress;
-
-    instance.props = nextProps;
-    instance.state = workInProgress.memoizedState;
-    instance.refs = EMPTY_REFS;
-
-    processUpdate(workInProgress, instance);
-    applyDerivedStateFromProps(workInProgress, Component, nextProps);
-
-    if (typeof instance.componentDidMount === 'function') {
-      workInProgress.effectTag |= UPDATE;
-    }
-
-    shouldUpdate = true;
-  } else {
-    shouldUpdate = updateClassInstance(workInProgress, Component, nextProps);
-  }
-
-  return finishClassComponent(workInProgress, Component, shouldUpdate);
-}
-
-function updateClassInstance(workInProgress, Component, nextProps) {
-  const instance = workInProgress.stateNode;
-  const oldProps = workInProgress.memoizedProps;
-  
-  instance.props = oldProps;
-
-  const oldState = workInProgress.memoizedState;
-  let newState = instance.state = oldState;
-
-  processUpdate(workInProgress, instance);
-  
-  newState = workInProgress.memoizedState;
-
-  applyDerivedStateFromProps(workInProgress, Component, nextProps);
-  
-
-  let shouldUpdate = checkShouldComponentUpdate(workInProgress, Component, oldProps, nextProps, oldState, newState);
-
-  if (shouldUpdate) {
-    if (typeof instance.componentDidUpdate === 'function') {
-      workInProgress.effectTag |= UPDATE;
-    }
-    if (typeof instance.getSnapshotBeforeUpdate === 'function') {
-      workInProgress.effectTag |= SNAPSHOT;
-    }
-  } else {
-    if (typeof instance.componentDidUpdate === 'function') {
-      if (oldProps !== current.memoizedProps || oldState !== current.memoizedState) {
-        workInProgress.effectTag |= UPDATE;
-      }
-    }
-    if (typeof instance.getSnapshotBeforeUpdate === 'function') {
-      if (oldProps !== current.memoizedProps || oldState !== current.memoizedState) {
-        workInProgress.effectTag |= SNAPSHOT;
-      }
-    }
-
-    workInProgress.memoizedProps = nextProps;
-    workInProgress.memoizedState = newState;
-  }
-
-  instance.props = nextProps;
-  instance.state = newState;
-
-  instance._reactInternalFiber = workInProgress;
-
-  return shouldUpdate;
-}
-
-function finishClassComponent(workInProgress, Component, shouldUpdate) {
-  const ref = workInProgress.ref;
-  if (ref !== null) {
-    workInProgress.effectTag |= REF;
-  }
-
-  if (!shouldUpdate) {
-    return bailoutOnAlreadyFinishedWork(current, workInProgress);
-  }
-
-  const instance = workInProgress.stateNode;
-  const nextChildren = instance.render();
-  
-  workInProgress.effectTag |= PERFORMED_WORK;
-
-  // if (current !== null) {
-  //   workInProgress.child = reconcileChildFibers(workInProgress, current.child, nextChildren);
-  // } else {
-  //   reconcileChildren(current, workInProgress, nextChildren);
-  // }
-
-  reconcileChildren(workInProgress, nextChildren);
-  workInProgress.memoizedState = instance.state;
-
-  return workInProgress.child;
-}
-
-function applyDerivedStateFromProps(workInProgress, Component, nextProps) {
-  const getDerivedStateFromProps = Component.getDerivedStateFromProps;
-  if (typeof getDerivedStateFromProps === 'function') {
-    const memoizedState = workInProgress.memoizedState;
-    const nextState = getDerivedStateFromProps(nextProps, memoizedState);
-
-    instance.state = workInProgress.memoizedState = nextState === null || nextState === undefined ? 
-      memoizedState : 
-      { ...memoizedState, partialState };
-  }
-}
-
-function processUpdate (
-	workInProgress,
-	instance
-) {
-  let resultState = null;
-  const update = workInProgress.update;
-		
-	if (update !== null) {
-    const payload = update.payload;
-    if (typeof payload === 'function') {
-      resultState =  payload.call(instance, prevState, nextProps);
-    } else {
-
-    }
-    
-    resultState = payload;
-    workInProgress.memoizedState = resultState;
-    instance.state = workInProgress.memoizedState;
-  }
-}
-
-function checkShouldComponentUpdate(workInProgress, Component, oldProps, newProps, oldState, newState) {
-  const instance = workInProgress.stateNode;
-  if (typeof instance.shouldComponentUpdate === 'function') {
-    const shouldUpdate = instance.shouldComponentUpdate(newProps, newState);
-  
-    return shouldUpdate;
-  }
-
-  if (Component.prototype && Component.prototype.isPureReactComponent) {
-    return !shallowEqual(oldProps, newProps) || 
-      !shallowEqual(oldState, newState);
-  }
-
-  return true;
-}
-
 function createPendingReactElements (children) {
   const pendingKeys = {};
 
@@ -304,6 +142,7 @@ function createChild(returnFiber, newChild) {
   if (typeof newChild === 'string' || typeof newChild === 'number') {
     const created = createFiberFromText('' + newChild);
     created.return = returnFiber;
+    created[INTERNAL_ROOTFIBER_KEY] = returnFiber[INTERNAL_ROOTFIBER_KEY];
     return created;
   }
 
@@ -313,14 +152,16 @@ function createChild(returnFiber, newChild) {
     if (newChild.$$typeof) {
       const created = createFiberFromElement(newChild);
       created.return = returnFiber;
+      created[INTERNAL_ROOTFIBER_KEY] = returnFiber[INTERNAL_ROOTFIBER_KEY];
       return created;
     }
   }
 
   // 如果是数组
   if (isArray(newChild)) {
-    const created = createFiberFromElement(newChild, null);
+    const created = createFiberFromFragment(newChild, null);
     created.return = returnFiber;
+    created[INTERNAL_ROOTFIBER_KEY] = returnFiber[INTERNAL_ROOTFIBER_KEY];
     return created;
   }
 
@@ -382,8 +223,6 @@ function reconcileChildren (workInProgress, children) {
         newFiber.memoizedReactFibers = alternate.memoizedReactFibers;
         newFiber.memoizedReactElements = alternate.memoizedReactElements;
         newFiber.stateNode = alternate.stateNode;
-        
-
         // debugger;
 
         // if (shouldPlace(newChild)) {

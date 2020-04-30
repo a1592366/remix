@@ -26,6 +26,7 @@
 		"event-lite": "^0.1.2",
 		"events": "^3.0.0",
 		"events-lite": "^0.1.0",
+		"hoist-non-react-statics": "^3.3.2",
 		"prop-types": "^15.7.2",
 		"qs": "^6.9.0",
 		"remixjs-message-protocol": "^0.0.1",

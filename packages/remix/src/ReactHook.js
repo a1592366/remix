@@ -57,25 +57,36 @@ class Hooks extends Array {
   }
 }
 
+const hasChanged = (memoized, pending) => {
+  if (!memoized) {
+    return true;
+  }
+
+  return pending.some((ref, index) => {
+    return ref !== memoized[index];
+  })
+}
+
 export function resetReactCurrentHookCursor () {
   ReactHook.ReactCurrentHookCursor = 0;
 }
 
-export function useMemo (callback, dependens) {
+export function useMemo (callback, dependences) {
   const [hook] = ReactHook.ReactCurrentHooks;
 
-  if (isChanged(hook[1], deps)) {
-    hook[1] = deps
-    return (hook[0] = cb())
+  if (hasChanged(hook[1], dependences)) {
+    hook[1] = dependences;
+    return hook[0] = callback();
   }
-  return hook[0]
+
+  return hook[0];
 }
 
-export function useCallback (callback, dependens) {
-  return useMemo(() => callback, dependoens);
+export function useCallback (callback, dependences) {
+  return useMemo(() => callback, dependences);
 }
 
-export function useEffect (callback, dependons) {
+export function useEffect (callback, dependences) {
   return 
 }
 

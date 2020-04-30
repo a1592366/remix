@@ -15,8 +15,6 @@ module.exports = function compile (context) {
     start () {
       compiler = webpack(config);
 
-      
-
       return new Promise((resolve, reject) => {
         watching = compiler.watch({}, (err, stats) => {
           if (err) {

@@ -1,6 +1,6 @@
-import { HOST_ROOT, FUNCTION_COMPONENT, HOST_COMPONENT, CLASS_COMPONENT } from './shared/workTags';
+import { HOST_ROOT, HOST_TEXT, FUNCTION_COMPONENT, HOST_COMPONENT, CLASS_COMPONENT, FRAGMENT } from './shared/workTags';
 import { NO_EFFECT } from './shared/effectTags';
-import { NO_WORK } from './shared';
+import { NO_WORK, INTERNAL_ROOTFIBER_KEY } from './shared';
 
 function createFiberNode (tag, pendingProps, key) {
   return {
@@ -67,8 +67,8 @@ export function createFiberFromElement(element) {
   return fiber;
 }
 
-export function createFiberFromFragment(elements, key) {
-  var fiber = createFiber(Fragment, elements);
+export function createFiberFromFragment(elements) {
+  var fiber = createFiber(FRAGMENT, elements);
   return fiber;
 }
 
@@ -106,6 +106,7 @@ export function createRootFiber (container) {
   }
 
   uninitializedFiber.stateNode = root;
+  uninitializedFiber[INTERNAL_ROOTFIBER_KEY] = uninitializedFiber;
 
   return root;
 }

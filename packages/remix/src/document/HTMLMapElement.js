@@ -1,10 +1,9 @@
 import { isNullOrUndefined } from '../shared/is';
 import HTMLElement from './HTMLElement';
-import StyleSheet from './StyleSheet';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { MAP } from './HTMLTypes';
 
-import RemixMap from '../components/remix-element/remix-map';
+import RemixMap from '../components/remix-ui/remix-map';
 
 export default class RemixMapElement extends HTMLElement {
   static defaultProps = RemixMap.defaultProps;
@@ -14,7 +13,6 @@ export default class RemixMapElement extends HTMLElement {
 
     this.tagName = MAP;
     this.nodeType = ELEMENT_NODE;
-    this.style = new StyleSheet();
   }
 
   appendChild (child) {}

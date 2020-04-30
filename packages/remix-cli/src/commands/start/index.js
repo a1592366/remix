@@ -9,9 +9,7 @@ const watch = require('./steps/watch');
 const keys = Object;
 
 module.exports = async (type, config) => {
-
   const { result: context } = await rpc.context();
-
   const restart = await projecting(context);
   
   await watch(async (file) => {

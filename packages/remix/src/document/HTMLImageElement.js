@@ -1,10 +1,9 @@
 import { isNullOrUndefined } from '../shared/is';
 import HTMLElement from './HTMLElement';
-import StyleSheet from './StyleSheet';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { IMAGE } from './HTMLTypes';
 
-import RemixImage from '../components/remix-element/remix-image';
+import RemixImage from '../components/remix-ui/remix-image';
 
 export default class HTMLImageElement extends HTMLElement {
   static defaultProps = RemixImage.defaultProps;
@@ -14,7 +13,6 @@ export default class HTMLImageElement extends HTMLElement {
 
     this.tagName = IMAGE;
     this.nodeType = ELEMENT_NODE;
-    this.style = new StyleSheet();
   }
 
   appendChild (child) {}

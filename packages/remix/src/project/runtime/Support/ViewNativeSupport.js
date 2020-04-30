@@ -35,10 +35,10 @@ export const Publisher = new class extends Emitter {
     })
   }
 
-  Data (data) {
+  Data (id, data) {
     Subscriber.emit(View, {
-      type: Data,
-      argv: [data]
+      type: `${Data}.${id}`,
+      argv: [id, data]
     })
   }
 
@@ -67,33 +67,5 @@ export const Subscriber = new class extends Emitter {
 
       this.emit(type, ...argv);
     });
-  }
-
-  onData (onData) {
-    this.on(Data, onData);
-  }
-
-  onEvent (onEvent) {
-    this.on(Event, onEvent);
-  }
-
-  onLoad (onLoad) {
-    this.on(Load, onLoad);
-  }
-
-  onShow (onShow) {
-    this.on(Show, onShow);
-  }
-
-  onHide (onHide) {
-    this.on(Hide, onHide);
-  }
-
-  onReady (onReady) {
-    this.on(Ready, onReady);
-  }
-
-  onUnload (onUnload) {
-    this.on(Unload, onUnload);
   }
 }

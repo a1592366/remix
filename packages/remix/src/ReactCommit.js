@@ -4,6 +4,7 @@ import { INTERNAL_EVENT_HANDLERS_KEY } from './shared';
 import { updateDOMProperties } from './renderer/config/DOMProperties';
 import appendChildToContainer from './renderer/config/appendChildToContainer';
 import appendChild from './renderer/config/appendChild';
+import insertBefore from './renderer/config/insertBefore';
 
 const ReactCommitQueue = [];
 
@@ -160,17 +161,14 @@ function getHostSibling(fiber) {
   }
 }
 
-function getPublicInstance(instance) {
-  return instance;
-}
-
 function getHostParentFiber(fiber) {
-  let parent = fiber.return;
+  let node = fiber.return;
 
-  while (parent !== null) {
-    if (isHostParent(parent)) {
-      return parent;
+  while (node !== null) {
+    if (isHostParent(node)) {
+      return node;
     }
-    parent = parent.return;
+
+    node = node.return;
   }
 }

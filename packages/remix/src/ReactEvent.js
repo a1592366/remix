@@ -89,8 +89,8 @@ function siftup (node , leaf) {
     // 父节点 索引 
     const index = (leaf - 1) >>> 2;
     const parent = ReactCurrentSchedulerHeap[index];
-
     // 与父节点比较
+
     if (parent.level < node.level) {
       ReactCurrentSchedulerHeap[index] = node;
       ReactCurrentSchedulerHeap[leaf] = parent;
@@ -106,7 +106,7 @@ function siftup (node , leaf) {
 }
 
 function siftdown (node, first) {
-  const length = heap.length;
+  const length = ReactCurrentSchedulerHeap.length;
   
   while (true) {
     const l = first * 2 + 1;
@@ -117,25 +117,27 @@ function siftdown (node, first) {
     }
 
     // 右边叶子索引 = 父节点索引 * 2 + 2 = 左边索引 + 1
-    r = l + 1;
-    right = ReactCurrentSchedulerHeap[r];
+    const r = l + 1;
+    const right = ReactCurrentSchedulerHeap[r];
 
     // 选左右叶子索引
     const c = r < length && (right.level - left.level) < 0 ? r : l;
     const child = ReactCurrentSchedulerHeap[c];
 
     // 不用交换
-    if (
-      (child.level < node.level) < 0 ||
-      (child.begin > node.begin)
-    ) {
-      break;
+    if (child) {
+      if (
+        (child.level < node.level) < 0 ||
+        (child.begin > node.begin)
+      ) {
+        break;
+      }
     }
 
     // 交换节点
     ReactCurrentSchedulerHeap[c] = node;
-    ReactCurrentSchedulerHeap[index] = child;
-    index = c;
+    ReactCurrentSchedulerHeap[first] = child;
+    first = c;
   }
 }
 
@@ -202,6 +204,8 @@ function dispatchEvent (view, type, event) {
 }
 
 export function scheduleWork ({ type, event, view }) {
+  return dispatchEvent(view, type, event);
+
   const level = priority[type] || priority.defaults;
   if (level === IMMEDIATE) {
     dispatchEvent(view, type, event);

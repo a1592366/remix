@@ -3,7 +3,7 @@ import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { VIEW } from './HTMLTypes';
 import HTMLElement from './HTMLElement';
 
-import RemixView from '../components/remix-element/remix-view';
+import RemixView from '../components/remix-ui/remix-view';
 
 export default class HTMLViewElement extends HTMLElement {
   static defaultProps = RemixView.defaultProps;

@@ -1,42 +1,32 @@
 import uuid from 'uuid';
 import * as ViewNativeSupport from './runtime/Support/ViewNativeSupport';
-import { INTERNAL_RELATIVE_KEY } from '../shared';
 
-export default function (route) {
+export default function (route, element = null) {
   const view = {
     id: uuid.v4(),
     route,
   }
 
   if (typeof Page === 'function') {
-    let onData = null;
-
     Page({
-      data: { element: null },
+      data: { type: null, element },
       onLoad (query) {
-        onData = (element) => {
-          const id = element[INTERNAL_RELATIVE_KEY];
-          console.log(id, view.id);
+        ViewNativeSupport.Subscriber.on(
+          `${ViewNativeSupport.Data}.${view.id}`, 
+          (id, element) => {
+            
+            if (id === view.id) {
+              this.setData({ type: 'SYNC', element })
+            }
+        });
 
-          if (id === view.id) {
-            console.log(element);
-            this.setData({ element });
-          }
-        }
-
-        console.log('onLoad')
-
-        ViewNativeSupport.Subscriber.onData(onData);
         ViewNativeSupport.Publisher.Load({ ...view, query });
       },
       onShow () {
         ViewNativeSupport.Publisher.Show(view);
       },
       onUnload () {
-        ViewNativeSupport.Subscriber.unsubscribe(
-          ViewNativeSupport.Data, 
-          onData
-        )
+        ViewNativeSupport.Subscriber.off(`${ViewNativeSupport.Data}.${view.id}`);
       }
     })
   } else {

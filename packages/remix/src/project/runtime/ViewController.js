@@ -6,6 +6,9 @@ import { shallowEqual } from '../../shared';
 import { scheduleWork } from '../../ReactEvent';
 import { INTERNAL_RELATIVE_KEY } from '../../shared';
 
+const views = document.createElement('views')
+document.body.appendChild(views);
+
 export function ViewControllersManager (context, instance) {
   const viewControllers = [];
   const views = {};
@@ -15,7 +18,7 @@ export function ViewControllersManager (context, instance) {
     views[route.path] = route;
   });
 
-  ViewNativeSupport.Subscriber.onLoad((view) => {
+  ViewNativeSupport.Subscriber.on(ViewNativeSupport.Load, (view) => {
     const { id, query, route } = view;
     let controller = viewControllers[id];
     
@@ -23,7 +26,7 @@ export function ViewControllersManager (context, instance) {
       const Class = views[route];
 
       if (view) {
-        controller = new ViewController(id);
+        controller = new ViewController(id, route, query);
         controller.Class = Class.component;
         viewControllers[id] = controller;  
       } else {
@@ -39,11 +42,11 @@ export function ViewControllersManager (context, instance) {
     }
   })
 
-  ViewNativeSupport.Subscriber.onShow(({ id }) => {
+  ViewNativeSupport.Subscriber.on(ViewNativeSupport.Show, ({ id }) => {
     viewController = viewControllers[id];
   });
 
-  ViewNativeSupport.Subscriber.onEvent(function (type, uuid, parent, event) {
+  ViewNativeSupport.Subscriber.on(ViewNativeSupport.Event, function (type, uuid, parent, event, sync) {
     const { target } = event;
 
     const view = viewController.view.getElementById(target.id);
@@ -53,10 +56,17 @@ export function ViewControllersManager (context, instance) {
 }
 
 export default class ViewController {
-  constructor (id) {
+  constructor (id, route, query) {
     this.id = id;
-    this.view = document.createElement('view');
+    this.route = route;
+    this.query = query;
+    this.view = document.createElement('view-controller');
     this.view[INTERNAL_RELATIVE_KEY] = id;
+
+    this.view.setAttribute('route', route);
+    this.view.setAttribute('query', query);
+
+    views.appendChild(this.view);
   }
 
   onLoad (query) {

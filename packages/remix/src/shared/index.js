@@ -10,6 +10,7 @@ export const DANGEROUSLY_SET_INNER_HTML = 'dangerouslySetInnerHTML';
 export const INTERNAL_INSTANCE_KEY = '__reactInternalInstance$' + randomKey;
 export const INTERNAL_EVENT_HANDLERS_KEY = '__reactEventHandlers$' + randomKey;
 export const INTERNAL_RELATIVE_KEY = '__reactInternalRelative$' +  randomKey;
+export const INTERNAL_ROOTFIBER_KEY = '__reactInternalRootFiber$' + randomKey;
 
 export const REACT_INTERNAL_FIBER = '_reactInternalFiber';
 export const REACT_INTERNAL_INSTANCE = '_reactInternalInstance';

@@ -2,12 +2,14 @@ import performance from './shared/performance';
 import nextTick from './shared/nextTick';
 import { commitAllWork } from './ReactCommit';
 import { enqueueUpdateQueue, dequeueUpdateQueue } from './ReactUpdater';
-import { updateHostRoot, updateFunctionComponent, updateHostComponent, updateClassComponent } from './ReactReconciler';
+import { updateHostRoot, updateFunctionComponent, updateHostComponent, updateClassComponent, updateFragment } from './ReactReconciler';
+import { DOMUpdateQueue } from './ReactDOMUpdator';
 import { SCHEDULE_TIMEOUT, SCHEDULE_FPS, SCHEDULE_KEY } from './shared';
-import { HOST_ROOT, FUNCTION_COMPONENT, CLASS_COMPONENT, HOST_COMPONENT } from './shared/workTags';
+import { HOST_ROOT, FUNCTION_COMPONENT, CLASS_COMPONENT, HOST_COMPONENT, FRAGMENT } from './shared/workTags';
 import { NO_WORK } from './shared';
 
 let isRendering = false;
+let isCommiting = false;
 let ReactCurrentScheduler;
 let scheduleDeadline = 0;
 
@@ -37,7 +39,7 @@ function siftup (node , leaf) {
 }
 
 function siftdown (node, first) {
-  const length = heap.length;
+  const length = ReactCurrentSchedulerHeap.length;
   
   while (true) {
     const l = first * 2 + 1;
@@ -48,22 +50,24 @@ function siftdown (node, first) {
     }
 
     // 右边叶子索引 = 父节点索引 * 2 + 2 = 左边索引 + 1
-    r = l + 1;
-    right = ReactCurrentSchedulerHeap[r];
+    const r = l + 1;
+    const right = ReactCurrentSchedulerHeap[r];
 
     // 选左右叶子索引
     const c = r < length && (right.due - left.due) < 0 ? r : l;
     const child = ReactCurrentSchedulerHeap[c];
 
     // 不用交换
-    if ((child[SCHEDULE_KEY] - node[SCHEDULE_KEY]) < 0) {
-      break;
+    if (child) {
+      if ((child[SCHEDULE_KEY] - node[SCHEDULE_KEY]) < 0) {
+        break;
+      }
     }
 
     // 交换节点
     ReactCurrentSchedulerHeap[c] = node;
-    ReactCurrentSchedulerHeap[index] = child;
-    index = c;
+    ReactCurrentSchedulerHeap[first] = child;
+    first = c;
   }
 }
 
@@ -159,6 +163,7 @@ function workLoop (isExpired) {
 
   if (pendingCommitWorkInProgress) {
     commitAllWork();
+    DOMUpdateQueue(pendingCommitWorkInProgress);
     pendingCommitWorkInProgress = null;
   }
 }
@@ -196,16 +201,17 @@ function beginWork (workInProgress) {
   const { tag } = workInProgress;
 
   switch (tag) {
+    case FRAGMENT: {
+      return updateFragment(workInProgress);
+    }
+
     case HOST_ROOT: {
       return updateHostRoot(workInProgress);
     }
 
-    case FUNCTION_COMPONENT: {
-      return updateFunctionComponent(workInProgress);
-    }
-
+    case FUNCTION_COMPONENT: 
     case CLASS_COMPONENT: {
-      return updateClassComponent(workInProgress);
+      return updateFunctionComponent(workInProgress);
     }
 
     case HOST_COMPONENT: {

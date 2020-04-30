@@ -67,9 +67,14 @@ export default function (App, container) {
             context.config = node.memoizedProps.config;
             this.instance = node.stateNode;
           } else if (elementType === Route) {
+            if (!node.memoizedProps.component.isViewController) {
+              console.warn(`<Route path='${node.memoizedProps.path}' /> 路由组件请使用 useRemixController 包装，否则无法读取页面配置文件`);
+            }
+
             context.router.routes.push({
               path: node.memoizedProps.path,
-              component: node.memoizedProps.component 
+              component: node.memoizedProps.component,
+              config: node.memoizedProps.component.config || {}
             });
           } else if (elementType === TabBar) {
             context.tabBar = {

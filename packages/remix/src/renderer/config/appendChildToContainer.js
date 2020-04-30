@@ -11,11 +11,5 @@ export default function appendChildToContainer (
   } else {
     parentNode = container;
     parentNode.appendChild(child);
-  }
-  
-  const reactRootContainer = container._reactRootContainer;
-
-  if (reactRootContainer === null && parentNode.onclick === null) {
-    // trapClickOnNonInteractiveElement(parentNode);
-  }
+  }  
 }

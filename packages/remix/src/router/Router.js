@@ -1,15 +1,18 @@
 import React from '../react';
 import Component from '../react/Component';
 import Route from './Route';
+import { useComponent } from '../hooks';
 
-export default class Router extends Component {
+class Router extends Component {
   static Route = Route;
 
   render () {
     return (
-      <view>
+      <router>
         {this.props.children}
-      </view>
+      </router>
     );
   }
 }
+
+export default useComponent(Router);

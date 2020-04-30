@@ -6,10 +6,13 @@ import cloneElement from './cloneElement';
 
 
 import PropTypes from './PropTypes';
+import render from '../renderer';
 
 export * from '../ReactHook';
 
+
 export {
+  render,
   Children,
   Component,
   PureComponent,
@@ -21,6 +24,7 @@ export {
 }
 
 export default {
+  render,
   Children,
   Component,
   PureComponent,

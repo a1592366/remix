@@ -1,6 +1,7 @@
 import React from '../react';
 import Component from '../react/Component';
 import PropTypes from '../react/PropTypes';
+import { useComponent } from '../hooks';
 
 class TabBarItem extends Component {
   static propTypes = {
@@ -15,8 +16,8 @@ class TabBarItem extends Component {
   }
 }
 
-export default class TabBar extends Component {
-  static TabBarItem = TabBarItem;
+class TabBar extends Component {
+  static TabBarItem = useComponent(TabBarItem);
   static propTypes = {
     color: PropTypes.string,
     selectedColor: PropTypes.string,
@@ -32,6 +33,8 @@ export default class TabBar extends Component {
   }
   
   render () {
-    return <view>{this.props.children}</view>
+    return <tabbar>{this.props.children}</tabbar>
   }
 }
+
+export default useComponent(TabBar);

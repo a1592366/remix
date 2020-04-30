@@ -49,6 +49,7 @@ class RemixGlobalWebpackPlugin {
 module.exports = {
   context: proj.PROJ_DIR,
   devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-eval-source-map',
   stats: {
     all: false,
     modules: true,

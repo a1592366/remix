@@ -1,10 +1,9 @@
 import { isNullOrUndefined } from '../shared/is';
 import HTMLElement from './HTMLElement';
-import StyleSheet from './StyleSheet';
 import { ELEMENT_NODE } from '../shared/HTMLNodeType';
 import { TEXTAREA } from './HTMLTypes';
 
-import RemixTextArea from '../components/remix-element/remix-textarea';
+import RemixTextArea from '../components/remix-ui/remix-textarea';
 
 export default class RemixTextAreaElement extends HTMLElement {
   static defaultProps = RemixTextArea.defaultProps;
@@ -14,7 +13,6 @@ export default class RemixTextAreaElement extends HTMLElement {
 
     this.tagName = TEXTAREA;
     this.nodeType = ELEMENT_NODE;
-    this.style = new StyleSheet();
   }
 
   appendChild (child) {}
