@@ -1,432 +1,4 @@
-/*** MARK_1588231179898 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
-
-/***/ "../remix-cli/node_modules/events/events.js":
-/*!**************************************************!*\
-  !*** ../remix-cli/node_modules/events/events.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-var R = typeof Reflect === 'object' ? Reflect : null;
-var ReflectApply = R && typeof R.apply === 'function' ? R.apply : function ReflectApply(target, receiver, args) {
-  return Function.prototype.apply.call(target, receiver, args);
-};
-var ReflectOwnKeys;
-
-if (R && typeof R.ownKeys === 'function') {
-  ReflectOwnKeys = R.ownKeys;
-} else if (Object.getOwnPropertySymbols) {
-  ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target));
-  };
-} else {
-  ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertyNames(target);
-  };
-}
-
-function ProcessEmitWarning(warning) {
-  if (console && console.warn) console.warn(warning);
-}
-
-var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
-  return value !== value;
-};
-
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-
-module.exports = EventEmitter; // Backwards-compat with node 0.10.x
-
-EventEmitter.EventEmitter = EventEmitter;
-EventEmitter.prototype._events = undefined;
-EventEmitter.prototype._eventsCount = 0;
-EventEmitter.prototype._maxListeners = undefined; // By default EventEmitters will print a warning if more than 10 listeners are
-// added to it. This is a useful default which helps finding memory leaks.
-
-var defaultMaxListeners = 10;
-Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
-  enumerable: true,
-  get: function () {
-    return defaultMaxListeners;
-  },
-  set: function (arg) {
-    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
-      throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + '.');
-    }
-
-    defaultMaxListeners = arg;
-  }
-});
-
-EventEmitter.init = function () {
-  if (this._events === undefined || this._events === Object.getPrototypeOf(this)._events) {
-    this._events = Object.create(null);
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}; // Obviously not all Emitters should be limited to 10. This function allows
-// that to be increased. Set to zero for unlimited.
-
-
-EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
-  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
-    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
-  }
-
-  this._maxListeners = n;
-  return this;
-};
-
-function $getMaxListeners(that) {
-  if (that._maxListeners === undefined) return EventEmitter.defaultMaxListeners;
-  return that._maxListeners;
-}
-
-EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
-  return $getMaxListeners(this);
-};
-
-EventEmitter.prototype.emit = function emit(type) {
-  var args = [];
-
-  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
-
-  var doError = type === 'error';
-  var events = this._events;
-  if (events !== undefined) doError = doError && events.error === undefined;else if (!doError) return false; // If there is no 'error' event listener then throw.
-
-  if (doError) {
-    var er;
-    if (args.length > 0) er = args[0];
-
-    if (er instanceof Error) {
-      // Note: The comments on the `throw` lines are intentional, they show
-      // up in Node's output if this results in an unhandled exception.
-      throw er; // Unhandled 'error' event
-    } // At least give some kind of context to the user
-
-
-    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
-    err.context = er;
-    throw err; // Unhandled 'error' event
-  }
-
-  var handler = events[type];
-  if (handler === undefined) return false;
-
-  if (typeof handler === 'function') {
-    ReflectApply(handler, this, args);
-  } else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-
-    for (var i = 0; i < len; ++i) ReflectApply(listeners[i], this, args);
-  }
-
-  return true;
-};
-
-function _addListener(target, type, listener, prepend) {
-  var m;
-  var events;
-  var existing;
-
-  if (typeof listener !== 'function') {
-    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
-  }
-
-  events = target._events;
-
-  if (events === undefined) {
-    events = target._events = Object.create(null);
-    target._eventsCount = 0;
-  } else {
-    // To avoid recursion in the case that type === "newListener"! Before
-    // adding it to the listeners, first emit "newListener".
-    if (events.newListener !== undefined) {
-      target.emit('newListener', type, listener.listener ? listener.listener : listener); // Re-assign `events` because a newListener handler could have caused the
-      // this._events to be assigned to a new object
-
-      events = target._events;
-    }
-
-    existing = events[type];
-  }
-
-  if (existing === undefined) {
-    // Optimize the case of one listener. Don't need the extra array object.
-    existing = events[type] = listener;
-    ++target._eventsCount;
-  } else {
-    if (typeof existing === 'function') {
-      // Adding the second element, need to change to array.
-      existing = events[type] = prepend ? [listener, existing] : [existing, listener]; // If we've already got an array, just append.
-    } else if (prepend) {
-      existing.unshift(listener);
-    } else {
-      existing.push(listener);
-    } // Check for listener leak
-
-
-    m = $getMaxListeners(target);
-
-    if (m > 0 && existing.length > m && !existing.warned) {
-      existing.warned = true; // No error code for this since it is a Warning
-      // eslint-disable-next-line no-restricted-syntax
-
-      var w = new Error('Possible EventEmitter memory leak detected. ' + existing.length + ' ' + String(type) + ' listeners ' + 'added. Use emitter.setMaxListeners() to ' + 'increase limit');
-      w.name = 'MaxListenersExceededWarning';
-      w.emitter = target;
-      w.type = type;
-      w.count = existing.length;
-      ProcessEmitWarning(w);
-    }
-  }
-
-  return target;
-}
-
-EventEmitter.prototype.addListener = function addListener(type, listener) {
-  return _addListener(this, type, listener, false);
-};
-
-EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-
-EventEmitter.prototype.prependListener = function prependListener(type, listener) {
-  return _addListener(this, type, listener, true);
-};
-
-function onceWrapper() {
-  var args = [];
-
-  for (var i = 0; i < arguments.length; i++) args.push(arguments[i]);
-
-  if (!this.fired) {
-    this.target.removeListener(this.type, this.wrapFn);
-    this.fired = true;
-    ReflectApply(this.listener, this.target, args);
-  }
-}
-
-function _onceWrap(target, type, listener) {
-  var state = {
-    fired: false,
-    wrapFn: undefined,
-    target: target,
-    type: type,
-    listener: listener
-  };
-  var wrapped = onceWrapper.bind(state);
-  wrapped.listener = listener;
-  state.wrapFn = wrapped;
-  return wrapped;
-}
-
-EventEmitter.prototype.once = function once(type, listener) {
-  if (typeof listener !== 'function') {
-    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
-  }
-
-  this.on(type, _onceWrap(this, type, listener));
-  return this;
-};
-
-EventEmitter.prototype.prependOnceListener = function prependOnceListener(type, listener) {
-  if (typeof listener !== 'function') {
-    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
-  }
-
-  this.prependListener(type, _onceWrap(this, type, listener));
-  return this;
-}; // Emits a 'removeListener' event if and only if the listener was removed.
-
-
-EventEmitter.prototype.removeListener = function removeListener(type, listener) {
-  var list, events, position, i, originalListener;
-
-  if (typeof listener !== 'function') {
-    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
-  }
-
-  events = this._events;
-  if (events === undefined) return this;
-  list = events[type];
-  if (list === undefined) return this;
-
-  if (list === listener || list.listener === listener) {
-    if (--this._eventsCount === 0) this._events = Object.create(null);else {
-      delete events[type];
-      if (events.removeListener) this.emit('removeListener', type, list.listener || listener);
-    }
-  } else if (typeof list !== 'function') {
-    position = -1;
-
-    for (i = list.length - 1; i >= 0; i--) {
-      if (list[i] === listener || list[i].listener === listener) {
-        originalListener = list[i].listener;
-        position = i;
-        break;
-      }
-    }
-
-    if (position < 0) return this;
-    if (position === 0) list.shift();else {
-      spliceOne(list, position);
-    }
-    if (list.length === 1) events[type] = list[0];
-    if (events.removeListener !== undefined) this.emit('removeListener', type, originalListener || listener);
-  }
-
-  return this;
-};
-
-EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
-
-EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
-  var listeners, events, i;
-  events = this._events;
-  if (events === undefined) return this; // not listening for removeListener, no need to emit
-
-  if (events.removeListener === undefined) {
-    if (arguments.length === 0) {
-      this._events = Object.create(null);
-      this._eventsCount = 0;
-    } else if (events[type] !== undefined) {
-      if (--this._eventsCount === 0) this._events = Object.create(null);else delete events[type];
-    }
-
-    return this;
-  } // emit removeListener for all listeners on all events
-
-
-  if (arguments.length === 0) {
-    var keys = Object.keys(events);
-    var key;
-
-    for (i = 0; i < keys.length; ++i) {
-      key = keys[i];
-      if (key === 'removeListener') continue;
-      this.removeAllListeners(key);
-    }
-
-    this.removeAllListeners('removeListener');
-    this._events = Object.create(null);
-    this._eventsCount = 0;
-    return this;
-  }
-
-  listeners = events[type];
-
-  if (typeof listeners === 'function') {
-    this.removeListener(type, listeners);
-  } else if (listeners !== undefined) {
-    // LIFO order
-    for (i = listeners.length - 1; i >= 0; i--) {
-      this.removeListener(type, listeners[i]);
-    }
-  }
-
-  return this;
-};
-
-function _listeners(target, type, unwrap) {
-  var events = target._events;
-  if (events === undefined) return [];
-  var evlistener = events[type];
-  if (evlistener === undefined) return [];
-  if (typeof evlistener === 'function') return unwrap ? [evlistener.listener || evlistener] : [evlistener];
-  return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
-}
-
-EventEmitter.prototype.listeners = function listeners(type) {
-  return _listeners(this, type, true);
-};
-
-EventEmitter.prototype.rawListeners = function rawListeners(type) {
-  return _listeners(this, type, false);
-};
-
-EventEmitter.listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-};
-
-EventEmitter.prototype.listenerCount = listenerCount;
-
-function listenerCount(type) {
-  var events = this._events;
-
-  if (events !== undefined) {
-    var evlistener = events[type];
-
-    if (typeof evlistener === 'function') {
-      return 1;
-    } else if (evlistener !== undefined) {
-      return evlistener.length;
-    }
-  }
-
-  return 0;
-}
-
-EventEmitter.prototype.eventNames = function eventNames() {
-  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
-};
-
-function arrayClone(arr, n) {
-  var copy = new Array(n);
-
-  for (var i = 0; i < n; ++i) copy[i] = arr[i];
-
-  return copy;
-}
-
-function spliceOne(list, index) {
-  for (; index + 1 < list.length; index++) list[index] = list[index + 1];
-
-  list.pop();
-}
-
-function unwrapListeners(arr) {
-  var ret = new Array(arr.length);
-
-  for (var i = 0; i < ret.length; ++i) {
-    ret[i] = arr[i].listener || arr[i];
-  }
-
-  return ret;
-}
-
-/***/ }),
+/*** MARK_1588260339847 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remix-cli/node_modules/process/browser.js":
 /*!****************************************************!*\
@@ -1111,49 +683,6 @@ module.exports = _classCallCheck;
 
 /***/ }),
 
-/***/ "../remix/node_modules/@babel/runtime/helpers/construct.js":
-/*!*****************************************************************!*\
-  !*** ../remix/node_modules/@babel/runtime/helpers/construct.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _construct(Parent, args, Class) {
-  if (isNativeReflectConstruct()) {
-    module.exports = _construct = Reflect.construct;
-  } else {
-    module.exports = _construct = function _construct(Parent, args, Class) {
-      var a = [null];
-      a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
-      if (Class) setPrototypeOf(instance, Class.prototype);
-      return instance;
-    };
-  }
-
-  return _construct.apply(null, arguments);
-}
-
-module.exports = _construct;
-
-/***/ }),
-
 /***/ "../remix/node_modules/@babel/runtime/helpers/createClass.js":
 /*!*******************************************************************!*\
   !*** ../remix/node_modules/@babel/runtime/helpers/createClass.js ***!
@@ -1327,21 +856,6 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
-
-/***/ }),
-
-/***/ "../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js":
-/*!************************************************************************!*\
-  !*** ../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _isNativeFunction(fn) {
-  return Function.toString.call(fn).indexOf("[native code]") !== -1;
-}
-
-module.exports = _isNativeFunction;
 
 /***/ }),
 
@@ -1610,59 +1124,6 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
-
-/***/ }),
-
-/***/ "../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js":
-/*!***********************************************************************!*\
-  !*** ../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-var isNativeFunction = __webpack_require__(/*! ./isNativeFunction */ "../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js");
-
-var construct = __webpack_require__(/*! ./construct */ "../remix/node_modules/@babel/runtime/helpers/construct.js");
-
-function _wrapNativeSuper(Class) {
-  var _cache = typeof Map === "function" ? new Map() : undefined;
-
-  module.exports = _wrapNativeSuper = function _wrapNativeSuper(Class) {
-    if (Class === null || !isNativeFunction(Class)) return Class;
-
-    if (typeof Class !== "function") {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-
-    if (typeof _cache !== "undefined") {
-      if (_cache.has(Class)) return _cache.get(Class);
-
-      _cache.set(Class, Wrapper);
-    }
-
-    function Wrapper() {
-      return construct(Class, arguments, getPrototypeOf(this).constructor);
-    }
-
-    Wrapper.prototype = Object.create(Class.prototype, {
-      constructor: {
-        value: Wrapper,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-    return setPrototypeOf(Wrapper, Class);
-  };
-
-  return _wrapNativeSuper(Class);
-}
-
-module.exports = _wrapNativeSuper;
 
 /***/ }),
 
@@ -2387,132 +1848,38 @@ Object.keys(_project).forEach(function (key) {
   !*** ../remix/src/Fiber.js ***!
   \*****************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.cloneFiber = cloneFiber;
-exports.createFiber = createFiber;
-exports.createFiberFromText = createFiberFromText;
-exports.createFiberFromElement = createFiberFromElement;
-exports.createFiberFromFragment = createFiberFromFragment;
-exports.createRootFiber = createRootFiber;
-exports.createWorkInProgress = createWorkInProgress;
-
-var _workTags = __webpack_require__(/*! ./shared/workTags */ "../remix/src/shared/workTags.js");
-
-var _effectTags = __webpack_require__(/*! ./shared/effectTags */ "../remix/src/shared/effectTags.js");
-
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
-
-function createFiberNode(tag, pendingProps, key) {
-  return {
-    tag: tag,
-    pendingProps: pendingProps,
-    key: key,
-    effectTag: _effectTags.NO_EFFECT,
-    type: null,
-    elementType: null,
-    stateNode: null,
-    update: null,
-    memoizedProps: null,
-    memoizedState: null,
-    memoizedFibers: null,
-    memoizedReactElements: null,
-    pendingReactElements: null,
-    pendingFibers: null,
-    "return": null,
-    child: null,
-    sibling: null,
-    status: _shared.NO_WORK
-  };
-}
-
-function cloneFiber(fiber) {
-  var tag = fiber.tag,
-      pendingProps = fiber.pendingProps,
-      key = fiber.key;
-  var created = createFiber(tag, pendingProps, key);
-  created.stateNode = fiber.stateNode;
-  created.memoizedProps = fiber.memoizedProps;
-  created.pendingFibers = fiber.pendingFibers;
-  created.memoizedFibers = fiber.memoizedFibers;
-  created.memoizedState = fiber.memoizedFibers;
-  created.type = fiber.type;
-  created.elementType = fiber.elementType;
-  created.effectTag = _effectTags.NO_EFFECT;
-  return created;
-}
-
-function createFiber(tag, pendingProps, key) {
-  return createFiberNode(tag, pendingProps, key);
-}
-
-function createFiberFromText(content) {
-  var fiber = createFiber(_workTags.HOST_TEXT, content, null);
-  return fiber;
-}
-
-function createFiberFromElement(element) {
-  var owner = element._owner;
-  var type = element.type;
-  var key = element.key;
-  var pendingProps = element.props;
-  var fiber = createFiberFromTypeAndProps(type, key, pendingProps, owner);
-  return fiber;
-}
-
-function createFiberFromFragment(elements) {
-  var fiber = createFiber(_workTags.FRAGMENT, elements);
-  return fiber;
-}
-
-function createFiberFromTypeAndProps(type, // React$ElementType
-key, pendingProps, owner) {
-  var fiber;
-  var fiberTag = _workTags.FUNCTION_COMPONENT;
-  ;
-  var resolvedType = type;
-
-  if (typeof type === 'function') {
-    var prototype = type.prototype;
-
-    if (prototype && prototype.isReactComponent) {
-      fiberTag = _workTags.CLASS_COMPONENT;
-    }
-  } else if (typeof type === 'string') {
-    fiberTag = _workTags.HOST_COMPONENT;
-  }
-
-  fiber = createFiber(fiberTag, pendingProps, key);
-  fiber.elementType = type;
-  fiber.type = resolvedType;
-  return fiber;
-}
-
-function createRootFiber(container) {
-  var uninitializedFiber = createFiberNode(_workTags.HOST_ROOT, null, null);
-  var root = {
-    containerInfo: container,
-    workInProgress: uninitializedFiber
-  };
-  uninitializedFiber.stateNode = root;
-  uninitializedFiber[_shared.INTERNAL_ROOTFIBER_KEY] = uninitializedFiber;
-  return root;
-}
-
-function createWorkInProgress() {}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/aniwei/Desktop/remix/packages/remix/src/Fiber.js'");
 
 /***/ }),
 
-/***/ "../remix/src/ReactCommit.js":
-/*!***********************************!*\
-  !*** ../remix/src/ReactCommit.js ***!
-  \***********************************/
+/***/ "../remix/src/ReactHook.js":
+/*!*********************************!*\
+  !*** ../remix/src/ReactHook.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/aniwei/Desktop/remix/packages/remix/src/ReactHook.js'");
+
+/***/ }),
+
+/***/ "../remix/src/ReactScheduler.js":
+/*!**************************************!*\
+  !*** ../remix/src/ReactScheduler.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/aniwei/Desktop/remix/packages/remix/src/ReactScheduler.js'");
+
+/***/ }),
+
+/***/ "../remix/src/Remix.js":
+/*!*****************************!*\
+  !*** ../remix/src/Remix.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2524,267 +1891,134 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.push = push;
-exports.commitAllWork = commitAllWork;
+exports.createElement = createElement;
+exports.PureComponent = exports.Component = exports.Children = void 0;
 
-var _effectTags = __webpack_require__(/*! ./shared/effectTags */ "../remix/src/shared/effectTags.js");
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remix/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
-var _workTags = __webpack_require__(/*! ./shared/workTags */ "../remix/src/shared/workTags.js");
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remix/node_modules/@babel/runtime/helpers/inherits.js"));
 
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remix/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _DOMProperties = __webpack_require__(/*! ./renderer/config/DOMProperties */ "../remix/src/renderer/config/DOMProperties.js");
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 
-var _appendChildToContainer = _interopRequireDefault(__webpack_require__(/*! ./renderer/config/appendChildToContainer */ "../remix/src/renderer/config/appendChildToContainer.js"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var _appendChild = _interopRequireDefault(__webpack_require__(/*! ./renderer/config/appendChild */ "../remix/src/renderer/config/appendChild.js"));
-
-var _insertBefore = _interopRequireDefault(__webpack_require__(/*! ./renderer/config/insertBefore */ "../remix/src/renderer/config/insertBefore.js"));
-
-var ReactCommitQueue = [];
-
-function push(workInProgress) {
-  if (workInProgress.effectTag & _effectTags.NO_EFFECT) {// nothing to do
-  } else {
-    ReactCommitQueue.push(workInProgress);
-  }
-}
-
-function commitAllWork() {
-  var workInProgress = ReactCommitQueue.shift();
-
-  while (workInProgress) {
-    var _workInProgress = workInProgress,
-        effectTag = _workInProgress.effectTag,
-        tag = _workInProgress.tag;
-
-    if (tag === _workTags.HOST_COMPONENT || tag === _workTags.HOST_TEXT || tag === _workTags.HOST_ROOT) {
-      if (effectTag & _effectTags.PLACEMENT) {
-        commitPlacement(workInProgress);
-        workInProgress.effectTag &= ~_effectTags.PLACEMENT;
-      } else if (effectTag & _effectTags.UPDATE) {
-        commitUpdate(workInProgress);
-        workInProgress.effectTag &= ~_effectTags.UPDATE;
-      } else if (effectTag & _effectTags.DELETION) {
-        commitDeletion(workInProgress);
-        workInProgress.effectTag &= ~_effectTags.DELETION;
-      }
-    }
-
-    workInProgress.memoizedProps = workInProgress.pendingProps;
-    workInProgress = ReactCommitQueue.shift();
-  }
-}
-
-function commitDeletion(workInProgress) {
-  var stateNode = workInProgress.stateNode,
-      type = workInProgress.type,
-      pendingProps = workInProgress.pendingProps,
-      memoizedProps = workInProgress.memoizedProps;
-  var instance = stateNode;
-  instance[_shared.INTERNAL_EVENT_HANDLERS_KEY] = null;
-  (0, _DOMProperties.updateDOMProperties)(type, instance, {}, memoizedProps);
-  instance.parentNode.removeChild(instance);
-}
-
-function commitUpdate(workInProgress) {
-  var stateNode = workInProgress.stateNode,
-      type = workInProgress.type,
-      pendingProps = workInProgress.pendingProps,
-      memoizedProps = workInProgress.memoizedProps;
-  var instance = stateNode;
-  instance[_shared.INTERNAL_EVENT_HANDLERS_KEY] = pendingProps;
-  (0, _DOMProperties.updateDOMProperties)(type, instance, pendingProps, memoizedProps);
-}
-
-function commitPlacement(workInProgress) {
-  var parentFiber = getHostParentFiber(workInProgress);
-  var tag = parentFiber.tag,
-      stateNode = parentFiber.stateNode;
-  var parent;
-  var isContainer;
-
-  if (tag === _workTags.HOST_COMPONENT) {
-    parent = stateNode;
-    isContainer = false;
-  } else if (tag === _workTags.HOST_ROOT) {
-    parent = stateNode.containerInfo;
-    isContainer = true;
-  } else {}
-
-  var before = getHostSibling(workInProgress);
-  var node = workInProgress;
-
-  while (true) {
-    var isHost = node.tag === _workTags.HOST_COMPONENT || node.tag === _workTags.HOST_TEXT;
-
-    if (isHost) {
-      var _stateNode = isHost ? node.stateNode : node.stateNode.instance;
-
-      if (before) {
-        if (isContainer) {
-          insertInContainerBefore(parent, _stateNode, before);
-        } else {
-          (0, _insertBefore["default"])(parent, _stateNode, before);
-        }
-      } else {
-        if (isContainer) {
-          (0, _appendChildToContainer["default"])(parent, _stateNode);
-        } else {
-          (0, _appendChild["default"])(parent, _stateNode);
-        }
-      }
-    } else if (node.tag === _workTags.HOST_PORTAL) {} else if (node.child !== null) {
-      node.child["return"] = node;
-      node = node.child;
-      continue;
-    }
-
-    if (node === workInProgress) {
-      return;
-    }
-
-    while (node.sibling === null) {
-      if (node["return"] === null || node["return"] === workInProgress) {
-        return;
-      }
-
-      node = node["return"];
-    }
-
-    node.sibling["return"] = node["return"];
-    node = node.sibling;
-  }
-}
-
-function isHostParent(fiber) {
-  return fiber.tag === _workTags.HOST_COMPONENT || fiber.tag === _workTags.HOST_ROOT || fiber.tag === _workTags.HOST_PORTAL;
-}
-
-function getHostSibling(fiber) {
-  var node = fiber;
-
-  siblings: while (true) {
-    while (node.sibling === null) {
-      if (node["return"] === null || isHostParent(node["return"])) {
-        return null;
-      }
-
-      node = node["return"];
-    }
-
-    node.sibling["return"] = node["return"];
-    node = node.sibling;
-
-    while (node.tag !== _workTags.HOST_COMPONENT && node.tag !== _workTags.HOST_TEXT) {
-      if (node.effectTag & _effectTags.PLACEMENT) {
-        continue siblings;
-      }
-
-      if (node.child === null || node.tag === _workTags.HOST_PORTAL) {
-        continue siblings;
-      } else {
-        node.child["return"] = node;
-        node = node.child;
-      }
-    }
-
-    if (!(node.effectTag & _effectTags.PLACEMENT)) {
-      return node.stateNode;
-    }
-  }
-}
-
-function getHostParentFiber(fiber) {
-  var node = fiber["return"];
-
-  while (node !== null) {
-    if (isHostParent(node)) {
-      return node;
-    }
-
-    node = node["return"];
-  }
-}
-
-/***/ }),
-
-/***/ "../remix/src/ReactDOMUpdator.js":
-/*!***************************************!*\
-  !*** ../remix/src/ReactDOMUpdator.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DOMUpdateQueue = DOMUpdateQueue;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../remix/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
-var _document = __webpack_require__(/*! ./document */ "../remix/src/document/index.js");
+var _RemixElement = __webpack_require__(/*! ./RemixElement */ "../remix/src/RemixElement.js");
 
-var _project = __webpack_require__(/*! ./project */ "../remix/src/project/index.js");
+function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var flattern = function flattern(element) {
-  var child = element.child;
+var isArray = Array.isArray;
 
-  if (child) {
-    var siblings = [];
-    var sibling = child.sibling;
-
-    if (child.child) {
-      flattern(child);
-    }
-
-    while (sibling) {
-      if (sibling.child) {
-        flattern(sibling);
-      }
-
-      var _sibling = sibling,
-          s = _sibling.sibling,
-          rest = (0, _objectWithoutProperties2["default"])(_sibling, ["sibling"]);
-      siblings.push(rest);
-      sibling = sibling.sibling;
-    }
-
-    if (siblings.length > 0) {
-      child.siblings = siblings;
-    }
-
-    delete child.sibling;
+function createElement(type, config) {
+  for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    children[_key - 2] = arguments[_key];
   }
+
+  var length = children.length;
+
+  var _ref = config || {},
+      key = _ref.key,
+      ref = _ref.ref,
+      props = (0, _objectWithoutProperties2["default"])(_ref, ["key", "ref"]);
+
+  if (length > 0) {
+    if (length === 1) {
+      props.children = children[0];
+
+      if (isArray(props.children)) {
+        if (props.children.length === 1) {
+          props.children = props.children[0];
+        }
+      }
+    } else {
+      props.children = children;
+    }
+  }
+
+  return (0, _RemixElement.RemixElement)(type, props, children);
+}
+
+var Children = {};
+exports.Children = Children;
+
+var Component = function Component() {
+  (0, _classCallCheck2["default"])(this, Component);
+  (0, _defineProperty2["default"])(this, "isReactComponent", true);
 };
 
-function DOMUpdateQueue(workInProgress) {
-  var stateNode = workInProgress.stateNode;
+exports.Component = Component;
 
-  if (stateNode) {
-    var containerInfo = stateNode.containerInfo;
+var PureComponent = /*#__PURE__*/function (_Component) {
+  (0, _inherits2["default"])(PureComponent, _Component);
 
-    if (containerInfo.tagName === 'view-controller') {
-      var element = containerInfo.serialize();
-      flattern(element);
+  var _super = _createSuper(PureComponent);
 
-      _project.ViewNativeSupport.Publisher.Data(containerInfo[_shared.INTERNAL_RELATIVE_KEY], element.child);
+  function PureComponent() {
+    var _this;
+
+    (0, _classCallCheck2["default"])(this, PureComponent);
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
     }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "isPureComponent", true);
+    return _this;
   }
+
+  return PureComponent;
+}(Component);
+
+exports.PureComponent = PureComponent;
+
+/***/ }),
+
+/***/ "../remix/src/RemixElement.js":
+/*!************************************!*\
+  !*** ../remix/src/RemixElement.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RemixElement = RemixElement;
+
+var _elementTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './elementTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+function RemixElement(type) {
+  var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var key = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  var owner = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+  var element = {
+    $$typeof: _elementTypes.REACT_ELEMENT_TYPE,
+    type: type,
+    key: key,
+    ref: ref,
+    props: props,
+    _owner: owner
+  };
+  return element;
 }
 
 /***/ }),
 
-/***/ "../remix/src/ReactEvent.js":
+/***/ "../remix/src/RemixEvent.js":
 /*!**********************************!*\
-  !*** ../remix/src/ReactEvent.js ***!
+  !*** ../remix/src/RemixEvent.js ***!
   \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -3006,902 +2240,6 @@ function scheduleWork(_ref2) {
 
 /***/ }),
 
-/***/ "../remix/src/ReactHook.js":
-/*!*********************************!*\
-  !*** ../remix/src/ReactHook.js ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.resetReactCurrentHookCursor = resetReactCurrentHookCursor;
-exports.useMemo = useMemo;
-exports.useCallback = useCallback;
-exports.useEffect = useEffect;
-exports.useContext = useContext;
-exports.createContext = createContext;
-exports.useState = useState;
-exports.useReducer = useReducer;
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remix/node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remix/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ "../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js"));
-
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../remix/node_modules/@babel/runtime/helpers/slicedToArray.js"));
-
-var _ReactScheduler = __webpack_require__(/*! ./ReactScheduler */ "../remix/src/ReactScheduler.js");
-
-function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-var ReactHook = {
-  ReactCurrentHookFiber: null,
-  ReactCurrentHookCursor: 0,
-  ReactCurrentHookContextId: 0,
-
-  get ReactHookContextId() {
-    return "@".concat(this.ReactCurrentHookContextId++);
-  },
-
-  get ReactCurrentHooks() {
-    var cursor = ReactHook.ReactCurrentHookCursor++;
-    var fiber = ReactHook.ReactCurrentHookFiber;
-    var hooks = fiber.memoizedHooks;
-
-    if (!hooks) {
-      hooks = fiber.memoizedHooks = createMemoizedHooks();
-    }
-
-    if (cursor >= hooks.defaults.length) {
-      hooks.defaults.push([]);
-    }
-
-    return [hooks.defaults[cursor], fiber];
-  }
-
-};
-
-var _DEFAULTEFFECTLAYOU = 'DEFAULT EFFECT LAYOUT'.split(' '),
-    _DEFAULTEFFECTLAYOU2 = (0, _slicedToArray2["default"])(_DEFAULTEFFECTLAYOU, 3),
-    DEFAULT = _DEFAULTEFFECTLAYOU2[0],
-    EFFECT = _DEFAULTEFFECTLAYOU2[1],
-    LAYOUT = _DEFAULTEFFECTLAYOU2[2];
-
-function createMemoizedHooks() {
-  var defaultHooks = null;
-  var effectHooks = null;
-  var layoutHooks = null;
-  return {
-    get defaults() {
-      return defaultHooks || (defaultHooks = new Hooks(DEFAULT));
-    },
-
-    get effects() {
-      return effectHooks || (effectHooks = new Hooks(EFFECT));
-    },
-
-    get layouts() {
-      return layoutHooks || (layoutHooks = new Hooks(LAYOUT));
-    }
-
-  };
-}
-
-var Hooks = /*#__PURE__*/function (_Array) {
-  (0, _inherits2["default"])(Hooks, _Array);
-
-  var _super = _createSuper(Hooks);
-
-  function Hooks(type) {
-    var _this;
-
-    (0, _classCallCheck2["default"])(this, Hooks);
-    _this = _super.call(this);
-    _this.type = type;
-    return _this;
-  }
-
-  return Hooks;
-}( /*#__PURE__*/(0, _wrapNativeSuper2["default"])(Array));
-
-var hasChanged = function hasChanged(memoized, pending) {
-  if (!memoized) {
-    return true;
-  }
-
-  return pending.some(function (ref, index) {
-    return ref !== memoized[index];
-  });
-};
-
-function resetReactCurrentHookCursor() {
-  ReactHook.ReactCurrentHookCursor = 0;
-}
-
-function useMemo(callback, dependences) {
-  var _ReactHook$ReactCurre = (0, _slicedToArray2["default"])(ReactHook.ReactCurrentHooks, 1),
-      hook = _ReactHook$ReactCurre[0];
-
-  if (hasChanged(hook[1], dependences)) {
-    hook[1] = dependences;
-    return hook[0] = callback();
-  }
-
-  return hook[0];
-}
-
-function useCallback(callback, dependences) {
-  return useMemo(function () {
-    return callback;
-  }, dependences);
-}
-
-function useEffect(callback, dependences) {
-  return;
-}
-
-function useContext(context, selector) {
-  var _ReactHook$ReactCurre2 = (0, _slicedToArray2["default"])(ReactHook.ReactCurrentHooks, 2),
-      hooks = _ReactHook$ReactCurre2[0],
-      fiber = _ReactHook$ReactCurre2[1];
-
-  var value = fiber.context[context.id];
-  var selected = selector ? selector(value) : value;
-
-  if (selected === null) {
-    return defaultValue;
-  }
-
-  if (hooks[0] !== selected) {
-    hooks[0] = selected;
-  }
-
-  return hooks[0];
-}
-
-function createContext(defaultValue) {
-  var id = ReactHook.ReactHookContextId;
-  var context = {
-    id: id,
-    defaultValue: defaultValue,
-    Consumer: function Consumer(props, context) {
-      if (typeof props.children === 'function') {
-        return props.children(context[id]);
-      } else {// 
-      }
-    },
-    Provider: function Provider(props) {
-      var currentFiber = ReactHook.ReactCurrentHookFiber;
-      currentFiber.context = currentFiber.context || (currentFiber.context = {});
-      currentFiber.context[id] = props.value;
-      return props.children;
-    }
-  };
-  return context;
-}
-
-function useState(initialState) {
-  return useReducer(null, initialState);
-}
-
-function useReducer(reducer, initialState) {
-  var _ReactHook$ReactCurre3 = (0, _slicedToArray2["default"])(ReactHook.ReactCurrentHooks, 2),
-      hooks = _ReactHook$ReactCurre3[0],
-      fiber = _ReactHook$ReactCurre3[1];
-
-  var setter = function setter(value) {
-    var result;
-
-    if (typeof reducer === 'function') {
-      result = reducer(hooks[0], value);
-    } else if (typeof value === 'function') {
-      result = value(hooks[0]);
-    } else {
-      result = value;
-    }
-
-    if (result !== hooks[0]) {
-      hooks[0] = result;
-      (0, _ReactScheduler.scheduleUpdate)(fiber);
-    }
-  };
-
-  if (hooks.length) {
-    return [hooks[0], setter];
-  }
-
-  return [hooks[0] = initialState, setter];
-}
-
-var _default = ReactHook;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../remix/src/ReactReconciler.js":
-/*!***************************************!*\
-  !*** ../remix/src/ReactReconciler.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateFragment = updateFragment;
-exports.updateHostComponent = updateHostComponent;
-exports.updateFunctionComponent = updateFunctionComponent;
-exports.updateHostRoot = updateHostRoot;
-
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
-
-var _effectTags = __webpack_require__(/*! ./shared/effectTags */ "../remix/src/shared/effectTags.js");
-
-var _is = __webpack_require__(/*! ./shared/is */ "../remix/src/shared/is.js");
-
-var _Fiber = __webpack_require__(/*! ./Fiber */ "../remix/src/Fiber.js");
-
-var _renderer = __webpack_require__(/*! ./renderer */ "../remix/src/renderer/index.js");
-
-var _DOMProperties = __webpack_require__(/*! ./renderer/config/DOMProperties */ "../remix/src/renderer/config/DOMProperties.js");
-
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
-
-var _ReactCommit = __webpack_require__(/*! ./ReactCommit */ "../remix/src/ReactCommit.js");
-
-var _ReactHook = _interopRequireWildcard(__webpack_require__(/*! ./ReactHook */ "../remix/src/ReactHook.js"));
-
-var _createInstance = _interopRequireDefault(__webpack_require__(/*! ./renderer/config/createInstance */ "../remix/src/renderer/config/createInstance.js"));
-
-var _classComponentUpdater = _interopRequireDefault(__webpack_require__(/*! ./classComponentUpdater */ "../remix/src/classComponentUpdater.js"));
-
-function updateFragment(workInProgress) {
-  var nextChildren = workInProgress.pendingProps;
-  reconcileChildren(workInProgress, nextChildren);
-  return workInProgress.child;
-}
-
-function updateHostComponent(workInProgress) {
-  var nextProps = workInProgress.pendingProps;
-  var children = nextProps.children;
-  var typeofChildren = (0, _typeof2["default"])(children);
-  var isDirectTextChild = typeofChildren === 'string' || typeofChildren === 'number';
-  var nextChildren = nextProps.children;
-  var instance = workInProgress.stateNode;
-
-  if (isDirectTextChild) {
-    nextChildren = null;
-  }
-
-  if (instance === null) {
-    var type = workInProgress.type;
-    var _nextProps = workInProgress.pendingProps;
-    var memoizedProps = workInProgress.memoizedProps;
-    var rootContainerInstance = getRootHostContainer();
-    instance = workInProgress.stateNode = (0, _createInstance["default"])(type, _nextProps, rootContainerInstance, workInProgress);
-    (0, _DOMProperties.updateDOMProperties)(type, instance, _nextProps, memoizedProps);
-  } else {
-    var _nextProps2 = workInProgress.pendingProps;
-    var _memoizedProps = workInProgress.memoizedProps;
-
-    if ((0, _shared.shallowEqual)(_memoizedProps, _nextProps2)) {
-      (0, _Fiber.cloneFiber)(workInProgress);
-      return workInProgress.child;
-    }
-  }
-
-  reconcileChildren(workInProgress, nextChildren);
-  return workInProgress.child;
-}
-
-function updateFunctionComponent(workInProgress) {
-  var stateNode = workInProgress.stateNode,
-      memoizedProps = workInProgress.memoizedProps,
-      pendingProps = workInProgress.pendingProps;
-  var instance = stateNode;
-
-  if (instance && workInProgress.status === _shared.NO_WORK && (0, _shared.shallowEqual)(memoizedProps, pendingProps)) {
-    return cloneChildren(workInProgress);
-  }
-
-  if (workInProgress["return"] && workInProgress["return"].context) {
-    workInProgress.context = workInProgress["return"].context;
-  }
-
-  _ReactHook["default"].ReactCurrentHookFiber = workInProgress;
-  (0, _ReactHook.resetReactCurrentHookCursor)();
-  var children = workInProgress.type(workInProgress.pendingProps, workInProgress.context);
-
-  if ((0, _is.isString)(children)) {
-    children = createText(children);
-  }
-
-  workInProgress.stateNode = workInProgress.stateNode || workInProgress;
-  reconcileChildren(workInProgress, children);
-  return workInProgress.child;
-}
-
-function updateHostRoot(workInProgress) {
-  var update = workInProgress.update;
-  var payload = update.payload;
-  var pendingProps = workInProgress.pendingProps;
-  var memoizedState = workInProgress.memoizedState;
-  var children = memoizedState !== null ? memoizedState.element : null;
-  var resultState;
-
-  if (typeof payload === 'function') {
-    resultState = payload.call(instance, prevState, nextProps);
-  } else {
-    resultState = payload;
-  }
-
-  workInProgress.memoizedState = resultState;
-  var nextState = workInProgress.memoizedState;
-  var nextChildren = nextState.element;
-
-  if (children === nextChildren) {} else {
-    reconcileChildren(workInProgress, nextChildren);
-  }
-
-  return workInProgress.child;
-}
-
-function createPendingReactElements(children) {
-  var pendingKeys = {};
-  children.forEach(function (child, index) {
-    if ((0, _is.isArray)(child)) {
-      child.filter(function (child) {
-        return child;
-      }).forEach(function (child, i) {
-        pendingKeys[createReactElementKey(index, i, child.key)] = child;
-      });
-    } else {
-      pendingKeys[createReactElementKey(0, null, child.key)] = child;
-    }
-  });
-  return pendingKeys;
-}
-
-function createChild(returnFiber, newChild) {
-  // 判断是否是纯文本
-  if (typeof newChild === 'string' || typeof newChild === 'number') {
-    var created = (0, _Fiber.createFiberFromText)('' + newChild);
-    created["return"] = returnFiber;
-    created[_shared.INTERNAL_ROOTFIBER_KEY] = returnFiber[_shared.INTERNAL_ROOTFIBER_KEY];
-    return created;
-  } // 如果是对象
-
-
-  if ((0, _typeof2["default"])(newChild) === 'object' && newChild !== null) {
-    // TODO 根据 $$typeof 构建 fiber
-    if (newChild.$$typeof) {
-      var _created = (0, _Fiber.createFiberFromElement)(newChild);
-
-      _created["return"] = returnFiber;
-      _created[_shared.INTERNAL_ROOTFIBER_KEY] = returnFiber[_shared.INTERNAL_ROOTFIBER_KEY];
-      return _created;
-    }
-  } // 如果是数组
-
-
-  if ((0, _is.isArray)(newChild)) {
-    var _created2 = (0, _Fiber.createFiberFromFragment)(newChild, null);
-
-    _created2["return"] = returnFiber;
-    _created2[_shared.INTERNAL_ROOTFIBER_KEY] = returnFiber[_shared.INTERNAL_ROOTFIBER_KEY];
-    return _created2;
-  }
-
-  return null;
-}
-
-function createReactElementKey(index, next, key) {
-  if (key !== null && next !== null) {
-    return ".".concat(index, ".").concat(key);
-  } else if (next !== null) {
-    return ".".concat(index, ".").concat(next);
-  } else if (key !== null) {
-    return ".".concat(key);
-  } else {
-    return ".".concat(index);
-  }
-}
-
-function reconcileChildren(workInProgress, children) {
-  if (children) {
-    var memoizedReactElements = workInProgress.memoizedReactElements;
-    var memoizedReactFibers = workInProgress.memoizedReactFibers;
-    var pendingReactElements = workInProgress.pendingReactElements = createPendingReactElements([children]);
-    var reactElements = {};
-    var pendingReactFibers = {}; // 标记删除
-
-    for (var key in memoizedReactElements) {
-      var newChild = pendingReactElements[key];
-      var child = memoizedReactElements[key];
-      var fiber = memoizedReactFibers[key];
-
-      if (newChild && newChild.type === child.type) {
-        reactElements[key] = child;
-      } else {
-        fiber.effectTag |= _effectTags.DELETION;
-        (0, _ReactCommit.push)(fiber);
-      }
-    }
-
-    var prevChild = null;
-
-    for (var _key in pendingReactElements) {
-      var newFiber = void 0;
-      var _newChild = pendingReactElements[_key];
-      var _child = reactElements[_key]; // 如果
-
-      if (_child) {
-        var alternate = memoizedReactFibers[_key];
-        newFiber = createChild(workInProgress, _newChild);
-        newFiber.effectTag |= _effectTags.UPDATE;
-        newFiber.memoizedProps = alternate.memoizedProps;
-        newFiber.memoizedReactFibers = alternate.memoizedReactFibers;
-        newFiber.memoizedReactElements = alternate.memoizedReactElements;
-        newFiber.stateNode = alternate.stateNode; // debugger;
-        // if (shouldPlace(newChild)) {
-        //   newChild.effectTag |= PLACEMENT;
-        // }
-      } else {
-        newFiber = createChild(workInProgress, _newChild);
-        newFiber.effectTag |= _effectTags.PLACEMENT;
-      }
-
-      (0, _ReactCommit.push)(newFiber);
-      pendingReactFibers[_key] = newFiber;
-
-      if (prevChild) {
-        prevChild.sibling = newFiber;
-      } else {
-        workInProgress.child = newFiber;
-      }
-
-      prevChild = newFiber;
-    }
-
-    workInProgress.memoizedReactFibers = pendingReactFibers;
-    workInProgress.memoizedReactElements = workInProgress.pendingReactElements;
-
-    if (prevChild) {
-      prevChild.sibling = null;
-    }
-  }
-}
-
-function cloneChildren(fiber) {
-  if (fiber.child) {
-    var child = fiber.child;
-    var newChild = (0, _Fiber.cloneFiber)(child);
-    newChild["return"] = fiber;
-    newChild.sibling = null;
-    fiber.child = newChild;
-  }
-}
-
-function getRootHostContainer() {
-  var root = _renderer.ReactCurrentRoot.current.internalRoot;
-  return root.containerInfo;
-}
-
-/***/ }),
-
-/***/ "../remix/src/ReactScheduler.js":
-/*!**************************************!*\
-  !*** ../remix/src/ReactScheduler.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.scheduleUpdate = scheduleUpdate;
-exports.scheduleRootUpdate = scheduleRootUpdate;
-
-var _performance = _interopRequireDefault(__webpack_require__(/*! ./shared/performance */ "../remix/src/shared/performance.js"));
-
-var _nextTick = _interopRequireDefault(__webpack_require__(/*! ./shared/nextTick */ "../remix/src/shared/nextTick.js"));
-
-var _ReactCommit = __webpack_require__(/*! ./ReactCommit */ "../remix/src/ReactCommit.js");
-
-var _ReactUpdater = __webpack_require__(/*! ./ReactUpdater */ "../remix/src/ReactUpdater.js");
-
-var _ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ "../remix/src/ReactReconciler.js");
-
-var _ReactDOMUpdator = __webpack_require__(/*! ./ReactDOMUpdator */ "../remix/src/ReactDOMUpdator.js");
-
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
-
-var _workTags = __webpack_require__(/*! ./shared/workTags */ "../remix/src/shared/workTags.js");
-
-var isRendering = false;
-var isCommiting = false;
-var ReactCurrentScheduler;
-var scheduleDeadline = 0;
-var workInProgress = null;
-var pendingCommitWorkInProgress = null;
-var ReactCurrentSchedulerHeap = [];
-
-function push(node) {
-  ReactCurrentSchedulerHeap.push(node);
-  siftup(node, ReactCurrentSchedulerHeap.length);
-}
-
-function siftup(node, leaf) {
-  while (leaf > 0) {
-    // 父节点 索引 
-    var index = leaf - 1 >>> 2;
-    var parent = ReactCurrentSchedulerHeap[index]; // 与父节点比较
-
-    if (parent[_shared.SCHEDULE_KEY] - node[_shared.SCHEDULE_KEY] >= 0) {
-      // 交换位置
-      ReactCurrentSchedulerHeap[index] = node;
-      ReactCurrentSchedulerHeap[leaf] = parent;
-      leaf = index;
-    }
-  }
-}
-
-function siftdown(node, first) {
-  var length = ReactCurrentSchedulerHeap.length;
-
-  while (true) {
-    var l = first * 2 + 1;
-    var left = ReactCurrentSchedulerHeap[l];
-
-    if (l > length) {
-      break;
-    } // 右边叶子索引 = 父节点索引 * 2 + 2 = 左边索引 + 1
-
-
-    var r = l + 1;
-    var right = ReactCurrentSchedulerHeap[r]; // 选左右叶子索引
-
-    var c = r < length && right.due - left.due < 0 ? r : l;
-    var child = ReactCurrentSchedulerHeap[c]; // 不用交换
-
-    if (child) {
-      if (child[_shared.SCHEDULE_KEY] - node[_shared.SCHEDULE_KEY] < 0) {
-        break;
-      }
-    } // 交换节点
-
-
-    ReactCurrentSchedulerHeap[c] = node;
-    ReactCurrentSchedulerHeap[first] = child;
-    first = c;
-  }
-}
-
-function pop() {
-  var first = ReactCurrentSchedulerHeap[0];
-
-  if (first) {
-    var last = ReactCurrentSchedulerHeap.pop();
-
-    if (last === first) {
-      return first;
-    }
-
-    ReactCurrentSchedulerHeap[0] = last;
-    siftdown(last, 0);
-    return first;
-  } else {
-    return null;
-  }
-}
-
-function peek() {
-  return ReactCurrentSchedulerHeap[0] || null;
-}
-
-function flush(now) {
-  var nextUnitOfWork = peek();
-
-  while (nextUnitOfWork) {
-    var isExpired = isRendering ? false : nextUnitOfWork.due > now;
-
-    if (isExpired && shouldYeild()) {
-      break;
-    }
-
-    var schedule = nextUnitOfWork.schedule;
-    schedule.schedule = null;
-    schedule(isExpired);
-    isExpired && workInProgress ? nextUnitOfWork.schedule = workLoop : pop();
-    nextUnitOfWork = peek();
-    now = _performance["default"].now();
-  }
-}
-
-function flushWork() {
-  ReactCurrentScheduler = flush;
-
-  var next = function next() {
-    if (ReactCurrentScheduler) {
-      var now = _performance["default"].now();
-
-      scheduleDeadline = now + 1000 / _shared.SCHEDULE_FPS;
-      ReactCurrentScheduler(now);
-      peek() ? flushWork() : ReactCurrentScheduler = null;
-    }
-  };
-
-  isRendering ? next() : (0, _nextTick["default"])(next);
-}
-
-function scheduleWork() {
-  var begin = _performance["default"].now();
-
-  var due = begin + _shared.SCHEDULE_TIMEOUT;
-  var work = {
-    schedule: workLoop,
-    begin: begin,
-    due: due
-  };
-  push(work);
-  flushWork();
-}
-
-function shouldYeild() {
-  return isRendering ? false : _performance["default"].now() >= scheduleDeadline;
-}
-
-function workLoop(isExpired) {
-  if (!workInProgress) {
-    workInProgress = (0, _ReactUpdater.dequeueUpdateQueue)();
-  }
-
-  while (workInProgress && (!shouldYeild() || !isExpired)) {
-    workInProgress = performUnitOfWork(workInProgress);
-  }
-
-  if (pendingCommitWorkInProgress) {
-    (0, _ReactCommit.commitAllWork)();
-    (0, _ReactDOMUpdator.DOMUpdateQueue)(pendingCommitWorkInProgress);
-    pendingCommitWorkInProgress = null;
-  }
-}
-
-function performUnitOfWork(workInProgress) {
-  beginWork(workInProgress);
-  workInProgress.status = _shared.NO_WORK;
-
-  if (workInProgress.child) {
-    return workInProgress.child;
-  }
-
-  var node = workInProgress;
-
-  while (node) {
-    completeWork(node);
-
-    if (node.sibling) {
-      return node.sibling;
-    }
-
-    node = node["return"];
-  }
-}
-
-function completeWork(workInProgress) {
-  if (!workInProgress["return"]) {
-    pendingCommitWorkInProgress = workInProgress;
-  }
-}
-
-function beginWork(workInProgress) {
-  var tag = workInProgress.tag;
-
-  switch (tag) {
-    case _workTags.FRAGMENT:
-      {
-        return (0, _ReactReconciler.updateFragment)(workInProgress);
-      }
-
-    case _workTags.HOST_ROOT:
-      {
-        return (0, _ReactReconciler.updateHostRoot)(workInProgress);
-      }
-
-    case _workTags.FUNCTION_COMPONENT:
-    case _workTags.CLASS_COMPONENT:
-      {
-        return (0, _ReactReconciler.updateFunctionComponent)(workInProgress);
-      }
-
-    case _workTags.HOST_COMPONENT:
-      {
-        return (0, _ReactReconciler.updateHostComponent)(workInProgress);
-      }
-  }
-}
-
-function scheduleUpdate(fiber) {
-  (0, _ReactUpdater.enqueueUpdateQueue)(fiber);
-  scheduleWork();
-}
-
-function scheduleRootUpdate(fiber) {
-  isRendering = true;
-  scheduleUpdate(fiber);
-}
-
-/***/ }),
-
-/***/ "../remix/src/ReactUpdater.js":
-/*!************************************!*\
-  !*** ../remix/src/ReactUpdater.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.enqueueUpdateQueue = enqueueUpdateQueue;
-exports.dequeueUpdateQueue = dequeueUpdateQueue;
-
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
-
-var UpdaterQueue = [];
-
-function enqueueUpdateQueue(fiber) {
-  if (fiber.status === _shared.NO_WORK) {
-    fiber.status = _shared.PENDING_WORK;
-    UpdaterQueue.push(fiber);
-  }
-}
-
-function dequeueUpdateQueue() {
-  return UpdaterQueue.shift();
-}
-
-/***/ }),
-
-/***/ "../remix/src/classComponentUpdater.js":
-/*!*********************************************!*\
-  !*** ../remix/src/classComponentUpdater.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = exports.UNMOUNTED = exports.MOUNTED = exports.MOUNTING = void 0;
-
-var _shared = __webpack_require__(/*! ./shared */ "../remix/src/shared/index.js");
-
-var _effectTags = __webpack_require__(/*! ./shared/effectTags */ "../remix/src/shared/effectTags.js");
-
-var _workTags = __webpack_require__(/*! ./shared/workTags */ "../remix/src/shared/workTags.js");
-
-var _ReactScheduler = __webpack_require__(/*! ./ReactScheduler */ "../remix/src/ReactScheduler.js");
-
-var MOUNTING = 1,
-    MOUNTED = 2,
-    UNMOUNTED = 3;
-exports.UNMOUNTED = UNMOUNTED;
-exports.MOUNTED = MOUNTED;
-exports.MOUNTING = MOUNTING;
-var _default = {
-  isMounted: function isMounted(component) {
-    var fiber = component._reactInternalFiber;
-
-    if (fiber) {
-      var node = fiber;
-
-      if (!fiber.alternate) {
-        if ((node.effectTag & _effectTags.PLACEMENT) !== NoEffect) {
-          return MOUNTING;
-        }
-
-        while (node["return"]) {
-          node = node["return"];
-
-          if ((node.effectTag & _effectTags.PLACEMENT) !== NoEffect) {
-            return MOUNTING;
-          }
-        }
-      } else {
-        while (node["return"]) {
-          node = node["return"];
-        }
-      }
-
-      if (node.tag === _workTags.HOST_ROOT) {
-        return MOUNTED;
-      }
-
-      return UNMOUNTED;
-    }
-
-    return false;
-  },
-  enqueueSetState: function enqueueSetState(inst, payload, callback) {
-    var fiber = inst._reactInternalFiber;
-    var update = {
-      payload: payload,
-      tag: _shared.UPDATE_STATE
-    };
-
-    if (callback !== undefined && callback !== null) {
-      update.callback = callback;
-    }
-
-    fiber.update = update;
-    (0, _ReactScheduler.scheduleUpdate)(fiber);
-  },
-  enqueueReplaceState: function enqueueReplaceState(inst, payload, callback) {
-    var fiber = inst._reactInternalFiber;
-    var update = {
-      payload: payload,
-      tag: _shared.REPLACE_STATE
-    };
-
-    if (callback !== undefined && callback !== null) {
-      update.callback = callback;
-    }
-
-    fiber.update = update;
-    (0, _ReactScheduler.scheduleUpdate)(fiber);
-  },
-  enqueueForceUpdate: function enqueueForceUpdate(inst, callback) {
-    var fiber = inst._reactInternalFiber;
-    var update = {
-      payload: payload,
-      tag: _shared.FORCE_UPDATE
-    };
-
-    if (callback !== undefined && callback !== null) {
-      update.callback = callback;
-    }
-
-    (0, _ReactScheduler.scheduleUpdate)(fiber);
-  }
-};
-exports["default"] = _default;
-
-/***/ }),
-
 /***/ "../remix/src/components/Application.js":
 /*!**********************************************!*\
   !*** ../remix/src/components/Application.js ***!
@@ -3912,18 +2250,16 @@ exports["default"] = _default;
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = Application;
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remix/src/react/index.js"));
-
-var Children = _interopRequireWildcard(__webpack_require__(/*! ../react/Children */ "../remix/src/react/Children.js"));
+var _Remix = _interopRequireWildcard(__webpack_require__(/*! ../Remix */ "../remix/src/Remix.js"));
 
 var _router = __webpack_require__(/*! ../router */ "../remix/src/router/index.js");
 
@@ -3932,7 +2268,8 @@ var _TabBar = _interopRequireDefault(__webpack_require__(/*! ./TabBar */ "../rem
 function Application(props) {
   var cloneApplicationChildren = function cloneApplicationChildren() {
     var children = [];
-    Children.forEach(props.children, function (child) {
+
+    _Remix.Children.forEach(props.children, function (child) {
       if (child !== null) {
         var type = child.type;
 
@@ -3941,6 +2278,7 @@ function Application(props) {
         }
       }
     });
+
     return children;
   };
 
@@ -3980,13 +2318,11 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../Remix */ "../remix/src/Remix.js"));
 
 var _Component3 = _interopRequireDefault(__webpack_require__(/*! ../react/Component */ "../remix/src/react/Component.js"));
 
 var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTypes */ "../remix/src/react/PropTypes.js"));
-
-var _hooks = __webpack_require__(/*! ../hooks */ "../remix/src/hooks/index.js");
 
 function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
@@ -4005,7 +2341,7 @@ var TabBarItem = /*#__PURE__*/function (_Component) {
   (0, _createClass2["default"])(TabBarItem, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react["default"].createElement("view", null, this.props.children);
+      return /*#__PURE__*/_Remix["default"].createElement("view", null, this.props.children);
     }
   }]);
   return TabBarItem;
@@ -4031,13 +2367,13 @@ var TabBar = /*#__PURE__*/function (_Component2) {
   (0, _createClass2["default"])(TabBar, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react["default"].createElement("tabbar", null, this.props.children);
+      return /*#__PURE__*/_Remix["default"].createElement("tabbar", null, this.props.children);
     }
   }]);
   return TabBar;
 }(_Component3["default"]);
 
-(0, _defineProperty2["default"])(TabBar, "TabBarItem", (0, _hooks.useComponent)(TabBarItem));
+(0, _defineProperty2["default"])(TabBar, "TabBarItem", TabBarItem);
 (0, _defineProperty2["default"])(TabBar, "propTypes", {
   color: _PropTypes["default"].string,
   selectedColor: _PropTypes["default"].string,
@@ -4050,9 +2386,7 @@ var TabBar = /*#__PURE__*/function (_Component2) {
   position: 'bottom',
   bottom: false
 });
-
-var _default = (0, _hooks.useComponent)(TabBar);
-
+var _default = TabBar;
 exports["default"] = _default;
 module.exports = exports.default;
 
@@ -4063,71 +2397,9 @@ module.exports = exports.default;
   !*** ../remix/src/components/ViewController.js ***!
   \*************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remix/node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remix/node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remix/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _react = _interopRequireDefault(__webpack_require__(/*! ../react */ "../remix/src/react/index.js"));
-
-var _Component2 = _interopRequireDefault(__webpack_require__(/*! ../react/Component */ "../remix/src/react/Component.js"));
-
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../react/PropTypes */ "../remix/src/react/PropTypes.js"));
-
-var _createElement = __webpack_require__(/*! ../react/createElement */ "../remix/src/react/createElement.js");
-
-var _notification = _interopRequireWildcard(__webpack_require__(/*! ../project/notification */ "../remix/src/project/notification/index.js"));
-
-function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-var defineProperty = Object.defineProperty;
-
-var ViewController = /*#__PURE__*/function (_Component) {
-  (0, _inherits2["default"])(ViewController, _Component);
-
-  var _super = _createSuper(ViewController);
-
-  function ViewController(props, context) {
-    (0, _classCallCheck2["default"])(this, ViewController);
-    return _super.call(this, props, context);
-  }
-
-  (0, _createClass2["default"])(ViewController, [{
-    key: "render",
-    value: function render() {
-      throw new Error("Must be implatated");
-    }
-  }]);
-  return ViewController;
-}(_Component2["default"]);
-
-exports["default"] = ViewController;
-(0, _defineProperty2["default"])(ViewController, "propTypes", {});
-(0, _defineProperty2["default"])(ViewController, "defaultProps", {});
-module.exports = exports.default;
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/aniwei/Desktop/remix/packages/remix/src/components/ViewController.js'");
 
 /***/ }),
 
@@ -4483,9 +2755,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -4535,7 +2807,7 @@ var RemixAudio = /*#__PURE__*/function (_EventHandle) {
           onPause = _this$props.onPause,
           onTimeUpdate = _this$props.onTimeUpdate,
           onEnded = _this$props.onEnded;
-      return /*#__PURE__*/_react["default"].createElement("audio", {
+      return /*#__PURE__*/_Remix["default"].createElement("audio", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4665,9 +2937,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -4731,7 +3003,7 @@ var RemixButton = /*#__PURE__*/function (_EventHandle) {
           onOpenSetting = _this$props.onOpenSetting,
           onLaunchApp = _this$props.onLaunchApp,
           onError = _this$props.onError;
-      return /*#__PURE__*/_react["default"].createElement("button", {
+      return /*#__PURE__*/_Remix["default"].createElement("button", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -4903,9 +3175,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -4947,7 +3219,7 @@ var RemixCanvas = /*#__PURE__*/function (_EventHandle) {
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd;
-      return /*#__PURE__*/_react["default"].createElement("canvas", {
+      return /*#__PURE__*/_Remix["default"].createElement("canvas", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -5053,9 +3325,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -5103,7 +3375,7 @@ var RemixEditor = /*#__PURE__*/function (_EventHandle) {
           onInput = _this$props.onInput,
           onReady = _this$props.onReady,
           onStatusChange = _this$props.onStatusChange;
-      return /*#__PURE__*/_react["default"].createElement("editor", {
+      return /*#__PURE__*/_Remix["default"].createElement("editor", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -5227,9 +3499,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -5274,7 +3546,7 @@ var RemixImage = /*#__PURE__*/function (_EventHandle) {
           onAnimationEnd = _this$props.onAnimationEnd,
           onLoad = _this$props.onLoad,
           onError = _this$props.onError;
-      return /*#__PURE__*/_react["default"].createElement("image", {
+      return /*#__PURE__*/_Remix["default"].createElement("image", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -5389,9 +3661,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -5452,7 +3724,7 @@ var RemixInput = /*#__PURE__*/function (_EventHandle) {
           onBlur = _this$props.onBlur,
           onConfirm = _this$props.onConfirm,
           onKeyboardHeightChange = _this$props.onKeyboardHeightChange;
-      return /*#__PURE__*/_react["default"].createElement("input", {
+      return /*#__PURE__*/_Remix["default"].createElement("input", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -5615,9 +3887,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -5687,7 +3959,7 @@ var RemixMap = /*#__PURE__*/function (_EventHandle) {
           onUpdated = _this$props.onUpdated,
           onRegionChange = _this$props.onRegionChange,
           onPoiTap = _this$props.onPoiTap;
-      return /*#__PURE__*/_react["default"].createElement("map", {
+      return /*#__PURE__*/_Remix["default"].createElement("map", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -5877,9 +4149,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -5932,7 +4204,7 @@ var RemixPicker = /*#__PURE__*/function (_EventHandle) {
           onError = _this$props.onError,
           onChange = _this$props.onChange,
           onColumnChange = _this$props.onColumnChange;
-      return /*#__PURE__*/_react["default"].createElement("picker", {
+      return /*#__PURE__*/_Remix["default"].createElement("picker", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6071,9 +4343,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -6127,7 +4399,7 @@ var RemixScrollView = /*#__PURE__*/function (_EventHandle) {
           onScrollToUpper = _this$props.onScrollToUpper,
           onScrollToLower = _this$props.onScrollToLower,
           onScroll = _this$props.onScroll;
-      return /*#__PURE__*/_react["default"].createElement("scroll-view", {
+      return /*#__PURE__*/_Remix["default"].createElement("scroll-view", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6269,9 +4541,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -6323,7 +4595,7 @@ var RemixSlider = /*#__PURE__*/function (_EventHandle) {
           onAnimationEnd = _this$props.onAnimationEnd,
           onChange = _this$props.onChange,
           onChanging = _this$props.onChanging;
-      return /*#__PURE__*/_react["default"].createElement("slider", {
+      return /*#__PURE__*/_Remix["default"].createElement("slider", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6459,9 +4731,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -6502,7 +4774,7 @@ var RemixSwiperItem = /*#__PURE__*/function (_EventHandle) {
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd;
-      return /*#__PURE__*/_react["default"].createElement("swiper-item", {
+      return /*#__PURE__*/_Remix["default"].createElement("swiper-item", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6605,9 +4877,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -6663,7 +4935,7 @@ var RemixSwiper = /*#__PURE__*/function (_EventHandle) {
           onAnimationEnd = _this$props.onAnimationEnd,
           onChange = _this$props.onChange,
           onAnimationFinish = _this$props.onAnimationFinish;
-      return /*#__PURE__*/_react["default"].createElement("swiper", {
+      return /*#__PURE__*/_Remix["default"].createElement("swiper", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6811,9 +5083,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -6856,7 +5128,7 @@ var RemixText = /*#__PURE__*/function (_EventHandle) {
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd;
-      return /*#__PURE__*/_react["default"].createElement("text", {
+      return /*#__PURE__*/_Remix["default"].createElement("text", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -6965,9 +5237,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -7029,7 +5301,7 @@ var RemixTextarea = /*#__PURE__*/function (_EventHandle) {
           onInput = _this$props.onInput,
           onConfirm = _this$props.onConfirm,
           onKeyboardHeightChange = _this$props.onKeyboardHeightChange;
-      return /*#__PURE__*/_react["default"].createElement("textarea", {
+      return /*#__PURE__*/_Remix["default"].createElement("textarea", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -7195,9 +5467,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -7272,7 +5544,7 @@ var RemixVideo = /*#__PURE__*/function (_EventHandle) {
           onError = _this$props.onError,
           onProgress = _this$props.onProgress,
           onLoadedMetaData = _this$props.onLoadedMetaData;
-      return /*#__PURE__*/_react["default"].createElement("video", {
+      return /*#__PURE__*/_Remix["default"].createElement("video", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -7477,9 +5749,9 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _react = _interopRequireDefault(__webpack_require__(/*! ../../../react */ "../remix/src/react/index.js"));
+var _Remix = _interopRequireDefault(__webpack_require__(/*! ../../../Remix */ "../remix/src/Remix.js"));
 
-var _PropTypes = _interopRequireDefault(__webpack_require__(/*! ../../../react/PropTypes */ "../remix/src/react/PropTypes.js"));
+var _PropTypes = _interopRequireDefault(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../Remix/PropTypes'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var _EventHandle2 = _interopRequireDefault(__webpack_require__(/*! ../EventHandle */ "../remix/src/components/remix-ui/EventHandle.js"));
 
@@ -7523,7 +5795,7 @@ var RemixView = /*#__PURE__*/function (_EventHandle) {
           onAnimationStart = _this$props.onAnimationStart,
           onAnimationIteration = _this$props.onAnimationIteration,
           onAnimationEnd = _this$props.onAnimationEnd;
-      return /*#__PURE__*/_react["default"].createElement("view", {
+      return /*#__PURE__*/_Remix["default"].createElement("view", {
         onTouchStart: onTouchStart ? 'onTouchStart' : null,
         onTouchMove: onTouchMove ? 'onTouchMove' : null,
         onTouchCancel: onTouchCancel ? 'onTouchCancel' : null,
@@ -8888,8 +7160,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = createTextNode;
 
-var _is = __webpack_require__(/*! ../shared/is */ "../remix/src/shared/is.js");
-
 var _HTMLNodeType = __webpack_require__(/*! ../shared/HTMLNodeType */ "../remix/src/shared/HTMLNodeType.js");
 
 var _HTMLTypes = __webpack_require__(/*! ./HTMLTypes */ "../remix/src/document/HTMLTypes.js");
@@ -8905,7 +7175,7 @@ function createTextNode(text) {
         text: this.text
       };
 
-      if (!(0, _is.isNullOrUndefined)(this.slibing)) {
+      if (this.slibing !== null) {
         element.slibing = this.slibing.serialize();
       }
 
@@ -9032,23 +7302,22 @@ var _document = _interopRequireDefault(__webpack_require__(/*! ./document */ "..
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useRemixController = useRemixController;
 Object.defineProperty(exports, "useComponent", {
   enumerable: true,
   get: function get() {
     return _useComponent.useComponent;
   }
 });
+Object.defineProperty(exports, "useController", {
+  enumerable: true,
+  get: function get() {
+    return _useController.useController;
+  }
+});
 
 var _useComponent = __webpack_require__(/*! ./useComponent */ "../remix/src/hooks/useComponent.js");
 
-function useRemixController(Component) {
-  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var ViewController = (0, _useComponent.useComponent)(Component);
-  ViewController.config = config;
-  ViewController.isViewController = true;
-  return ViewController;
-}
+var _useController = __webpack_require__(/*! ./useController */ "../remix/src/hooks/useController.js");
 
 /***/ }),
 
@@ -9062,8 +7331,6 @@ function useRemixController(Component) {
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "../remix/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -9071,66 +7338,30 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useComponent = useComponent;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../remix/node_modules/@babel/runtime/helpers/slicedToArray.js"));
 
 var _hoistNonReactStatics = _interopRequireDefault(__webpack_require__(/*! hoist-non-react-statics */ "../remix/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"));
 
-var _ReactHook = _interopRequireWildcard(__webpack_require__(/*! ../ReactHook */ "../remix/src/ReactHook.js"));
-
-var _shared = __webpack_require__(/*! ../shared */ "../remix/src/shared/index.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var _ReactHook = __webpack_require__(/*! ../ReactHook */ "../remix/src/ReactHook.js");
 
 function useComponent(Component) {
   var proto = Component.prototype;
 
-  if (proto.isReactComponent && typeof proto.render === 'function') {
+  if (typeof proto.render === 'function') {
     var Wrapper = function Wrapper(props) {
-      var workInProgress = _ReactHook["default"].ReactCurrentHookFiber;
+      var instance = (0, _ReactHook.useMemo)(function () {
+        return new Component(props);
+      }, []);
 
-      if (workInProgress.stateNode) {
-        var instance = (0, _ReactHook.useMemo)(function () {
-          return new Component(props);
-        }, []);
+      var _useState = (0, _ReactHook.useState)(instance.state),
+          _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+          state = _useState2[0],
+          setState = _useState2[1];
 
-        var _useState = (0, _ReactHook.useState)(instance.state),
-            _useState2 = (0, _slicedToArray2["default"])(_useState, 1),
-            state = _useState2[0];
-
-        var oldProps = workInProgress.memoizedProps;
-        instance.props = oldProps;
-        instance.state = state;
-        var oldState = workInProgress.memoizedState;
-        var newState = instance.state = state;
-        applyDerivedStateFromProps(workInProgress, Component, props);
-        var shouldUpdate = checkShouldComponentUpdate(workInProgress, Component, oldProps, props, oldState, newState);
-
-        if (shouldUpdate) {
-          debugger;
-          return instance.render();
-        }
-      } else {
-        var _instance = (0, _ReactHook.useMemo)(function () {
-          return new Component(props);
-        }, []);
-
-        var _useState3 = (0, _ReactHook.useState)(_instance.state),
-            _useState4 = (0, _slicedToArray2["default"])(_useState3, 2),
-            _state = _useState4[0],
-            setState = _useState4[1];
-
-        workInProgress.stateNode = _instance;
-        workInProgress.memoizedState = _objectSpread({}, workInProgress.memoizedState, {}, _state);
-        _instance.props = props;
-        _instance.state = _state;
-        _instance.setState = setState;
-        applyDerivedStateFromProps(workInProgress, Component, props);
-        return _instance.render();
-      }
+      instance.props = props;
+      instance.state = state;
+      instance.setState = setState;
+      return instance.render();
     };
 
     Wrapper.displayName = Component.name;
@@ -9140,32 +7371,31 @@ function useComponent(Component) {
   }
 }
 
-function applyDerivedStateFromProps(workInProgress, Component, nextProps) {
-  var getDerivedStateFromProps = Component.getDerivedStateFromProps;
+/***/ }),
 
-  if (typeof getDerivedStateFromProps === 'function') {
-    var instance = workInProgress.stateNode;
-    var memoizedState = workInProgress.memoizedState;
-    var nextState = getDerivedStateFromProps(nextProps, memoizedState);
-    instance.state = workInProgress.memoizedState = nextState === null || nextState === undefined ? memoizedState : _objectSpread({}, memoizedState, {
-      partialState: partialState
-    });
-  }
-}
+/***/ "../remix/src/hooks/useController.js":
+/*!*******************************************!*\
+  !*** ../remix/src/hooks/useController.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-function checkShouldComponentUpdate(workInProgress, Component, oldProps, newProps, oldState, newState) {
-  var instance = workInProgress.stateNode;
+"use strict";
 
-  if (typeof instance.shouldComponentUpdate === 'function') {
-    var shouldUpdate = instance.shouldComponentUpdate(newProps, newState);
-    return shouldUpdate;
-  }
 
-  if (Component.prototype && Component.prototype.isPureReactComponent) {
-    return !(0, _shared.shallowEqual)(oldProps, newProps) || !(0, _shared.shallowEqual)(oldState, newState);
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useController = useController;
 
-  return true;
+var _useComponent = __webpack_require__(/*! ./useComponent */ "../remix/src/hooks/useComponent.js");
+
+function useController(Component) {
+  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var Controller = (0, _useComponent.useComponent)(Component);
+  Controller.config = config;
+  Controller.__remix__ = true;
+  return Controller;
 }
 
 /***/ }),
@@ -9270,8 +7500,8 @@ function _default(App, container) {
             context.config = node.memoizedProps.config;
             this.instance = node.stateNode;
           } else if (elementType === _router.Route) {
-            if (!node.memoizedProps.component.isViewController) {
-              console.warn("<Route path='".concat(node.memoizedProps.path, "' /> \u8DEF\u7531\u7EC4\u4EF6\u8BF7\u4F7F\u7528 useRemixController \u5305\u88C5\uFF0C\u5426\u5219\u65E0\u6CD5\u8BFB\u53D6\u9875\u9762\u914D\u7F6E\u6587\u4EF6"));
+            if (!node.memoizedProps.component.__remix__) {
+              console.warn("<Route path='".concat(node.memoizedProps.path, "' /> \u8DEF\u7531\u7EC4\u4EF6\u8BF7\u4F7F\u7528 useController \u5305\u88C5\uFF0C\u5426\u5219\u65E0\u6CD5\u8BFB\u53D6\u9875\u9762\u914D\u7F6E\u6587\u4EF6"));
             }
 
             context.router.routes.push({
@@ -9452,196 +7682,6 @@ Object.keys(_terminal).forEach(function (key) {
     }
   });
 });
-
-/***/ }),
-
-/***/ "../remix/src/project/notification/index.js":
-/*!**************************************************!*\
-  !*** ../remix/src/project/notification/index.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _exportNames = {};
-exports["default"] = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remix/node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remix/node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remix/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-
-var _events = _interopRequireDefault(__webpack_require__(/*! events */ "../remix-cli/node_modules/events/events.js"));
-
-var _types = __webpack_require__(/*! ./types */ "../remix/src/project/notification/types.js");
-
-Object.keys(_types).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _types[key];
-    }
-  });
-});
-
-function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-var Transport = /*#__PURE__*/function (_EventEmitter) {
-  (0, _inherits2["default"])(Transport, _EventEmitter);
-
-  var _super = _createSuper(Transport);
-
-  function Transport() {
-    (0, _classCallCheck2["default"])(this, Transport);
-    return _super.apply(this, arguments);
-  }
-
-  (0, _createClass2["default"])(Transport, [{
-    key: "post",
-    value: function post(type, e) {
-      this.emit(type, e);
-    }
-  }, {
-    key: "app",
-    value: function app() {
-      var _this = this;
-
-      return {
-        launch: function launch() {
-          for (var _len = arguments.length, argv = new Array(_len), _key = 0; _key < _len; _key++) {
-            argv[_key] = arguments[_key];
-          }
-
-          _this.post(_types.APPLICATION.LAUNCH, argv);
-        },
-        show: function show() {
-          for (var _len2 = arguments.length, argv = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            argv[_key2] = arguments[_key2];
-          }
-
-          _this.post(_types.APPLICATION.SHOW, argv);
-        },
-        hide: function hide() {
-          for (var _len3 = arguments.length, argv = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-            argv[_key3] = arguments[_key3];
-          }
-
-          this.post(_types.APPLICATION.HIDE, argv);
-        },
-        error: function error() {
-          for (var _len4 = arguments.length, argv = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-            argv[_key4] = arguments[_key4];
-          }
-
-          this.post(_types.APPLICATION.ERROR, argv);
-        }
-      };
-    }
-  }, {
-    key: "view",
-    value: function view() {
-      return {
-        load: function load() {
-          for (var _len5 = arguments.length, argv = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-            argv[_key5] = arguments[_key5];
-          }
-
-          this.post(_types.VIEW.LOAD, argv);
-        }
-      };
-    }
-  }]);
-  return Transport;
-}(_events["default"]);
-
-var _default = new Transport();
-
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../remix/src/project/notification/types.js":
-/*!**************************************************!*\
-  !*** ../remix/src/project/notification/types.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.VIEW = exports.APPLICATION = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remix/node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _uuid = _interopRequireDefault(__webpack_require__(/*! uuid */ "../remix/node_modules/uuid/index.js"));
-
-var Type = /*#__PURE__*/function () {
-  function Type(value) {
-    (0, _classCallCheck2["default"])(this, Type);
-    this.value = value;
-    this.uuid = _uuid["default"].v4();
-  }
-
-  (0, _createClass2["default"])(Type, [{
-    key: "toString",
-    value: function toString() {
-      return this.value;
-    }
-  }, {
-    key: "toValue",
-    value: function toValue() {
-      return this.uuid;
-    }
-  }]);
-  return Type;
-}();
-
-var getNames = Object.getOwnPropertyNames;
-
-var defineNotificationTypes = function defineNotificationTypes(types) {
-  var names = getNames(types);
-  var t = {};
-  names.forEach(function (name) {
-    t[name] = new Type(types[name]);
-  });
-  return t;
-};
-
-var APPLICATION = defineNotificationTypes({
-  LAUNCH: 'application.launch',
-  SHOW: 'application.show',
-  HIDE: 'application.hide',
-  ERROR: 'application.error'
-});
-exports.APPLICATION = APPLICATION;
-var VIEW = defineNotificationTypes({
-  LOAD: 'view.load'
-});
-exports.VIEW = VIEW;
 
 /***/ }),
 
@@ -10065,7 +8105,7 @@ var ViewNativeSupport = _interopRequireWildcard(__webpack_require__(/*! ./Suppor
 
 var _shared = __webpack_require__(/*! ../../shared */ "../remix/src/shared/index.js");
 
-var _ReactEvent = __webpack_require__(/*! ../../ReactEvent */ "../remix/src/ReactEvent.js");
+var _RemixEvent = __webpack_require__(/*! ../../RemixEvent */ "../remix/src/RemixEvent.js");
 
 var views = _document.document.createElement('views');
 
@@ -10110,7 +8150,7 @@ function ViewControllersManager(context, instance) {
   ViewNativeSupport.Subscriber.on(ViewNativeSupport.Event, function (type, uuid, parent, event, sync) {
     var target = event.target;
     var view = viewController.view.getElementById(target.id);
-    (0, _ReactEvent.scheduleWork)({
+    (0, _RemixEvent.scheduleWork)({
       type: type,
       view: view,
       event: event
@@ -10727,8 +8767,10 @@ var _is = __webpack_require__(/*! ../shared/is */ "../remix/src/shared/is.js");
 
 var _shared = __webpack_require__(/*! ../shared */ "../remix/src/shared/index.js");
 
+var isArray = Array.isArray;
+
 function map(children, iterate, context) {
-  if ((0, _is.isNullOrUndefined)(children)) {
+  if (children === null || children === undefined) {
     return children;
   }
 
@@ -10742,7 +8784,7 @@ function map(children, iterate, context) {
 }
 
 function forEach(children, iterate, context) {
-  if (!(0, _is.isNullOrUndefined)(children)) {
+  if (children !== null || children !== undefined) {
     children = toArray(children);
     var length = children.length;
 
@@ -10775,11 +8817,11 @@ function only(children) {
 }
 
 function toArray(children) {
-  if ((0, _is.isNullOrUndefined)(children)) {
+  if (children === null || children === undefined) {
     return _shared.EMPTY_ARRAY;
   }
 
-  if ((0, _is.isArray)(children)) {
+  if (isArray(children)) {
     return (0, _shared.flatten)(children);
   }
 
@@ -11200,245 +9242,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../remix/src/renderer/config/DOMProperties.js":
-/*!*****************************************************!*\
-  !*** ../remix/src/renderer/config/DOMProperties.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateDOMProperties = updateDOMProperties;
-exports.setDOMProperties = setDOMProperties;
-exports.setValueForStyles = setValueForStyles;
-exports.setTextContent = setTextContent;
-exports.setValueForProperty = setValueForProperty;
-
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
-
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _shared = __webpack_require__(/*! ../../shared */ "../remix/src/shared/index.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var freeze = Object.freeze;
-
-function updateDOMProperties(tag, element, pendingProps, memoizedProps) {
-  memoizedProps = memoizedProps || {};
-
-  for (var propName in _objectSpread({}, memoizedProps, {}, pendingProps)) {
-    var prop = memoizedProps[propName];
-    var nextProp = pendingProps[propName];
-    var isEventProperty = propName[0] === 'o' && propName[1] === 'n';
-
-    if (prop === nextProp) {} else if (propName === _shared.STYLE) {
-      if (nextProp) {
-        freeze(nextProp);
-        setValueForStyles(element, nextProp);
-      }
-    } else if (propName === _shared.CHILDREN) {
-      var canSetTextContent = tag !== 'textarea' || nextProp !== '';
-      var typeofProp = (0, _typeof2["default"])(nextProp);
-
-      if (canSetTextContent && prop !== nextProp) {
-        if (typeofProp === 'string' || typeofProp === 'number') {
-          setTextContent(element, nextProp);
-        }
-      }
-    } else if (isEventProperty) {
-      setValueForProperty(element, propName, propName);
-    } else if (nextProp !== null) {
-      setValueForProperty(element, propName, nextProp);
-    }
-  }
-}
-
-function setDOMProperties(tag, element, rootContainerElement, nextProps) {
-  debugger;
-
-  for (var propName in nextProps) {
-    if (nextProps.hasOwnProperty(propName)) {
-      var nextProp = nextProps[propName];
-
-      if (propName === _shared.STYLE) {
-        if (nextProp) {
-          Object.freeze(nextProp);
-        }
-
-        setValueForStyles(element, nextProp);
-      } else if (propName === _shared.CHILDREN) {
-        var canSetTextContent = tag !== 'textarea' || nextProp !== '';
-        var typeofProp = (0, _typeof2["default"])(nextProp);
-
-        if (canSetTextContent) {
-          if (typeofProp === 'string' || typeofProp === 'number') {
-            setTextContent(element, nextProp);
-          }
-        }
-      } else if (/^[oO][nN]/.test(propName)) {
-        element.addEventListener(propName.replace(/[oO][nN]/, '').toLowerCase(), nextProp, false);
-      } else if (nextProp !== null) {
-        setValueForProperty(element, propName, nextProp);
-      }
-    }
-  }
-}
-
-function setValueForStyles(element, styles) {
-  var style = element.style;
-
-  for (var styleName in styles) {
-    if (styleName === _shared.STYLE_NAME_FLOAT) {
-      styleName = 'cssFloat';
-    }
-
-    style[styleName] = styles[styleName];
-  }
-}
-
-function setTextContent(element, content) {
-  element.innerText = content;
-}
-
-function setValueForProperty(element, propName, value) {
-  if (value === null) {
-    element.removeAttribute(propName, value);
-  } else {
-    element.setAttribute(propName, value);
-  }
-}
-
-function shouldIgnoreAttribute(name) {
-  if (name.length > 2 && name.slice(0, 2).toLowerCase() === 'on') {
-    return true;
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "../remix/src/renderer/config/appendChild.js":
-/*!***************************************************!*\
-  !*** ../remix/src/renderer/config/appendChild.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = appendChild;
-
-function appendChild(instance, child) {
-  instance.appendChild(child);
-}
-
-module.exports = exports.default;
-
-/***/ }),
-
-/***/ "../remix/src/renderer/config/appendChildToContainer.js":
-/*!**************************************************************!*\
-  !*** ../remix/src/renderer/config/appendChildToContainer.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = appendChildToContainer;
-
-var _HTMLNodeType = __webpack_require__(/*! ../../shared/HTMLNodeType */ "../remix/src/shared/HTMLNodeType.js");
-
-function appendChildToContainer(container, child) {
-  var parentNode;
-
-  if (container.nodeType === _HTMLNodeType.COMMENT_NODE) {
-    parentNode = container.parentNode;
-    parentNode.insertBefore(child, container);
-  } else {
-    parentNode = container;
-    parentNode.appendChild(child);
-  }
-}
-
-module.exports = exports.default;
-
-/***/ }),
-
-/***/ "../remix/src/renderer/config/createInstance.js":
-/*!******************************************************!*\
-  !*** ../remix/src/renderer/config/createInstance.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = createInstance;
-
-var _shared = __webpack_require__(/*! ../../shared */ "../remix/src/shared/index.js");
-
-var ownerDocument = null;
-
-function createInstance(type, props, rootContainerInstance, workInProgress) {
-  var children = props.children;
-  var document = ownerDocument || (ownerDocument = rootContainerInstance.ownerDocument);
-  var element = document.createElement(type);
-  element[_shared.INTERNAL_INSTANCE_KEY] = workInProgress;
-  element[_shared.INTERNAL_EVENT_HANDLERS_KEY] = props;
-  return element;
-}
-
-module.exports = exports.default;
-
-/***/ }),
-
-/***/ "../remix/src/renderer/config/insertBefore.js":
-/*!****************************************************!*\
-  !*** ../remix/src/renderer/config/insertBefore.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = insertBefore;
-
-function insertBefore(instance, child, beforeChild) {
-  instance.insertBefore(child, beforeChild);
-}
-
-module.exports = exports.default;
-
-/***/ }),
-
 /***/ "../remix/src/renderer/index.js":
 /*!**************************************!*\
   !*** ../remix/src/renderer/index.js ***!
@@ -11453,16 +9256,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.render = render;
-exports["default"] = exports.ReactCurrentRoot = void 0;
+exports["default"] = void 0;
 
 var _Fiber = __webpack_require__(/*! ../Fiber */ "../remix/src/Fiber.js");
 
 var _ReactScheduler = __webpack_require__(/*! ../ReactScheduler */ "../remix/src/ReactScheduler.js");
-
-var ReactCurrentRoot = {
-  current: null
-};
-exports.ReactCurrentRoot = ReactCurrentRoot;
 
 function render(element, container, callback) {
   var _ref = container._reactRootContainer || (container._reactRootContainer = {
@@ -11470,7 +9268,6 @@ function render(element, container, callback) {
   }),
       workInProgress = _ref.internalRoot.workInProgress;
 
-  ReactCurrentRoot.current = container._reactRootContainer;
   workInProgress.update = {
     payload: {
       element: element
@@ -11681,49 +9478,6 @@ var DOCUMENT_NODE = 9;
 exports.DOCUMENT_NODE = DOCUMENT_NODE;
 var DOCUMENT_FRAGMENT_NODE = 11;
 exports.DOCUMENT_FRAGMENT_NODE = DOCUMENT_FRAGMENT_NODE;
-
-/***/ }),
-
-/***/ "../remix/src/shared/effectTags.js":
-/*!*****************************************!*\
-  !*** ../remix/src/shared/effectTags.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.INCOMPLETE = exports.PASSIVE = exports.SNAPSHOT = exports.REF = exports.DID_CAPTURE = exports.CALLBACK = exports.CONTENT_RESET = exports.DELETION = exports.PLACEMENT_AND_UPDATE = exports.UPDATE = exports.PLACEMENT = exports.PERFORMED_WORK = exports.NO_EFFECT = void 0;
-var NO_EFFECT = 0;
-exports.NO_EFFECT = NO_EFFECT;
-var PERFORMED_WORK = 1;
-exports.PERFORMED_WORK = PERFORMED_WORK;
-var PLACEMENT = 2;
-exports.PLACEMENT = PLACEMENT;
-var UPDATE = 4;
-exports.UPDATE = UPDATE;
-var PLACEMENT_AND_UPDATE = 6;
-exports.PLACEMENT_AND_UPDATE = PLACEMENT_AND_UPDATE;
-var DELETION = 8;
-exports.DELETION = DELETION;
-var CONTENT_RESET = 16;
-exports.CONTENT_RESET = CONTENT_RESET;
-var CALLBACK = 32;
-exports.CALLBACK = CALLBACK;
-var DID_CAPTURE = 64;
-exports.DID_CAPTURE = DID_CAPTURE;
-var REF = 128;
-exports.REF = REF;
-var SNAPSHOT = 256;
-exports.SNAPSHOT = SNAPSHOT;
-var PASSIVE = 512;
-exports.PASSIVE = PASSIVE;
-var INCOMPLETE = 1024;
-exports.INCOMPLETE = INCOMPLETE;
 
 /***/ }),
 

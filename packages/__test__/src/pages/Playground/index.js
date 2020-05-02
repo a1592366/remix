@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useRemixController } from '@remix/core/hooks';
+import { useController } from '@remix/core/hooks';
 
 import Controller, { PARSE, STEP, RUN} from './Controller';
 import Editor from './Editor';
@@ -35,6 +35,6 @@ class Playground extends Component {
   }
 }
 
-export default useRemixController(Playground, {
+export default useController(Playground, {
   backgroundColor: '#efefed'
 });

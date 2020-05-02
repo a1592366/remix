@@ -1,11 +1,11 @@
 import React from 'react';
-import { useRemixController } from '@remix/core/hooks';
+import { useController } from '@remix/core/hooks';
 
 import logo from '../../static/images/logo.png';
 
 import './index.css';
 
-export default useRemixController(class extends React.Component {
+export default useController(class extends React.Component {
 
   render () {
     return (

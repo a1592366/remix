@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
-import { useRemixController } from '@remix/core/hooks';
+import Markdown from 'react-markdown';
+import { useController } from '@remix/core/hooks';
 
 import './index.css';
 
-export default useRemixController(class extends React.Component {
+export default useController(class extends React.Component {
   state = {
     userInformation: null
   }
 
   render () {
+    const markdown = `This block of Markdown contains <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, and will require the <code>html-parser</code> AST plugin to be loaded, in addition to setting the <code class="prop">escapeHtml</code> property to false.`;
 
-    return <view className="user" style={{ display: 'flex', paddingTop: '100rpx', justifyContent: 'center', alignItems: 'center' }}>
-      {
-        userInformation && <image
-          className="user__avatar"
-          style={{ width: '200rpx', height: '200rpx' }} 
-          src={userInformation.avatarUrl}
-        />
-      }
-      <button 
-        className="user__nickname"
-        openType="getUserInfo" 
-        onGetUserInfo={(event) => { setUserInformation(event.detail.userInfo) }}
-      >
-        {
-          userInformation ? 
-            userInformation.nickName : '获取我的个人信息'
-        }
-      </button>
-    </view>
+    return (
+      <view className="docs">
+        <Markdown source={markdown} />
+      </view>
+    );
   }
 })

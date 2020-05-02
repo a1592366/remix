@@ -4025,3 +4025,4 @@ Interpreter.prototype['pseudoToNative'] = Interpreter.prototype.pseudoToNative;
 module.exports =  function (code, injection) {
   return new Interpreter(code, injection);
 }
+module.exports.Interpreter = Interpreter;
