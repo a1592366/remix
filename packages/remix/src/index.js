@@ -1,6 +1,6 @@
 
-import React from './react';
+import Remix from './Remix';
 
-export default React;
-export * from './renderer';
-export * from './react';
+export default Remix;
+export * from './RemixRenderer';
+export * from './Remix';

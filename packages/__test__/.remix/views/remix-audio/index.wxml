@@ -6,7 +6,7 @@
 <template name="audio">
 
   <audio 
-  	id="{{uuid}}"
+  	id="{{vid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

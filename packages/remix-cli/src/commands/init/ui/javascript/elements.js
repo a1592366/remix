@@ -3,7 +3,3 @@
 export default {
   <%- exports %>
 }
-
-export {
-  <%- exports %>
-}

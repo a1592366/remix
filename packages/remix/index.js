@@ -1,4 +1,4 @@
-import React from './src/react';
+import React from './src/Remix';
 
 export default React;
-export * from './src/react';
+export * from './src/Remix';

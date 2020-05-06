@@ -1,1 +1,1 @@
-export * from './src/document';
+export * from './src/RemixDocument';

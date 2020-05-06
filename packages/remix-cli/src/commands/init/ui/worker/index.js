@@ -6,7 +6,7 @@ const keys = Object.keys(views);
 // const replace = `view text input textarea`.split(' ');
 // const wrapper = `input textarea`.split(' ');
 
-const replace = ['view', 'text'];
+const replace = 'view text section strong em span i b ol ul li div p footer header h1 h2 h3 h4 h5 h6 nav section'.split(' ');
 const wrapper = [];
 
 module.exports = async function (dist) {
@@ -37,7 +37,7 @@ module.exports = async function (dist) {
         ];
 
         
-        if (name === 'uuid') {
+        if (name === 'vid') {
           line[0] = 'id';
         } else if (name === 'className') {
           line[0] = 'class';
@@ -47,14 +47,14 @@ module.exports = async function (dist) {
       })
 
       if (wrapper.includes(name)) {
-        props.push(`uuid="{{element.uuid}}"`);
+        props.push(`vid="{{element.vid}}"`);
       }
 
       props = props.join(' ');
 
       const tagName = wrapper.includes(name) ? `remix-${name}` : name;
 
-      return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<${tagName} ${props} />\n\t</block>`;
+      return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<${tagName} data-tag="{{element.tag}}" ${props} />\n\t</block>`;
     } else {
       return `<block wx:elif="{{ element.tagName == '${name}' }}">\n\t\t<template is="${name}" data="{{ ...element }}" />\n\t</block>`
     }

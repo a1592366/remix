@@ -6,7 +6,7 @@
 <template name="map">
 
   <map 
-  	id="{{uuid}}"
+  	id="{{vid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

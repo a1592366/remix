@@ -16,6 +16,29 @@ const audio = require('./audio');
 const canvas = require('./canvas');
 
 module.exports = {
+  // html
+  // section: { ...view, name: 'section' },
+  // nav: { ...view, name: 'nav' },
+  // h1: { ...view, name: 'h1' },
+  // h2: { ...view, name: 'h2' },
+  // h3: { ...view, name: 'h3' },
+  // h4: { ...view, name: 'h4' },
+  // h5: { ...view, name: 'h5' },
+  // h6: { ...view, name: 'h6' },
+  // header: { ...view, name: 'header' },
+  // footer: { ...view, name: 'footer' },
+  // div: { ...view, name: 'div' },
+  // p: { ...view, name: 'p' },
+  // ol: { ...view, name: 'ol' },
+  // ul: { ...view, name: 'ul' },
+  // li: { ...view, name: 'li' },
+  // i: { ...text, name: 'i' },
+  // span: { ...text, name: 'span' },
+  // b: { ...text, name: 'b' },
+  // strong: { ...text, name: 'strong' },
+  // em: { ...text, name: 'em' },
+  // img: { ...image, name: 'img' },
+
   view,
   text,
   picker,

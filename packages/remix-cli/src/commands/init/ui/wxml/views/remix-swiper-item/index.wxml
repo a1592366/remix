@@ -9,7 +9,7 @@
   	child="{{child}}"
 		silbing="{{silbing}}"
 		innerText="{{innerText}}"
-		id="{{uuid}}"
+		id="{{vid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

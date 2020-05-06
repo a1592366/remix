@@ -1,0 +1,93 @@
+[data-tag=dd], [data-tag=div], 
+[data-tag=dl], [data-tag=dt],
+[data-tag=h1], [data-tag=h2], [data-tag=h3], [data-tag=h4], 
+[data-tag=h5], [data-tag=h6],
+[data-tag=ol], [data-tag=p], [data-tag=ul],
+[data-tag=hr], [data-tag=pre]{ display: block} 
+/* 以上按照block显示，没有规定的则按照默认的inline显示 */
+
+[data-tag=li]{ display: list-item} 
+/* 程序猿常用的display值是：inline/block/inline-block，很少用到 list-item
+list-item到底是什么样的显示效果，可以通过例子验证。。。。
+第一，你可以不用ul-li，而用其他标签实现list-item的效果
+第二，要意识到，浏览器对待html只是把它当作一个dom树，至于显示成什么效果，是通过浏览器默认的css实现的，即样式全部通过css设计，和html无关 */
+
+
+
+
+
+
+[data-tag=h1]{ font-size: 2em; margin: .67em 0} 
+[data-tag=h2]{ font-size:1.5em; margin: .75em 0} 
+[data-tag=h3]{ font-size: 1.17em; margin: .83em 0} 
+[data-tag=h4], [data-tag=p], 
+[data-tag=blockquote], [data-tag=ul], 
+[data-tag=ol], [data-tag=dl]{ margin:1.12em 0} 
+/* em是相对单位，1em就是一单位，浏览器默认的一单位是16px，
+可以通过 body]{font-size:20px} 来修改一单位的值
+p的字体大小是1em，h1是2em，h2是1.5em，等等
+另外，与文字相关的距离值，最好用相对单位，例如 line-height:1.4; margin:.5em等等，这样做的好处就是当自定义了1em的绝对px时，line-height也会跟着变 */
+
+/* 注意，如果我们自己写css【 * ]{margin:0} 】，可以把p、h1、h2等标签的margin覆盖掉
+我们都知道，*选择器的权重是最低的，但是它却能覆盖掉标签选择器，说明浏览器已经在这里面做了手脚
+浏览器没有让默认样式和用户自定义样式“公平竞争”，而是优先用户自定义样式 */
+
+[data-tag=h5]{ font-size: .83em; margin: 1.5em 0} 
+[data-tag=h6]{ font-size: .75em; margin: 1.67em 0} 
+[data-tag=h1], [data-tag=h2], [data-tag=h3], [data-tag=h4], 
+[data-tag=h5], [data-tag=h6], [data-tag=b], 
+[data-tag=strong]{ font-weight: bolder} 
+/* 这里可以看到哪些标签文字是加粗的 */
+
+[data-tag=blockquote]{ margin-left: 40px; margin-right: 40px} 
+[data-tag=i], [data-tag=cite], [data-tag=em], 
+[data-tag=var], [data-tag=address]{ font-style: italic} 
+/* 这里可以看到哪些标签是斜体 */
+
+[data-tag=pre], [data-tag=tt], [data-tag=code], 
+[data-tag=kbd], [data-tag=samp]{ font-family: monospace} 
+[data-tag=pre]{ white-space: pre} 
+[data-tag=button], [data-tag=textarea], 
+[data-tag=input], [data-tag=object], 
+[data-tag=select]{ display:inline-block; } 
+/* 不知道inline-block是什么样子的？或者不知道inline-block有什么特性？
+在这里看看哪些标签是inline-block，就知道inline-block的用处了
+具体inline-block的用途，我们会在后面详细介绍，此处只是点出来 */
+
+[data-tag=big]{ font-size: 1.17em} 
+[data-tag=small], [data-tag=sub], [data-tag=sup]{ font-size: .83em} 
+[data-tag=sub]{ vertical-align:sub} 
+[data-tag=sup]{ vertical-align: super} 
+[data-tag=s], [data-tag=strike], [data-tag=del]{ text-decoration: line-through} 
+[data-tag=hr]{border: 1px inset} 
+/* 为什么<hr/>默认是那么个难看的样子，特别是IE下，这就是罪魁祸首 */
+
+[data-tag=ol], [data-tag=ul], [data-tag=dir], 
+[data-tag=menu], [data-tag=dd]{ margin-left: 40px} 
+[data-tag=ol]{list-style-type: decimal} 
+/* ul 和 ol 在默认情况下都会有一篇左边的间距，在这里可以看到为何会有间距，以及间距的具体大小是多少。
+ */
+
+ [data-tag=ol] [data-tag=ul], [data-tag=ul] [data-tag=ol], 
+ [data-tag=ul] [data-tag=ul], [data-tag=ol] [data-tag=ol]{ margin-top: 0;margin-bottom: 0} 
+ [data-tag=u], [data-tag=ins]{ text-decoration: underline} 
+ [data-tag=br]:before{content: "A"} 
+
+ [data-tag]:before, [data-tag]:after{ white-space: pre-line } 
+/* <br/>为何能实现换行？浏览器得到html的br标签，只会解析成一个dom节点而已，
+而“换行”这一功能是通过这里实现的？？？？？ */
+
+[data-tag=center]{text-align: center} 
+[data-tag=abbr], [data-tag=acronym]{ font-variant: small-caps; letter-spacing: 0.1em} 
+[data-tag]:link, [data-tag]:visited{ text-decoration: underline} 
+[data-tag]:focus{outline: thindottedinvert} 
+
+
+/* 这些标签或属性都不常用 */
+
+@media print{ 
+[data-tag=h1]{ page-break-before:always} 
+[data-tag=h1], [data-tag=h2], [data-tag=h3], 
+[data-tag=h4], [data-tag=h5], [data-tag=h6]{ page-break-after: avoid} 
+[data-tag=ul], [data-tag=ol], [data-tag=dl]{ page-break-before: avoid}
+}

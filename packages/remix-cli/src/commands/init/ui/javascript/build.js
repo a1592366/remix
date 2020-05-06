@@ -5,7 +5,7 @@ const events = require('../events');
 const copy = require('../../../../shared/copy');
 
 const viewKeys = Object.keys(views);
-const indent = `,\n\t\t`;
+const indent = `,\n\t`;
 
 async function toJavaScriptFile (dist, view) {
   let props = events.concat(view.events).map(({ name, camel }) => {
@@ -85,9 +85,9 @@ module.exports = async function (dist) {
       const name = key === 'textarea' ?
         'TextArea' : key;
 
-      return camelcase(`${name}`, { pascalCase: true });
+      return `'${key}': ${camelcase(`${name}`, { pascalCase: true })}`;
     }).join(',\n\t')
   })
 }
 
-module.exports(resolve(__dirname, 'remix-ui'));
+module.exports(resolve(__dirname, 'RemixUI'));

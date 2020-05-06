@@ -11,7 +11,7 @@ const indent = `\n\t\t`;
 // const wrapper = `input textarea`.split(' ');
 // const replace = `input textarea view text`.split(' ');
 
-const replace = ['view text'];
+const replace = 'view text section strong em span i b ol ul li div p footer header h1 h2 h3 h4 h5 h6 nav section'.split(' ');
 const wrapper = [];
 
 async function toJSONFile (dist, view) {
@@ -78,7 +78,7 @@ async function toWXMLFile (dist, view) {
       line[0] = 'class';
     } else if (name === 'style') {
       line[0] = 'style';
-    } else if (name === 'uuid') {
+    } else if (name === 'vid') {
       line[0] = 'id';
     } else {
       line[0] = alias;

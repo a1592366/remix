@@ -1,5 +1,5 @@
-import React from '../react';
-import ReactDOM from '../renderer';
+import React from '../Remix';
+import render from '../RemixRenderer';
 import { Application, TabBar } from '../components';
 import { Route } from '../router';
 import run from './runtime';
@@ -36,15 +36,14 @@ export default function (App, container) {
       run(this.context, this.instance);
     },
     get currentFiber () {
-      ReactDOM.render(
+      render(
         React.createElement(App), 
         container
       );
   
-      const rootContainer = container._reactRootContainer;
-      const currentFiber = rootContainer.internalRoot.workInProgress;
+      const { current: currentFiber } = container.__internalRoot;
 
-      return currentFiber;
+      return currentFiber.alternate;
     },
     get context () {
       if (context) { 
@@ -67,8 +66,8 @@ export default function (App, container) {
             context.config = node.memoizedProps.config;
             this.instance = node.stateNode;
           } else if (elementType === Route) {
-            if (!node.memoizedProps.component.isViewController) {
-              console.warn(`<Route path='${node.memoizedProps.path}' /> 路由组件请使用 useRemixController 包装，否则无法读取页面配置文件`);
+            if (!node.memoizedProps.component.__remix__) {
+              console.warn(`<Route path='${node.memoizedProps.path}' /> 路由组件请使用 useController 包装，否则无法读取页面配置文件`);
             }
 
             context.router.routes.push({

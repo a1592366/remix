@@ -1,7 +1,6 @@
 import transports from '../Support';
 import NativeRuntime from './NativeRuntime';
 import env from '../../../../config';
-import { isFunction } from '../../../shared/is';
 
 
 class TerminalRuntime extends NativeRuntime {

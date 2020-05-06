@@ -1,4 +1,4 @@
-/*** MARK_1588260339847 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
+/*** MARK_1588788513803 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -173,15 +173,12 @@ Component({
   },
   properties: {
     child: Object,
+    silbing: Object,
     innerText: String,
-    uuid: String,
+    vid: String,
     parent: String,
     style: String,
     className: String,
-    hoverClass: String,
-    hoverStopPropagation: Boolean,
-    hoverStartTime: Number,
-    hoverStayTime: Number,
     onTouchStart: String,
     onTouchMove: String,
     onTouchCancel: String,
@@ -197,15 +194,12 @@ Component({
   },
   data: {
     child: null,
+    silbing: null,
     innerText: null,
-    uuid: null,
+    vid: null,
     parent: null,
     style: null,
     className: null,
-    hoverClass: 'none',
-    hoverStopPropagation: false,
-    hoverStartTime: 50,
-    hoverStayTime: 400,
     onTouchStart: null,
     onTouchMove: null,
     onTouchCancel: null,
@@ -220,7 +214,7 @@ Component({
     onAnimationEnd: null
   },
   methods: {
-    update: function update(data) {
+    sync: function sync(data) {
       this.setData(data);
     },
     // others component event
@@ -321,88 +315,40 @@ Component({
       _project.ViewNativeSupport.Publisher.Event('onTimeUpdate', e.target.id, this.data.parent, e, this);
     },
     onTouchStart: function onTouchStart(e) {
-      var _this$data = this.data,
-          uuid = _this$data.uuid,
-          parent = _this$data.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTouchStart', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTouchStart', e);
     },
     onTouchMove: function onTouchMove(e) {
-      var _this$data2 = this.data,
-          uuid = _this$data2.uuid,
-          parent = _this$data2.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTouchMove', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTouchMove', e);
     },
     onTouchCancel: function onTouchCancel(e) {
-      var _this$data3 = this.data,
-          uuid = _this$data3.uuid,
-          parent = _this$data3.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTouchCancel', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTouchCancel', e);
     },
     onTouchEnd: function onTouchEnd(e) {
-      var _this$data4 = this.data,
-          uuid = _this$data4.uuid,
-          parent = _this$data4.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTouchEnd', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTouchEnd', e);
     },
     onTap: function onTap(e) {
-      var _this$data5 = this.data,
-          uuid = _this$data5.uuid,
-          parent = _this$data5.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTap', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTap', e);
     },
     onLongPress: function onLongPress(e) {
-      var _this$data6 = this.data,
-          uuid = _this$data6.uuid,
-          parent = _this$data6.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onLongPress', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onLongPress', e);
     },
     onLongTap: function onLongTap(e) {
-      var _this$data7 = this.data,
-          uuid = _this$data7.uuid,
-          parent = _this$data7.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onLongTap', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onLongTap', e);
     },
     onTouchForceChange: function onTouchForceChange(e) {
-      var _this$data8 = this.data,
-          uuid = _this$data8.uuid,
-          parent = _this$data8.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTouchForceChange', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTouchForceChange', e);
     },
     onTransitionEnd: function onTransitionEnd(e) {
-      var _this$data9 = this.data,
-          uuid = _this$data9.uuid,
-          parent = _this$data9.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onTransitionEnd', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onTransitionEnd', e);
     },
     onAnimationStart: function onAnimationStart(e) {
-      var _this$data10 = this.data,
-          uuid = _this$data10.uuid,
-          parent = _this$data10.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onAnimationStart', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onAnimationStart', e);
     },
     onAnimationIteration: function onAnimationIteration(e) {
-      var _this$data11 = this.data,
-          uuid = _this$data11.uuid,
-          parent = _this$data11.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onAnimationIteration', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onAnimationIteration', e);
     },
     onAnimationEnd: function onAnimationEnd(e) {
-      var _this$data12 = this.data,
-          uuid = _this$data12.uuid,
-          parent = _this$data12.parent;
-
-      _project.ViewNativeSupport.Publisher.Event('onAnimationEnd', uuid, parent, e);
+      _project.ViewNativeSupport.Publisher.Event('onAnimationEnd', e);
     }
   },
   lifetimes: {

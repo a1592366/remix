@@ -4,7 +4,7 @@ const babelRegister = require('@babel/register');
 
 const ignore = {
   nodeModules: 'node_modules',
-  remix: 'remixjs/src',
+  remix: 'remix/src',
 }
 
 const ignoreStaticModule = () => {
@@ -47,7 +47,6 @@ function registerBabelRuntime () {
 
   const { program } = require('./boot');
 
-  
   process.send(program.context);
 
   // console.log(context)

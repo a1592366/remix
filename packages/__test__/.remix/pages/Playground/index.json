@@ -1,5 +1,4 @@
 {
-  "backgroundColor": "#efefed",
   "usingComponents": {
     "view": "../../views/remix-view/index"
   }

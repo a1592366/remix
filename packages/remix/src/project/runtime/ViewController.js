@@ -1,10 +1,10 @@
+import React from '../../Remix';
+import render from '../../RemixRenderer';
 import { document } from '../../document';
-import React from '../../react';
-import ReactDOM from '../../renderer';
+import { shallowEqual } from '../../RemixShared';
+import { scheduleWork } from '../../RemixEvent';
+import { INTERNAL_RELATIVE_KEY } from '../../RemixShared';
 import * as ViewNativeSupport from './Support/ViewNativeSupport';
-import { shallowEqual } from '../../shared';
-import { scheduleWork } from '../../ReactEvent';
-import { INTERNAL_RELATIVE_KEY } from '../../shared';
 
 const views = document.createElement('views')
 document.body.appendChild(views);
@@ -78,7 +78,7 @@ export default class ViewController {
   }
 
   render () {
-    ReactDOM.render(
+    render(
       React.createElement(this.Class), 
       this.view
     );

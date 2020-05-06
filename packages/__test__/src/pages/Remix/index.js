@@ -1,23 +1,22 @@
-import React from 'react';
-import { useController } from '@remix/core/hooks';
+import React, { useState } from 'react';
 
 import logo from '../../static/images/logo.png';
 
 import './index.css';
 
-export default useController(class extends React.Component {
+export default () => {
+  const [state, setState] = useState(1);
+  const [s, set] = useState(2);
 
-  render () {
-    return (
-      <view className="remix">
-        <view className="remix__logo">
-          <image  
-            className="remix__logo-image"
-            src={logo} 
-          />
-          <text className="remix__logo-text">REMIX</text>
-        </view>
+  return (
+    <view className="remix">
+      <view className="remix__logo">
+        <image  
+          className="remix__logo-image"
+          src={logo} 
+        />
+        <text className="remix__logo-text">REMIX</text>
       </view>
-    );
-  }
-})
+    </view>
+  );
+}

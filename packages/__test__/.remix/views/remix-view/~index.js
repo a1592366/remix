@@ -6,15 +6,12 @@ Component({
 
   properties: {
     child: Object,
+		silbing: Object,
 		innerText: String,
-		uuid: String,
+		vid: String,
 		parent: String,
 		style: String,
 		className: String,
-		hoverClass: String,
-		hoverStopPropagation: Boolean,
-		hoverStartTime: Number,
-		hoverStayTime: Number,
 		onTouchStart: String,
 		onTouchMove: String,
 		onTouchCancel: String,
@@ -31,15 +28,12 @@ Component({
 
   data: {
     child: null,
+		silbing: null,
 		innerText: null,
-		uuid: null,
+		vid: null,
 		parent: null,
 		style: null,
 		className: null,
-		hoverClass: 'none',
-		hoverStopPropagation: false,
-		hoverStartTime: 50,
-		hoverStayTime: 400,
 		onTouchStart: null,
 		onTouchMove: null,
 		onTouchCancel: null,
@@ -55,7 +49,7 @@ Component({
   },
 
   methods: {
-    update (data) { this.setData(data) },
+    sync (data) { this.setData(data) },
     // others component event
     onGetUserInfo(e) { ViewNativeSupport.Publisher.Event('onGetUserInfo', e.target.id, this.data.parent, e, this) },
     onContact(e) { ViewNativeSupport.Publisher.Event('onContact', e.target.id, this.data.parent, e, this) },
@@ -89,7 +83,7 @@ Component({
     onWaiting(e) { ViewNativeSupport.Publisher.Event('onWaiting', e.target.id, this.data.parent, e, this) },
     onProgress(e) { ViewNativeSupport.Publisher.Event('onProgress', e.target.id, this.data.parent, e, this) },
     onLoadedMetaData(e) { ViewNativeSupport.Publisher.Event('onTimeUpdate', e.target.id, this.data.parent, e, this) },
-    onTouchStart (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTouchStart', uuid, parent, e); },onTouchMove (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTouchMove', uuid, parent, e); },onTouchCancel (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTouchCancel', uuid, parent, e); },onTouchEnd (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTouchEnd', uuid, parent, e); },onTap (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTap', uuid, parent, e); },onLongPress (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onLongPress', uuid, parent, e); },onLongTap (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onLongTap', uuid, parent, e); },onTouchForceChange (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTouchForceChange', uuid, parent, e); },onTransitionEnd (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onTransitionEnd', uuid, parent, e); },onAnimationStart (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onAnimationStart', uuid, parent, e); },onAnimationIteration (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onAnimationIteration', uuid, parent, e); },onAnimationEnd (e) { const { uuid, parent } = this.data; ViewNativeSupport.Publisher.Event('onAnimationEnd', uuid, parent, e); }
+    onTouchStart (e) { ViewNativeSupport.Publisher.Event('onTouchStart', e); },onTouchMove (e) { ViewNativeSupport.Publisher.Event('onTouchMove', e); },onTouchCancel (e) { ViewNativeSupport.Publisher.Event('onTouchCancel', e); },onTouchEnd (e) { ViewNativeSupport.Publisher.Event('onTouchEnd', e); },onTap (e) { ViewNativeSupport.Publisher.Event('onTap', e); },onLongPress (e) { ViewNativeSupport.Publisher.Event('onLongPress', e); },onLongTap (e) { ViewNativeSupport.Publisher.Event('onLongTap', e); },onTouchForceChange (e) { ViewNativeSupport.Publisher.Event('onTouchForceChange', e); },onTransitionEnd (e) { ViewNativeSupport.Publisher.Event('onTransitionEnd', e); },onAnimationStart (e) { ViewNativeSupport.Publisher.Event('onAnimationStart', e); },onAnimationIteration (e) { ViewNativeSupport.Publisher.Event('onAnimationIteration', e); },onAnimationEnd (e) { ViewNativeSupport.Publisher.Event('onAnimationEnd', e); }
   },
 
   lifetimes: {

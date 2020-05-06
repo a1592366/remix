@@ -6,7 +6,7 @@
 <template name="video">
 
   <video 
-  	id="{{uuid}}"
+  	id="{{vid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

@@ -1,40 +1,18 @@
 import React, { Component } from 'react';
-import { useController } from '@remix/core/hooks';
 
-import Controller, { PARSE, STEP, RUN} from './Controller';
+import Controller, { PARSE, STEP, RUN } from './Controller';
 import Editor from './Editor';
 
 
 import './index.css';
 
 
-class Playground extends Component {
-  static getDerivedStateFromProps () {
-  }
+export default function Playground () {
 
-  state = {
-    value: 100
-  }
-
-  onPress = (type) => {
-    
-  }
-
-
-  render () {
-    const { value } = this.state;
-
-    return (
-      <view className="playground">
-        <Editor />
-        <Controller 
-          onPress={this.onPress}
-        />
-      </view>
-    );
-  }
+  return (
+    <view className="playground">
+      <Editor />
+      <Controller />
+    </view>
+  );
 }
-
-export default useController(Playground, {
-  backgroundColor: '#efefed'
-});

@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import Markdown from 'react-markdown';
-import { useController } from '@remix/core/hooks';
 
 import './index.css';
 
-export default useController(class extends React.Component {
-  state = {
-    userInformation: null
-  }
+const md = `
+测试 react-markdown 渲染
 
-  render () {
-    const markdown = `This block of Markdown contains <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, and will require the <code>html-parser</code> AST plugin to be loaded, in addition to setting the <code class="prop">escapeHtml</code> property to false.`;
+![图片](https://upload-images.jianshu.io/upload_images/703764-605e3cc2ecb664f6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-    return (
-      <view className="docs">
-        <Markdown source={markdown} />
-      </view>
-    );
-  }
-})
+- 好像可以哦，不错不错
+`
+
+export default function Docs () {
+  
+  return (
+    <view className="docs">
+      <Markdown source={md} skipHtml={false} />
+    </view>
+  );
+}

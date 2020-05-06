@@ -6,7 +6,7 @@
 <template name="slider">
 
   <slider 
-  	id="{{uuid}}"
+  	id="{{vid}}"
 		parent="{{parent}}"
 		style="{{style}}"
 		class="{{className}}"

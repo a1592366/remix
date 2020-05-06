@@ -75,9 +75,8 @@
   background-color: #ededed;
   height: 100%;
 }
-.user__avatar {
-  width: 100rpx;
-  height: 100rpx;
+.docs {
+  margin: 20rpx;
 }
 page {
 

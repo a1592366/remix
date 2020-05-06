@@ -10,7 +10,7 @@ module.exports = function (view) {
   });
 
   view.properties = [
-    { name: 'uuid', type: 'String', defaultValue: 'null' },
+    { name: 'vid', type: 'String', defaultValue: 'null' },
     { name: 'parent', type: 'String', defaultValue: 'null' },
     { name: 'style', type: 'String', defaultValue: 'null' },
     { name: 'className', type: 'String', defaultValue: 'null' }

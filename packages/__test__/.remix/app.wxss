@@ -1,1 +1,2 @@
+@import "./default.wxss";
 @import "./static/wxss/app.ui.wxss";
