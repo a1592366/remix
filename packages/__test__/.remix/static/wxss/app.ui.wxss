@@ -76,7 +76,7 @@
   height: 100%;
 }
 .docs {
-  margin: 20rpx;
+  margin-top: 320rpx;
 }
 page {
 

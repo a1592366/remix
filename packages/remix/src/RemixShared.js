@@ -12,6 +12,23 @@ export const performance = typeof performance === 'undefined' ?
     }
   } : performance;
 
+export function type (object, value) {
+  let type = typeof object;
+
+  if (isArray(object)) {
+    type = 'array';
+  } else if (type === 'object') {
+    type = object === null ?
+      'null' : 'object';
+  }
+
+  if (value) {
+    return type === value;
+  }
+
+  return type;
+}
+
 export function shallowEqual (
   objectA, 
   objectB
@@ -104,13 +121,13 @@ export const [
   INTERNAL_EVENT_HANDLERS_KEY,
   INTERNAL_RELATIVE_KEY,
   INTERNAL_ROOT_FIBER_KEY,
-  INTERNAL_FIBER_KEY
+  INTERNAL_CHILDREN
 ] = [
   `__reactInternalInstance$${randomKey}`,
   `__reactEventHandlers${randomKey}`,
   `__reactInternalRelative$${randomKey}`,
   `__reactInternalRootFiber$${randomKey}`,
-  `__reactInternalFiberKey`
+  `__children`
 ]
 
 // ---- workTag ---
@@ -244,4 +261,12 @@ export const [
   'style',
   'children',
   'float'
-]
+];
+
+export const [
+  WORKING,
+  NO_WORK
+] = [
+  1,
+  2
+];

@@ -1,9 +1,9 @@
 
 import * as ViewNativeSupport from './RemixViewSupport';
 import { INTERNAL_RELATIVE_KEY } from './RemixShared';
+import { TAG_NAME } from './RemixViewController';
 
-const HTMLBlockSupport = 'section ol ul li div p footer header h1 h2 h3 h4 h5 h6 nav section dt dd dl code hr'.split(' ');
-const HTMLInlineSupport = 'strong em span i b br a img'.split(' ');
+const TEXT_TAGNAME = '#text';
 
 function resolveDefaultProps (
   defaultProps,
@@ -27,44 +27,27 @@ function resolveDefaultProps (
 }
 
 function serialize (element) {
-  let json = {
-    vid: element.vid,
-    tagName: element.tagName,
-    ...resolveDefaultProps(element.defaultProps, element)
-  };
+  let json = element.tagName === TEXT_TAGNAME ?
+    {
+      tagName: element.tagName,
+      text: element.text
+    } : {
+      vid: element.vid,
+      tagName: element.tagName,
+      tag: element.tag,
+      ...resolveDefaultProps(element.defaultProps, element)
+    }
 
   if (element.sibling) {
     json.sibling = serialize(element.sibling);
   }
 
   if (element.child) {
-    if (element.child.tagName === '#text') {
-      json.child = {
-        tagName: element.child.tagName,
-        text: element.child.text
-      }
-    } else {
-      json.child = serialize(element.child);
-    }
+    json.child = serialize(element.child);
   }
 
   if (element.innerText) {
     json.innerText = element.innerText;
-  }
-
-  if (HTMLBlockSupport.includes(element.tagName)) {
-    json.tagName = 'view';
-    json.tag = element.tagName;
-  } 
-
-  if (HTMLInlineSupport.includes(element.tagName)) {
-    json.tagName = 'text';
-    json.tag = element.tagName;
-  }
-
-  if (element.tagName === 'img') {
-    json.tagName = 'image';
-    json.src = element.src;
   }
 
   return json;
@@ -105,7 +88,7 @@ export function DOMUpdateQueue (finishedWork) {
   const { stateNode } = finishedWork;
 
   if (stateNode) {
-    if (stateNode.tagName === 'view-controller') {
+    if (stateNode.tagName === TAG_NAME) {
       const element = serialize(stateNode);
 
       flattern(element);

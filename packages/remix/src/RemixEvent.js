@@ -1,28 +1,11 @@
 import {
-  nextTick,
-  performance
+  INTERNAL_EVENT_HANDLERS_KEY
 } from './RemixShared';
+import {
+  TAG_NAME
+} from './RemixViewController';
 
-import { 
-  SCHEDULE_FPS, 
-  INTERNAL_EVENT_HANDLERS_KEY 
-} from './RemixShared';
-
-
-let ReactCurrentScheduler;
-const ReactCurrentSchedulerHeap = [];
-
-const [
-  IMMEDIATE,
-  FIRST,
-  DEFAULT
-] = [
-  0,
-  parseInt(1000 / SCHEDULE_FPS),
-  parseInt(2000 / SCHEDULE_FPS)
-];
-
-const bubbleEvents = [
+const HTMLBubbleEvents = [
   'touchstart',
   'touchmove',
   'touchcancel',
@@ -34,35 +17,19 @@ const bubbleEvents = [
   'transitionend',
   'animationstart',
   'animationiteration',
-  'animationend',
-  'input'
+  'animationend'
 ];
 
-const priority = {
-  touchstart: IMMEDIATE,
-  touchmove: IMMEDIATE,
-  touchcancel: IMMEDIATE,
-  touchend: IMMEDIATE,
-  tap: IMMEDIATE,
-  longpress: IMMEDIATE,
-  longtap: IMMEDIATE,
-  touchforcechange: IMMEDIATE,
-  transitionend: IMMEDIATE,
-  animationstart: IMMEDIATE,
-  animationiteration: IMMEDIATE,
-  animationend: IMMEDIATE,
-  scroll: IMMEDIATE,
-  onInput: IMMEDIATE,
-  focus: FIRST,
-  blur: FIRST,
-  confirm: FIRST,
-  timeupdate: FIRST,
-  defaults: DEFAULT
+const HTMLDefaultBehaviorsTags = [
+  'a'
+];
+
+const HTMLAliasEventMap = {
+  onTap: 'onClick'
 }
 
-
 class ViewEvent {
-  constructor (event) {
+  constructor (target, event, currentTarget) {
     this.nativeEvent = event;
     const { type, detail, touches, timeStamp, changedTouches } = event;
 
@@ -70,159 +37,57 @@ class ViewEvent {
     this.touches = touches;
     this.timeStamp = timeStamp;
     this.changedTouches = changedTouches;
-    this.bubbles = bubbleEvents.includes(this.type);
+    this.bubbles = HTMLBubbleEvents.includes(this.type);
     this.cancelBubble = false;
+    this.isPreventDefault = false;
     this.detail = detail;
+    this.target = target;
+    this.currentTarget = currentTarget || target;
   }
 
   stopPropagation () {
     this.cancelBubble = true;
   }
 
-  preventDefault () {}
-}
-
-function push (node) {
-  ReactCurrentSchedulerHeap.push(node);
-
-  if (ReactCurrentSchedulerHeap.length > 1) {
-    siftup(node, ReactCurrentSchedulerHeap.length);
+  preventDefault () {
+    this.isPreventDefault = true;
   }
 }
 
-function siftup (node , leaf) {
-  while (leaf > 0) {
-    // 父节点 索引 
-    const index = (leaf - 1) >>> 2;
-    const parent = ReactCurrentSchedulerHeap[index];
-    // 与父节点比较
-
-    if (parent.level < node.level) {
-      ReactCurrentSchedulerHeap[index] = node;
-      ReactCurrentSchedulerHeap[leaf] = parent;
-      leaf = index;
-    } else if (parent.level === node.level) {
-      if (parent.begin > node.level) {
-        ReactCurrentSchedulerHeap[index] = node;
-        ReactCurrentSchedulerHeap[leaf] = parent;
-        leaf = index;
-      }
-    }
-  }
-}
-
-function siftdown (node, first) {
-  const length = ReactCurrentSchedulerHeap.length;
-  
-  while (true) {
-    const l = first * 2 + 1;
-    const left = ReactCurrentSchedulerHeap[l];
-    
-    if (l > length) {
-      break;
-    }
-
-    // 右边叶子索引 = 父节点索引 * 2 + 2 = 左边索引 + 1
-    const r = l + 1;
-    const right = ReactCurrentSchedulerHeap[r];
-
-    // 选左右叶子索引
-    const c = r < length && (right.level - left.level) < 0 ? r : l;
-    const child = ReactCurrentSchedulerHeap[c];
-
-    // 不用交换
-    if (child) {
-      if (
-        (child.level < node.level) < 0 ||
-        (child.begin > node.begin)
-      ) {
-        break;
-      }
-    }
-
-    // 交换节点
-    ReactCurrentSchedulerHeap[c] = node;
-    ReactCurrentSchedulerHeap[first] = child;
-    first = c;
-  }
-}
-
-function pop () {
-  const first = ReactCurrentSchedulerHeap[0];
-
-  if (first) {
-    const last = ReactCurrentSchedulerHeap.pop();
-
-    if (last === first) {
-      return first;
-    }
-
-    ReactCurrentSchedulerHeap[0] = last;
-    siftdown(last, 0);
-
-    return first;
-  } else {
-    return null;
-  }
-}
-
-function peek () {
-  return ReactCurrentSchedulerHeap[0] || null;
-}
-
-function flush () {
-  let next = peek();
-
-  while (next) {
-
-    const schedule = next.schedule;
-    schedule.schedule = null;
-
-    schedule();
-    pop();
-
-    next = peek();
-  }
-}
-
-function flushWork () {
-  ReactCurrentScheduler = flush;
-
-  const next = () => {
-    if (ReactCurrentScheduler) {  
-      ReactCurrentScheduler();
-
-      peek() ?
-        flushWork() : 
-        ReactCurrentScheduler = null;
-    }
-  }
-
-  nextTick(next);
-}
-
-function dispatchEvent (view, type, event) {
+function dispatchEvent (view, type, event, target) {
   const props = view[INTERNAL_EVENT_HANDLERS_KEY];
+  const viewEvent = new ViewEvent(view, event, target);
 
   if (typeof props[type] === 'function') {
-    props[type](new ViewEvent(event));
+    props[type](event);
+  } else {
+    const alias = HTMLAliasEventMap[type];
+    if (typeof props[alias] === 'function') {
+      viewEvent.type = 'click';
+      props[alias](viewEvent);
+    } 
+  }
+
+  if (HTMLDefaultBehaviorsTags.includes(view.tagName)) {
+    if (!viewEvent.isPreventDefault) {
+      if (props.href) {
+        wx.navigator({ url: props.href })
+      }
+    }
+  }
+
+  if (viewEvent.bubbles && !viewEvent.cancelBubble) {
+    const parent = view.return;
+
+    if (
+      parent &&
+      parent.tagName !== TAG_NAME
+    ) {
+      dispatchEvent(parent, type, event, viewEvent.currentTarget);
+    }
   }
 }
 
 export function scheduleWork ({ type, event, view }) {
   return dispatchEvent(view, type, event);
-
-  const level = priority[type] || priority.defaults;
-  if (level === IMMEDIATE) {
-    dispatchEvent(view, type, event);
-  } else {
-    const work = { 
-      schedule: () => dispatchEvent(view, type, event), 
-      begin: performance.now(), 
-      level 
-    }
-
-    push(work);
-    flushWork();
-  }
 }

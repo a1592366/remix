@@ -1,6 +1,8 @@
-import { HOST_ROOT, FUNCTION_COMPONENT, HOST_COMPONENT, HOST_TEXT } from './RemixShared';
-import { INTERNAL_FIBER_KEY } from './RemixShared';
+import { HOST_ROOT, FUNCTION_COMPONENT, HOST_COMPONENT, HOST_TEXT, FRAGMENT, WORKING } from './RemixShared';
+import { INTERNAL_CHILDREN } from './RemixShared';
 import { NO_EFFECT } from './RemixShared';
+import { NO_WORK } from './RemixShared';
+
 
 
 export function createFiber (tag, pendingProps, key) {
@@ -24,9 +26,11 @@ export function createFiber (tag, pendingProps, key) {
 
     stateNode: null,
     alternate: null,
+    index: 0,
 
     updateQueue: null,
-    [INTERNAL_FIBER_KEY]: null
+    workTag: NO_WORK,
+    [INTERNAL_CHILDREN]: null,
   }
 }
 
@@ -49,6 +53,7 @@ export function createWorkInProgress (
     workInProgress.elementType = elementType;
     workInProgress.type = type;
     workInProgress.stateNode = stateNode;
+    workInProgress.workTag = WORKING;
     
     workInProgress.alternate = current;
     current.alternate = workInProgress;
@@ -109,13 +114,15 @@ export function createFiberFromTypeAndProps (type, key, pendingProps, owner) {
     fiberTag = HOST_COMPONENT;
   }
 
-  const fiber = createFiber(fiberTag, pendingProps);
+  const fiber = createFiber(fiberTag, pendingProps, key);
   fiber.elementType = type;
   fiber.type = resolvedType;
   
   return fiber;
 }
-export function createFiberFromFragment () {}
+export function createFiberFromFragment (elements) {
+  return createFiber(FRAGMENT, elements);
+}
 export function createFiberFromText (content) {
   return createFiber(HOST_TEXT, content);
 }

@@ -45,6 +45,7 @@ function registerBabelRuntime () {
     }]
   });
 
+
   const { program } = require('./boot');
 
   process.send(program.context);

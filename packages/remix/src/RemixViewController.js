@@ -4,16 +4,18 @@ import * as Support from './RemixViewSupport';
 import { INTERNAL_RELATIVE_KEY } from './RemixShared';
 import { document } from './RemixDocument';
 import { shallowEqual } from './RemixShared';
+import { scheduleWork } from './RemixEvent';
 
 const { Subscriber } = Support;
 
-const views = document.createElement('views')
-document.body.appendChild(views);
+export const RemixViewController = new Map();
+export const TAG_NAME = 'ViewController';
 
 export function ViewControllersManager (context, instance) {
-  const viewControllers = [];
+  const window = document.createElement('Window');
   const views = {};
-  let viewController = null;
+
+  document.body.appendChild(window);
 
   context.router.routes.forEach(route => {
     views[route.path] = route;
@@ -21,7 +23,7 @@ export function ViewControllersManager (context, instance) {
 
   Subscriber.on(Support.LOAD, (view) => {
     const { id, query, route } = view;
-    let controller = viewControllers[id];
+    let controller = window.getElementById(id);
     
     if (!controller) {
       const Class = views[route];
@@ -29,7 +31,10 @@ export function ViewControllersManager (context, instance) {
       if (view) {
         controller = new ViewController(id, route, query);
         controller.Class = Class.component;
-        viewControllers[id] = controller;  
+
+        window.appendChild(controller.view);
+
+        RemixViewController.set(id, controller);
       } else {
         throw new Error(`未发现路由为 ${route} ViewController`);
       }
@@ -44,13 +49,14 @@ export function ViewControllersManager (context, instance) {
   })
 
   Subscriber.on(Support.SHOW, ({ id }) => {
-    viewController = viewControllers[id];
+    RemixViewController.current = RemixViewController.get(id);
   });
 
-  Subscriber.on(Support.EVENT, function (type, uuid, parent, event, sync) {
+  Subscriber.on(Support.EVENT, function (type, event) {
     const { target } = event;
+    const controller = RemixViewController.current;
 
-    const view = viewController.view.getElementById(target.id);
+    const view = controller.view.getElementById(target.id);
     
     scheduleWork({ type, view, event });
   });
@@ -61,13 +67,11 @@ class ViewController {
     this.id = id;
     this.route = route;
     this.query = query;
-    this.view = document.createElement('view-controller');
+    this.view = document.createElement(TAG_NAME);
     this.view[INTERNAL_RELATIVE_KEY] = id;
 
     this.view.setAttribute('route', route);
     this.view.setAttribute('query', query);
-
-    views.appendChild(this.view);
   }
 
   onLoad (query) {}

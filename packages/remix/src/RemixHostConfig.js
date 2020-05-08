@@ -62,6 +62,19 @@ export function createTextInstance (text) {
   return document.createTextNode(text);
 }
 
+export function updateTextInstance (instance, text) {
+  instance.text =text;
+}
+
+export function updateInstance (
+  element,
+  props,
+  workInProgress
+) {
+  element[INTERNAL_INSTANCE_KEY] = workInProgress;
+  element[INTERNAL_EVENT_HANDLERS_KEY] = props;
+}
+
 export function createInstance (
   type,
   props,
@@ -150,38 +163,7 @@ export function updateDOMProperties (
   pendingProps,
   memoizedProps,
 ) {
-  const props = { ...memoizedProps, ...pendingProps };
-
-  if (memoizedProps === null) {
-
-  }
-
-  for (let propName in props ) {
-    let prop = memoizedProps[propName];
-    let nextProp = pendingProps[propName];
-
-    if (prop === nextProp) {
-
-    } else if (propName === STYLE) {
-
-      if (nextProp) { 
-        freeze(nextProp);
-        setValueForStyles(element, nextProp);
-      }
-
-    } else if (propName === CHILDREN) {
-      const canSetTextContent = tag !== 'textarea' || nextProp !== '';
-      const typeofProp = typeof nextProp;
-
-      if (canSetTextContent && prop !== nextProp) {
-        if (typeofProp === 'string' || typeofProp === 'number') {
-          setTextContent(element, nextProp);
-        }
-      }
-    } else if (nextProp !== null) {
-      setValueForProperty(element, propName, nextProp);
-    }
-  }
+  setDOMProperties(tag, element, )
 }
 
 export function setDOMProperties (
@@ -209,6 +191,8 @@ export function setDOMProperties (
             setTextContent(element, nextProp);
           }
         }
+      } else if (propName.startsWith('on')) {
+        setValueForProperty(element, propName, propName);
       } else if (nextProp !== null) {
         setValueForProperty(element, propName, nextProp);
       } 

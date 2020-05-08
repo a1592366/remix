@@ -97,7 +97,7 @@ export function Program (App, container) {
 }
 
 export function View (route, element = null) {
-  const view = { id: `remix.${viewId++}`, route };
+  const view = { id: `rc.${viewId++}`, route };
 
   if (typeof Page === 'function') {
     Page({

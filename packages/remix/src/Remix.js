@@ -118,6 +118,10 @@ export function createElement (
   )
 }
 
+export function Fragment (props) {
+  return Children.toArray(props.children);
+}
+
 export * from './RemixHook';
 
 export class Component {
@@ -129,6 +133,7 @@ export class PureComponent extends Component {
 }
 
 export default {
+  Fragment,
   Component,
   PureComponent,
 

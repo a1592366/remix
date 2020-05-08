@@ -1,4 +1,4 @@
-/*** MARK_1588788513803 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
+/*** MARK_1588950696778 WeChat GlobalWindow ***/ var window = Object.__GlobalWindow__ || (Object.__GlobalWindow__ = {}); /*** WeChat globalWindow ***/ (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["runtime/vendor/manifest"],{
 
 /***/ "../remix-cli/node_modules/process/browser.js":
 /*!****************************************************!*\
@@ -584,6 +584,49 @@ module.exports = _classCallCheck;
 
 /***/ }),
 
+/***/ "../remix/node_modules/@babel/runtime/helpers/construct.js":
+/*!*****************************************************************!*\
+  !*** ../remix/node_modules/@babel/runtime/helpers/construct.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
+
+/***/ }),
+
 /***/ "../remix/node_modules/@babel/runtime/helpers/createClass.js":
 /*!*******************************************************************!*\
   !*** ../remix/node_modules/@babel/runtime/helpers/createClass.js ***!
@@ -634,6 +677,39 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "../remix/node_modules/@babel/runtime/helpers/get.js":
+/*!***********************************************************!*\
+  !*** ../remix/node_modules/@babel/runtime/helpers/get.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var superPropBase = __webpack_require__(/*! ./superPropBase */ "../remix/node_modules/@babel/runtime/helpers/superPropBase.js");
+
+function _get(target, property, receiver) {
+  if (typeof Reflect !== "undefined" && Reflect.get) {
+    module.exports = _get = Reflect.get;
+  } else {
+    module.exports = _get = function _get(target, property, receiver) {
+      var base = superPropBase(target, property);
+      if (!base) return;
+      var desc = Object.getOwnPropertyDescriptor(base, property);
+
+      if (desc.get) {
+        return desc.get.call(receiver);
+      }
+
+      return desc.value;
+    };
+  }
+
+  return _get(target, property, receiver || target);
+}
+
+module.exports = _get;
 
 /***/ }),
 
@@ -757,6 +833,21 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js":
+/*!************************************************************************!*\
+  !*** ../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeFunction(fn) {
+  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+}
+
+module.exports = _isNativeFunction;
 
 /***/ }),
 
@@ -891,6 +982,28 @@ module.exports = _setPrototypeOf;
 
 /***/ }),
 
+/***/ "../remix/node_modules/@babel/runtime/helpers/superPropBase.js":
+/*!*********************************************************************!*\
+  !*** ../remix/node_modules/@babel/runtime/helpers/superPropBase.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+
+function _superPropBase(object, property) {
+  while (!Object.prototype.hasOwnProperty.call(object, property)) {
+    object = getPrototypeOf(object);
+    if (object === null) break;
+  }
+
+  return object;
+}
+
+module.exports = _superPropBase;
+
+/***/ }),
+
 /***/ "../remix/node_modules/@babel/runtime/helpers/toConsumableArray.js":
 /*!*************************************************************************!*\
   !*** ../remix/node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
@@ -948,6 +1061,59 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
+
+/***/ }),
+
+/***/ "../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js":
+/*!***********************************************************************!*\
+  !*** ../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+var isNativeFunction = __webpack_require__(/*! ./isNativeFunction */ "../remix/node_modules/@babel/runtime/helpers/isNativeFunction.js");
+
+var construct = __webpack_require__(/*! ./construct */ "../remix/node_modules/@babel/runtime/helpers/construct.js");
+
+function _wrapNativeSuper(Class) {
+  var _cache = typeof Map === "function" ? new Map() : undefined;
+
+  module.exports = _wrapNativeSuper = function _wrapNativeSuper(Class) {
+    if (Class === null || !isNativeFunction(Class)) return Class;
+
+    if (typeof Class !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class)) return _cache.get(Class);
+
+      _cache.set(Class, Wrapper);
+    }
+
+    function Wrapper() {
+      return construct(Class, arguments, getPrototypeOf(this).constructor);
+    }
+
+    Wrapper.prototype = Object.create(Class.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return setPrototypeOf(Wrapper, Class);
+  };
+
+  return _wrapNativeSuper(Class);
+}
+
+module.exports = _wrapNativeSuper;
 
 /***/ }),
 
@@ -1081,10 +1247,12 @@ var _exportNames = {
   Children: true,
   PropTypes: true,
   createElement: true,
+  Fragment: true,
   Component: true,
   PureComponent: true
 };
 exports.createElement = createElement;
+exports.Fragment = Fragment;
 exports["default"] = exports.PureComponent = exports.Component = exports.PropTypes = exports.Children = void 0;
 
 var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "../remix/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
@@ -1227,6 +1395,10 @@ function createElement(type, config) {
   return (0, _RemixElement.RemixElement)(type, props, key);
 }
 
+function Fragment(props) {
+  return Children.toArray(props.children);
+}
+
 var Component = function Component() {
   (0, _classCallCheck2["default"])(this, Component);
   (0, _defineProperty2["default"])(this, "isReactComponent", true);
@@ -1258,6 +1430,7 @@ var PureComponent = /*#__PURE__*/function (_Component) {
 
 exports.PureComponent = PureComponent;
 var _default = {
+  Fragment: Fragment,
   Component: Component,
   PureComponent: PureComponent,
   createElement: createElement
@@ -1463,12 +1636,13 @@ var ViewNativeSupport = _interopRequireWildcard(__webpack_require__(/*! ./RemixV
 
 var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
 
+var _RemixViewController = __webpack_require__(/*! ./RemixViewController */ "../remix/src/RemixViewController.js");
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var HTMLBlockSupport = 'section ol ul li div p footer header h1 h2 h3 h4 h5 h6 nav section dt dd dl code hr'.split(' ');
-var HTMLInlineSupport = 'strong em span i b br a img'.split(' ');
+var TEXT_TAGNAME = '#text';
 
 function resolveDefaultProps(defaultProps, unresolvedProps) {
   if (defaultProps) {
@@ -1489,9 +1663,13 @@ function resolveDefaultProps(defaultProps, unresolvedProps) {
 }
 
 function serialize(element) {
-  var json = _objectSpread({
+  var json = element.tagName === TEXT_TAGNAME ? {
+    tagName: element.tagName,
+    text: element.text
+  } : _objectSpread({
     vid: element.vid,
-    tagName: element.tagName
+    tagName: element.tagName,
+    tag: element.tag
   }, resolveDefaultProps(element.defaultProps, element));
 
   if (element.sibling) {
@@ -1499,33 +1677,11 @@ function serialize(element) {
   }
 
   if (element.child) {
-    if (element.child.tagName === '#text') {
-      json.child = {
-        tagName: element.child.tagName,
-        text: element.child.text
-      };
-    } else {
-      json.child = serialize(element.child);
-    }
+    json.child = serialize(element.child);
   }
 
   if (element.innerText) {
     json.innerText = element.innerText;
-  }
-
-  if (HTMLBlockSupport.includes(element.tagName)) {
-    json.tagName = 'view';
-    json.tag = element.tagName;
-  }
-
-  if (HTMLInlineSupport.includes(element.tagName)) {
-    json.tagName = 'text';
-    json.tag = element.tagName;
-  }
-
-  if (element.tagName === 'img') {
-    json.tagName = 'image';
-    json.src = element.src;
   }
 
   return json;
@@ -1566,7 +1722,7 @@ function DOMUpdateQueue(finishedWork) {
   var stateNode = finishedWork.stateNode;
 
   if (stateNode) {
-    if (stateNode.tagName === 'view-controller') {
+    if (stateNode.tagName === _RemixViewController.TAG_NAME) {
       var element = serialize(stateNode);
       flattern(element);
       console.log(element.child);
@@ -1604,6 +1760,12 @@ var _RemixUI = _interopRequireDefault(__webpack_require__(/*! ./RemixUI */ "../r
 
 // ---- HTML ELEMENT ----
 var vid = 0;
+var HTMLBlockSupport = 'section ol ul li div p footer header h1 h2 h3 h4 h5 h6 nav section dt dd dl code hr'.split(' ');
+var HTMLInlineSupport = 'strong em span i b br a img'.split(' ');
+var HTMLAliasSupport = 'img'.split(' ');
+var HTMLAttributeAliasMap = {
+  onClick: 'onTap'
+};
 
 var HTMLElement = /*#__PURE__*/function () {
   function HTMLElement() {
@@ -1668,6 +1830,10 @@ var HTMLElement = /*#__PURE__*/function () {
     key: "setAttribute",
     value: function setAttribute(name, value) {
       this[name] = value;
+
+      if (HTMLAttributeAliasMap[name]) {
+        this[HTMLAttributeAliasMap[name]] = HTMLAttributeAliasMap[name];
+      }
     }
   }, {
     key: "removeAttribute",
@@ -1679,6 +1845,35 @@ var HTMLElement = /*#__PURE__*/function () {
     value: function ownerDocument() {
       return document;
     }
+  }, {
+    key: "getElementById",
+    value: function getElementById(id) {
+      if (this.vid === id) {
+        return this;
+      }
+
+      var node = this.child;
+
+      while (node) {
+        if (node.vid === id) {
+          return node;
+        }
+
+        if (node.child) {
+          node = node.child;
+        } else {
+          while (node.sibling === null) {
+            if (node["return"] === null) {
+              return null;
+            }
+
+            node = node["return"];
+          }
+
+          node = node.sibling;
+        }
+      }
+    }
   }]);
   return HTMLElement;
 }();
@@ -1687,7 +1882,21 @@ var document = typeof document === 'undefined' ? {
   createElement: function createElement(tagName) {
     var element = new HTMLElement();
     element.tagName = tagName;
-    element.defaultProps = _RemixUI["default"][tagName];
+    element.tag = tagName;
+
+    if (HTMLAliasSupport.includes(tagName)) {
+      element.tagName = 'image';
+      element.defaultProps = _RemixUI["default"]['image'];
+    } else if (HTMLInlineSupport.includes(tagName)) {
+      element.tagName = 'text';
+      element.defaultProps = _RemixUI["default"]['text'];
+    } else if (HTMLBlockSupport.includes(tagName)) {
+      element.tagName = 'view';
+      element.defaultProps = _RemixUI["default"]['view'];
+    } else {
+      element.defaultProps = _RemixUI["default"][tagName];
+    }
+
     return element;
   },
   createTextNode: function createTextNode(text) {
@@ -1741,6 +1950,115 @@ function RemixElement(type) {
 
 /***/ }),
 
+/***/ "../remix/src/RemixEvent.js":
+/*!**********************************!*\
+  !*** ../remix/src/RemixEvent.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.scheduleWork = scheduleWork;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remix/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
+
+var _RemixViewController = __webpack_require__(/*! ./RemixViewController */ "../remix/src/RemixViewController.js");
+
+var HTMLBubbleEvents = ['touchstart', 'touchmove', 'touchcancel', 'touchend', 'tap', 'longpress', 'longtap', 'touchforcechange', 'transitionend', 'animationstart', 'animationiteration', 'animationend'];
+var HTMLDefaultBehaviorsTags = ['a'];
+var HTMLAliasEventMap = {
+  onTap: 'onClick'
+};
+
+var ViewEvent = /*#__PURE__*/function () {
+  function ViewEvent(target, event, currentTarget) {
+    (0, _classCallCheck2["default"])(this, ViewEvent);
+    this.nativeEvent = event;
+    var type = event.type,
+        detail = event.detail,
+        touches = event.touches,
+        timeStamp = event.timeStamp,
+        changedTouches = event.changedTouches;
+    this.type = type;
+    this.touches = touches;
+    this.timeStamp = timeStamp;
+    this.changedTouches = changedTouches;
+    this.bubbles = HTMLBubbleEvents.includes(this.type);
+    this.cancelBubble = false;
+    this.isPreventDefault = false;
+    this.detail = detail;
+    this.target = target;
+    this.currentTarget = currentTarget || target;
+  }
+
+  (0, _createClass2["default"])(ViewEvent, [{
+    key: "stopPropagation",
+    value: function stopPropagation() {
+      this.cancelBubble = true;
+    }
+  }, {
+    key: "preventDefault",
+    value: function preventDefault() {
+      this.isPreventDefault = true;
+    }
+  }]);
+  return ViewEvent;
+}();
+
+function dispatchEvent(view, type, event, target) {
+  var props = view[_RemixShared.INTERNAL_EVENT_HANDLERS_KEY];
+  var viewEvent = new ViewEvent(view, event, target);
+
+  if (typeof props[type] === 'function') {
+    props[type](event);
+  } else {
+    var alias = HTMLAliasEventMap[type];
+
+    if (typeof props[alias] === 'function') {
+      viewEvent.type = 'click';
+      props[alias](viewEvent);
+    }
+  }
+
+  if (HTMLDefaultBehaviorsTags.includes(view.tagName)) {
+    if (!viewEvent.isPreventDefault) {
+      if (props.href) {
+        wx.navigator({
+          url: props.href
+        });
+      }
+    }
+  }
+
+  if (viewEvent.bubbles && !viewEvent.cancelBubble) {
+    var parent = view["return"];
+
+    if (parent && parent.tagName !== _RemixViewController.TAG_NAME) {
+      dispatchEvent(parent, type, event, viewEvent.currentTarget);
+    }
+  }
+}
+
+function scheduleWork(_ref) {
+  var type = _ref.type,
+      event = _ref.event,
+      view = _ref.view;
+  return dispatchEvent(view, type, event);
+}
+
+/***/ }),
+
 /***/ "../remix/src/RemixFiber.js":
 /*!**********************************!*\
   !*** ../remix/src/RemixFiber.js ***!
@@ -1789,7 +2107,7 @@ function createFiber(tag, pendingProps, key) {
     lastEffect: null,
     firstEffect: null,
     stateNode: null
-  }, (0, _defineProperty2["default"])(_ref, "alternate", null), (0, _defineProperty2["default"])(_ref, "updateQueue", null), (0, _defineProperty2["default"])(_ref, _RemixShared.INTERNAL_FIBER_KEY, null), _ref;
+  }, (0, _defineProperty2["default"])(_ref, "alternate", null), (0, _defineProperty2["default"])(_ref, "index", 0), (0, _defineProperty2["default"])(_ref, "updateQueue", null), (0, _defineProperty2["default"])(_ref, "workTag", _RemixShared.NO_WORK), (0, _defineProperty2["default"])(_ref, _RemixShared.INTERNAL_CHILDREN, null), _ref;
 }
 
 function createWorkInProgress(current, pendingProps) {
@@ -1805,6 +2123,7 @@ function createWorkInProgress(current, pendingProps) {
     workInProgress.elementType = elementType;
     workInProgress.type = type;
     workInProgress.stateNode = stateNode;
+    workInProgress.workTag = _RemixShared.WORKING;
     workInProgress.alternate = current;
     current.alternate = workInProgress;
   } else {
@@ -1857,13 +2176,15 @@ function createFiberFromTypeAndProps(type, key, pendingProps, owner) {
     fiberTag = _RemixShared.HOST_COMPONENT;
   }
 
-  var fiber = createFiber(fiberTag, pendingProps);
+  var fiber = createFiber(fiberTag, pendingProps, key);
   fiber.elementType = type;
   fiber.type = resolvedType;
   return fiber;
 }
 
-function createFiberFromFragment() {}
+function createFiberFromFragment(elements) {
+  return createFiber(_RemixShared.FRAGMENT, elements);
+}
 
 function createFiberFromText(content) {
   return createFiber(_RemixShared.HOST_TEXT, content);
@@ -1917,13 +2238,12 @@ var _RemixScheduler = __webpack_require__(/*! ./RemixScheduler */ "../remix/src/
 
 var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
 
+var is = Object.is;
 var currentHook = null;
 var nextCurrentHook = null;
 var firstWorkInProgressHook = null;
 var nextWorkInProgressHook = null;
 var workInProgressHook = null;
-var componentUpdateQueue = null;
-var didScheduleRenderPhaseUpdate = false;
 var currentlyRenderingFiber = null;
 var RemixHookDispatcher = {
   current: null
@@ -1931,31 +2251,135 @@ var RemixHookDispatcher = {
 
 var HooksDispatcher = {
   useState: function useState(initialState) {
-    var _currentlyRenderingFi = currentlyRenderingFiber,
-        current = _currentlyRenderingFi.alternate;
-    var hook;
-
-    if (current === null) {
-      hook = mountWorkInProgressHook();
-
-      if (typeof initialState === 'function') {
-        initialState = initialState();
-      }
-
-      hook.memoizedState = hook.baseState = initialState;
-      var queue = hook.queue = {
-        last: null,
-        dispatch: null,
-        lastRenderedState: initialState
-      };
-      queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber, queue);
-    } else {
-      debugger;
-    }
-
-    return [hook.memoizedState, hook.queue.dispatch];
+    var current = currentlyRenderingFiber.alternate;
+    return current === null ? mountState(initialState) : updateState(initialState);
+  },
+  useMemo: function useMemo(callback, deps) {
+    var current = currentlyRenderingFiber.alternate;
+    return current === null ? mountMemo(callback, deps) : updateMemo(callback, deps);
+  },
+  useCallback: function useCallback(callback, deps) {
+    var current = currentlyRenderingFiber.alternate;
+    return current === null ? mountCallback(callback, deps) : updateCallback(callback, deps);
   }
 };
+
+function basicStateReducer(state, action) {
+  return typeof action === 'function' ? action(state) : action;
+} // ---- hook callback ----
+
+
+function mountCallback() {} // ---- hook memo ----
+
+
+function mountMemo(callback, deps) {
+  var hook = mountWorkInProgressHook();
+  var value = callback();
+  deps = deps === undefined ? null : deps;
+  hook.memoizedState = [value, deps];
+  return value;
+}
+
+function updateMemo(callback, deps) {
+  var hook = updateWorkInProgressHook();
+  var prevState = hook.memoizedState;
+  deps === undefined ? null : deps;
+
+  if (prevState !== null) {
+    if (deps !== null) {
+      var prevDeps = prevState[1];
+
+      if ((0, _RemixShared.shallowEqual)(deps, prevDeps)) {
+        return prevState[0];
+      }
+    }
+  }
+
+  var value = callback();
+  hook.memoizedState = [value, deps];
+  return value;
+} // ---- hook state ----
+
+
+function mountState(initialState) {
+  var hook = mountWorkInProgressHook();
+
+  if (typeof initialState === 'function') {
+    initialState = initialState();
+  }
+
+  hook.memoizedState = hook.baseState = initialState;
+  var queue = {
+    last: null,
+    dispatch: null
+  };
+  queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber, queue);
+  hook.queue = queue;
+  return [hook.memoizedState, queue.dispatch];
+}
+
+function updateState(initialState) {
+  return updateReducer(basicStateReducer, initialState);
+}
+
+function updateReducer(reducer) {
+  var hook = updateWorkInProgressHook();
+  var queue = hook.queue;
+  var last = queue.last;
+  var baseState = hook.baseState;
+  var first = last !== null ? last.next : null;
+
+  if (first !== null) {
+    var newState = baseState;
+    var update = first;
+
+    do {
+      var _update = update,
+          action = _update.action;
+      newState = reducer(newState, action);
+      update = update.next;
+    } while (update !== null && update !== first);
+
+    if (!is(newState, hook.memoizedState)) {
+      (0, _RemixScheduler.markWorkInProgressReceivedUpdate)();
+    }
+
+    hook.queue.last = null;
+    hook.memoizedState = newState;
+    hook.baseState = newState;
+  }
+
+  queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber, queue);
+  return [hook.memoizedState, queue.dispatch];
+}
+
+function updateWorkInProgressHook() {
+  if (nextWorkInProgressHook !== null) {
+    workInProgressHook = nextWorkInProgressHook;
+    nextWorkInProgressHook = workInProgressHook.next;
+    currentHook = nextCurrentHook;
+    nextCurrentHook = currentHook !== null ? currentHook.next : null;
+  } else {
+    currentHook = nextCurrentHook;
+    var hook = {
+      memoizedState: currentHook.memoizedState,
+      baseState: currentHook.baseState,
+      queue: currentHook.queue,
+      baseUpdate: currentHook.baseUpdate,
+      next: null
+    };
+
+    if (workInProgressHook === null) {
+      workInProgressHook = firstWorkInProgressHook = hook;
+    } else {
+      workInProgressHook = workInProgressHook.next = hook;
+    }
+
+    nextCurrentHook = currentHook.next;
+  }
+
+  return workInProgressHook;
+}
 
 function mountWorkInProgressHook() {
   var hook = {
@@ -1985,6 +2409,7 @@ function dispatchAction(fiber, queue, action) {
     update.next = update;
   } else {
     // 总是插在第一个 update 
+    var last = queue.last;
     var first = last.next;
 
     if (first !== null) {
@@ -2006,7 +2431,10 @@ function resolveDispatcher() {
 
 function useReducer() {}
 
-function useMemo() {}
+function useMemo(callback, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useMemo(callback, deps);
+}
 
 function useCallback() {}
 
@@ -2020,16 +2448,17 @@ function renderWithHooks(current, workInProgress, Component, nextProps) {
   currentlyRenderingFiber = workInProgress; // 非首次渲染，从 workInProgress memoizedState 取 hook
 
   nextCurrentHook = current !== null ? workInProgress.memoizedState : null;
-  nextWorkInProgressHook = firstWorkInProgressHook; // 每次执行函数组件渲染，都需要重置全局变量
-
-  currentHook = null;
-  workInProgressHook = null;
-  componentUpdateQueue = null;
+  nextWorkInProgressHook = firstWorkInProgressHook;
   var children = Component(nextProps);
   var renderedWork = currentlyRenderingFiber;
   renderedWork.memoizedState = firstWorkInProgressHook;
-  renderedWork.updateQueue = componentUpdateQueue;
-  renderedWork.effectTag |= _RemixShared.SIDE_EFFECT;
+  renderedWork.effectTag |= _RemixShared.SIDE_EFFECT; // 每次执行函数组件渲染，都需要重置全局变量
+
+  currentHook = null;
+  nextCurrentHook = null;
+  firstWorkInProgressHook = null;
+  workInProgressHook = null;
+  nextWorkInProgressHook = null;
   return children;
 }
 
@@ -2051,6 +2480,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.createTextInstance = createTextInstance;
+exports.updateTextInstance = updateTextInstance;
+exports.updateInstance = updateInstance;
 exports.createInstance = createInstance;
 exports.insertBefore = insertBefore;
 exports.appendChild = appendChild;
@@ -2064,15 +2495,9 @@ exports.insertInContainerBefore = insertInContainerBefore;
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
 var _RemixDocument = __webpack_require__(/*! ./RemixDocument */ "../remix/src/RemixDocument.js");
 
 var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var freeze = Object.freeze;
 var hasOwnProperty = Object.hasOwnProperty;
@@ -2104,6 +2529,15 @@ function setValueForStyles(element, styles) {
 
 function createTextInstance(text) {
   return _RemixDocument.document.createTextNode(text);
+}
+
+function updateTextInstance(instance, text) {
+  instance.text = text;
+}
+
+function updateInstance(element, props, workInProgress) {
+  element[_RemixShared.INTERNAL_INSTANCE_KEY] = workInProgress;
+  element[_RemixShared.INTERNAL_EVENT_HANDLERS_KEY] = props;
 }
 
 function createInstance(type, props, workInProgress) {
@@ -2174,32 +2608,7 @@ function appendAllChildren(instance, workInProgress) {
 }
 
 function updateDOMProperties(tag, element, pendingProps, memoizedProps) {
-  var props = _objectSpread({}, memoizedProps, {}, pendingProps);
-
-  if (memoizedProps === null) {}
-
-  for (var propName in props) {
-    var prop = memoizedProps[propName];
-    var nextProp = pendingProps[propName];
-
-    if (prop === nextProp) {} else if (propName === _RemixShared.STYLE) {
-      if (nextProp) {
-        freeze(nextProp);
-        setValueForStyles(element, nextProp);
-      }
-    } else if (propName === _RemixShared.CHILDREN) {
-      var canSetTextContent = tag !== 'textarea' || nextProp !== '';
-      var typeofProp = (0, _typeof2["default"])(nextProp);
-
-      if (canSetTextContent && prop !== nextProp) {
-        if (typeofProp === 'string' || typeofProp === 'number') {
-          setTextContent(element, nextProp);
-        }
-      }
-    } else if (nextProp !== null) {
-      setValueForProperty(element, propName, nextProp);
-    }
-  }
+  setDOMProperties(tag, element);
 }
 
 function setDOMProperties(tag, element, nextProps) {
@@ -2222,6 +2631,8 @@ function setDOMProperties(tag, element, nextProps) {
             setTextContent(element, nextProp);
           }
         }
+      } else if (propName.startsWith('on')) {
+        setValueForProperty(element, propName, propName);
       } else if (nextProp !== null) {
         setValueForProperty(element, propName, nextProp);
       }
@@ -2232,6 +2643,174 @@ function setDOMProperties(tag, element, nextProps) {
 function insertInContainerBefore(parentNode, child, beforeChild) {
   parentNode.insertBefore(child, beforeChild);
 }
+
+/***/ }),
+
+/***/ "../remix/src/RemixMaxHeap.js":
+/*!************************************!*\
+  !*** ../remix/src/RemixMaxHeap.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../remix/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../remix/node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../remix/node_modules/@babel/runtime/helpers/get.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../remix/node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../remix/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../remix/node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ "../remix/node_modules/@babel/runtime/helpers/wrapNativeSuper.js"));
+
+function _createSuper(Derived) { return function () { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+// leftIndex = parentIndex * 2 + 1
+// rightIndex = parentIndex * 2 + 2;
+// parentIndex = (rightIndex - 2) / 2;
+// parentIndex = (leftIndex - 1) / 2
+var RemixMaxHeap = /*#__PURE__*/function (_Array) {
+  (0, _inherits2["default"])(RemixMaxHeap, _Array);
+
+  var _super = _createSuper(RemixMaxHeap);
+
+  function RemixMaxHeap() {
+    (0, _classCallCheck2["default"])(this, RemixMaxHeap);
+    return _super.apply(this, arguments);
+  }
+
+  (0, _createClass2["default"])(RemixMaxHeap, [{
+    key: "siftUp",
+    value: function siftUp() {
+      var childIndex = this.length - 1;
+      var parentIndex = childIndex >>> 1;
+
+      while (true) {
+        var child = this[childIndex];
+        var parent = this[parentIndex];
+        console.log('childIndex', childIndex, child);
+        console.log('parentIndex', parentIndex, parent);
+
+        if (childIndex === 0) {
+          break;
+        } // 如果 child > parent,  则交换
+
+
+        if (this.gt(child, parent)) {
+          this[childIndex] = parent;
+          this[parentIndex] = child;
+          childIndex = parentIndex;
+          parentIndex = childIndex >>> 1;
+        } else {
+          break;
+        }
+      }
+    }
+  }, {
+    key: "siftDown",
+    value: function siftDown() {
+      // 取最后一个元素，放到顶部
+      var length = this.length; // 预处理，不处理 length = 1 ; length = 0 情况
+
+      if (length == 2) {
+        if (this.gt(this[1], this[0])) {
+          var first = this[0];
+          this[0] = this[1];
+          this[1] = first;
+        }
+      } else if (length > 2) {
+        var _first = (0, _get2["default"])((0, _getPrototypeOf2["default"])(RemixMaxHeap.prototype), "pop", this).call(this);
+
+        this.unshift(_first);
+        var parentIndex = 0;
+
+        while (true) {
+          var leftIndex = 2 * parentIndex + 1;
+          var childIndex = leftIndex;
+          var parent = this[parentIndex]; // 比较左右节点
+
+          if (leftIndex + 1 < length) {
+            if (!this.gt(this[leftIndex], this[leftIndex + 1])) {
+              childIndex += 1;
+            }
+          } // 比较上下节点
+
+
+          if (this.gt(this[childIndex], this[parentIndex])) {
+            this[parentIndex] = this[childIndex];
+            this[childIndex] = parent;
+            parentIndex = childIndex;
+
+            if (parentIndex === length - 1) {
+              break;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
+  }, {
+    key: "peek",
+    value: function peek() {
+      return this[0];
+    }
+  }, {
+    key: "push",
+    value: function push(node) {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(RemixMaxHeap.prototype), "push", this).call(this, node);
+
+      if (this.length > 1) {
+        this.siftUp();
+      }
+
+      console.log(this);
+    }
+  }, {
+    key: "pop",
+    value: function pop() {
+      (0, _get2["default"])((0, _getPrototypeOf2["default"])(RemixMaxHeap.prototype), "shift", this).call(this);
+      this.siftDown();
+    }
+  }, {
+    key: "gt",
+    value: function gt(child, parent) {
+      throw new Error("Mustimplement this method");
+    }
+  }]);
+  return RemixMaxHeap;
+}( /*#__PURE__*/(0, _wrapNativeSuper2["default"])(Array)); // const heap = new RemixMaxHeap();
+// heap.gt = function (child, parent) {
+//   return child > parent;
+// }
+// heap.push(1);
+// heap.push(4);
+// heap.push(3);
+// heap.push(5);
+// console.log(heap);
+// heap.pop();
+// console.log(heap);
+
+
+var _default = RemixMaxHeap;
+exports["default"] = _default;
+module.exports = exports.default;
 
 /***/ }),
 
@@ -2374,7 +2953,7 @@ function Program(App, container) {
 function View(route) {
   var element = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   var view = {
-    id: "remix.".concat(viewId++),
+    id: "rc.".concat(viewId++),
     route: route
   };
 
@@ -2506,37 +3085,79 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.scheduleWork = scheduleWork;
 exports.updateContainer = updateContainer;
+exports.markWorkInProgressReceivedUpdate = markWorkInProgressReceivedUpdate;
 
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _RemixMaxHeap = _interopRequireDefault(__webpack_require__(/*! ./RemixMaxHeap */ "../remix/src/RemixMaxHeap.js"));
+
+var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
 
 var _RemixHook = __webpack_require__(/*! ./RemixHook */ "../remix/src/RemixHook.js");
 
 var _RemixFiber = __webpack_require__(/*! ./RemixFiber */ "../remix/src/RemixFiber.js");
 
-var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixShared.js");
-
-var _RemixHostConfig = __webpack_require__(/*! ./RemixHostConfig */ "../remix/src/RemixHostConfig.js");
+var _RemixViewController = __webpack_require__(/*! ./RemixViewController */ "../remix/src/RemixViewController.js");
 
 var _RemixDOMUpdator = __webpack_require__(/*! ./RemixDOMUpdator */ "../remix/src/RemixDOMUpdator.js");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _RemixHostConfig = __webpack_require__(/*! ./RemixHostConfig */ "../remix/src/RemixHostConfig.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var isArray = Array.isArray; // 全局函数
-
+// 全局函数
 var RemixRootFiber = {
   current: null
 };
+var RemixHeap = new _RemixMaxHeap["default"]();
+var RmeixDeadline = 0;
 var nextUnitOfWork = null;
 var firstEffect = null;
 var nextEffect = null;
+var didReceiveUpdate = false;
 var isRendering = false;
 var isCommiting = false;
-var isWorking = false; // ---- update ----
+var isWorking = false;
+var isArray = Array.isArray;
+
+RemixHeap.gt = function (child, parent) {
+  if (child === _RemixViewController.RemixViewController.current) {
+    return true;
+  } else if (parent === _RemixViewController.RemixViewController.current) {
+    return false;
+  }
+
+  return child.expiration > child.expiration;
+}; // ---- markNextEffect---
+
+
+function pushNextEffect(next) {
+  if (nextEffect === null) {
+    nextEffect = next;
+  } else {
+    nextEffect = nextEffect.nextEffect = next;
+  }
+} // ---- typeOf ----
+
+
+function typeOf(object) {
+  var type = (0, _typeof2["default"])(object);
+
+  if (isArray(object)) {
+    type = 'array';
+  } else if (type === 'object') {
+    type = object === null ? 'null' : type;
+  }
+
+  return type;
+} // --- Priority  ----
+
+
+function createPriorityRootNode(root) {
+  root.expiration = _RemixShared.performance.now() + 30;
+  return root;
+} // ---- update ----
+
 
 function createUpdate() {
   return {
@@ -2577,20 +3198,6 @@ function enqueueUpdate(fiber, update) {
     updateUpdate.firstUpdate = update;
     update.next = firstUpdate;
   }
-}
-
-function processUpdateQueue(workInProgress, updateQueue, pendingProps) {
-  if (updateQueue !== null) {
-    var update = updateQueue.firstUpdate;
-    var state = updateQueue.baseState;
-
-    while (update) {
-      state = _objectSpread({}, update.state);
-      update = update.next;
-    }
-
-    workInProgress.pendingState;
-  }
 } // ---- schedule ----
 
 
@@ -2604,13 +3211,23 @@ function scheduleRootUpdate(current, element, callback) {
     update.callback = callback;
   }
 
-  RemixRootFiber.current = current;
   enqueueUpdate(current, update);
   scheduleWork(current, _RemixShared.SYNC);
+} // 获取优先级
+
+
+function findTheHighestPriorityRoot(root) {
+  if (typeof root.expiration === 'undefined') {
+    root = createPriorityRootNode(root);
+  }
+
+  RemixHeap.push(root);
+  return RemixHeap.peek();
 }
 
 function scheduleWork(current, sync) {
   var fiber = current;
+  current.workTag = _RemixShared.WORKING;
 
   while (fiber) {
     if (fiber.tag === _RemixShared.HOST_ROOT) {
@@ -2621,7 +3238,8 @@ function scheduleWork(current, sync) {
   }
 
   var internalRoot = fiber.stateNode.__internalRoot;
-  requestWork(internalRoot, sync);
+  var root = findTheHighestPriorityRoot(internalRoot);
+  requestWork(root, sync);
 }
 
 function flushWork() {} // ---- update --- 
@@ -2629,12 +3247,24 @@ function flushWork() {} // ---- update ---
 
 
 function requestWork(root, sync) {
-  if (nextUnitOfWork === null) {
-    nextUnitOfWork = (0, _RemixFiber.createWorkInProgress)(root.current, null);
-    performWork(root, sync);
+  if (!isCommiting) {
+    if (nextUnitOfWork === null) {
+      nextUnitOfWork = (0, _RemixFiber.createWorkInProgress)(root.current, null);
+      performWork(root, sync);
 
-    if (nextUnitOfWork !== null) {
-      flushWork();
+      if (nextUnitOfWork !== null) {
+        flushWork();
+      } else {
+        if (RemixHeap.length > 0) {
+          RemixHeap.pop();
+
+          var _root = RemixHeap.peek();
+
+          if (_root) {
+            requestWork(_root);
+          }
+        }
+      }
     }
   }
 }
@@ -2670,9 +3300,20 @@ function performUnitOfWork(workInProgress) {
 }
 
 function beginWork(current, workInProgress) {
-  // 无须更新
-  // todo
-  // 
+  if (current !== null && workInProgress.workTag !== _RemixShared.WORKING) {
+    var props = current.memoizedProps;
+    var pendingProps = workInProgress.pendingProps;
+
+    if (workInProgress.type !== current.type || props !== pendingProps) {
+      didReceiveUpdate = true;
+    } else {
+      didReceiveUpdate = false;
+      return bailoutOnAlreadyFinishedWork(current, workInProgress);
+    }
+  }
+
+  workInProgress.workTag = _RemixShared.NO_WORK;
+
   switch (workInProgress.tag) {
     case _RemixShared.HOST_ROOT:
       {
@@ -2697,6 +3338,11 @@ function beginWork(current, workInProgress) {
       {
         return null;
       }
+
+    case _RemixShared.FRAGMENT:
+      {
+        return updateFragment(current, workInProgress);
+      }
   }
 } // ---- complete work ----
 
@@ -2708,16 +3354,14 @@ function completeUnitOfWork(workInProgress) {
         returnFiber = _workInProgress["return"],
         siblingFiber = _workInProgress.sibling,
         effectTag = _workInProgress.effectTag;
-    completeWork(current, workInProgress);
-
-    if (effectTag > _RemixShared.PERFORMED) {
-      if (firstEffect === null) {
-        firstEffect = nextEffect = workInProgress;
-      } else {
-        workInProgress.nextEffect = firstEffect;
-        firstEffect = workInProgress;
-      }
-    }
+    completeWork(current, workInProgress); // if (effectTag > PERFORMED) {
+    //   if (firstEffect === null) {
+    //     firstEffect = nextEffect = workInProgress;
+    //   } else {
+    //     workInProgress.nextEffect = firstEffect;
+    //     firstEffect = workInProgress;
+    //   }
+    // }
 
     if (returnFiber !== null) {
       siblingFiber = workInProgress.sibling;
@@ -2744,20 +3388,21 @@ function completeWork(current, workInProgress) {
 
     case _RemixShared.HOST_COMPONENT:
       {
-        var type = workInProgress.type;
+        var _type = workInProgress.type;
         var _instance = workInProgress.stateNode;
 
         if (current !== null && _instance !== null) {
-          var props = workInProgress.memoizedProps;
+          var props = current.memoizedProps;
 
           if (props !== pendingProps) {
             var _instance2 = workInProgress.stateNode;
-            debugger;
+            (0, _RemixHostConfig.updateInstance)(_instance2, pendingProps, workInProgress);
+            (0, _RemixHostConfig.setDOMProperties)(_type, _instance2, pendingProps);
           }
         } else {
-          var _instance3 = (0, _RemixHostConfig.createInstance)(type, pendingProps, workInProgress);
+          var _instance3 = (0, _RemixHostConfig.createInstance)(_type, pendingProps, workInProgress);
 
-          (0, _RemixHostConfig.setDOMProperties)(type, _instance3, pendingProps);
+          (0, _RemixHostConfig.setDOMProperties)(_type, _instance3, pendingProps);
           workInProgress.stateNode = _instance3;
         }
 
@@ -2769,7 +3414,7 @@ function completeWork(current, workInProgress) {
         var _instance4 = workInProgress.stateNode;
 
         if (current !== null && _instance4 !== null) {
-          debugger;
+          (0, _RemixHostConfig.updateTextInstance)(_instance4, pendingProps);
         } else {
           var _instance5 = (0, _RemixHostConfig.createTextInstance)(pendingProps);
 
@@ -2780,23 +3425,25 @@ function completeWork(current, workInProgress) {
 
   return null;
 } // ---- update ----
-// ---- updateHostComponent ----
+// ---- updateFragment ----
+
+
+function updateFragment(current, workInProgress) {
+  var children = workInProgress.pendingProps;
+  reconcileChildren(current, workInProgress, workInProgress.child, children);
+  return workInProgress.child;
+} // ---- updateHostComponent ----
 
 
 function updateHostComponent(current, workInProgress) {
   var pendingProps = workInProgress.pendingProps;
   var children = pendingProps.children;
-  var typeOfChildren = (0, _typeof2["default"])(children);
 
-  if (typeOfChildren === 'string' || typeOfChildren === 'number') {
+  if (typeof children === 'string' || typeof children === 'number') {
     children = null;
   }
 
-  if (children === null) {
-    return null;
-  }
-
-  workInProgress.child = reconcileChildren(current, workInProgress, workInProgress.child, children);
+  reconcileChildren(current, workInProgress, workInProgress.child, children);
   return workInProgress.child;
 } // ----> updateFunctionComponent
 
@@ -2804,41 +3451,51 @@ function updateHostComponent(current, workInProgress) {
 function updateFunctionComponent(current, workInProgress, Component, nextProps) {
   var children = (0, _RemixHook.renderWithHooks)(current, workInProgress, Component, nextProps);
 
-  if (current !== null && !didReceiveUpdate) {} else {
+  if (current !== null && !didReceiveUpdate) {
+    return bailoutHooks(current, workInProgress);
+  } else {
     workInProgress.effectTag |= _RemixShared.PERFORMED;
-    workInProgress.child = reconcileChildren(current, workInProgress, workInProgress.child, children);
+    reconcileChildren(current, workInProgress, workInProgress.child, children);
   }
 
   return workInProgress.child;
 }
 
-function bailoutHooks() {} // ---- updateHostROot ----
+function bailoutHooks(current, workInProgress) {
+  workInProgress.updateQueue = current.updateQueue;
+  workInProgress.effectTag &= ~(_RemixShared.PASSIVE | _RemixShared.UPDATE);
+  return workInProgress.child;
+} // ---- updateHostROot ----
 
 
 function updateHostRoot(current, workInProgress) {
   var updateQueue = workInProgress.updateQueue;
   var memoizedState = workInProgress.memoizedState;
   var children = memoizedState !== null ? memoizedState.element : null;
-  var update = updateQueue.firstUpdate;
-  var baseState = update.payload;
 
-  if (typeof update.callback === 'function') {
-    workInProgress.effectTag |= _RemixShared.CALLBACK;
-    update.nextEffect = null;
+  if (updateQueue.lastUpdate !== null) {
+    var update = updateQueue.firstUpdate;
+    var baseState = update.payload;
 
-    if (updatQueue.lastEffect === null) {
-      updatQueue.firstEffect = updatQueue.lastEffect = update;
-    } else {
-      updatQueue.lastEffect.nextEffect = update;
-      updatQueue.lastEffect = update;
+    if (typeof update.callback === 'function') {
+      workInProgress.effectTag |= _RemixShared.CALLBACK;
+      update.nextEffect = null;
+
+      if (updatQueue.lastEffect === null) {
+        updatQueue.firstEffect = updatQueue.lastEffect = update;
+      } else {
+        updatQueue.lastEffect.nextEffect = update;
+        updatQueue.lastEffect = update;
+      }
     }
+
+    update.next = null;
+    updateQueue.firstUpdate = null;
+    updateQueue.lastUpdate = null;
+    updateQueue.baseState = baseState;
+    workInProgress.memoizedState = baseState;
   }
 
-  update.next = null;
-  updateQueue.firstUpdate = null;
-  updateQueue.lastUpdate = null;
-  updateQueue.baseState = baseState;
-  workInProgress.memoizedState = baseState;
   var nextState = workInProgress.memoizedState;
   var nextChildren = nextState.element;
 
@@ -2846,88 +3503,199 @@ function updateHostRoot(current, workInProgress) {
     return bailoutOnAlreadyFinishedWork(current, workInProgress);
   }
 
-  workInProgress.child = reconcileChildren(current, workInProgress, workInProgress.child, nextChildren);
+  reconcileChildren(current, workInProgress, workInProgress.child, nextChildren);
   return workInProgress.child;
 } // ---- reconicle ----
 
 
 function reconcileChildren(current, workInProgress, currentFiber, children) {
-  var type = (0, _typeof2["default"])(children);
   var shouldTrackSideEffects = current !== null;
   var returnFiber = workInProgress;
+  var type = typeOf(children);
 
-  if (type === 'object' && children !== null) {
-    if (children.$$typeof === _RemixShared.REACT_ELEMENT_TYPE) {
-      var childFiber = reconcileSingleElement(returnFiber, currentFiber, children, shouldTrackSideEffects);
-      return placeSingleChild(childFiber, shouldTrackSideEffects);
-    } else if (children.$$typeof === _RemixShared.REACT_FRAGMENT_TYPE) {
-      var _childFiber = reconcileSinglePortal(returnFiber, currentFiber, children, shouldTrackSideEffects);
+  switch (type) {
+    case 'object':
+      {
+        var $$typeof = children.$$typeof;
 
-      return placeSingleChild(_childFiber, shouldTrackSideEffects);
-    }
+        if ($$typeof === _RemixShared.REACT_ELEMENT_TYPE) {
+          var childFiber = placeSingleChild(reconcileSingleElement(returnFiber, currentFiber, children, shouldTrackSideEffects));
+          childFiber["return"] = returnFiber;
+          returnFiber.child = childFiber;
+          return childFiber;
+        } else {
+          return;
+        }
+      }
+
+    case 'number':
+    case 'string':
+      {
+        var _childFiber = (0, _RemixFiber.createFiberFromText)(children);
+
+        _childFiber["return"] = returnFiber;
+        returnFiber.child = _childFiber;
+        return placeSingleChild(_childFiber, shouldTrackSideEffects);
+      }
+
+    case 'array':
+      {
+        var _childFiber2 = reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrackSideEffects);
+
+        _childFiber2["return"] = returnFiber;
+        returnFiber.child = _childFiber2;
+        return _childFiber2;
+      }
+
+    default:
+      return null;
   }
-
-  if (type === 'string' || type === 'number') {
-    var _childFiber2 = (0, _RemixFiber.createFiberFromText)(children);
-
-    _childFiber2["return"] = returnFiber;
-    return placeSingleChild(_childFiber2, shouldTrackSideEffects);
-  } else if (isArray(children)) {
-    return reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrackSideEffects);
-  }
-
-  return null;
 }
 
-function bailoutOnAlreadyFinishedWork() {}
+function bailoutOnAlreadyFinishedWork(current, workInProgress) {
+  cloneChildFibers(current, workInProgress);
+  return workInProgress.child;
+}
+
+function cloneChildFibers(current, workInProgress) {
+  if (workInProgress.child === null) {
+    return null;
+  }
+
+  var child = workInProgress.child;
+  var newChild = (0, _RemixFiber.createWorkInProgress)(child, child.pendingProps);
+  workInProgress.child = newChild;
+  newChild["return"] = workInProgress;
+
+  while (child.sibling !== null) {
+    child = child.sibling;
+    newChild = newChild.sibling = (0, _RemixFiber.createWorkInProgress)(child, child.pendingProps);
+    newChild["return"] = workInProgress;
+  }
+
+  newChild.sibling = null;
+}
+
+function reconcileSinglePortal() {}
 
 function reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrackSideEffects) {
-  if (children) {
-    var index = 0;
-    var firstChild = currentFiber;
-    var length = children.length;
+  var prevFiber = null;
+  var childIndex = 0;
+  var length = children.length;
 
-    if (shouldTrackSideEffects) {
-      var _firstChild = currentFiber;
-      var child = firstEffect;
-    }
+  if (shouldTrackSideEffects) {
+    diff: do {
+      var element = children[childIndex];
 
-    var prevFiber = null;
+      var _type2 = typeOf(element);
 
-    for (; index < length; index++) {
-      var _child = children[index];
-      var fiber = void 0;
-      var type = (0, _typeof2["default"])(_child);
+      var childFiber = null;
+      var _currentFiber = currentFiber,
+          memoizedProps = _currentFiber.memoizedProps,
+          tag = _currentFiber.tag;
 
-      if (_child !== null) {
-        if (isArray(_child)) {
-          fiber = (0, _RemixFiber.createFiberFromFragment)(_child);
-        } else if (type === 'object' && _child !== null) {
-          var $$typeof = _child.$$typeof;
+      if (currentFiber.index === childIndex) {
+        switch (_type2) {
+          case 'array':
+            {
+              if (memoizedProps.length !== element.length) {
+                break diff;
+              }
 
-          if ($$typeof === _RemixShared.REACT_ELEMENT_TYPE) {
-            fiber = (0, _RemixFiber.createFiberFromElement)(_child);
-          } else if ($$typeof === _RemixShared.REACT_FRAGMENT_TYPE) {
-            fiber = (0, _RemixFiber.createFiberFromFragment)(_child);
-          }
-        } else if (type === 'string' || type === 'number') {
-          fiber = (0, _RemixFiber.createFiberFromText)('' + _child);
+              childFiber = (0, _RemixFiber.useFiber)(currentFiber, element);
+              break;
+            }
+
+          case 'object':
+            {
+              var $$typeof = element.$$typeof;
+
+              if ($$typeof === _RemixShared.REACT_ELEMENT_TYPE) {
+                if (currentFiber.key !== element.key || currentFiber.elementType !== element.type) {
+                  break diff;
+                }
+
+                childFiber = (0, _RemixFiber.useFiber)(currentFiber, element.props);
+              } else {}
+
+              break;
+            }
+
+          case 'string':
+          case 'number':
+            {
+              if (tag !== _RemixShared.HOST_TEXT) {
+                break diff;
+              }
+
+              childFiber = (0, _RemixFiber.useFiber)(currentFiber, element);
+              break;
+            }
+
+          default:
+            break;
         }
-
-        fiber[_RemixShared.INTERNAL_FIBER_KEY] = ".".concat(index).concat(_child.key === null ? '' : "[".concat(_child.key, "]"));
-
-        if (prevFiber === null) {
-          returnFiber.child = fiber;
-        } else {
-          prevFiber.sibling = fiber;
-        }
-
-        prevFiber = fiber;
-        fiber["return"] = returnFiber;
-        fiber.effectTag |= _RemixShared.PLACEMENT;
+      } else {
+        break;
       }
+
+      currentFiber = currentFiber.sibling;
+      childIndex++;
+
+      if (childFiber !== null) {
+        childFiber.index = childIndex;
+        childFiber["return"] = returnFiber;
+        childFiber.effectTag |= _RemixShared.PLACEMENT;
+        prevFiber !== null ? prevFiber.sibling = childFiber : returnFiber.child = childFiber;
+        prevFiber = childFiber;
+      }
+    } while (childIndex < length && currentFiber !== null);
+
+    if (currentFiber.sibling !== null) {
+      deleteRemainingChildren(returnFiber, currentFiber, shouldTrackSideEffects);
     }
   }
+
+  do {
+    var _element = children[childIndex];
+
+    var _type3 = typeOf(_element);
+
+    var _childFiber3 = null;
+
+    switch (_type3) {
+      case 'array':
+        {
+          _childFiber3 = (0, _RemixFiber.createFiberFromFragment)(_element);
+          break;
+        }
+
+      case 'object':
+        {
+          var _$$typeof = _element.$$typeof;
+          _childFiber3 = _$$typeof === _RemixShared.REACT_ELEMENT_TYPE ? (0, _RemixFiber.createFiberFromElement)(_element) : (0, _RemixFiber.createFiberFromFragment)(_element);
+          break;
+        }
+
+      case 'number':
+      case 'string':
+        {
+          _childFiber3 = (0, _RemixFiber.createFiberFromText)('' + _element);
+          break;
+        }
+    }
+
+    if (_childFiber3 !== null) {
+      _childFiber3.index = childIndex;
+      _childFiber3["return"] = returnFiber;
+      _childFiber3.effectTag |= _RemixShared.PLACEMENT;
+      prevFiber !== null ? prevFiber.sibling = _childFiber3 : returnFiber.child = _childFiber3;
+      prevFiber = _childFiber3;
+    }
+
+    childIndex++;
+  } while (childIndex < length); // returnFiber[INTERNAL_CHILDREN] = children;
+
 
   return returnFiber.child;
 }
@@ -2945,19 +3713,28 @@ function reconcileSingleElement(returnFiber, currentFiber, element, shouldTrackS
   var elementType = element.type;
   var child = currentFiber;
 
-  while (child) {
+  while (child !== null) {
     if (child.key === key) {
-      if (child.elementType !== elementType) {
-        if (shouldTrackSideEffects) {
-          deleteRemainingChildren(returnFiber, child);
+      if (child.tag === _RemixShared.FRAGMENT) {
+        if (element.type === _RemixShared.REACT_FRAGMENT_TYPE) {
+          deleteRemainingChildren(returnFiber, child.sibling);
+          var fiber = (0, _RemixFiber.useFiber)(child, element.props.children);
+          fiber["return"] = returnFiber;
+          return fiber;
         }
+      } else {
+        if (child.elementType === element.type) {
+          var _fiber = (0, _RemixFiber.useFiber)(child, element.props);
 
-        break;
+          _fiber["return"] = returnFiber;
+          return _fiber;
+        }
       }
+
+      deleteRemainingChildren(returnFiber, child, shouldTrackSideEffects);
+      break;
     } else {
-      if (shouldTrackSideEffects) {
-        deleteChild(returnFiber, child);
-      }
+      deleteChild(child, shouldTrackSideEffects);
     }
 
     child = child.sibling;
@@ -2973,18 +3750,19 @@ function reconcileSingleElement(returnFiber, currentFiber, element, shouldTrackS
   return newFiber;
 }
 
-function deleteRemainingChildren(returnFiber, currentFiber, deleteRemainingChildren) {
+function deleteRemainingChildren(returnFiber, currentFiber, shouldTrackSideEffects) {
   var child = currentFiber;
 
   while (child) {
-    deleteChild(returnFiber, child);
+    deleteChild(returnFiber, child, shouldTrackSideEffects);
     child = child.sibling;
   }
 }
 
-function deleteChild(returnFiber, child) {
-  if (child.current) {
+function deleteChild(child, shouldTrackSideEffects) {
+  if (shouldTrackSideEffects) {
     child.effectTag |= _RemixShared.DELETION;
+    nextEffect = nextEffect.nextEffect = child;
   }
 } // ---- commit work ----
 
@@ -3016,6 +3794,7 @@ function commitBeforeMutationLifeCycles(current, finishedWork) {}
 
 function commitMutationEffects() {
   var effectTag = nextEffect.effectTag;
+  debugger;
 
   if (effectTag & _RemixShared.CONTENT_RESET) {}
 
@@ -3047,6 +3826,7 @@ function commitMutationEffects() {
 
     case _RemixShared.DELETION:
       {
+        debugger;
         commitDeletion(nextEffect);
       }
   }
@@ -3170,6 +3950,10 @@ function updateContainer(element, container, callback) {
   return scheduleRootUpdate(current, element, callback);
 }
 
+function markWorkInProgressReceivedUpdate() {
+  didReceiveUpdate = true;
+}
+
 /***/ }),
 
 /***/ "../remix/src/RemixShared.js":
@@ -3187,12 +3971,15 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.type = type;
 exports.shallowEqual = shallowEqual;
 exports.resolveDefaultProps = resolveDefaultProps;
 exports.flatten = flatten;
-exports.FLOAT = exports.CHILDREN = exports.STYLE = exports.REACT_LAZY_TYPE = exports.REACT_MEMO_TYPE = exports.REACT_SUSPENSE_TYPE = exports.REACT_FRAGMENT_TYPE = exports.REACT_PORTAL_TYPE = exports.REACT_ELEMENT_TYPE = exports.SYNC = exports.ASYNC = exports.UPDATE_STATE = exports.EDITOR = exports.TEXTAREA = exports.VIDEO = exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = exports.INCOMPLETE = exports.PASSIVE = exports.SNAPSHOT = exports.REF = exports.ERROR = exports.CALLBACK = exports.CONTENT_RESET = exports.DELETION = exports.PLACEMENT_AND_UPDATE = exports.UPDATE = exports.PLACEMENT = exports.PERFORMED = exports.NO_EFFECT = exports.SIDE_EFFECT = exports.OBJECT_COMPONENT = exports.FRAGMENT = exports.HOST_TEXT = exports.HOST_COMPONENT = exports.HOST_PORTAL = exports.HOST_ROOT = exports.INDETERMINATE_COMPONENT = exports.CLASS_COMPONENT = exports.FUNCTION_COMPONENT = exports.INTERNAL_FIBER_KEY = exports.INTERNAL_ROOT_FIBER_KEY = exports.INTERNAL_RELATIVE_KEY = exports.INTERNAL_EVENT_HANDLERS_KEY = exports.INTERNAL_INSTANCE_KEY = exports.nextTick = exports.performance = void 0;
+exports.NO_WORK = exports.WORKING = exports.FLOAT = exports.CHILDREN = exports.STYLE = exports.REACT_LAZY_TYPE = exports.REACT_MEMO_TYPE = exports.REACT_SUSPENSE_TYPE = exports.REACT_FRAGMENT_TYPE = exports.REACT_PORTAL_TYPE = exports.REACT_ELEMENT_TYPE = exports.SYNC = exports.ASYNC = exports.UPDATE_STATE = exports.EDITOR = exports.TEXTAREA = exports.VIDEO = exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = exports.INCOMPLETE = exports.PASSIVE = exports.SNAPSHOT = exports.REF = exports.ERROR = exports.CALLBACK = exports.CONTENT_RESET = exports.DELETION = exports.PLACEMENT_AND_UPDATE = exports.UPDATE = exports.PLACEMENT = exports.PERFORMED = exports.NO_EFFECT = exports.SIDE_EFFECT = exports.OBJECT_COMPONENT = exports.FRAGMENT = exports.HOST_TEXT = exports.HOST_COMPONENT = exports.HOST_PORTAL = exports.HOST_ROOT = exports.INDETERMINATE_COMPONENT = exports.CLASS_COMPONENT = exports.FUNCTION_COMPONENT = exports.INTERNAL_CHILDREN = exports.INTERNAL_ROOT_FIBER_KEY = exports.INTERNAL_RELATIVE_KEY = exports.INTERNAL_EVENT_HANDLERS_KEY = exports.INTERNAL_INSTANCE_KEY = exports.nextTick = exports.performance = void 0;
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -3213,6 +4000,22 @@ var performance = typeof performance === 'undefined' ? {
   }
 } : performance;
 exports.performance = performance;
+
+function type(object, value) {
+  var type = (0, _typeof2["default"])(object);
+
+  if (isArray(object)) {
+    type = 'array';
+  } else if (type === 'object') {
+    type = object === null ? 'null' : 'object';
+  }
+
+  if (value) {
+    return type === value;
+  }
+
+  return type;
+}
 
 function shallowEqual(objectA, objectB) {
   if (objectA === null || objectB === null) {
@@ -3296,9 +4099,9 @@ var INTERNAL_INSTANCE_KEY = "__reactInternalInstance$".concat(randomKey),
     INTERNAL_EVENT_HANDLERS_KEY = "__reactEventHandlers".concat(randomKey),
     INTERNAL_RELATIVE_KEY = "__reactInternalRelative$".concat(randomKey),
     INTERNAL_ROOT_FIBER_KEY = "__reactInternalRootFiber$".concat(randomKey),
-    INTERNAL_FIBER_KEY = "__reactInternalFiberKey"; // ---- workTag ---
+    INTERNAL_CHILDREN = "__children"; // ---- workTag ---
 
-exports.INTERNAL_FIBER_KEY = INTERNAL_FIBER_KEY;
+exports.INTERNAL_CHILDREN = INTERNAL_CHILDREN;
 exports.INTERNAL_ROOT_FIBER_KEY = INTERNAL_ROOT_FIBER_KEY;
 exports.INTERNAL_RELATIVE_KEY = INTERNAL_RELATIVE_KEY;
 exports.INTERNAL_EVENT_HANDLERS_KEY = INTERNAL_EVENT_HANDLERS_KEY;
@@ -3405,6 +4208,10 @@ var STYLE = 'style',
 exports.FLOAT = FLOAT;
 exports.CHILDREN = CHILDREN;
 exports.STYLE = STYLE;
+var WORKING = 1,
+    NO_WORK = 2;
+exports.NO_WORK = NO_WORK;
+exports.WORKING = WORKING;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../remix-cli/node_modules/timers-browserify/main.js */ "../remix-cli/node_modules/timers-browserify/main.js").setImmediate))
 
 /***/ }),
@@ -4346,6 +5153,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.ViewControllersManager = ViewControllersManager;
+exports.TAG_NAME = exports.RemixViewController = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../remix/node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
@@ -4361,16 +5169,21 @@ var _RemixShared = __webpack_require__(/*! ./RemixShared */ "../remix/src/RemixS
 
 var _RemixDocument = __webpack_require__(/*! ./RemixDocument */ "../remix/src/RemixDocument.js");
 
+var _RemixEvent = __webpack_require__(/*! ./RemixEvent */ "../remix/src/RemixEvent.js");
+
 var Subscriber = Support.Subscriber;
-
-var views = _RemixDocument.document.createElement('views');
-
-_RemixDocument.document.body.appendChild(views);
+var RemixViewController = new Map();
+exports.RemixViewController = RemixViewController;
+var TAG_NAME = 'ViewController';
+exports.TAG_NAME = TAG_NAME;
 
 function ViewControllersManager(context, instance) {
-  var viewControllers = [];
+  var window = _RemixDocument.document.createElement('Window');
+
   var views = {};
-  var viewController = null;
+
+  _RemixDocument.document.body.appendChild(window);
+
   context.router.routes.forEach(function (route) {
     views[route.path] = route;
   });
@@ -4378,7 +5191,7 @@ function ViewControllersManager(context, instance) {
     var id = view.id,
         query = view.query,
         route = view.route;
-    var controller = viewControllers[id];
+    var controller = window.getElementById(id);
 
     if (!controller) {
       var Class = views[route];
@@ -4386,7 +5199,8 @@ function ViewControllersManager(context, instance) {
       if (view) {
         controller = new ViewController(id, route, query);
         controller.Class = Class.component;
-        viewControllers[id] = controller;
+        window.appendChild(controller.view);
+        RemixViewController.set(id, controller);
       } else {
         throw new Error("\u672A\u53D1\u73B0\u8DEF\u7531\u4E3A ".concat(route, " ViewController"));
       }
@@ -4401,12 +5215,13 @@ function ViewControllersManager(context, instance) {
   });
   Subscriber.on(Support.SHOW, function (_ref) {
     var id = _ref.id;
-    viewController = viewControllers[id];
+    RemixViewController.current = RemixViewController.get(id);
   });
-  Subscriber.on(Support.EVENT, function (type, uuid, parent, event, sync) {
+  Subscriber.on(Support.EVENT, function (type, event) {
     var target = event.target;
-    var view = viewController.view.getElementById(target.id);
-    scheduleWork({
+    var controller = RemixViewController.current;
+    var view = controller.view.getElementById(target.id);
+    (0, _RemixEvent.scheduleWork)({
       type: type,
       view: view,
       event: event
@@ -4420,11 +5235,10 @@ var ViewController = /*#__PURE__*/function () {
     this.id = id;
     this.route = route;
     this.query = query;
-    this.view = _RemixDocument.document.createElement('view-controller');
+    this.view = _RemixDocument.document.createElement(TAG_NAME);
     this.view[_RemixShared.INTERNAL_RELATIVE_KEY] = id;
     this.view.setAttribute('route', route);
     this.view.setAttribute('query', query);
-    views.appendChild(this.view);
   }
 
   (0, _createClass2["default"])(ViewController, [{

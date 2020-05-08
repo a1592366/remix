@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-import Markdown from 'react-markdown';
+import React, { useState, useMemo } from 'react';
 
 import './index.css';
 
-const md = `
-测试 react-markdown 渲染
-
-![图片](https://upload-images.jianshu.io/upload_images/703764-605e3cc2ecb664f6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 好像可以哦，不错不错
-`
 
 export default function Docs () {
-  
+  const [name, setName] = useState('Richelle');
+  const nickname = useMemo(() => 'aniwei', []);
+
+  const onClick = () => {
+    setName(name === 'Richelle' ? 'Aniwei' : 'Richelle');
+  }
+
   return (
-    <view className="docs">
-      <Markdown source={md} skipHtml={false} />
+    <view className="docs" onClick={onClick}>
+      {name}
+      {null}
+      {nickname}
+      <>
+        <view>1</view>
+        <view>2</view>
+      </>
     </view>
   );
 }
