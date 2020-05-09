@@ -2,11 +2,9 @@ import RemixMaxHeap from './RemixMaxHeap';
 import { performance, nextTick } from './RemixShared';
 import { renderWithHooks } from './RemixHook';
 import { createWorkInProgress, useFiber } from './RemixFiber';
-import { shallowEqual } from './RemixShared';
 import { RemixViewController } from './RemixViewController';
 import { DOMUpdateQueue } from './RemixDOMUpdator';
 import { SYNC } from './RemixShared';
-import { INTERNAL_FIBER_KEY } from './RemixShared';
 import { 
   createFiberFromElement, 
   createFiberFromFragment, 
@@ -55,10 +53,6 @@ import {
   NO_WORK
 } from './RemixShared';
 
-import {
-  type
-} from './RemixShared';
-
 // 全局函数
 let RemixRootFiber = { current: null };
 let RemixHeap = new RemixMaxHeap();
@@ -82,17 +76,6 @@ RemixHeap.gt = function (child, parent) {
 
   return child.expiration > child.expiration;
 }
-
-// ---- markNextEffect---
-function pushNextEffect (next) {
-  if (nextEffect === null) {
-    nextEffect = next;
-  } else {
-    nextEffect = nextEffect.nextEffect = next;
-  }
-}
-
-
 
 // ---- typeOf ----
 function typeOf (object) {
@@ -580,7 +563,7 @@ function reconcileChildren (
 
         return childFiber;
       } else {
-        return;
+        debugger;
       }
     }
 
@@ -766,6 +749,8 @@ function reconcileChildrenArray (
         prevFiber.sibling = childFiber : 
         returnFiber.child = childFiber;
 
+      placeSingleChild(childFiber, shouldTrackSideEffects);
+
       prevFiber = childFiber;
     }
     
@@ -780,7 +765,11 @@ function reconcileChildrenArray (
 function placeSingleChild (fiber, shouldTrackSideEffects) {
   if (!shouldTrackSideEffects && fiber.alternate === null) {
     fiber.effectTag |= PLACEMENT;
+
+    nextEffect = nextEffect === null ?
+      fiber : nextEffect.nextEffect = fiber;
   }
+
   return fiber;
 }
 
@@ -841,12 +830,55 @@ function deleteRemainingChildren(
   }
 }
 
-function deleteChild (child, shouldTrackSideEffects) {
+function deleteChild (
+  child, 
+  shouldTrackSideEffects
+) {
   if (shouldTrackSideEffects) {
-    child.effectTag |= DELETION;
+    child.effectTag = DELETION;
 
-    nextEffect = nextEffect.nextEffect = child;
+    nextEffect = nextEffect === null ?
+      fiber : nextEffect.nextEffect = fiber;
   }
+}
+
+function createChild (
+  returnFiber,
+  child,
+) {
+  const type = typeOf(child);
+
+  switch (type) {
+    case 'string':
+    case 'number': {
+      const fiber = createFiberFromText('' + child);
+      fiber.return = returnFiber;
+      return fiber;
+    }
+
+    case 'object': {
+      switch (child.$$typeof) {
+        case REACT_ELEMENT_TYPE: {
+          const fiber = createFiberFromElement(child);
+          fiber.return = returnFiber;
+          return fiber;
+        }
+        case REACT_PORTAL_TYPE: {
+          const fiber = createFiberFromPortal(child);
+          fiber.return = returnFiber;
+          return fiber;
+        }
+      }
+    }
+
+    case 'array': {
+      const fiber = createFiberFromFragment(child, key);
+      fiber.return = returnFiber;
+      return fiber;
+    }
+  }
+
+  return null;
 }
 
 // ---- commit work ----
@@ -880,11 +912,6 @@ function commitRoot (root) {
 
   DOMUpdateQueue(finishedWork);
 }
-
-function commitBeforeMutationLifeCycles (
-  current,
-  finishedWork
-) {}
 
 function commitMutationEffects () {
   const effectTag = nextEffect.effectTag;

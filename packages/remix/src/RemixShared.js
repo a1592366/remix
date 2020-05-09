@@ -12,23 +12,6 @@ export const performance = typeof performance === 'undefined' ?
     }
   } : performance;
 
-export function type (object, value) {
-  let type = typeof object;
-
-  if (isArray(object)) {
-    type = 'array';
-  } else if (type === 'object') {
-    type = object === null ?
-      'null' : 'object';
-  }
-
-  if (value) {
-    return type === value;
-  }
-
-  return type;
-}
-
 export function shallowEqual (
   objectA, 
   objectB

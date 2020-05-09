@@ -3128,16 +3128,7 @@ RemixHeap.gt = function (child, parent) {
   }
 
   return child.expiration > child.expiration;
-}; // ---- markNextEffect---
-
-
-function pushNextEffect(next) {
-  if (nextEffect === null) {
-    nextEffect = next;
-  } else {
-    nextEffect = nextEffect.nextEffect = next;
-  }
-} // ---- typeOf ----
+}; // ---- typeOf ----
 
 
 function typeOf(object) {
@@ -3388,7 +3379,7 @@ function completeWork(current, workInProgress) {
 
     case _RemixShared.HOST_COMPONENT:
       {
-        var _type = workInProgress.type;
+        var type = workInProgress.type;
         var _instance = workInProgress.stateNode;
 
         if (current !== null && _instance !== null) {
@@ -3397,12 +3388,12 @@ function completeWork(current, workInProgress) {
           if (props !== pendingProps) {
             var _instance2 = workInProgress.stateNode;
             (0, _RemixHostConfig.updateInstance)(_instance2, pendingProps, workInProgress);
-            (0, _RemixHostConfig.setDOMProperties)(_type, _instance2, pendingProps);
+            (0, _RemixHostConfig.setDOMProperties)(type, _instance2, pendingProps);
           }
         } else {
-          var _instance3 = (0, _RemixHostConfig.createInstance)(_type, pendingProps, workInProgress);
+          var _instance3 = (0, _RemixHostConfig.createInstance)(type, pendingProps, workInProgress);
 
-          (0, _RemixHostConfig.setDOMProperties)(_type, _instance3, pendingProps);
+          (0, _RemixHostConfig.setDOMProperties)(type, _instance3, pendingProps);
           workInProgress.stateNode = _instance3;
         }
 
@@ -3524,7 +3515,7 @@ function reconcileChildren(current, workInProgress, currentFiber, children) {
           returnFiber.child = childFiber;
           return childFiber;
         } else {
-          return;
+          debugger;
         }
       }
 
@@ -3586,16 +3577,14 @@ function reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrack
   if (shouldTrackSideEffects) {
     diff: do {
       var element = children[childIndex];
-
-      var _type2 = typeOf(element);
-
+      var type = typeOf(element);
       var childFiber = null;
       var _currentFiber = currentFiber,
           memoizedProps = _currentFiber.memoizedProps,
           tag = _currentFiber.tag;
 
       if (currentFiber.index === childIndex) {
-        switch (_type2) {
+        switch (type) {
           case 'array':
             {
               if (memoizedProps.length !== element.length) {
@@ -3659,11 +3648,11 @@ function reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrack
   do {
     var _element = children[childIndex];
 
-    var _type3 = typeOf(_element);
+    var _type = typeOf(_element);
 
     var _childFiber3 = null;
 
-    switch (_type3) {
+    switch (_type) {
       case 'array':
         {
           _childFiber3 = (0, _RemixFiber.createFiberFromFragment)(_element);
@@ -3690,6 +3679,7 @@ function reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrack
       _childFiber3["return"] = returnFiber;
       _childFiber3.effectTag |= _RemixShared.PLACEMENT;
       prevFiber !== null ? prevFiber.sibling = _childFiber3 : returnFiber.child = _childFiber3;
+      placeSingleChild(_childFiber3, shouldTrackSideEffects);
       prevFiber = _childFiber3;
     }
 
@@ -3703,6 +3693,7 @@ function reconcileChildrenArray(returnFiber, currentFiber, children, shouldTrack
 function placeSingleChild(fiber, shouldTrackSideEffects) {
   if (!shouldTrackSideEffects && fiber.alternate === null) {
     fiber.effectTag |= _RemixShared.PLACEMENT;
+    nextEffect = nextEffect === null ? fiber : nextEffect.nextEffect = fiber;
   }
 
   return fiber;
@@ -3718,16 +3709,18 @@ function reconcileSingleElement(returnFiber, currentFiber, element, shouldTrackS
       if (child.tag === _RemixShared.FRAGMENT) {
         if (element.type === _RemixShared.REACT_FRAGMENT_TYPE) {
           deleteRemainingChildren(returnFiber, child.sibling);
-          var fiber = (0, _RemixFiber.useFiber)(child, element.props.children);
-          fiber["return"] = returnFiber;
-          return fiber;
-        }
-      } else {
-        if (child.elementType === element.type) {
-          var _fiber = (0, _RemixFiber.useFiber)(child, element.props);
+
+          var _fiber = (0, _RemixFiber.useFiber)(child, element.props.children);
 
           _fiber["return"] = returnFiber;
           return _fiber;
+        }
+      } else {
+        if (child.elementType === element.type) {
+          var _fiber2 = (0, _RemixFiber.useFiber)(child, element.props);
+
+          _fiber2["return"] = returnFiber;
+          return _fiber2;
         }
       }
 
@@ -3761,9 +3754,55 @@ function deleteRemainingChildren(returnFiber, currentFiber, shouldTrackSideEffec
 
 function deleteChild(child, shouldTrackSideEffects) {
   if (shouldTrackSideEffects) {
-    child.effectTag |= _RemixShared.DELETION;
-    nextEffect = nextEffect.nextEffect = child;
+    child.effectTag = _RemixShared.DELETION;
+    nextEffect = nextEffect === null ? fiber : nextEffect.nextEffect = fiber;
   }
+}
+
+function createChild(returnFiber, child) {
+  var type = typeOf(child);
+
+  switch (type) {
+    case 'string':
+    case 'number':
+      {
+        var _fiber3 = (0, _RemixFiber.createFiberFromText)('' + child);
+
+        _fiber3["return"] = returnFiber;
+        return _fiber3;
+      }
+
+    case 'object':
+      {
+        switch (child.$$typeof) {
+          case _RemixShared.REACT_ELEMENT_TYPE:
+            {
+              var _fiber4 = (0, _RemixFiber.createFiberFromElement)(child);
+
+              _fiber4["return"] = returnFiber;
+              return _fiber4;
+            }
+
+          case REACT_PORTAL_TYPE:
+            {
+              var _fiber5 = createFiberFromPortal(child);
+
+              _fiber5["return"] = returnFiber;
+              return _fiber5;
+            }
+        }
+      }
+
+    case 'array':
+      {
+        var _fiber6 = (0, _RemixFiber.createFiberFromFragment)(child, key);
+
+        _fiber6["return"] = returnFiber;
+        return _fiber6;
+      }
+  }
+
+  return null;
 } // ---- commit work ----
 
 
@@ -3789,8 +3828,6 @@ function commitRoot(root) {
   isCommiting = false;
   (0, _RemixDOMUpdator.DOMUpdateQueue)(finishedWork);
 }
-
-function commitBeforeMutationLifeCycles(current, finishedWork) {}
 
 function commitMutationEffects() {
   var effectTag = nextEffect.effectTag;
@@ -3971,15 +4008,12 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.type = type;
 exports.shallowEqual = shallowEqual;
 exports.resolveDefaultProps = resolveDefaultProps;
 exports.flatten = flatten;
 exports.NO_WORK = exports.WORKING = exports.FLOAT = exports.CHILDREN = exports.STYLE = exports.REACT_LAZY_TYPE = exports.REACT_MEMO_TYPE = exports.REACT_SUSPENSE_TYPE = exports.REACT_FRAGMENT_TYPE = exports.REACT_PORTAL_TYPE = exports.REACT_ELEMENT_TYPE = exports.SYNC = exports.ASYNC = exports.UPDATE_STATE = exports.EDITOR = exports.TEXTAREA = exports.VIDEO = exports.SWIPER = exports.SWIPER_ITEM = exports.PICKER = exports.PLAIN_TEXT = exports.TEXT = exports.BODY = exports.ROOT = exports.VIEW = exports.INPUT = exports.MAP = exports.BUTTON = exports.IMAGE = exports.INCOMPLETE = exports.PASSIVE = exports.SNAPSHOT = exports.REF = exports.ERROR = exports.CALLBACK = exports.CONTENT_RESET = exports.DELETION = exports.PLACEMENT_AND_UPDATE = exports.UPDATE = exports.PLACEMENT = exports.PERFORMED = exports.NO_EFFECT = exports.SIDE_EFFECT = exports.OBJECT_COMPONENT = exports.FRAGMENT = exports.HOST_TEXT = exports.HOST_COMPONENT = exports.HOST_PORTAL = exports.HOST_ROOT = exports.INDETERMINATE_COMPONENT = exports.CLASS_COMPONENT = exports.FUNCTION_COMPONENT = exports.INTERNAL_CHILDREN = exports.INTERNAL_ROOT_FIBER_KEY = exports.INTERNAL_RELATIVE_KEY = exports.INTERNAL_EVENT_HANDLERS_KEY = exports.INTERNAL_INSTANCE_KEY = exports.nextTick = exports.performance = void 0;
 
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../remix/node_modules/@babel/runtime/helpers/defineProperty.js"));
-
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../remix/node_modules/@babel/runtime/helpers/typeof.js"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -4000,22 +4034,6 @@ var performance = typeof performance === 'undefined' ? {
   }
 } : performance;
 exports.performance = performance;
-
-function type(object, value) {
-  var type = (0, _typeof2["default"])(object);
-
-  if (isArray(object)) {
-    type = 'array';
-  } else if (type === 'object') {
-    type = object === null ? 'null' : 'object';
-  }
-
-  if (value) {
-    return type === value;
-  }
-
-  return type;
-}
 
 function shallowEqual(objectA, objectB) {
   if (objectA === null || objectB === null) {
